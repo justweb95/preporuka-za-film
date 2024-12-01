@@ -21,4 +21,4 @@ Preporuke prijatelja: Često se dogodi da preporučeni filmovi ne odgovaraju stv
 Beskonačno skrolanje: Gubljenje vremena na čitanje recenzija i pregledanje lista filmova bez konačne odluke.
 Neodgovarajući rezultati: Mnogi filmovi se pokažu neodgovarajućim nakon 20 minuta gledanja.
 
-##**Naš AI sistem rešava ove probleme pružajući brze, tačne i personalizovane preporuke koje će zadovoljiti svakog korisnika. Uživajte u savršenom filmskom iskustvu bez stresa!**
+**Naš AI sistem rešava ove probleme pružajući brze, tačne i personalizovane preporuke koje će zadovoljiti svakog korisnika. Uživajte u savršenom filmskom iskustvu bez stresa!**
