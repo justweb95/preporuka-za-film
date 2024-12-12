@@ -1,0 +1,17 @@
+/* Unbounded Font */
+@font-face {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: url('../../fonts/Unbounded/Unbounded-VariableFont_wght.ttf');
+}
+
+/* Red Hat Display Font */
+@font-face {
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: url('../../fonts/Red_Hat_Display/RedHatDisplay-VariableFont_wght.ttf');
+}

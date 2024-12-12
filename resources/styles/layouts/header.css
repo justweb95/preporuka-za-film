@@ -1,0 +1,136 @@
+.header-main {
+  background: var(--Background, #06131E);
+  .header-holder {
+    padding: 24px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .header-logo {
+      max-width: 264px;
+      height: auto;
+      display: block;
+    }
+    .nav-link {
+      margin: 0px;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      .link-item {
+        position: relative;
+        padding: 16px 24px;
+        a {
+          text-decoration: none;
+          color: #FFF;
+          font-family: "Red Hat Display", sans-serif;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          transition: .3s ease;
+        }
+        .category-icon {
+          margin-left: 10px;
+          transition: .3s ease;
+        }
+        .link-drop-down {
+          z-index: 2;
+          width: 232px;
+          position: absolute;
+          top: 60px;
+          left: 0px;
+          background-color: #172938;
+          list-style: none;
+          display: flex;
+          flex-wrap: wrap;
+          padding-inline-start: 0px;
+          border-radius: 12px;
+          .drop-down-item {
+            width: 100%;
+            max-width: 100%;
+            flex: 1 0 51%;
+            a {
+              display: block;
+              padding: 18px 20px;
+              max-width: 100%;            
+            }
+            &:last-of-type {
+              border-radius: 0px 0px 12px 12px;
+            }
+            &:first-of-type {
+              border-radius: 12px 12px 0px 0px;
+            }
+            &:hover {
+              background: var(--Grey, #22374A);
+            }
+          }
+          &::after {
+            background-color: transparent;
+            content: '';
+            display: block;
+            width: 60%;
+            height: 30px;
+            position: absolute;
+            top: -20px;
+          }
+        }
+        &:hover {
+          cursor: pointer;
+          border-radius: 48px;
+          background: #172938;
+          transition: .3s ease;
+          .link-drop-down {
+            display: flex;
+          }
+          .category-icon {
+            transition: .3s ease;
+            transform: rotate(180deg);
+          }
+        }
+      }
+      .search {
+        margin-left: 8px;
+        padding: 16px 18px;
+        border-radius: 40px;
+        background: var(--Grey, #22374A);
+        width: auto;
+        display: flex;
+        .link-search-input {
+          width: 0px;
+          transition: .3s ease;    
+          border: 0px solid;
+          margin: 0px;
+          padding: 0px;  
+          background-color: transparent;
+          color: var(--White, #FFF);
+          font-family: "Red Hat Display", sans-serif;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          &::placeholder {
+            opacity: 0.4;
+          }
+          &:focus {
+            outline: none;
+            margin: 0px 16px 0px 0px;
+            padding: 0px 0px 0px 4px;
+            width: 150px;
+            transition: .3s ease;
+          }
+        }
+        .link-search-icon {
+          vertical-align: bottom;
+        }
+        &:hover {
+          .link-search-input {
+            margin: 0px 16px 0px 0px;
+            padding: 0px 0px 0px 4px;
+            width: 150px;
+            transition: .3s ease;
+          }
+        }
+      }
+    }
+  }
+}
