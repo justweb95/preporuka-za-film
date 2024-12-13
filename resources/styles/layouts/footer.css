@@ -1,0 +1,103 @@
+footer {
+  padding: 40px 0px 24px;
+  background-image: url('../images/partials/footer-background.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  .footer-holder {
+    .banner-holder {
+      margin: 0px auto 0px;
+      width: 970px;
+      max-width: 100%;
+    }
+    .footer-cta {
+      margin: 120px auto 100px;
+      text-align: center;
+      .footer-title {
+        color: var(--White, #FFF);
+        font-family: 'Unbounded', sans-serif;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140%; /* 44.8px */
+      }
+      .footer-text {
+        margin: 20px 0px 32px;
+        color: var(--Light, #EDFEEC);
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
+      .footer-btn {
+        display: inline-block;
+        padding: 18px 40px;
+        text-decoration: none;
+        border-radius: 80px;
+        background: var(--Orange);
+        color: #FFF;
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+        text-transform: uppercase;
+      }
+    }
+    .footer-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      list-style: none;
+      li {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .footer-logo {
+        margin-right: auto;
+      }
+      .footer-link-item {
+        position: relative;
+        padding: 16px 24px;
+        transition: .3s ease;
+        a {
+          text-decoration: none;
+          color: #FFF;
+          font-family: "Red Hat Display", sans-serif;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          transition: .3s ease;
+        }
+        &:hover {
+          border-radius: 48px;
+          background: #172938;
+          transition: .3s ease;
+        }
+      }
+      .footer-justweb {
+        margin-left: auto;
+      }
+    }
+    .footer-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--Grey, #22374A);
+      .footer-par, .footer-link {
+        text-decoration: none;
+        color: #B3C2CD;
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 145%; /* 20.3px */
+      }
+    }
+  }
+}

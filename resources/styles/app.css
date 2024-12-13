@@ -1,5 +1,12 @@
+/* Variables */
+@import url('./global/variables.css');
+@import url('./global/font.css');
+
+
 /* Partials */
 @import url('./layouts/header.css');
+@import url('./layouts/footer.css');
+
 
 /* Pages */
 @import url('./pages/home-page.css');
@@ -12,7 +19,6 @@
   width: 95%;
   margin: 0px auto;
 }
-
 
 /* @tailwind base;
 @tailwind components;

@@ -5,7 +5,5 @@
 @extends('layouts.app')
 
 @section('content')
-  <h1>Pavle Sage 10.8.1</h1>
-  <h3 class="add-text"></h3>
-  <button id="button">Clickni me</button>
+  @include('pages.home.home-hero')
 @endsection

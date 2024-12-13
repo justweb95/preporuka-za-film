@@ -41,7 +41,7 @@
           left: 0px;
           background-color: #172938;
           list-style: none;
-          display: flex;
+          display: none;
           flex-wrap: wrap;
           padding-inline-start: 0px;
           border-radius: 12px;
@@ -68,7 +68,7 @@
             background-color: transparent;
             content: '';
             display: block;
-            width: 60%;
+            width: 65%;
             height: 30px;
             position: absolute;
             top: -20px;
@@ -118,9 +118,24 @@
             width: 150px;
             transition: .3s ease;
           }
+          &:not(:placeholder-shown) {
+            outline: none;
+            margin: 0px 16px 0px 0px;
+            padding: 0px 0px 0px 4px;
+            width: 150px;
+            transition: .3s ease;
+          }
         }
         .link-search-icon {
           vertical-align: bottom;
+          path {
+            transition: .3s ease;
+          }
+          &:hover {
+            path {
+              fill: var(--Green);
+            }
+          }
         }
         &:hover {
           .link-search-input {

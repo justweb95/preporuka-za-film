@@ -12,13 +12,13 @@
     @php(wp_body_open())
     <div id="app">
       {{-- Header --}}
-      @include('sections.header')
+      @include('partials.header')
       {{-- Main Content --}}
       <main id="main" class="main">
         @yield('content')
       </main>
       {{-- Main footer --}}
-      @include('sections.footer')
+      @include('partials.footer')
     </div>
 
     @php(do_action('get_footer'))

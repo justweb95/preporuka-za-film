@@ -1,4 +1,94 @@
-h1 {
-  background-color: red;
-
+.home-hero {
+  padding: 40px 0px 60px;
+  background-image: url('../images/home/hero-background.webp');
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  .hero-holder {
+    .hero-sub-title {
+      color: var(--Orange, #EF8D53);
+      text-align: center;
+      font-family: "Red Hat Display", sans-serif;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    h1 {
+      margin: 20px auto 28px;
+      max-width: 876px;
+      color: var(--White, #FFF);
+      text-align: center;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 67.2px */
+    }
+    .hero-sub-text {
+      width: fit-content;
+      display: block;
+      margin: 0px auto;
+      padding: 5.5px 12px;
+      border-radius: 4px;
+      background: var(--Grey, #22374A);
+      color: var(--Green, #18BF7C);
+      text-align: center;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.64px;
+      text-transform: uppercase;
+    }
+    .hero-text {
+      margin: 28px auto 40px;
+      color: var(--Light, #EDFEEC);
+      text-align: center;
+      font-family: "Red Hat Display", sans-serif;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    .hero-cta-btn {
+      width: fit-content;
+      display: block;
+      margin: 0px auto;
+      text-decoration: none;
+      color: #FFF;
+      text-align: center;
+      font-family: "Red Hat Display", sans-serif;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: normal;
+      text-transform: uppercase;
+      padding: 18px 40px;
+      border-radius: 80px;
+      background: var(--Green, #18BF7C);
+    }
+  }
+  .movie-card-holder {
+    margin-top: 80px;
+    margin-left: -50px;
+    overflow-x: hidden;
+    display: flex;
+    gap: 24px;
+    .movie-single-card {
+      position: relative;
+      p {
+        position: absolute;
+        bottom: 6px;
+        left: 2px;
+        color: #ffffff80;
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 6px;
+        font-style: normal;
+        font-weight: 200;
+        line-height: normal;
+      }
+    }
+  }
 }
