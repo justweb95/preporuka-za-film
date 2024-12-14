@@ -9,7 +9,20 @@
 
   {{-- Infinite Scrool --}}
   <div class="movie-card-holder">
-    <article class="movie-single-card">
+    <img class="movie-single-card" src="@asset('images/home/movie-12.webp')" alt="Movie Card">
+    <img class="movie-single-card" src="@asset('images/home/movie-1.webp')" alt="Movie Card">
+    <img class="movie-single-card" src="@asset('images/home/movie-2.webp')" alt="Movie Card">
+    <img class="movie-single-card" src="@asset('images/home/movie-3.webp')" alt="Movie Card">
+    <img class="movie-single-card" src="@asset('images/home/movie-4.webp')" alt="Movie Card">
+    <img class="movie-single-card" src="@asset('images/home/movie-5.webp')" alt="Movie Card">
+    <img class="movie-single-card" src="@asset('images/home/movie-6.webp')" alt="Movie Card">
+    <img class="movie-single-card" src="@asset('images/home/movie-7.webp')" alt="Movie Card">
+    <img class="movie-single-card" src="@asset('images/home/movie-9.webp')" alt="Movie Card">
+    <img class="movie-single-card" src="@asset('images/home/movie-10.webp')" alt="Movie Card">
+    <img class="movie-single-card" src="@asset('images/home/movie-11.webp')" alt="Movie Card">
+    <img class="movie-single-card" src="@asset('images/home/movie-12.webp')" alt="Movie Card">
+    {{-- Single Card in article --}}
+    {{-- <article class="movie-single-card">
       <img src="@asset('images/home/movie-1.webp')" alt="Movie Card">
       <p>"Image courtesy of [Movie Studio Name] and [Film Title]. All rights reserved."</p>
     </article>
@@ -52,6 +65,6 @@
     <article class="movie-single-card">
       <img src="@asset('images/home/movie-12.webp')" alt="Movie Card">
       <p>"Image courtesy of [Movie Studio Name] and [Film Title]. All rights reserved."</p>
-    </article>
+    </article> --}}
   </div>
 </section>

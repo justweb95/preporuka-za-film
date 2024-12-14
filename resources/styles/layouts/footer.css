@@ -32,7 +32,7 @@ footer {
       }
       .footer-btn {
         display: inline-block;
-        padding: 18px 40px;
+        padding: 16px 40px;
         text-decoration: none;
         border-radius: 80px;
         background: var(--Orange);
@@ -43,6 +43,14 @@ footer {
         font-weight: 800;
         line-height: normal;
         text-transform: uppercase;
+        border: 2px solid var(--Orange);
+        transition: .3s ease;
+        &:hover {
+          cursor: pointer;
+          background: transparent;
+          border: 2px solid var(--Orange);
+          color: var(--Orange);
+        }
       }
     }
     .footer-content {

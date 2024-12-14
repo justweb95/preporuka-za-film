@@ -1,6 +1,8 @@
 <header class="header-main">
   <div class="header-holder container">
-    <img class="header-logo" src="@asset('images/partials/preporuka-za-film-logo.svg')" alt="Preporuka za film logo">
+    <a href="{{ url('/') }}">
+      <img class="header-logo" src="@asset('images/partials/preporuka-za-film-logo.svg')" alt="Preporuka za film logo">
+    </a>
     
     <ul class="nav-link">
       <li class="link-item"><a href="#">Početna</a></li>
@@ -11,12 +13,48 @@
           <path d="M12 1L6.49999 6L1 1" stroke="#18BF7C" stroke-width="2"/>
         </svg>          
         <ul class="link-drop-down">
-          <li class="drop-down-item"><a href="#">Akcija</a></li>
-          <li class="drop-down-item"><a href="#">Komedija</a></li>
-          <li class="drop-down-item"><a href="#">Drama</a></li>
-          <li class="drop-down-item"><a href="#">Avantura</a></li>
-          <li class="drop-down-item"><a href="#">Triler</a></li>
-          <li class="drop-down-item"><a href="#">Horor</a></li>
+          <li class="drop-down-item"><a href="#">
+            Akcija
+            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+              <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+            </svg>              
+          </a></li>
+          <li class="drop-down-item"><a href="#">
+            Komedija
+            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+              <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+            </svg>              
+          </a></li>
+          <li class="drop-down-item"><a href="#">
+            Drama
+            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+              <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+            </svg>              
+          </a></li>
+          <li class="drop-down-item"><a href="#">
+            Avantura
+            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+              <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+            </svg>              
+          </a></li>
+          <li class="drop-down-item"><a href="#">
+            Triler
+            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+              <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+            </svg>
+          </a></li>
+          <li class="drop-down-item"><a href="#">
+            Horor
+            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+              <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+            </svg>              
+          </a></li>
         </ul>
       </li>
       <li class="link-item"><a href="#">Blog</a></li>

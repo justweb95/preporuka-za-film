@@ -1,6 +1,7 @@
 /* Variables */
 @import url('./global/variables.css');
 @import url('./global/font.css');
+@import url('./global/animation.css');
 
 
 /* Partials */
@@ -10,6 +11,7 @@
 
 /* Pages */
 @import url('./pages/home-page.css');
+@import url('./pages/comming-soon.css');
 
 
 

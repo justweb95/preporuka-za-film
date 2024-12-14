@@ -1,0 +1,18 @@
+@keyframes arrowBounceDropDown {
+  0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0); /* Start position */
+  }
+  40% {
+      transform: translateX(-10px); /* Move up */
+  }
+  60% {
+      transform: translateX(-5px); /* Slightly lower */
+  }
+}
+
+
+@keyframes scrollLeft {
+  to {
+    left: -200px;
+  }
+}

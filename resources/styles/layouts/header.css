@@ -50,9 +50,17 @@
             max-width: 100%;
             flex: 1 0 51%;
             a {
-              display: block;
+              position: relative;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
               padding: 18px 20px;
-              max-width: 100%;            
+              max-width: 100%;
+              width: 100%;
+              svg {
+                display: none;
+                animation: arrowBounceDropDown 1.2s infinite
+              }
             }
             &:last-of-type {
               border-radius: 0px 0px 12px 12px;
@@ -62,6 +70,11 @@
             }
             &:hover {
               background: var(--Grey, #22374A);
+              a {
+                svg {
+                  display: block;
+                }
+              }
             }
           }
           &::after {
