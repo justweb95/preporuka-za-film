@@ -8,13 +8,9 @@ footer {
     .banner-holder {
       margin: 0px auto 0px;
       max-width: 970px;
-      .desktop-logo {
-        display: block;
+      img {
         max-width: 100%;
-        height: auto;
-      }
-      .mobile-logo {
-        display: none;
+        height: auto; 
       }
     }
     .footer-cta {
@@ -23,7 +19,7 @@ footer {
       .footer-title {
         color: var(--White, #FFF);
         font-family: 'Unbounded', sans-serif;
-        font-size: 32px;
+        font-size: clamp(24px, 4vw, 32px);
         font-style: normal;
         font-weight: 400;
         line-height: 140%; /* 44.8px */
@@ -32,7 +28,7 @@ footer {
         margin: 20px 0px 32px;
         color: var(--Light, #EDFEEC);
         font-family: "Red Hat Display", sans-serif;
-        font-size: 18px;
+        font-size: clamp(16px, 2.5vw, 18px);
         font-style: normal;
         font-weight: 500;
         line-height: normal;
@@ -45,7 +41,7 @@ footer {
         background: var(--Orange);
         color: #FFF;
         font-family: "Red Hat Display", sans-serif;
-        font-size: 18px;
+        font-size: clamp(16px, 2.5vw, 18px);
         font-style: normal;
         font-weight: 800;
         line-height: normal;
@@ -73,6 +69,14 @@ footer {
       }
       .footer-logo {
         margin-right: auto;
+        .desktop-logo {
+          display: block;
+          max-width: 100%;
+          height: auto;
+        }
+        .mobile-logo {
+          display: none;
+        }
       }
       .footer-link-item {
         position: relative;
@@ -116,7 +120,7 @@ footer {
       }
     }
   }
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     .footer-holder {
       .footer-content {
         justify-content: space-evenly;
@@ -134,13 +138,42 @@ footer {
           }
         }
         .footer-link-item {
-          flex: 1 0 30%;
+          flex: 1 0 28%;
           text-align: center;
         }
         .footer-justweb {
           margin-left: 0px;
         }
       }  
+    }
+  }
+  @media (max-width: 550px) {
+    .footer-holder {
+      .banner-holder {
+        width: 362px;
+        height: 308px;
+        img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .footer-cta {
+        margin: 40px auto 48px;
+      }
+      .footer-content {
+        justify-content: center;
+        gap: 12px;
+        .footer-link-item {
+          padding: 12px;
+          flex: 1 0 20%;
+          text-align: center;
+        }
+      } 
+      .footer-info {
+        flex-direction: column-reverse;
+        gap: 12px;
+      } 
     }
   }
 }

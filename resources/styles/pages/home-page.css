@@ -1,7 +1,7 @@
 .home-hero {
-  padding: 40px 0px 60px;
+  padding: 40px 0px 120px;
   background-image: url('../images/home/hero-background.webp');
-  background-position: center top;
+  background-position: center 70%;
   background-size: cover;
   background-repeat: no-repeat;
   .hero-holder {
@@ -148,6 +148,137 @@
       }
       &:nth-of-type(12) {
         animation-delay: calc(70s / 8 * (8 - 12) * -1);
+      }
+    }
+  }
+  @media (max-width: 550px) {
+    padding: 32px 0px 40px;
+    .hero-holder {
+      h1 {
+        margin: 8px 0px 24px;
+        max-width: 100%;
+      }
+      .hero-text {
+        margin: 24px 0px;
+      }
+      .hero-cta-btn {
+        padding: 14px 40px;
+      }
+    }
+    .movie-card-holder {
+      margin-top: 40px;
+      height: 240px;
+      .movie-single-card {
+        left: max(calc(160px * 8), 100%);
+        width: 160px;
+        height: 240px;
+      }
+    }
+  }
+}
+
+/* Why Us Section On Home */
+.home-why-us {
+  padding: 0px 0px 60px;
+  background-color: var(--Background, #1A2A3A);
+  .why-us-holder {
+    .why-us-sub-heading {
+      color: var(--Orange, #F57C36);
+      text-align: center;
+      font-family: "Red Hat Display";
+      font-size: clamp(16px, 3vw + 1px, 20px);
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; 
+    }
+    .why-us-heading {
+      margin: 14px auto 24px;
+      color: var(--White, #FFF);
+      text-align: center;
+      font-family: 'Unbounded';
+      font-size: clamp(24px, 3vw + 4px, 32px);
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 44.8px */
+    }
+    .why-us-text {
+      max-width: 1100px;
+      margin: 0px auto;
+      color: #FFF;
+      text-align: center;
+      font-family: "Red Hat Display";
+      font-size: clamp(14px, 3vw + 2px, 20px);
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    .why-us-card-holder {
+      margin-top: 80px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      .single-why-us-card {
+        flex: 1 0 28%;
+        max-width: 389px;
+        min-width: 325px;
+        .why-us-card-image {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          margin: 0px auto;
+        }
+        .why-us-card-heading {
+          margin: 24px 0px 16px;
+          color: var(--White, #FFF);
+          text-align: center;
+          font-family: 'Unbounded';
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 140%; /* 33.6px */
+        }
+        .why-us-card-text {
+          color: #FFF;
+          text-align: center;
+          font-family: "Red Hat Display";
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+        }
+      }
+    }
+  }
+  @media (max-width: 1024px) {
+    .why-us-holder {
+      .why-us-card-holder {
+        gap: 16px;
+        .single-why-us-card {
+          flex: 1 0 45%;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+  @media (max-width: 550px) {
+    .why-us-holder {
+      .why-us-heading {
+        margin: 12px 0px 16px;
+      }
+      .why-us-card-holder {
+        margin-top: 60px;
+        gap: 40px;
+        .single-why-us-card {
+          .why-us-card-heading {
+            margin: 24px 0px 16px;
+            font-size: 20px;
+          }
+          .why-us-card-text {
+            font-size: 14px;
+          }
+        }
       }
     }
   }
