@@ -7,4 +7,5 @@
 @section('content')
   @include('pages.home.home-hero')
   @include('pages.home.home-why-us')
+  @include('pages.home.home-pros')
 @endsection
