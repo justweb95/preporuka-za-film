@@ -4,6 +4,8 @@ import domReady from '@roots/sage/client/dom-ready';
  * Application entrypoint
  */
 domReady(async () => {
+  // Dynamically import the burger menu script
+  await import('./partials/burger.js');
   // ...
 });
 

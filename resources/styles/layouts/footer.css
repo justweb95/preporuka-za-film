@@ -7,8 +7,15 @@ footer {
   .footer-holder {
     .banner-holder {
       margin: 0px auto 0px;
-      width: 970px;
-      max-width: 100%;
+      max-width: 970px;
+      .desktop-logo {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+      .mobile-logo {
+        display: none;
+      }
     }
     .footer-cta {
       margin: 120px auto 100px;
@@ -55,6 +62,7 @@ footer {
     }
     .footer-content {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 12px;
       list-style: none;
@@ -106,6 +114,33 @@ footer {
         font-weight: 400;
         line-height: 145%; /* 20.3px */
       }
+    }
+  }
+  @media (max-width: 1024px) {
+    .footer-holder {
+      .footer-content {
+        justify-content: space-evenly;
+        gap: 24px;
+        .footer-logo {
+          flex: 1 0 100%;
+          .desktop-logo {
+            display: none;
+          }
+          .mobile-logo {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 0px auto;
+          }
+        }
+        .footer-link-item {
+          flex: 1 0 30%;
+          text-align: center;
+        }
+        .footer-justweb {
+          margin-left: 0px;
+        }
+      }  
     }
   }
 }

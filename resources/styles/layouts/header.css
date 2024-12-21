@@ -161,4 +161,168 @@
       }
     }
   }
+  .burger-open-btn {
+    display: none;
+  }
+  @media (max-width: 1024px) {
+    position: relative;
+    .main-nav-desktop {
+      display: none;
+    }
+    .burger-open-btn {
+      display: block;
+    }
+    .burger-menu-content {
+      display: none;
+      position: absolute;
+      background: rgba(6, 19, 30, 0.39);
+      backdrop-filter: blur(20px);
+      width: 100svw;
+      height: 100svh;
+      left: 0px;
+      top: 0px;
+      z-index: 10;
+      .nav-link {
+        padding: 0px 18px 48px 18px;
+        margin-left: auto;
+        width: 90%;
+        height: 100%;
+        background: var(--Grey, #22374A);
+        display: flex;
+        flex-direction: column;
+        transition: .3s ease;
+        li {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .burger-header {
+          padding: 24px 0px;
+        }
+        .burger-link-item {
+          padding: 20px 0px;
+          position: relative;
+          border-bottom: 1px solid #172938;
+          a {
+            text-decoration: none;
+            color: #FFF;
+            font-family: "Red Hat Display", sans-serif;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            transition: .3s ease;
+          }
+          .category-icon {
+            margin-left: 10px;
+            transition: .3s ease;
+          }
+          .link-drop-down {
+            z-index: 2;
+            max-width: 100%;
+            width: 100%;
+            position: absolute;
+            top: 60px;
+            left: 0px;
+            background-color: #172938;
+            list-style: none;
+            display: none;
+            flex-wrap: wrap;
+            padding-inline-start: 0px;
+            border-radius: 12px;
+            .drop-down-item {
+              width: 100%;
+              max-width: 100%;
+              flex: 1 0 51%;
+              a {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 18px 20px;
+                max-width: 100%;
+                width: 100%;
+                svg {
+                  display: none;
+                  animation: arrowBounceDropDown 1.2s infinite
+                }
+              }
+              &:last-of-type {
+                border-radius: 0px 0px 12px 12px;
+              }
+              &:first-of-type {
+                border-radius: 12px 12px 0px 0px;
+              }
+              &:hover {
+                background: var(--Grey, #22374A);
+                a {
+                  svg {
+                    display: block;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .burger-search {
+          margin-top: auto;
+          padding: 16px 18px;
+          border-radius: 40px;
+          background: #172938;
+          width: 100%;
+          display: flex;
+          .link-search-input {
+            transition: .3s ease;    
+            border: 0px solid;
+            margin: 0px;
+            padding: 0px;  
+            background-color: transparent;
+            color: var(--White, #FFF);
+            font-family: "Red Hat Display", sans-serif;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            &::placeholder {
+              opacity: 0.4;
+            }
+            &:focus {
+              outline: none;
+              margin: 0px 16px 0px 0px;
+              padding: 0px 0px 0px 4px;
+              width: 150px;
+              transition: .3s ease;
+            }
+          }           
+        }
+      }
+    }
+  }
+  @media (max-width: 550px) {
+    .header-holder {
+      .header-logo {
+        display: block;
+        height: auto;
+        max-width: 188px;
+      }
+    }
+  }
+}
+
+.burger-active {
+  overflow: clip;
+  .nav-link {
+    animation: fromRight 0.4s ease-in-out;
+  }
+}
+
+
+@keyframes fromRight {
+  0% {
+    transform: translateX(1000px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
 }

@@ -9,21 +9,21 @@
       color: var(--Orange, #EF8D53);
       text-align: center;
       font-family: "Red Hat Display", sans-serif;
-      font-size: 18px;
+      font-size: clamp(14px, 1vw + 8px, 18px);
       font-style: normal;
       font-weight: 500;
       line-height: normal;
     }
     h1 {
       margin: 20px auto 28px;
-      max-width: 876px;
+      max-width: 70%;
       color: var(--White, #FFF);
       text-align: center;
       font-family: 'Unbounded', sans-serif;
-      font-size: 48px;
+      font-size: clamp(32px, 2.3vw + 16px, 48px);
       font-style: normal;
       font-weight: 400;
-      line-height: 140%; /* 67.2px */
+      line-height: 140%;
     }
     .hero-sub-text {
       width: fit-content;
@@ -35,7 +35,7 @@
       color: var(--Green, #18BF7C);
       text-align: center;
       font-family: 'Unbounded', sans-serif;
-      font-size: 16px;
+      font-size: clamp(14px, 0.5vw + 10px, 16px);
       font-style: normal;
       font-weight: 400;
       line-height: normal;
@@ -47,7 +47,7 @@
       color: var(--Light, #EDFEEC);
       text-align: center;
       font-family: "Red Hat Display", sans-serif;
-      font-size: 18px;
+      font-size: clamp(16px, 0.833vw + 8px, 18px);
       font-style: normal;
       font-weight: 500;
       line-height: normal;
@@ -60,7 +60,7 @@
       color: #FFF;
       text-align: center;
       font-family: "Red Hat Display", sans-serif;
-      font-size: 18px;
+      font-size: clamp(14px, 0.833vw + 8px, 18px);
       font-style: normal;
       font-weight: 800;
       line-height: normal;
@@ -97,7 +97,7 @@
       height: 320px;
       border-radius: 6px;
       position: absolute;
-      left: max(calc(230px * 12), 100%);
+      left: max(calc(230px * 8), 100%);
       animation-name: scrollLeft;
       animation-duration: 70s;
       animation-timing-function: linear;
@@ -114,40 +114,40 @@
         line-height: normal;
       }
       &:nth-of-type(1) {
-        animation-delay: calc(70s / 12 * (12 - 1) * -1);
+        animation-delay: calc(70s / 8 * (8 - 1) * -1);
       }
       &:nth-of-type(2) {
-        animation-delay: calc(70s / 12 * (12 - 2) * -1);
+        animation-delay: calc(70s / 8 * (8 - 2) * -1);
       }
       &:nth-of-type(3) {
-        animation-delay: calc(70s / 12 * (12 - 3) * -1);
+        animation-delay: calc(70s / 8 * (8 - 3) * -1);
       }
       &:nth-of-type(4) {
-        animation-delay: calc(70s / 12 * (12 - 4) * -1);
+        animation-delay: calc(70s / 8 * (8 - 4) * -1);
       }
       &:nth-of-type(5) {
-        animation-delay: calc(70s / 12 * (12 - 5) * -1);
+        animation-delay: calc(70s / 8 * (8 - 5) * -1);
       }
       &:nth-of-type(6) {
-        animation-delay: calc(70s / 12 * (12 - 6) * -1);
+        animation-delay: calc(70s / 8 * (8 - 6) * -1);
       }
       &:nth-of-type(7) {
-        animation-delay: calc(70s / 12 * (12 - 7) * -1);
+        animation-delay: calc(70s / 8 * (8 - 7) * -1);
       }
       &:nth-of-type(8) {
-        animation-delay: calc(70s / 12 * (12 - 8) * -1);
+        animation-delay: calc(70s / 8 * (8 - 8) * -1);
       }
       &:nth-of-type(9) {
-        animation-delay: calc(70s / 12 * (12 - 9) * -1);
+        animation-delay: calc(70s / 8 * (8 - 9) * -1);
       }
       &:nth-of-type(10) {
-        animation-delay: calc(70s / 12 * (12 - 10) * -1);
+        animation-delay: calc(70s / 8 * (8 - 10) * -1);
       }
       &:nth-of-type(11) {
-        animation-delay: calc(70s / 12 * (12 - 11) * -1);
+        animation-delay: calc(70s / 8 * (8 - 11) * -1);
       }
       &:nth-of-type(12) {
-        animation-delay: calc(70s / 12 * (12 - 12) * -1);
+        animation-delay: calc(70s / 8 * (8 - 12) * -1);
       }
     }
   }

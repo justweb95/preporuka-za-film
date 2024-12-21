@@ -9,7 +9,6 @@
 
   {{-- Infinite Scrool --}}
   <div class="movie-card-holder">
-    <img class="movie-single-card" src="@asset('images/home/movie-12.webp')" alt="Movie Card">
     <img class="movie-single-card" src="@asset('images/home/movie-1.webp')" alt="Movie Card">
     <img class="movie-single-card" src="@asset('images/home/movie-2.webp')" alt="Movie Card">
     <img class="movie-single-card" src="@asset('images/home/movie-3.webp')" alt="Movie Card">
@@ -21,6 +20,10 @@
     <img class="movie-single-card" src="@asset('images/home/movie-10.webp')" alt="Movie Card">
     <img class="movie-single-card" src="@asset('images/home/movie-11.webp')" alt="Movie Card">
     <img class="movie-single-card" src="@asset('images/home/movie-12.webp')" alt="Movie Card">
+
+
+
+
     {{-- Single Card in article --}}
     {{-- <article class="movie-single-card">
       <img src="@asset('images/home/movie-1.webp')" alt="Movie Card">

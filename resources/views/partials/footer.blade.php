@@ -12,7 +12,10 @@
     </section>
     
     <ul class="footer-content">
-      <li class="footer-logo"><img src="@asset('images/partials/preporuka-za-film-logo.svg')" alt="Footer Logo"></li>
+      <li class="footer-logo">
+        <img class="desktop-logo" src="@asset('images/partials/preporuka-za-film-logo.svg')" alt="Footer Logo">
+        <img class="mobile-logo" src="@asset('images/partials/footer-logo.svg')" alt="Footer Logo">        
+      </li>
 
       <li class="footer-link-item"><a href="#">Početna</a></li>
       <li class="footer-link-item"><a href="#">Blog</a></li>
