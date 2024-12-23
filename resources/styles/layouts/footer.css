@@ -170,7 +170,11 @@ footer {
           flex: 1 0 20%;
           text-align: center;
         }
-      } 
+        .footer-justweb, .footer-saul {
+          flex: 0 0 35%;
+          text-align: center;
+        } 
+      }
       .footer-info {
         flex-direction: column-reverse;
         gap: 12px;
