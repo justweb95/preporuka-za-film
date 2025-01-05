@@ -70,8 +70,8 @@
           left: 0;
           z-index: 1;
           opacity: 0;
-          transition: 0.3s ease;
-          background: linear-gradient(90deg, #172938 60%, #18BF7C 100%);
+          transition: 0.5s ease;
+          background: linear-gradient(90deg, #17293800 20%, #18bf7cb5 100%);
         }
         &:hover {
           cursor: pointer;
