@@ -18,7 +18,10 @@
         @yield('content')
       </main>
       {{-- Main footer --}}
-      @include('partials.footer')
+      {{-- Do not show footer on anktea page --}}
+      @if (!is_page('anketa'))
+        @include('partials.footer')
+      @endif
     </div>
 
     @php(do_action('get_footer'))
