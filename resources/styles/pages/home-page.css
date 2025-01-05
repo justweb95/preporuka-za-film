@@ -13,8 +13,7 @@
       font-style: normal;
       font-weight: 500;
       line-height: normal;
-      animation: fadeInUp .6s ease-in-out;
-      animation-delay: 0.3s;
+      animation: fadeInUp .4s ease-in-out;
     }
     h1 {
       margin: 20px auto 28px;
@@ -26,8 +25,7 @@
       font-style: normal;
       font-weight: 400;
       line-height: 140%;
-      animation: fadeInUp .7s ease-in-out;
-      animation-delay: 0.3s;
+      animation: fadeInUp .6s ease-in-out;
     }
     .hero-sub-text {
       width: fit-content;
@@ -46,7 +44,6 @@
       letter-spacing: 0.64px;
       text-transform: uppercase;
       animation: fadeInUp .8s ease-in-out;
-      animation-delay: 0.3s;
     }
     .hero-text {
       margin: 28px auto 40px;
@@ -58,7 +55,6 @@
       font-weight: 500;
       line-height: normal;
       animation: fadeInUp .8s ease-in-out;
-      animation-delay: 0.4s;
     }
     .hero-cta-btn {
       width: fit-content;
@@ -79,7 +75,6 @@
       background: var(--Green, #18BF7C);
       transition: .3s ease;
       animation: fadeInUp .9s ease-in-out;
-      animation-delay: 0.4s;
       &:hover {
         cursor: pointer;
         background: transparent;

@@ -1,3 +1,6 @@
+/* Home Animation  */
+/*  */
+/* Header Dropdown */
 @keyframes arrowBounceDropDown {
   0%, 20%, 50%, 80%, 100% {
       transform: translateY(0);
@@ -10,13 +13,14 @@
   }
 }
 
-
+/* Header burger menu  */
 @keyframes scrollLeft {
   to {
     left: -200px;
   }
 }
 
+/* Text Animatin */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -28,6 +32,7 @@
   }
 }
 
+/* Bounce Icons */
 @keyframes bounceIconHomePage {
   0%, 20%, 50%, 80%, 100% {
     transform: translateY(0);
@@ -37,5 +42,33 @@
   }
   60% {
     transform: translateY(-4px);
+  }
+}
+
+
+/* Questionnaire Page */
+/* Arrow on next button */
+@keyframes arrowBounceNextBtn {
+  0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+  }
+  40% {
+      transform: translateX(10px);
+  }
+  60% {
+      transform: translateX(5px);
+  }
+}
+
+/* Arrow on Back button */
+@keyframes arrowBounceBackBtn {
+  0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+  }
+  40% {
+      transform: translateX(-10px);
+  }
+  60% {
+      transform: translateX(-5px);
   }
 }

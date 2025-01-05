@@ -8,7 +8,7 @@
     <section class="footer-cta">
       <h2 class="footer-title">Najbrža besplatna preporuka za film</h2>
       <p class="footer-text">Odgovorite na 6 kratkih pitanja, i uživajte u najboljim filmovima za vas.</p>
-      <a href="#" class="footer-btn">POČNI ODMAH</a>
+      <a href="{{ url('/anketa') }}" class="footer-btn">POČNI ODMAH</a>
     </section>
     
     <ul class="footer-content">

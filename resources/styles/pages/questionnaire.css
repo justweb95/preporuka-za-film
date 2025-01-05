@@ -1,4 +1,5 @@
 .questionnaire-holder {
+  padding: 60px 0px 20px;
   height: calc(100svh - 104px);
   background-color: var(--Background);
   background-image: url('/images/questionnaire/questionnaire-bg.webp');
@@ -7,7 +8,6 @@
   background-repeat: no-repeat;
 
   article {
-    width: 95%;
     max-width: 720px;
     margin: 0px auto;
     .questionnaire-header {
@@ -71,7 +71,7 @@
           z-index: 1;
           opacity: 0;
           transition: 0.5s ease;
-          background: linear-gradient(90deg, #17293800 20%, #18bf7cb5 100%);
+          background: linear-gradient(90deg, #17293800 30%, #18bf7cb5 100%);
         }
         &:hover {
           cursor: pointer;
@@ -81,8 +81,97 @@
         }
       }
     }
+    .form-control {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .back-btn {
+        width: 48%;
+        max-width: 280px;
+        padding: 13px 20px;
+        border-radius: 40px;
+        border: 2px solid var(--Green, #18BF7C);
+        background: var(--Background, #06131E);
+        color: var(--White, #FFF);
+        text-align: center;
+        font-family: "Red Hat Display";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        transition: .3s ease;
+        svg {
+          margin-right: 10px;
+        }
+        &:hover {
+          cursor: pointer;
+          background: var(--Green, #18BF7C);
+          svg {
+            animation: arrowBounceBackBtn 1s forwards;
+          }
+        }
+      }
+      .next-btn {
+        width: 48%;
+        max-width: 280px;
+        border-radius: 40px;
+        background: var(--Background, #06131E);
+        padding: 13px 20px;
+        border-radius: 40px;
+        border: 2px solid var(--Green, #18BF7C);
+        color: var(--White, #FFF);
+        text-align: center;
+        font-family: "Red Hat Display";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        transition: .3s ease;
+        svg {
+          margin-left: 10px;
+        }
+        &:hover {
+          cursor: pointer;
+          background: var(--Green, #18BF7C);
+          svg {
+            animation: arrowBounceNextBtn 1s forwards;
+          }
+        }
+      }
+    }
   }
   .first-question-holder {
     height: 100%;
+  }
+  @media (max-width: 550px) {
+    padding: 48px 0px;
+    height: calc(100svh - 88px);
+    article {
+      display: flex;
+      flex-direction: column;
+      .questionnaire-header {
+        padding: 16px 20px;
+        font-size: 18px;
+      }
+      form {
+        flex-wrap: wrap;
+        flex-direction: row;
+        label {
+          padding: 17.5px 20px;
+          font-size: 16px;
+          input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+          }
+        }
+      }
+      .form-control {
+        margin-top: auto;
+        button {
+          font-size: 18px;
+        }
+      }
+    }
   }
 }

@@ -4,7 +4,7 @@
     <h1>Preporuka za film po tvom ukusu i raspoloženju</h1>
     <h2 class="hero-sub-text">za manje od 1 minuta!</h2>
     <p class="hero-text">Odgovori na 6 brzih pitanja - i AI će ti pronaći najbolji film za gledanje</p>
-    <a href="#" class="hero-cta-btn">POČNI ODMAH</a>
+    <a href="{{ url('/anketa') }}" class="hero-cta-btn">POČNI ODMAH</a>
   </div>
 
   {{-- Infinite Scrool --}}

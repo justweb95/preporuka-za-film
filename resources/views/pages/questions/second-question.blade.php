@@ -1,8 +1,8 @@
-<article class="first-question-holder container qa" id="first-question">
+<article class="first-question-holder container qa" id="second-question">
   <h1 class="questionnaire-header">1. Kakav film želite da gledate večeras?</h1>
   <form>
       <label for="uzbudljiv">
-        <input type="radio" id="uzbudljiv" name="film" value="uzbudljiv">Uzbudljiv
+        <input type="radio" id="uzbudljiv" name="film" value="uzbudljiv">Pavle
       </label>
       <label for="smesna">
         <input type="radio" id="smesna" name="film" value="smesna">Smešan
