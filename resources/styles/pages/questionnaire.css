@@ -59,6 +59,33 @@
             background: var(--Green, #18BF7C);
           }
         }
+        input[type="checkbox"] {
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          background: var(--Background, #06131E);
+          margin-bottom: -3px;
+          margin-right: 12px;
+          border: 1px solid var(--Orange, #F57C36);
+          border-radius: 4px;
+          outline: none;
+          position: relative;
+          &:checked {
+            border: 2px solid #18BF7C;
+            background: var(--Green, #18BF7C);
+            &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -35%);
+            background-image: url('../images/partials/checkmark.svg');
+            background-size: contain;
+            background-repeat: no-repeat;            }
+          }
+        }
         &::before {
           content: "";
           display: block;
@@ -140,14 +167,26 @@
       }
     }
   }
-  .first-question-holder {
+  .question-holder {
     height: 100%;
   }
+
+  #third-question {
+    form {
+      flex-direction: row;
+      flex-wrap: wrap;
+      label {
+        flex: 1 0 30%;
+        min-width: 180px;
+      }
+    }
+  }
+
   @media (max-width: 550px) {
     padding: 48px 0px;
     height: calc(100svh - 88px);
     article {
-      display: flex;
+      display: flex !important;
       flex-direction: column;
       .questionnaire-header {
         padding: 16px 20px;
@@ -173,5 +212,16 @@
         }
       }
     }
+    #third-question {
+      form {
+        label {
+          min-width: 175px;
+        }
+      }
+    }
+    &:has( > #third-question:not([style*="display: none"])) {
+      height: auto;
+    }
+
   }
 }

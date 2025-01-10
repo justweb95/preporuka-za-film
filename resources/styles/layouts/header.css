@@ -34,7 +34,7 @@
           transition: .3s ease;
         }
         .link-drop-down {
-          z-index: 2;
+          z-index: 3;
           width: 232px;
           position: absolute;
           top: 60px;

@@ -7,6 +7,11 @@
   {{-- This will be holder question --}}
   <section class="questionnaire-holder">
     @include('pages/questions/first-question')
-    {{-- @include('pages/questions/second-question') --}}
+    @include('pages/questions/second-question')
+    @include('pages/questions/third-question')
+    @include('pages/questions/fourth-question')
+    @include('pages/questions/fifth-question')
+    @include('pages/questions/six-question')
+    @include('pages/questions/results')
   </section>
 @endsection

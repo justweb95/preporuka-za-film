@@ -7,6 +7,8 @@ domReady(async () => {
   // Dynamically import the burger menu script
   await import('./partials/burger.js');
   await import('./pages/home.js');
+  await import('./pages/anketa.js');
+  
   // ...
 });
 
