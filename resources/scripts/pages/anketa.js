@@ -3,7 +3,7 @@ import 'toastify-js/src/toastify.css'; // Importing CSS for Toastify
 
 // Here is all questions components
 const allQuestionsCompontents = document.querySelectorAll('.qa');
-let currentQuestionIndex = 0;
+let currentQuestionIndex = 6;
 
 // Toster
 function showToast(message, type) {
