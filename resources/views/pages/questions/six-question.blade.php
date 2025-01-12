@@ -1,9 +1,6 @@
 <article class="question-holder container qa" id="six-question">
-  <h1 class="questionnaire-header">5. Da li želite da film bude:</h1>
-  <form>
-      <label for="nemam-preferencija">
-        <input type="radio" id="nemam-preferencija" name="film" value="nemam-preferencija">Nemam preferencija
-      </label>
+  <h1 class="questionnaire-header">6. Izaberi neku drugu kategoriju koja te interesuje:</h1>
+  <form id="form-holder-5">
       <label for="filmovi-koji-menjaju-pogled-na-zivot">
         <input type="radio" id="filmovi-koji-menjaju-pogled-na-zivot" name="film" value="filmovi-koji-menjaju-pogled-na-zivot">Filmovi koji menjaju pogled na zivot
       </label>
