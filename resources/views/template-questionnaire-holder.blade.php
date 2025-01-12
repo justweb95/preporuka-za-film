@@ -12,6 +12,7 @@
     @include('pages/questions/fourth-question')
     @include('pages/questions/fifth-question')
     @include('pages/questions/six-question')
+    @include('pages/questions/loader')
     @include('pages/questions/results')
   </section>
 @endsection

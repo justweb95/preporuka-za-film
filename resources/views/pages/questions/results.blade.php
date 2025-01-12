@@ -1,18 +1,6 @@
-<article class="question-holder container qa" id="results">
-  {{-- Loader --}}
-  {{-- <div class="loading-holder">
-    <p id="ai-loader" class="ai-loading-text">
-      <span>1.</span>
-      AI Trazi Savršen film za tebe
-    </p>
-    <p id="tmdb-loader" class="ai-loading-text">
-      <span>1.</span>
-      IMDB Salje Podatke
-    </p>
-  </div> --}}
-  
+<article class="question-holder container qa" id="results">  
   {{-- Results --}}
-  <h1 class="questionnaire-header">Preporuke za tebe:</h1>   
+  <h1 class="questionnaire-header">Preporuke za tebe</h1>   
   <div class="result-data-holder">
     {{-- Image --}}
     <span class="result-poster-holder" id="result-poster-holder">
@@ -64,9 +52,14 @@
       </div>
 
       {{-- Result Description --}}
-      <p class="result-content-description" id="result-description">
-        Ki-Taekova četvoročlana porodica je bliska, ali potpuno nezaposlena, pred njima je mračna budućnost. Sina Ki-Vua preporučuje njegov prijatelj, student prestižnog univerziteta, za dobro plaćen posao podučavanja, što stvara nadu u redovan prihod.
-      </p>
+      <div class="result-content-description">
+        <span class="result-description-poster-holder" id="result-description-poster-holder">
+          <img src="@asset('./images/questionnaire/movie-poster.png')" alt="Image Poster" id="result-description-poster">
+        </span>
+        <p class="result-content-description-text" id="result-description-text">
+          Ki-Taekova četvoročlana porodica je bliska, ali potpuno nezaposlena, pred njima je mračna budućnost. Sina Ki-Vua preporučuje njegov prijatelj, student prestižnog univerziteta, za dobro plaćen posao podučavanja, što stvara nadu u redovan prihod.
+        </p>  
+      </div>
 
       {{-- Result CTA --}}
       <div class="result-content-cta" id="result-content-cta">

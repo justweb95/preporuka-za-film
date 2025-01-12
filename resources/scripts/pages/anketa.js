@@ -3,7 +3,7 @@ import 'toastify-js/src/toastify.css'; // Importing CSS for Toastify
 
 // Here is all questions components
 const allQuestionsCompontents = document.querySelectorAll('.qa');
-let currentQuestionIndex = 6;
+let currentQuestionIndex = 0;
 
 // Toster
 function showToast(message, type) {
@@ -22,7 +22,7 @@ function showToast(message, type) {
 // Here is the function to show the next question
 function changeQuestionHandler(currentQuestionIndex) {
   console.log("Trenutno pitanje:");
-  console.log(currentQuestionIndex + 1);
+  console.log(currentQuestionIndex);
 
   allQuestionsCompontents.forEach((singleQuestion) => {
     singleQuestion.style.setProperty('display', 'none', 'important');
@@ -32,6 +32,13 @@ function changeQuestionHandler(currentQuestionIndex) {
 
   if(currentQuestionIndex === 0) {
     disableBackButton();
+  }
+
+  if(currentQuestionIndex === 6) {
+    setTimeout(() => {
+      currentQuestionIndex = 7;
+      changeQuestionHandler(currentQuestionIndex);
+    }, 4500)
   }
 }
 
