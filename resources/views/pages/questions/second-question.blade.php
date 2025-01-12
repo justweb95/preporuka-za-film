@@ -1,4 +1,4 @@
-<article class="question-holder container qa" id="second-question">
+<article class="question-holder container qa" id="second-question" style="display: none !important;">
   <h1 class="questionnaire-header">2. Šta najviše odgovara tvojoj prilici?</h1>
   <form id="form-holder-1">
       <label for="gledam-film-sam">

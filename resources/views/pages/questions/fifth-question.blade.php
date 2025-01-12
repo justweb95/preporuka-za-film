@@ -1,4 +1,4 @@
-<article class="question-holder container qa" id="fifth-question">
+<article class="question-holder container qa" id="fifth-question" style="display: none !important;">
   <h1 class="questionnaire-header">5. Da li želite da film bude:</h1>
   <form id="form-holder-4">
       <label for="bez-ograničenja">

@@ -1,4 +1,4 @@
-<article class="question-holder container qa" id="third-question">
+<article class="question-holder container qa" id="third-question"  style="display: none !important;">
   <h1 class="questionnaire-header">3. Izaberi žanrove koji te zanimaju?</h1>
   <form id="form-holder-2">
       <label for="akcija">

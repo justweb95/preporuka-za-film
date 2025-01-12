@@ -1,4 +1,4 @@
-<article class="question-holder container qa" id="fourth-question">
+<article class="question-holder container qa" id="fourth-question" style="display: none !important;">
   <h1 class="questionnaire-header">4. Koliko bi voleo/ la da film bude star?</h1>
   <form id="form-holder-3">
       <label for="nije-bitno">
@@ -14,7 +14,7 @@
         <input type="radio" id="objavljeno-u-prethodnih-10-godina" name="film" value="10">Objavljeno u prethodnih 10 godina
       </label>
       <label for="objavljeno-u-prethodnih-20-godina">
-        <input type="radio" id="objavljeno-u-prethodnih-10-godina" name="film" value="20">Objavljeno u prethodnih 20 godina
+        <input type="radio" id="objavljeno-u-prethodnih-20-godina" name="film" value="20">Objavljeno u prethodnih 20 godina
       </label>
   </form>
   <div class="form-control">

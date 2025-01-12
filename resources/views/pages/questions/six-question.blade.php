@@ -1,4 +1,4 @@
-<article class="question-holder container qa" id="six-question">
+<article class="question-holder container qa" id="six-question" style="display: none !important;">
   <h1 class="questionnaire-header">6. Izaberi neku drugu kategoriju koja te interesuje:</h1>
   <form id="form-holder-5">
       <label for="filmovi-koji-menjaju-pogled-na-zivot">

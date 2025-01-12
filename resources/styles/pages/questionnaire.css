@@ -494,8 +494,35 @@
     height: auto;
   }
 
+  /* Progress bar */
   .question-holder {
     height: 100%;
+    .progress-bar {
+      max-width: 100%;
+      margin-bottom: 32px;
+      .progress-bar-svg {
+        max-width: 100%;
+        
+        /* First step */
+        .full-circle {
+          opacity: 1;
+          /* stroke: #18BF7C; */
+        }
+        .step-1 {
+
+        }
+        .step-2 {
+          stroke: #F57C36;
+        }
+        .step-2-checkbox, .step-3-checkbox, .step-4-checkbox, .step-5-checkbox, .step-6-checkbox {
+          opacity: 0;
+        }
+        .step-3-text, .step-4-text, .step-5-text, .step-6-text {
+          opacity: 0;
+        }
+
+      }
+    }
   }
 
   #third-question {
@@ -541,7 +568,7 @@
     min-height: calc(100svh - 88px);
     height: auto;
     article {
-      display: flex !important;
+      display: none;
       flex-direction: column;
       .questionnaire-header {
         padding: 16px 20px;
@@ -565,6 +592,9 @@
         button {
           font-size: 18px;
         }
+      }
+      &:first-of-type {
+        display: flex;
       }
     }
     #results {
