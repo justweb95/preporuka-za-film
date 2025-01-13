@@ -7,6 +7,7 @@
 /* Partials */
 @import url('./layouts/header.css');
 @import url('./layouts/footer.css');
+@import url('./layouts/question-progress.css');
 
 
 /* Pages */

@@ -1,0 +1,45 @@
+
+  /* Progress bar */
+.questionnaire-holder {
+    .progress-bar {
+        width: 90%;
+        max-width: 720px;
+        margin: 0px auto 32px;
+        .progress-bar-svg {
+            max-width: 100%;
+            
+
+            .show-number, .show-checkbox {
+                opacity: 1 !important;
+            }
+            .remove-number {
+                opacity: 0;
+            }
+
+            .step-circle-border-orange {
+                stroke: #EF8D53;
+            }
+
+            .step-path-fill-orange {
+                stroke: #EF8D53;
+            }
+
+            .step-circle-fill-green {
+                stroke: #18BF7C;
+                fill: #18BF7C;
+            }
+            .step-path-fill-green {
+                stroke: #18BF7C;
+                fill: #18BF7C;
+            }
+
+            .step-1-checkbox, .step-2-checkbox, .step-3-checkbox, .step-4-checkbox, .step-5-checkbox, .step-6-checkbox {
+                opacity: 0;
+            }
+            .step-1-text, .step-2-text, .step-3-text, .step-4-text, .step-5-text, .step-6-text {
+                opacity: 0;
+            }
+
+        }
+    }   
+} 

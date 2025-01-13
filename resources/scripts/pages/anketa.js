@@ -1,5 +1,16 @@
+import { 
+  collectProgressItems,
+  handleProgressNumber,
+  handleProgressCheckbox,
+  removeProgressBar
+
+} from '@scripts/partials/question-progress';
+
+
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css'; // Importing CSS for Toastify
+
+collectProgressItems();
 
 // Here is all questions components
 const allQuestionsCompontents = document.querySelectorAll('.qa');
@@ -28,6 +39,9 @@ function showToast(message) {
 // Here is the function to show the next question
 function changeQuestionHandler(currentQuestionIndex) {
   console.log("Trenutno pitanje: " + currentQuestionIndex);
+  handleProgressNumber(currentQuestionIndex);
+  handleProgressCheckbox(currentQuestionIndex);
+
 
   allQuestionsCompontents.forEach((singleQuestion) => {
     singleQuestion.style.setProperty('display', 'none', 'important');
@@ -40,6 +54,8 @@ function changeQuestionHandler(currentQuestionIndex) {
   }
 
   if(currentQuestionIndex === 6) {
+    removeProgressBar();
+    
     setTimeout(() => {
       currentQuestionIndex = 7;
       changeQuestionHandler(currentQuestionIndex);
