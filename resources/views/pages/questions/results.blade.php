@@ -4,7 +4,7 @@
   <div class="result-data-holder">
     {{-- Image --}}
     <span class="result-poster-holder" id="result-poster-holder">
-      <img src="@asset('./images/questionnaire/movie-poster.png')" alt="Image Poster" id="result-poster">
+      <img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/aosm8NMQ3UyoBVpSxyimorCQykC.jpg" alt="Image Poster" id="result-poster">
     </span>
     
     {{-- Content --}}
@@ -16,7 +16,7 @@
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.92439 0.707292C7.33541 -0.235765 8.66458 -0.235764 9.07559 0.707295L10.5194 4.02001C10.6856 4.40146 11.039 4.6667 11.4497 4.71823L14.9694 5.15988C15.947 5.28256 16.3492 6.48929 15.6429 7.1806L12.9628 9.8037C12.6802 10.0802 12.5543 10.481 12.6275 10.8708L13.3267 14.5951C13.5141 15.5931 12.4465 16.3487 11.5768 15.8335L8.59577 14.0675C8.22807 13.8497 7.77193 13.8497 7.40423 14.0675L4.4232 15.8335C3.55358 16.3487 2.48595 15.5931 2.67332 14.5951L3.37256 10.8708C3.44574 10.481 3.31982 10.0802 3.03725 9.8037L0.357138 7.1806C-0.349201 6.48929 0.0530059 5.28256 1.03065 5.15988L4.55031 4.71822C4.96095 4.6667 5.31436 4.40146 5.4806 4.02001L6.92439 0.707292Z" fill="#F6C700"/>
           </svg>
-          <p>8.52</p>
+          <p id="imdb-rating">8.52</p>
           <img src="@asset('./images/questionnaire/imdb-icon.webp')" alt="Imdb Icon">
         </span>
       </div>      

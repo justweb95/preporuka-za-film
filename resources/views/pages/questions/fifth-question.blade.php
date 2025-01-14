@@ -2,13 +2,13 @@
   <h1 class="questionnaire-header">5. Da li želite da film bude:</h1>
   <form id="form-holder-4">
       <label for="bez-ograničenja">
-        <input type="radio" id="bez-ograničenja" name="film" value="+18">Bez ograničenja
+        <input type="radio" id="bez-ograničenja" name="film" value="true">Bez ograničenja
       </label>
       <label for="celu-porodicu">
-        <input type="radio" id="celu-porodicu" name="film" value="-18">Pogodan za celu porodicu
+        <input type="radio" id="celu-porodicu" name="film" value="false">Pogodan za celu porodicu
       </label>
       <label for="odrasli">
-        <input type="radio" id="odrasli" name="film" value="+18">Samo za odrasle
+        <input type="radio" id="odrasli" name="film" value="true">Samo za odrasle
       </label>
   </form>
   <div class="form-control">

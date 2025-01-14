@@ -404,92 +404,113 @@
     }
   }
 
+
   #loading {
     height: calc(100svh - 184px);
     .loading-holder {
       position: relative;
       height: 100%;
       display: flex;
-      align-content: flex-start;
-      flex-wrap: wrap;
-      gap: 20px;
-      .ai-loading-text, .tmdb-loading-text {
+      align-items: center;
+      justify-content: center;
+      .ai-loading-text,
+      .tmdb-loading-text {
         position: absolute;
         top: 50%;
-        flex: 0 0 100%;
-        width: 100%;
-        padding: 24px 0px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        flex: 0 0 auto;
+        padding: 24px;
         color: var(--White, #FFF);
         font-family: "Red Hat Display";
         font-size: 26px;
-        font-style: normal;
         font-weight: 700;
         line-height: normal;
       }
+
       .ai-loading-text {
-        animation: appearAI 1.5s linear forwards;
-        span {
-          position: relative;
-          display: inline-block;
-          margin-right: 12px;
-          padding: 13.5px 23px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        animation: appearAI 2s forwards, moveLeftAI 2s 2s forwards;
+        background-color: #172938;
+        border-radius: 50%;
+        height: 200px;
+        width: 200px;
+
+        &::before {
+          content: url('../images/partials/circle-around-dot-green.svg');
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          z-index: -1;
           border-radius: 50%;
-          border: 5px solid transparent;
-          background-color: transparent;
-          animation: addColorAI .2s 2s linear forwards;
-          pointer-events: none;
-          user-select: none;
-          &::before {
-            content: '•';
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            z-index: 1;
-            color: #18BF7C;
-            border-radius: 50%; /* To make it a perfect dot */
-            animation: circleAroundAI 1s 0s linear forwards;
-            animation-iteration-count: 3;
-          }
+          animation: circleAroundAIOrange 1s 2 ease-out forwards;
+        }
+
+        &::after {
+          content: url('../images/partials/circle-around-dot-orange.svg');
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          z-index: -1;
+          border-radius: 50%;
+          animation: circleAroundAIGreen 1s 2 ease-in-out forwards;
         }
       }
+
       .tmdb-loading-text {
-        animation: appearTMDB 1.5s 2s linear forwards;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
         opacity: 0;
-        span {
-          position: relative;
-          display: inline-block;
-          margin-right: 12px;
-          padding: 13.5px 23px;
+        animation: appearTMDB 2s 2s forwards, moveLeftTMDB 2s 4s forwards;
+        background-color: #172938;
+        border-radius: 50%;
+        height: 200px;
+        width: 200px;
+
+        &::before {
+          text-align: left;
+          content: url('../images/partials/circle-around-dot-green.svg');
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          z-index: -1;
           border-radius: 50%;
-          border: 5px solid transparent;
-          background-color: 2px solid transparent;
-          animation: addColorTMDB .2s 4s linear forwards;
-          pointer-events: none;
-          user-select: none;
-          &::before {
-            content: '•';
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            z-index: 1;
-            color: #EF8D53;
-            border-radius: 50%; /* To make it a perfect dot */
-            animation: circleAroundTMDB 1s 2s linear forwards;
-            animation-iteration-count: 3;
-          }
+          animation: circleAroundTMDBOrange 1s 2s 2 ease-in-out forwards;
+        }
+
+        &::after {
+          text-align: left;
+          content: url('../images/partials/circle-around-dot-orange.svg');
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          z-index: -1;
+          border-radius: 50%;
+          animation: circleAroundTMDBGreen 1s 2s 2 ease-out forwards;
         }
       }
     }
-
-    
   }
-  
+
+
+
   &:has( > #results:not([style*="display: none"])) {
     height: auto;
   }
@@ -538,7 +559,7 @@
   }
 
   @media (max-width: 550px) {
-    padding: 48px 0px;
+    padding: 12px 0px 48px;
     min-height: calc(100svh - 88px);
     height: auto;
     article {
@@ -574,10 +595,7 @@
     #results {
       .result-data-holder {
         gap: 32px;
-        margin-top: 32px;
-        .result-poster-holder {
-
-        }
+        margin-top: 22px;
         .result-content-holder {
           .result-content-header {
             .result-content-title {
@@ -640,11 +658,9 @@
     #loading {
       .loading-holder {
         .ai-loading-text, .tmdb-loading-text {
-          font-size: 14px;
-          padding: 8px;
-          span {
-            padding: 13.5px 18.5px;
-          }
+          height: 150px;
+          width: 150px;
+          font-size: 16px;
         }
       }
     }

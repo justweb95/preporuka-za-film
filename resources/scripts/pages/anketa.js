@@ -5,7 +5,7 @@ import {
   removeProgressBar
 
 } from '@scripts/partials/question-progress';
-
+import { tmdbCallHandler } from '@scripts/partials/tmdbControler';
 
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css'; // Importing CSS for Toastify
@@ -56,6 +56,10 @@ function changeQuestionHandler(currentQuestionIndex) {
   if(currentQuestionIndex === 6) {
     removeProgressBar();
     
+    const tmdbResult =  tmdbCallHandler(allAnswers);
+    poplateResult(tmdbResult);
+
+
     setTimeout(() => {
       currentQuestionIndex = 7;
       changeQuestionHandler(currentQuestionIndex);
@@ -73,10 +77,9 @@ window.nextQuestion = function() {
 
   allAnswers.push(inputValue());
 
-  console.log("All Answers: ");
-  console.log(allAnswers);
+  // console.log("All Answers: ");
+  // console.log(allAnswers);
   
-  // callAIHandler(inputValue());
 
   if(currentQuestionIndex < 6) {
     currentQuestionIndex++;
@@ -127,11 +130,24 @@ function inputValue() {
   return input_value;
 }
 
-function callAIHandler(answer) {
+async function poplateResult(resultObject) {
+  let tmdbData = await resultObject
 
-  console.log("All Anwsers");
-  console.log(answers);
+  let poster_holder = document.querySelector('#result-poster');
+  let poster_holder_mobile = document.querySelector('#result-description-poster');
+  let result_content_title = document.querySelector('#result-content-title');
+  let result_description_text = document.querySelector('#result-description-text');
+  let imdb_rating = document.querySelector('#imdb-rating');
+
+
+
+  poster_holder.setAttribute('src', `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`)
+  poster_holder_mobile.setAttribute('src', `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`)
   
+  result_content_title.textContent = tmdbData.title;
+  imdb_rating.textContent = parseFloat(tmdbData.vote_average.toFixed(2));
+
+  result_description_text.textContent = tmdbData.overview.substring(0, 300);
 }
 
 changeQuestionHandler(currentQuestionIndex);

@@ -9,14 +9,8 @@ function collectProgressItems() {
     allCheckboxItems = document.querySelectorAll('.progress-checkbox');
     allTextItems = document.querySelectorAll('.progress-text');
     allPathItems = document.querySelectorAll('.progress-path');
-        
-    // console.log(allCircleItems);
-    // console.log(allCheckboxItems);
-    // console.log(allTextItems);
-    // console.log(allPathItems);
     
 }
-
 
 function handleProgressNumber(step) {
     let listOfNumber = Array.from(allTextItems);
@@ -41,7 +35,6 @@ function handleProgressCheckbox(step) {
         checkbox.classList.remove('show-checkbox');     
         if(step > index) {
             checkbox.classList.add('show-checkbox');;
-            // checkbox.classList.add('step-circle-fill-green');     
         }
     });
     listOfCircles.forEach((circle, index) => {
@@ -51,15 +44,20 @@ function handleProgressCheckbox(step) {
         }
     });
     listOfPath.forEach((path, index) => {
-        path.classList.remove('step-path-fill-orange');     
+        // path.classList.remove('step-path-fill-orange');     
+        // path.removeAttribute(stroke)
+        path.setAttribute('stroke', `#314C65`)
         path.classList.remove('step-path-fill-green');     
+        
         if(step > index + 1) {
-            path.classList.remove('step-path-fill-orange');     
+            // path.classList.remove('step-path-fill-orange');     
+            // path.removeAttribute(stroke)
             path.classList.add('step-path-fill-green');     
         }
 
         if(step === index + 1) {
-            path.classList.add('step-path-fill-orange');     
+            path.setAttribute('stroke', `url(#gradient${index + 1})`)
+            // path.classList.add('step-path-fill-orange');     
         }
     });
 }

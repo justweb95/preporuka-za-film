@@ -8,7 +8,8 @@
   <section class="questionnaire-holder">
     {{-- Progress Bar --}}
     @include('pages/questions/progress-component')
-    {{-- Progress Bar --}}
+    
+    {{-- Questions --}}
     @include('pages/questions/first-question')
     @include('pages/questions/second-question')
     @include('pages/questions/third-question')
