@@ -144,7 +144,7 @@ async function poplateResult(resultObject) {
   poster_holder.setAttribute('src', `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`)
   poster_holder_mobile.setAttribute('src', `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`)
   
-  result_content_title.textContent = tmdbData.title;
+  result_content_title.textContent = tmdbData.original_title;
   imdb_rating.textContent = parseFloat(tmdbData.vote_average.toFixed(2));
 
   result_description_text.textContent = tmdbData.overview.substring(0, 300);
