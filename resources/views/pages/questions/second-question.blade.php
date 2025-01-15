@@ -2,16 +2,16 @@
   <h1 class="questionnaire-header">2. Šta najviše odgovara tvojoj prilici?</h1>
   <form id="form-holder-1">
       <label for="gledam-film-sam">
-        <input type="radio" id="gledam-film-sam" name="film" value="sam">Gledam film sam
+        <input type="radio" id="gledam-film-sam" name="film" value="6511">Gledam film sam
       </label>
       <label for="sa-prijateljima">
-        <input type="radio" id="sa-prijateljima" name="film" value="sa-prijateljima">Gledam film sa prijateljima
+        <input type="radio" id="sa-prijateljima" name="film" value="9713">Gledam film sa prijateljima
       </label>
       <label for="devojkom-dečkom">
-        <input type="radio" id="devojkom-dečkom" name="film" value="devojkom-dečkom">Gledam film sa devojkom/dečkom
+        <input type="radio" id="devojkom-dečkom" name="film" value="18035">Gledam film sa devojkom/dečkom
       </label>
       <label for="porodicom/rođacima">
-        <input type="radio" id="porodicom/rođacima" name="film" value="porodicom-rođacima">Gledam film sa porodicom/rođacima
+        <input type="radio" id="porodicom/rođacima" name="film" value="324429">Gledam film sa porodicom/rođacima
       </label>
   </form>
   <div class="form-control">

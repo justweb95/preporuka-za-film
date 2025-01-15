@@ -6,11 +6,10 @@ function tmdbCallHandler(movieParams) {
   // Keywords
   let key_words = [];
   // key_words.push(movieParams[0]);
+  // key_words.push(movieParams[1]);
   // key_words.push(movieParams[5]);
-  // key_words = key_words.join(',');
+  key_words = key_words.join('|');
 
-  // console.log(key_words);
-  
 
   //Genres 
   let with_genres = movieParams[2];
@@ -29,7 +28,7 @@ function tmdbCallHandler(movieParams) {
   let url_past_date = formatDate(past_date);
 
 
-  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=${include_adult}&with_genres=${with_genres}&primary_release_date.lte=${url_current_date}&primary_release_date.gte=${url_past_date}&include_video=true&language=sr-Latn&page=1&sort_by=popularity.desc&with_keywords=${key_words}`;
+  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=${include_adult}&with_genres=${with_genres}&primary_release_date.lte=${url_current_date}&primary_release_date.gte=${url_past_date}&include_video=true&language=sr-Latn&page=1&sort_by=popularity.desc&with_keywords=${key_words}&with_origin_country=US%7CSRB%7CES%7CCA%7CMX%7CGB%7CDE%7CFR%7CBR'`;
   
   const options = {
     method: 'GET',
@@ -42,18 +41,26 @@ function tmdbCallHandler(movieParams) {
   return fetch(url, options)
     .then(res => res.json())
     .then( async json => {
-      const random = Math.floor(Math.random(0, 20) * 10);
-
+      const resultsLength = json.results.length; 
+      const random = Math.floor(Math.random() * resultsLength);
+      
+      
       let movie_result = json.results[random];
       const movie_id = movie_result.id;
 
       let single_movie_result = await tmdbSingleMovieHandler(movie_id);
+      let single_movie_trailer = await movieTrailer(movie_id);
+      let single_movie_watch_on = await movieWatchOn(movie_id);
+      
+      single_movie_result.video_trailer = single_movie_trailer.results[0];
+      single_movie_result.movie_watch_on = single_movie_watch_on.results['US'];
       
       console.log('movie_result');
-      console.log(movie_result);
+      console.log(movie_result );
 
       console.log('single_movie_result');
       console.log(single_movie_result);
+
 
       return single_movie_result;
     })
@@ -84,6 +91,48 @@ async function tmdbSingleMovieHandler(movie_id) {
   )
 }
 
+
+async function movieTrailer(movie_id) {
+  const url = `https://api.themoviedb.org/3/movie/${movie_id}/videos?language=en-US`;
+
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYjRlNTRkYTQ4NTI0ZWU4ZWE0ZTk2NTA3NDQ5YzY5YyIsIm5iZiI6MTczNDYwNjE0OS40MTEsInN1YiI6IjY3NjNmZDQ1NmU1MmVkZDE2MDRhNDk0MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.owZGL4jYtg_T6oLczlUCyNA5mJoawZ5urusJfe3B5SY'
+    }
+  };
+
+  return fetch(url, options)
+  .then(res => res.json())
+  .then(data => {
+    return data
+  })
+  .catch(err => 
+    console.log(err)
+  )
+}
+
+async function movieWatchOn(movie_id) {
+  // const url = `https://api.themoviedb.org/3/movie/${movie_id}/watch?translate=false&locale=US`;
+  const url = `https://api.themoviedb.org/3/movie/${movie_id}/watch/providers`;
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYjRlNTRkYTQ4NTI0ZWU4ZWE0ZTk2NTA3NDQ5YzY5YyIsIm5iZiI6MTczNDYwNjE0OS40MTEsInN1YiI6IjY3NjNmZDQ1NmU1MmVkZDE2MDRhNDk0MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.owZGL4jYtg_T6oLczlUCyNA5mJoawZ5urusJfe3B5SY'
+    }
+  };
+
+  return fetch(url, options)
+  .then(res => res.json())
+  .then(data => {
+    return data
+  })
+  .catch(err => 
+    console.log(err)
+  )
+}
 
 function formatDate(date) {
   const year = date.getFullYear();

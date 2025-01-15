@@ -2,7 +2,7 @@
   <h1 class="questionnaire-header">4. Koliko bi voleo/ la da film bude star?</h1>
   <form id="form-holder-3">
       <label for="nije-bitno">
-        <input type="radio" id="nije-bitno" name="film" value="0">Nije bitno
+        <input type="radio" id="nije-bitno" name="film" value="30">Nije bitno
       </label>
       <label for="objavljeno-u-prethodne-2-godine">
         <input type="radio" id="objavljeno-u-prethodne-2-godine" name="film" value="2">Objavljeno u prethodne 2 godine

@@ -2,19 +2,19 @@
   <h1 class="questionnaire-header">6. Izaberi neku drugu kategoriju koja te interesuje:</h1>
   <form id="form-holder-5">
       <label for="filmovi-koji-menjaju-pogled-na-zivot">
-        <input type="radio" id="filmovi-koji-menjaju-pogled-na-zivot" name="film" value="filmovi-koji-menjaju-pogled-na-zivot">Filmovi koji menjaju pogled na zivot
+        <input type="radio" id="filmovi-koji-menjaju-pogled-na-zivot" name="film" value="191446">Filmovi koji menjaju pogled na zivot
       </label>
       <label for="filmovi-zasnovani-na-istinitoj-prici">
-        <input type="radio" id="filmovi-zasnovani-na-istinitoj-prici" name="film" value="filmovi-zasnovani-na-istinitoj-prici">Filmovi zasnovani na istinitoj prici
+        <input type="radio" id="filmovi-zasnovani-na-istinitoj-prici" name="film" value="339459">Filmovi zasnovani na istinitoj prici
       </label>
       <label for="filmovi-zasnovani-na-knjizi">
-        <input type="radio" id="filmovi-zasnovani-na-knjizi" name="film" value="filmovi-zasnovani-na-knjizi">Filmovi zasnovani na knjizi
+        <input type="radio" id="filmovi-zasnovani-na-knjizi" name="film" value="818">Filmovi zasnovani na knjizi
       </label>
       <label for="filmovi-u-nastavcima">
-        <input type="radio" id="filmovi-u-nastavcima" name="film" value="filmovi-u-nastavcima">Filmovi u nastavcima
+        <input type="radio" id="filmovi-u-nastavcima" name="film" value="9663">Filmovi u nastavcima
       </label>
       <label for="filmovi-u-zizi-javnosti">
-        <input type="radio" id="filmovi-u-zizi-javnosti" name="film" value="filmovi-u-zizi-javnosti">Filmovi u žiži javnosti
+        <input type="radio" id="filmovi-u-zizi-javnosti" name="film" value="208462">Filmovi u žiži javnosti
       </label>
   </form>
   <div class="form-control">

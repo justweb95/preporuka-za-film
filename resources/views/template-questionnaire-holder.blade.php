@@ -18,5 +18,7 @@
     @include('pages/questions/six-question')
     @include('pages/questions/loader')
     @include('pages/questions/results')
+
+    @include('pages/questions/video-popup')
   </section>
 @endsection

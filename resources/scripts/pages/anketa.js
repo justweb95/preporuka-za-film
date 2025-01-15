@@ -5,7 +5,12 @@ import {
   removeProgressBar
 
 } from '@scripts/partials/question-progress';
-import { tmdbCallHandler } from '@scripts/partials/tmdbControler';
+import { 
+  tmdbCallHandler,
+  movieTrailer,
+ 
+
+} from '@scripts/partials/tmdbControler';
 
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css'; // Importing CSS for Toastify
@@ -38,7 +43,6 @@ function showToast(message) {
 
 // Here is the function to show the next question
 function changeQuestionHandler(currentQuestionIndex) {
-  console.log("Trenutno pitanje: " + currentQuestionIndex);
   handleProgressNumber(currentQuestionIndex);
   handleProgressCheckbox(currentQuestionIndex);
 
@@ -57,6 +61,7 @@ function changeQuestionHandler(currentQuestionIndex) {
     removeProgressBar();
     
     const tmdbResult =  tmdbCallHandler(allAnswers);
+
     poplateResult(tmdbResult);
 
 
@@ -99,6 +104,38 @@ window.newRecomendation = function() {
   changeQuestionHandler(6);
 }
 
+window.openTrailerPopUp = function () {
+  const trailerModal = document.querySelector('#trailer-modal');
+  
+  // Show the modal
+  trailerModal.showModal();
+
+  // Close button functionality
+  const closeModalBtn = document.getElementById('closeModalBtn');
+
+  closeModalBtn.onclick = function() {
+      trailerModal.close();
+      stopVideo()
+  };
+
+  // Close modal when clicking outside of it
+  trailerModal.addEventListener('click', function(event) {
+      if (event.target === trailerModal) {
+          trailerModal.close();
+          stopVideo()
+      }
+  });
+
+}
+
+// Function to stop the YouTube video
+function stopVideo() {
+  const iframe = document.getElementById('youtube-player');
+  const src = iframe.src;
+  iframe.src = '';
+  iframe.src = src;
+}
+
 function disableBackButton() {
   const backButton = document.querySelector('.back-btn');
   backButton.style.pointerEvents = 'none';
@@ -133,14 +170,6 @@ function inputValue() {
 async function poplateResult(resultObject) {
   let tmdbData = await resultObject
 
-  // result-genres-text 
-  // result-duration-text
-  // result-year-text
-  // result-cta-read-more this one is class
-  // result-cta-trailer this one is olso class
-
-
-
   let poster_holder = document.querySelector('#result-poster');
   let poster_holder_mobile = document.querySelector('#result-description-poster');
   let result_content_title = document.querySelector('#result-content-title');
@@ -151,6 +180,10 @@ async function poplateResult(resultObject) {
   let result_cta_read_more = document.querySelector('.result-cta-read-more');
   let result_cta_trailer = document.querySelector('.result-cta-trailer');
   let movie_duration = document.querySelector('#result-duration-text');
+  let youtube_player = document.querySelector('#youtube-player');
+
+  let affiliate_amazon = document.querySelector('.affiliate-amazon');
+
 
   poster_holder.setAttribute('src', `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`)
   poster_holder_mobile.setAttribute('src', `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`)
@@ -165,9 +198,41 @@ async function poplateResult(resultObject) {
   result_year_text.textContent = tmdbData.release_date.split('-')[0];
 
 
-  // result_description_text.textContent = cyrillicFormat(tmdbData.overview.substring(0, 300));
-  // result_description_text.textContent = cyrillicFormat(tmdbData.overview.substring(0, 300));
-  // result_description_text.textContent = cyrillicFormat(tmdbData.overview.substring(0, 300));
+
+  const siteUrl = window.location.origin; 
+
+  let dynamicUrl = `${siteUrl}/preporuka-za-film/single-movie/${tmdbData.id}/${encodeURIComponent(tmdbData.original_title)}`;
+  result_cta_read_more.setAttribute('href', dynamicUrl);
+
+
+
+
+
+  if (tmdbData.video_trailer && tmdbData.video_trailer.key) {
+    youtube_player.setAttribute('src', `https://www.youtube.com/embed/${tmdbData.video_trailer.key}`);
+  } else {
+    result_cta_trailer.setAttribute('aria-disabled', 'true');
+    result_cta_trailer.disabled = true;
+  }
+
+  let amazonProvider;
+
+  if (tmdbData.movie_watch_on && Array.isArray(tmdbData.movie_watch_on.buy)) {
+    amazonProvider = tmdbData.movie_watch_on.buy.find(provider => provider.provider_name === 'Amazon Video');
+  } else {
+    console.log("movie_watch_on or buy array does not exist.");
+  }
+
+  if (amazonProvider) {
+    affiliate_amazon.setAttribute('href', `https://www.amazon.com/dp/${amazonProvider.provider_id}`);
+    affiliate_amazon.removeAttribute('aria-disabled');
+    affiliate_amazon.style.opacity = '1';
+    affiliate_amazon.disabled = false;
+  } else {
+    affiliate_amazon.setAttribute('aria-disabled', 'true');
+    affiliate_amazon.style.opacity = '.6';
+    affiliate_amazon.disabled = true;
+  }
 }
 
 
@@ -179,21 +244,22 @@ function durationFromat(time) {
 
 function cyrillicFormat(text) {
   const cyrillicToLatinMap = {
-      'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',
-      'ђ': 'đ', 'е': 'e', 'ж': 'ž', 'з': 'z', 'и': 'i',
-      'ј': 'j', 'к': 'k', 'л': 'l', 'љ': 'lj', 'м': 'm',
-      'н': 'n', 'њ': 'nj', 'о': 'o', 'п': 'p', 'р': 'r',
-      'с': 's', 'т': 't', 'ћ': 'ć', 'у': 'u', 'ф': 'f',
-      'х': 'h', 'ц': 'c', 'ч': 'č', 'џ': 'dž', 
-      // Uppercase letters
-      'А': 'A',  'Б': 'B', 'В': 'V', 'Г': 'G',
-      'Д': 'D', 'Ђ': 'Đ', 'Е': 'E', 'Ж': 'Ž',
-      'З': 'Z', 'И': 'I', 'Ј': 'J', 'К': 'K',
-      'Л': 'L', 'Љ': 'LJ','М':'M','Н':'N','Њ':'NJ',
-      'О':'O','П':'P','Р':'R','С':'S','Т':'T',
-      'Ћ':'Ć','У':'U','Ф':'F','Х':'H','Ц':'C',
-      'Ч':'Č','Џ':'Dž'
-  };
+    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',
+    'ђ': 'đ', 'е': 'e', 'ж': 'ž', 'з': 'z', 'и': 'i',
+    'ј': 'j', 'к': 'k', 'л': 'l', 'љ': 'lj', 'м': 'm',
+    'н': 'n', 'њ': 'nj', 'о': 'o', 'п': 'p', 'р': 'r',
+    'с': 's', 'т': 't', 'ћ': 'ć', 'у': 'u', 'ф': 'f',
+    'х': 'h', 'ц': 'c', 'ч': 'č', 'џ': 'dž','ш': 'š',
+    // Uppercase letters
+    'А': 'A',  'Б': 'B',  'В': 'V',  'Г': 'G',
+     'Д': 'D',  'Ђ': 'Đ',  'Е': 'E',  'Ж': 'Ž',
+     'З': 'Z',  'И': 'I',  'Ј': 'J',  'К': 'K',
+     'Л': 'L',  'Љ':'LJ','М':'M','Н':'N','Њ':'NJ',
+     'О':'O','П':'P','Р':'R','С':'S','Т':'T',
+     'Ћ':'Ć','У':'U','Ф':'F','Х':'H','Ц':'C',
+     'Ч':'Č','Џ':'Dž', 'Ш':'Š'
+  }
+
 
   return text.split('').map(char => cyrillicToLatinMap[char] || char).join('');
 }

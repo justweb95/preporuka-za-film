@@ -69,12 +69,12 @@
           </svg>            
           Saznaj više
         </a>
-        <a href="#" class="result-cta-trailer">
+        <button href="#" onclick="openTrailerPopUp()" class="result-cta-trailer">
           <svg width="20" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M1.9241 4.33643V20.6636C1.9241 22.1931 3.63684 23.1054 4.91551 22.2569L17.2191 14.0934C18.3615 13.3354 18.3615 11.6646 17.2191 10.9066L4.91551 2.74306C3.63684 1.89465 1.9241 2.80693 1.9241 4.33643ZM0 4.33643V20.6636C0 23.7226 3.42546 25.5471 5.98281 23.8503L18.2864 15.6867C20.5712 14.1708 20.5712 10.8292 18.2864 9.31325L5.98281 1.14969C3.42546 -0.547141 0 1.27744 0 4.33643Z" fill="#18BF7C"/>
           </svg>
           Trejler
-        </a>
+        </button>
       </div>
       
       {{-- Result AFFILIATE --}}
