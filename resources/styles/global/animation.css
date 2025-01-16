@@ -193,6 +193,51 @@
   }
 }
 
+@keyframes circleAroundLoadingOrange {
+  0% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+
+  from {
+    transform: rotateZ(0deg);
+  }
+
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes circleAroundLoadingGreen {
+  0% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+  from {
+    transform: rotateZ(360deg);
+  }
+
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+
 
 
 @keyframes appearAI {
@@ -232,6 +277,35 @@
     opacity: 1;
     top: 30%;
     background-color: #EF8D53;
+  }
+}
+
+@keyframes appearLoader {
+  0% {
+    opacity: 0;
+    background-color: #172938;
+  }
+
+  30% {
+    opacity: 1;
+    background-color: #18BF7C;
+  }
+
+  100% {
+    opacity: 1;
+    background-color: #18BF7C;
+  }
+}
+
+@keyframes moveLeftLoader {
+  from {
+    transform: translate(-50%, -80%);
+    opacity: 1;
+  }
+
+  to {
+    transform: translate(-650%, -80%);
+    opacity: 0;
   }
 }
 

@@ -6,8 +6,23 @@ import domReady from '@roots/sage/client/dom-ready';
 domReady(async () => {
   // Dynamically import the burger menu script
   await import('./partials/burger.js');
-  await import('./pages/home.js');
-  await import('./pages/anketa.js');
+
+
+  if (window.location.pathname.includes('/home')) {
+    // Only import home.js if we're on the correct page
+    await import('./pages/home.js');
+  }
+
+
+  if (window.location.pathname.includes('/anketa')) {
+    // Only import anketa.js if we're on the correct page
+    await import('./pages/anketa.js');
+  }
+
+  if (window.location.pathname.includes('/single-movie')) {
+    // Only import single-movie.js if we're on the correct page
+    await import('./pages/single-movie.js');
+  }
   
   // ...
 });

@@ -63,7 +63,7 @@
 
       {{-- Result CTA --}}
       <div class="result-content-cta" id="result-content-cta">
-        <a href="#" class="result-cta-read-more">
+        <a  class="result-cta-read-more">
           <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M18 2.5H6C3.79086 2.5 2 4.29086 2 6.5V18.5C2 20.7091 3.79086 22.5 6 22.5H18C20.2091 22.5 22 20.7091 22 18.5V6.5C22 4.29086 20.2091 2.5 18 2.5ZM6 0.5C2.68629 0.5 0 3.18629 0 6.5V18.5C0 21.8137 2.68629 24.5 6 24.5H18C21.3137 24.5 24 21.8137 24 18.5V6.5C24 3.18629 21.3137 0.5 18 0.5H6ZM11 11.5V7.5H13V11.5H17V13.5H13V17.5H11V13.5H7V11.5H11Z" fill="#18BF7C"/>
           </svg>            

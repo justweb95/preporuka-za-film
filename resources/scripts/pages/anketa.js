@@ -198,14 +198,9 @@ async function poplateResult(resultObject) {
   result_year_text.textContent = tmdbData.release_date.split('-')[0];
 
 
-
-  const siteUrl = window.location.origin; 
-
-  let dynamicUrl = `${siteUrl}/preporuka-za-film/single-movie/${tmdbData.id}/${encodeURIComponent(tmdbData.original_title)}`;
-  result_cta_read_more.setAttribute('href', dynamicUrl);
-
-
-
+  // Set the href attribute to the result_cta_read_more element
+  const fullUrl = urlBuilder(tmdbData);
+  result_cta_read_more.setAttribute('href', fullUrl);
 
 
   if (tmdbData.video_trailer && tmdbData.video_trailer.key) {
@@ -262,6 +257,20 @@ function cyrillicFormat(text) {
 
 
   return text.split('').map(char => cyrillicToLatinMap[char] || char).join('');
+}
+
+function urlBuilder(tmdbData ) {
+  // Current url
+  const siteUrl = window.location.origin; 
+  // Is Production
+  const urlExtension = PRODUCTION ? 'preporuka-za-film' : 'preporuka-za-film/index.php';
+  // Replace spaces and special characters with underscores
+  let movieName = tmdbData.original_title.replace(/[\s:?&]+/g, '_'); // Replace spaces and special characters with underscores
+  let movieId = tmdbData.id;
+
+  let dynamicUrl = `${siteUrl}/${urlExtension}/single-movie/#${encodeURIComponent(movieName)}&${encodeURIComponent(movieId)}`;
+
+  return dynamicUrl;
 }
 
 changeQuestionHandler(currentQuestionIndex);

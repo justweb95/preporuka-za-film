@@ -1,8 +1,4 @@
-
-
-
-
-function tmdbCallHandler(movieParams) {
+async function tmdbCallHandler(movieParams) {
   // Keywords
   let key_words = [];
   // key_words.push(movieParams[0]);
@@ -34,7 +30,7 @@ function tmdbCallHandler(movieParams) {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYjRlNTRkYTQ4NTI0ZWU4ZWE0ZTk2NTA3NDQ5YzY5YyIsIm5iZiI6MTczNDYwNjE0OS40MTEsInN1YiI6IjY3NjNmZDQ1NmU1MmVkZDE2MDRhNDk0MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.owZGL4jYtg_T6oLczlUCyNA5mJoawZ5urusJfe3B5SY'
+      Authorization: `Bearer ${TMDB_API_KEY}`
     }
   };
   
@@ -77,7 +73,7 @@ async function tmdbSingleMovieHandler(movie_id) {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYjRlNTRkYTQ4NTI0ZWU4ZWE0ZTk2NTA3NDQ5YzY5YyIsIm5iZiI6MTczNDYwNjE0OS40MTEsInN1YiI6IjY3NjNmZDQ1NmU1MmVkZDE2MDRhNDk0MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.owZGL4jYtg_T6oLczlUCyNA5mJoawZ5urusJfe3B5SY'
+      Authorization: `Bearer ${TMDB_API_KEY}`
     }
   };
 
@@ -99,7 +95,7 @@ async function movieTrailer(movie_id) {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYjRlNTRkYTQ4NTI0ZWU4ZWE0ZTk2NTA3NDQ5YzY5YyIsIm5iZiI6MTczNDYwNjE0OS40MTEsInN1YiI6IjY3NjNmZDQ1NmU1MmVkZDE2MDRhNDk0MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.owZGL4jYtg_T6oLczlUCyNA5mJoawZ5urusJfe3B5SY'
+      Authorization: `Bearer ${TMDB_API_KEY}`
     }
   };
 
@@ -114,13 +110,12 @@ async function movieTrailer(movie_id) {
 }
 
 async function movieWatchOn(movie_id) {
-  // const url = `https://api.themoviedb.org/3/movie/${movie_id}/watch?translate=false&locale=US`;
   const url = `https://api.themoviedb.org/3/movie/${movie_id}/watch/providers`;
   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYjRlNTRkYTQ4NTI0ZWU4ZWE0ZTk2NTA3NDQ5YzY5YyIsIm5iZiI6MTczNDYwNjE0OS40MTEsInN1YiI6IjY3NjNmZDQ1NmU1MmVkZDE2MDRhNDk0MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.owZGL4jYtg_T6oLczlUCyNA5mJoawZ5urusJfe3B5SY'
+      Authorization: `Bearer ${TMDB_API_KEY}`
     }
   };
 
@@ -142,4 +137,4 @@ function formatDate(date) {
 }
 
 
-export { tmdbCallHandler }
+export { tmdbCallHandler, tmdbSingleMovieHandler, movieWatchOn, movieTrailer }

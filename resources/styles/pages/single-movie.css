@@ -1,0 +1,100 @@
+.sm-hero-section {
+  padding: 60px 0px;
+  height: 400px;
+  background-image: linear-gradient(180deg, #06131E 0%, #06131E 100%);
+  background-color: lightgray;
+  background-position: 20% 20%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+  .sm-hero-holder {
+    .sm-loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -80%);
+      flex: 0 0 auto;
+      padding: 24px;
+      color: var(--White, #FFF);
+      font-family: "Red Hat Display";
+      font-size: 26px;
+      font-weight: 700;
+      line-height: normal;
+
+      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      animation: appearLoader 2s forwards;
+      background-color: #18BF7C;
+      border-radius: 50%;
+      height: 200px;
+      width: 200px;
+
+      &::before {
+        text-align: left;
+        content: url('../images/partials/circle-around-dot-green.svg');
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: -1;
+        border-radius: 50%;
+        animation: circleAroundLoadingOrange 1s infinite ease-in-out forwards;
+      }
+
+      &::after {
+        text-align: left;
+        content: url('../images/partials/circle-around-dot-orange.svg');
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: -1;
+        border-radius: 50%;
+        animation: circleAroundLoadingGreen 1s infinite ease-out forwards;
+      }
+    }
+    .sm-navigation {
+      display: none;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      list-style: none;
+      li {
+        color: #A6ABAE;
+        text-align: center;
+        font-family: "Red Hat Display";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        svg {
+          vertical-align: middle;
+        }
+      }
+      a {
+
+      }
+    }
+  }
+
+  @media (max-width: 550px) {
+    padding: 40px 0px;
+    .sm-hero-holder {
+      .sm-loader {
+        height: 150px;
+        width: 150px;
+        font-size: 16px;
+        transform: translate(-50%, -100%);
+      }
+    }
+  }
+}
