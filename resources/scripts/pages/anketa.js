@@ -265,10 +265,10 @@ function urlBuilder(tmdbData ) {
   // Is Production
   const urlExtension = PRODUCTION ? 'preporuka-za-film' : 'preporuka-za-film/index.php';
   // Replace spaces and special characters with underscores
-  let movieName = tmdbData.original_title.replace(/[\s:?&]+/g, '_'); // Replace spaces and special characters with underscores
+  let movieName = tmdbData.original_title.replace(/[\s:?&]+/g, '-'); // Replace spaces and special characters with underscores
   let movieId = tmdbData.id;
 
-  let dynamicUrl = `${siteUrl}/${urlExtension}/single-movie/${encodeURIComponent(movieName)}-${encodeURIComponent(movieId)}`;
+  let dynamicUrl = `${siteUrl}/${urlExtension}/single-movie/${encodeURIComponent(movieName)}`;
 
   return dynamicUrl;
 }
