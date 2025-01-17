@@ -23,7 +23,7 @@ tmdbSingleMovieHandler(movie_id)
     handleLoader();
 
     // Turn populate hero navigation;
-    populateHeroNavigation(cyrillicFormat(res.genres[0].name), res.title);
+    populateHeroNavigation(cyrillicFormat(res.genres[0].name), res.original_title);
 
     // Populate Hero Background Image
     populateHeroBackground(res.backdrop_path)
