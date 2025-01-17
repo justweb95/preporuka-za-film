@@ -268,7 +268,7 @@ function urlBuilder(tmdbData ) {
   let movieName = tmdbData.original_title.replace(/[\s:?&]+/g, '-'); // Replace spaces and special characters with underscores
   let movieId = tmdbData.id;
 
-  let dynamicUrl = `${siteUrl}/${urlExtension}/single-movie/${encodeURIComponent(movieName)}`;
+  let dynamicUrl = `${siteUrl}/${urlExtension}/single-movie/${encodeURIComponent(movieName)}-${encodeURIComponent(movieId)}`;
 
   return dynamicUrl;
 }

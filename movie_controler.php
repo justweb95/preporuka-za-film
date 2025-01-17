@@ -111,7 +111,7 @@ function save_movie() {
     // Prepare the post data to create the new movie post
     $post_data = array(
         'post_id'      => $movie_id,
-        'post_title'   => $title,
+        'post_title'   => $title . '-' . $movie_id,
         'post_content' => $content,
         'post_status'  => 'publish',  // Ensure the post is published
         'post_type'    => 'movie',    // Custom post type 'movie'
