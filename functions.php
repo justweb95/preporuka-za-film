@@ -66,58 +66,6 @@ collect(['setup', 'filters'])
 
 
 
+// Code for handle movie register custom post and saving
+require_once get_template_directory() . '/movie_controler.php';
 
-
-    // Register Custom Post Type for Movies
-function create_movie_post_type() {
-
-    $labels = array(
-        'name'                  => 'Movies',
-        'singular_name'         => 'Movie',
-        'menu_name'             => 'Movies',
-        'name_admin_bar'        => 'Movie',
-        'add_new'               => 'Add New',
-        'add_new_item'          => 'Add New Movie',
-        'new_item'              => 'New Movie',
-        'edit_item'             => 'Edit Movie',
-        'view_item'             => 'View Movie',
-        'all_items'             => 'All Movies',
-        'search_items'          => 'Search Movies',
-        'parent_item_colon'     => 'Parent Movies:',
-        'not_found'             => 'No movies found.',
-        'not_found_in_trash'    => 'No movies found in Trash.',
-        'featured_image'        => 'Movie Poster',
-        'set_featured_image'    => 'Set movie poster',
-        'remove_featured_image' => 'Remove movie poster',
-        'use_featured_image'    => 'Use as movie poster',
-        'archives'              => 'Movie Archives',
-        'insert_into_item'      => 'Insert into movie',
-        'uploaded_to_this_item' => 'Uploaded to this movie',
-        'filter_items_list'     => 'Filter movies list',
-        'items_list_navigation' => 'Movies list navigation',
-        'items_list'            => 'Movies list',
-    );
-
-    $args = array(
-        'label'                 => 'Movie',
-        'description'           => 'A custom post type for movies.',
-        'labels'                => $labels,
-        'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields' ),
-        'hierarchical'          => false,
-        'public'                => true,
-        'show_ui'               => true,
-        'show_in_menu'          => true,
-        'show_in_admin_bar'     => true,
-        'menu_position'         => 5,
-        'menu_icon'             => 'dashicons-video-alt2', // Dashicon for Movies
-        'can_export'            => true,
-        'has_archive'           => true,
-        'rewrite'               => array( 'slug' => 'movies' ),
-        'show_in_rest'          => true, // Enable Gutenberg editor
-        'rest_base'             => 'movies',
-        'rest_controller_class' => 'WP_REST_Posts_Controller',
-    );
-
-    register_post_type( 'movie', $args );
-}
-add_action( 'init', 'create_movie_post_type', 0 );

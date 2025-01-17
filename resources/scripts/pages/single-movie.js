@@ -8,14 +8,13 @@ import {
 // Get the current URL
 const url = window.location.href;
 // Separate the URL from '/#'
-const [baseUrl, movieDetails] = url.split('/#');
+const [baseUrl, movieDetails] = url.split('single-movie/');
 // Extract the movie name and name_id
-const [movie_name, movie_id] = movieDetails.split('&');
+const [movie_name, movie_id] = movieDetails.split('-');
 
 // Log the results
 console.log('Movie Name:', movie_name);
 console.log('Movie ID:', movie_id);
-
 
 tmdbSingleMovieHandler(movie_id)
   .then((res) => {

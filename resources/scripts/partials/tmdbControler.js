@@ -57,7 +57,7 @@ async function tmdbCallHandler(movieParams) {
       console.log('single_movie_result');
       console.log(single_movie_result);
 
-
+      createMoviePost(single_movie_result.original_title,  single_movie_result.overview, single_movie_result.id);
       return single_movie_result;
     })
     .catch(err => {
@@ -135,6 +135,37 @@ function formatDate(date) {
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 }
+
+// Example: JavaScript (anketa.js) for handling fetch request to save a movie post
+
+const createMoviePost = async (title, content, movieId) => {
+  try {
+      const response = await fetch(movieAjax.ajax_url, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams({
+              action: 'save_movie',   // This matches the action in the PHP function
+              nonce: movieAjax.nonce, // Nonce for security
+              title: title,           // Movie title from frontend
+              content: content, 
+              movie_id: movieId,      // Movie content from frontend
+          }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+          alert('Movie created successfully! Post ID: ' + data.data.post_id);
+      } else {
+          alert('Error: ' + data.data);
+      }
+  } catch (error) {
+      console.error('Error creating movie post:', error);
+      alert('Something went wrong!');
+  }
+};
 
 
 export { tmdbCallHandler, tmdbSingleMovieHandler, movieWatchOn, movieTrailer }
