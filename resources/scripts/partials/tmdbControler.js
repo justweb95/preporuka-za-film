@@ -50,14 +50,19 @@ async function tmdbCallHandler(movieParams) {
       
       single_movie_result.video_trailer = single_movie_trailer.results[0];
       single_movie_result.movie_watch_on = single_movie_watch_on.results['US'];
-      
+
+      single_movie_result.genres = cyrillicFormat(single_movie_result.genres[0].name);
+      single_movie_result.title = cyrillicFormat(single_movie_result.title);
+
       console.log('movie_result');
       console.log(movie_result );
 
       console.log('single_movie_result');
       console.log(single_movie_result);
 
-      createMoviePost(single_movie_result.original_title,  single_movie_result.overview, single_movie_result.id);
+      // Call Create movie Post function
+      createMoviePost(single_movie_result);
+      
       return single_movie_result;
     })
     .catch(err => {
@@ -138,7 +143,10 @@ function formatDate(date) {
 
 // Example: JavaScript (anketa.js) for handling fetch request to save a movie post
 
-const createMoviePost = async (title, content, movieId) => {
+const createMoviePost = async (movie_data) => {
+  console.log('movie_data');
+  console.log(movie_data);
+  
   try {
       const response = await fetch(movieAjax.ajax_url, {
           method: 'POST',
@@ -146,26 +154,46 @@ const createMoviePost = async (title, content, movieId) => {
               'Content-Type': 'application/x-www-form-urlencoded',
           },
           body: new URLSearchParams({
-              action: 'save_movie',   // This matches the action in the PHP function
-              nonce: movieAjax.nonce, // Nonce for security
-              title: title,           // Movie title from frontend
-              content: content, 
-              movie_id: movieId,      // Movie content from frontend
+              action: 'save_movie',
+              nonce: movieAjax.nonce, 
+              movie_data: JSON.stringify({movie_data}), 
           }),
       });
 
       const data = await response.json();
 
       if (data.success) {
-          alert('Movie created successfully! Post ID: ' + data.data.post_id);
+        console.log('Movie created successfully! Post ID: ' + data.data.post_id)  
       } else {
-          alert('Error: ' + data.data);
+        console.log('Movie with this ID already exists! Post ID: ' + data.data.post_id)  
       }
   } catch (error) {
-      console.error('Error creating movie post:', error);
-      alert('Something went wrong!');
+    console.log('Movie with this ID already exists! Post ID: ' + error)  
   }
 };
+
+
+function cyrillicFormat(text) {
+  const cyrillicToLatinMap = {
+    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',
+    'ђ': 'đ', 'е': 'e', 'ж': 'ž', 'з': 'z', 'и': 'i',
+    'ј': 'j', 'к': 'k', 'л': 'l', 'љ': 'lj', 'м': 'm',
+    'н': 'n', 'њ': 'nj', 'о': 'o', 'п': 'p', 'р': 'r',
+    'с': 's', 'т': 't', 'ћ': 'ć', 'у': 'u', 'ф': 'f',
+    'х': 'h', 'ц': 'c', 'ч': 'č', 'џ': 'dž','ш': 'š',
+    // Uppercase letters
+    'А': 'A',  'Б': 'B',  'В': 'V',  'Г': 'G',
+     'Д': 'D',  'Ђ': 'Đ',  'Е': 'E',  'Ж': 'Ž',
+     'З': 'Z',  'И': 'I',  'Ј': 'J',  'К': 'K',
+     'Л': 'L',  'Љ':'LJ','М':'M','Н':'N','Њ':'NJ',
+     'О':'O','П':'P','Р':'R','С':'S','Т':'T',
+     'Ћ':'Ć','У':'U','Ф':'F','Х':'H','Ц':'C',
+     'Ч':'Č','Џ':'Dž', 'Ш':'Š'
+  }
+
+
+  return text.split('').map(char => cyrillicToLatinMap[char] || char).join('');
+}
 
 
 export { tmdbCallHandler, tmdbSingleMovieHandler, movieWatchOn, movieTrailer }

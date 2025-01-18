@@ -188,12 +188,21 @@ async function poplateResult(resultObject) {
   poster_holder.setAttribute('src', `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`)
   poster_holder_mobile.setAttribute('src', `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`)
   
-  result_content_title.textContent = tmdbData.original_title;
+  // result_content_title.textContent = tmdbData.original_title;
+  result_content_title.textContent = cyrillicFormat(tmdbData.title);
   imdb_rating.textContent = parseFloat(tmdbData.vote_average.toFixed(1));
 
   result_description_text.textContent = cyrillicFormat(tmdbData.overview.substring(0, 300));
+  
+  // if(tmdbData.genres.length > 0) {
+  //   result_genres_text.textContent = cyrillicFormat(tmdbData.genres[0].name);
+  // }
+  // else {
+  //   result_genres_text.textContent = cyrillicFormat(tmdbData.genres);
+  // }
 
-  result_genres_text.textContent = cyrillicFormat(tmdbData.genres[0].name);
+
+  result_genres_text.textContent = cyrillicFormat(tmdbData.genres);
   movie_duration.textContent = durationFromat(tmdbData.runtime);
   result_year_text.textContent = tmdbData.release_date.split('-')[0];
 
@@ -265,10 +274,10 @@ function urlBuilder(tmdbData ) {
   // Is Production
   const urlExtension = PRODUCTION ? 'preporuka-za-film' : 'preporuka-za-film/index.php';
   // Replace spaces and special characters with underscores
-  let movieName = tmdbData.original_title.replace(/[\s:?&]+/g, '-'); // Replace spaces and special characters with underscores
-  let movieId = tmdbData.id;
+  let movieName = tmdbData.title.replace(/[\s:?&]+/g, '-');
+  movieName = cyrillicFormat(movieName);
 
-  let dynamicUrl = `${siteUrl}/${urlExtension}/single-movie/${encodeURIComponent(movieName)}-${encodeURIComponent(movieId)}`;
+  let dynamicUrl = `${siteUrl}/${urlExtension}/single-movie/${encodeURIComponent(movieName)}`;
 
   return dynamicUrl;
 }

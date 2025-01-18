@@ -22,7 +22,7 @@
       line-height: normal;
 
       
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       text-align: center;
@@ -62,7 +62,7 @@
       }
     }
     .sm-navigation {
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: flex-start;
       flex-wrap: wrap;

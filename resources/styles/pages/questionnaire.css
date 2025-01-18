@@ -537,30 +537,30 @@
   }
 
   .trailer-modal {
+    padding-top: 34px;
     position: absolute;
     left: 50%;
     top: 30%;
     width: 1000px; /* You can adjust this */
     max-width: 90%; /* Ensures responsiveness */
-    /* height: 500px; */
     transform: translate(-50%, -30%);
-    border-radius: 12px;
-    border: 1px solid var(--Background);
+    border: 1px solid transparent;
     outline: none;
+    background-color: transparent;
 
     .modal-content {
-        /* position: relative; */
-        background-color: #06131E;
+        background-color: transparent;
         .close {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: -10px;
+            right: 0px;
             &:hover {
                 cursor: pointer;
             }
         }
 
         iframe {
+          border-radius: 12px;
           user-select: none;
           padding: 0px !important;
           margin: 0px !important;

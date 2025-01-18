@@ -10,28 +10,28 @@ const url = window.location.href;
 // Separate the URL from '/#'
 const [baseUrl, movieDetails] = url.split('single-movie/');
 // Extract the movie name and name_id
-const [movie_name, movie_id] = movieDetails.split('#');
+const [movie_name, movie_id] = movieDetails.split('&');
 
 // Log the results
 console.log('Movie Name:', movie_name);
 console.log('Movie ID:', movie_id);
 
-tmdbSingleMovieHandler(movie_id)
-  .then((res) => {
-    // Turn off loader;
-    handleLoader();
+// tmdbSingleMovieHandler(movie_id)
+//   .then((res) => {
+//     // Turn off loader;
+//     handleLoader();
 
-    // Turn populate hero navigation;
-    populateHeroNavigation(cyrillicFormat(res.genres[0].name), res.original_title);
+//     // Turn populate hero navigation;
+//     populateHeroNavigation(cyrillicFormat(res.genres[0].name), cyrillicFormat(res.title));
 
-    // Populate Hero Background Image
-    populateHeroBackground(res.backdrop_path)
+//     // Populate Hero Background Image
+//     populateHeroBackground(res.backdrop_path)
     
     
-    console.log('Podaci skinuti');
-    console.log(res);
-  })
-  .catch((err) => console.log(err))
+//     console.log('Podaci skinuti');
+//     console.log(res);
+//   })
+//   .catch((err) => console.log(err))
 
 
 function handleLoader() {

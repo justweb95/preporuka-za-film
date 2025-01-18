@@ -57,7 +57,7 @@ add_action( 'init', 'create_movie_post_type', 0 );
 add_action( 'wp_ajax_save_movie', 'save_movie' );
 add_action( 'wp_ajax_nopriv_save_movie', 'save_movie' );
 
-// Enqueue the custom JavaScript for the frontend
+// // Enqueue the custom JavaScript for the frontend
 function enqueue_movie_frontend_scripts() {
     // Enqueue the anketa.js script located in the specified directory (without jQuery dependency)
     wp_enqueue_script( 'home-js', get_template_directory_uri() . '/resources/scripts/pages/home.js', array(), null, true );
@@ -69,6 +69,7 @@ function enqueue_movie_frontend_scripts() {
     ));
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_movie_frontend_scripts' );
+
 
 function allow_cross_origin_requests() {
     // Check if it's a local development request from a specific domain
@@ -84,54 +85,160 @@ function allow_cross_origin_requests() {
 }
 add_action( 'init', 'allow_cross_origin_requests' );
 
-// Handle the fetch request to create a new movie post
+
+
+
+
+
+
+
 function save_movie() {
-    // Check nonce for security (optional, remove if not needed)
-    if ( !isset( $_POST['nonce'] ) ) {
-        error_log('Nonce not set.');
-        wp_send_json_error( 'Nonce not set' );
-        return;
+    // Get the movie data object from the POST request
+    $movie_data = isset( $_POST['movie_data'] ) ? json_decode( stripslashes( $_POST['movie_data'] ), true ) : null;
+
+    // Extract values from the movie_data object
+    $movie_id = isset($movie_data['movie_data']['id']) ? sanitize_text_field($movie_data['movie_data']['id']) : '';
+    $title = isset($movie_data['movie_data']['title']) ? sanitize_text_field($movie_data['movie_data']['title']) : '';
+    $content = isset($movie_data['movie_data']['overview']) ? sanitize_textarea_field($movie_data['movie_data']['overview']) : '';
+    $adult = isset($movie_data['movie_data']['adult']) ? $movie_data['movie_data']['adult'] : false;
+    $backdrop_path = isset($movie_data['movie_data']['backdrop_path']) ? sanitize_text_field($movie_data['movie_data']['backdrop_path']) : '';
+    $budget = isset($movie_data['movie_data']['budget']) ? intval($movie_data['movie_data']['budget']) : 0;
+    $genres = isset($movie_data['movie_data']['genres']) ? json_encode($movie_data['movie_data']['genres']) : [];
+    $homepage = isset($movie_data['movie_data']['homepage']) ? esc_url_raw($movie_data['movie_data']['homepage']) : '';
+    $imdb_id = isset($movie_data['movie_data']['imdb_id']) ? sanitize_text_field($movie_data['movie_data']['imdb_id']) : '';
+    $watch_link = isset($movie_data['movie_data']['movie_watch_on']['link']) ? esc_url_raw($movie_data['movie_data']['movie_watch_on']['link']) : '';
+    $production_companies = isset($movie_data['movie_data']['production_companies']) ? json_encode($movie_data['movie_data']['production_companies']) : [];
+    $release_date = isset($movie_data['movie_data']['release_date']) ? sanitize_text_field($movie_data['movie_data']['release_date']) : '';
+    $runtime = isset($movie_data['movie_data']['runtime']) ? intval($movie_data['movie_data']['runtime']) : 0;
+    $status = isset($movie_data['movie_data']['status']) ? sanitize_text_field($movie_data['movie_data']['status']) : '';
+    $tagline = isset($movie_data['movie_data']['tagline']) ? sanitize_text_field($movie_data['movie_data']['tagline']) : '';
+    $vote_average = isset($movie_data['movie_data']['vote_average']) ? floatval($movie_data['movie_data']['vote_average']) : 0;
+    $vote_count = isset($movie_data['movie_data']['vote_count']) ? intval($movie_data['movie_data']['vote_count']) : 0;
+
+    // Ensure the movie ID is provided
+    if (empty($movie_id)) {
+        wp_send_json_success( array( 'message' => 'Movie with this ID already exists', 'post_id' => $post_id, 'movie_id' => $movie_id ) );
     }
 
-    // Log received nonce for debugging
-    error_log('Nonce received: ' . $_POST['nonce']);  // Check the nonce received
+    // Check if the movie already exists by checking the movie_id in the database
+    $existing_movie = get_posts( array(
+        'post_type'   => 'movie',
+        'meta_key'    => 'movie_id',
+        'meta_value'  => $movie_id,
+        'post_status' => 'any',
+        'numberposts' => 1,
+    ) );
 
-    // Retrieve the data from the frontend
-    $movie_id = isset( $_POST['movie_id'] ) ? sanitize_text_field( $_POST['movie_id'] ) : ''; // Custom movie ID
-    $title = isset( $_POST['title'] ) ? sanitize_text_field( $_POST['title'] ) : ''; // Movie title
-    $content = isset( $_POST['content'] ) ? sanitize_textarea_field( $_POST['content'] ) : 'Pavle'; // Movie content
-
-
-    // Ensure the necessary data is provided
-    if ( empty( $movie_id ) || empty( $title ) || empty( $content ) ) {
-        wp_send_json_error( 'Missing required data (movie_id, title, or content).'. $content . 'content' . $title . 'title' . $movie_id );
+    if ( $existing_movie ) {
+        wp_send_json_success( array( 'message' => 'Movie with this ID already exists', 'post_id' => $post_id, 'movie_id' => $movie_id ) );
         return;
     }
 
     // Prepare the post data to create the new movie post
     $post_data = array(
-        'post_id'      => $movie_id,
-        'post_title'   => $title . '-' . $movie_id,
+        'post_title'   => $title,
         'post_content' => $content,
-        'post_status'  => 'publish',  // Ensure the post is published
-        'post_type'    => 'movie',    // Custom post type 'movie'
-        'post_author'  => get_current_user_id(),  // Set the author (current logged-in user)
+        'post_status'  => 'publish', 
+        'post_type'    => 'movie',
+        'post_author'  => get_current_user_id(),
     );
 
     // Insert the new movie post
     $post_id = wp_insert_post( $post_data );
 
+    // Check if the post was created successfully
     if ( $post_id ) {
-        // Assign the custom movie_id as post meta
-        update_post_meta( $post_id, 'movie_id', $movie_id );
+        // Save additional metadata
+        update_post_meta($post_id, 'movie_id', $movie_id);
+        update_post_meta($post_id, 'adult', $adult);
+        update_post_meta($post_id, 'backdrop_path', $backdrop_path);
+        update_post_meta($post_id, 'budget', $budget);
+        update_post_meta($post_id, 'genres', $genres);
+        update_post_meta($post_id, 'homepage', $homepage);
+        update_post_meta($post_id, 'imdb_id', $imdb_id);
+        update_post_meta($post_id, 'watch_link', $watch_link);
+        update_post_meta($post_id, 'production_companies', $production_companies);
+        update_post_meta($post_id, 'release_date', $release_date);
+        update_post_meta($post_id, 'runtime', $runtime);
+        update_post_meta($post_id, 'status', $status);
+        update_post_meta($post_id, 'tagline', $tagline);
+        update_post_meta($post_id, 'vote_average', $vote_average);
+        update_post_meta($post_id, 'vote_count', $vote_count);
 
-        // Return success response with post ID
         wp_send_json_success( array( 'message' => 'Movie created successfully!', 'post_id' => $post_id, 'movie_id' => $movie_id ) );
     } else {
-        // Return failure response
-        wp_send_json_error( 'Failed to create movie.' );
+        wp_send_json_success( array( 'message' => 'Movie exist!', 'post_id' => $post_id, 'movie_id' => $movie_id ) );
     }
 }
+
+
+
+function display_movie_data($post_id) {
+    // Get the post object
+    $post = get_post($post_id);
+
+    // Check if the post exists and is of type 'movie'
+    if (!$post || $post->post_type !== 'movie') {
+        return 'Movie not found.';
+    }
+
+    // Get the movie metadata
+    $movie_id = get_post_meta($post_id, 'movie_id', true);
+    $adult = get_post_meta($post_id, 'adult', true);
+    $backdrop_path = get_post_meta($post_id, 'backdrop_path', true);
+    $budget = get_post_meta($post_id, 'budget', true);
+    $genres = json_decode(get_post_meta($post_id, 'genres', true), true);
+    $homepage = get_post_meta($post_id, 'homepage', true);
+    $imdb_id = get_post_meta($post_id, 'imdb_id', true);
+    $watch_link = get_post_meta($post_id, 'watch_link', true);
+    $production_companies = json_decode(get_post_meta($post_id, 'production_companies', true), true);
+    $release_date = get_post_meta($post_id, 'release_date', true);
+    $runtime = get_post_meta($post_id, 'runtime', true);
+    $status = get_post_meta($post_id, 'status', true);
+    $tagline = get_post_meta($post_id, 'tagline', true);
+    $vote_average = get_post_meta($post_id, 'vote_average', true);
+    $vote_count = get_post_meta($post_id, 'vote_count', true);
+
+    // Display the movie data
+    ob_start();
+    ?>
+    <div class="movie-data">
+        <h2><?php echo esc_html($post->post_title); ?></h2>
+        <p><strong>ID:</strong> <?php echo esc_html($movie_id); ?></p>
+        <p><strong>Adult:</strong> <?php echo esc_html($adult ? 'Yes' : 'No'); ?></p>
+        <p><strong>Backdrop Path:</strong> <?php echo esc_html($backdrop_path); ?></p>
+        <p><strong>Budget:</strong> <?php echo esc_html($budget); ?></p>
+        <p><strong>Genres:</strong> <?php echo esc_html(implode(', ', $genres)); ?></p>
+        <p><strong>Homepage:</strong> <a href="<?php echo esc_url($homepage); ?>"><?php echo esc_html($homepage); ?></a></p>
+        <p><strong>IMDB ID:</strong> <?php echo esc_html($imdb_id); ?></p>
+        <p><strong>Watch Link:</strong> <a href="<?php echo esc_url($watch_link); ?>"><?php echo esc_html($watch_link); ?></a></p>
+        <p><strong>Production Companies:</strong> <?php echo esc_html(implode(', ', $production_companies)); ?></p>
+        <p><strong>Release Date:</strong> <?php echo esc_html($release_date); ?></p>
+        <p><strong>Runtime:</strong> <?php echo esc_html($runtime); ?> minutes</p>
+        <p><strong>Status:</strong> <?php echo esc_html($status); ?></p>
+        <p><strong>Tagline:</strong> <?php echo esc_html($tagline); ?></p>
+        <p><strong>Vote Average:</strong> <?php echo esc_html($vote_average); ?></p>
+        <p><strong>Vote Count:</strong> <?php echo esc_html($vote_count); ?></p>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+
+// Shortcode to display movie data
+function movie_data_shortcode($atts) {
+    $atts = shortcode_atts(array(
+        'id' => 0,
+    ), $atts, 'movie_data');
+
+    return display_movie_data($atts['id']);
+}
+add_shortcode('movie_data', 'movie_data_shortcode');
+
+
+
+
+
+
 
 
 

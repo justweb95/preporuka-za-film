@@ -5,7 +5,5 @@
     @includeFirst(['partials.content-single-' . get_post_type(), 'partials.content-single'])
   @endwhile --}}
 
-
-
-  
+  @include('pages.single-movie.sm-hero-section')
 @endsection
