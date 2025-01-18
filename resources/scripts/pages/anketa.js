@@ -272,7 +272,7 @@ function urlBuilder(tmdbData ) {
   // Current url
   const siteUrl = window.location.origin; 
   // Is Production
-  const urlExtension = PRODUCTION ? 'preporuka-za-film' : 'preporuka-za-film/index.php';
+  const urlExtension = PRODUCTION ? '' : 'preporuka-za-film/index.php';
   // Replace spaces and special characters with underscores
   let movieName = tmdbData.title.replace(/[\s:?&]+/g, '-');
   movieName = cyrillicFormat(movieName);
