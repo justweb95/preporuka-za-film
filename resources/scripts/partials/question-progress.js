@@ -9,7 +9,6 @@ function collectProgressItems() {
     allCheckboxItems = document.querySelectorAll('.progress-checkbox');
     allTextItems = document.querySelectorAll('.progress-text');
     allPathItems = document.querySelectorAll('.progress-path');
-    
 }
 
 function handleProgressNumber(step) {
@@ -44,20 +43,15 @@ function handleProgressCheckbox(step) {
         }
     });
     listOfPath.forEach((path, index) => {
-        // path.classList.remove('step-path-fill-orange');     
-        // path.removeAttribute(stroke)
         path.setAttribute('stroke', `#314C65`)
         path.classList.remove('step-path-fill-green');     
         
         if(step > index + 1) {
-            // path.classList.remove('step-path-fill-orange');     
-            // path.removeAttribute(stroke)
             path.classList.add('step-path-fill-green');     
         }
 
         if(step === index + 1) {
-            path.setAttribute('stroke', `url(#gradient${index + 1})`)
-            // path.classList.add('step-path-fill-orange');     
+            path.setAttribute('stroke', `url(#gradient${index + 1})`)  
         }
     });
 }

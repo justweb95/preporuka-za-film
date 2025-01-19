@@ -1,11 +1,9 @@
+import { cyrillicFormat } from '@scripts/partials/textFormatingControler';
+
 async function tmdbCallHandler(movieParams) {
   // Keywords
   let key_words = [];
-  // key_words.push(movieParams[0]);
-  // key_words.push(movieParams[1]);
-  // key_words.push(movieParams[5]);
   key_words = key_words.join('|');
-
 
   //Genres 
   let with_genres = movieParams[2];
@@ -47,11 +45,21 @@ async function tmdbCallHandler(movieParams) {
       let single_movie_result = await tmdbSingleMovieHandler(movie_id);
       let single_movie_trailer = await movieTrailer(movie_id);
       let single_movie_watch_on = await movieWatchOn(movie_id);
+      let single_movie_credits = await movieCredits(movie_id);
+
+      console.log('single_movie_credits');
+      console.log(single_movie_credits);
+      
       
       single_movie_result.video_trailer = single_movie_trailer.results[0];
       single_movie_result.movie_watch_on = single_movie_watch_on.results['US'];
 
-      single_movie_result.genres = cyrillicFormat(single_movie_result.genres[0].name);
+      single_movie_result.single_movie_cast = single_movie_credits.cast.slice(0, 5);
+      single_movie_result.single_movie_director = single_movie_credits.crew.filter(member => member.department === 'Directing');
+      single_movie_result.single_movie_writer = single_movie_credits.crew.filter(member => member.department === 'Writing');
+
+      single_movie_result.genres = cyrillicFormat(single_movie_result.genres[0].name.replace(/^"|"$/g, ''));
+
       single_movie_result.title = cyrillicFormat(single_movie_result.title);
 
       console.log('movie_result');
@@ -73,65 +81,26 @@ async function tmdbCallHandler(movieParams) {
 
 async function tmdbSingleMovieHandler(movie_id) {
   const url = `https://api.themoviedb.org/3/movie/${movie_id}?language=sr-SR&include_video=true`;
-  
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${TMDB_API_KEY}`
-    }
-  };
-
-  return fetch(url, options)
-  .then(res => res.json())
-  .then(data => {
-    return data
-  })
-  .catch(err => 
-    console.log(err)
-  )
+  return fetchDataControler(url);
 }
 
 
 async function movieTrailer(movie_id) {
   const url = `https://api.themoviedb.org/3/movie/${movie_id}/videos?language=en-US`;
-
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${TMDB_API_KEY}`
-    }
-  };
-
-  return fetch(url, options)
-  .then(res => res.json())
-  .then(data => {
-    return data
-  })
-  .catch(err => 
-    console.log(err)
-  )
+  
+  return fetchDataControler(url);
 }
 
 async function movieWatchOn(movie_id) {
   const url = `https://api.themoviedb.org/3/movie/${movie_id}/watch/providers`;
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${TMDB_API_KEY}`
-    }
-  };
+  
+  return fetchDataControler(url);
+}
 
-  return fetch(url, options)
-  .then(res => res.json())
-  .then(data => {
-    return data
-  })
-  .catch(err => 
-    console.log(err)
-  )
+async function movieCredits(movie_id) {
+  const url = `https://api.themoviedb.org/3/movie/${movie_id}/credits?language=en-US`;
+  
+  return fetchDataControler(url);
 }
 
 function formatDate(date) {
@@ -141,12 +110,29 @@ function formatDate(date) {
   return `${year}-${month}-${day}`;
 }
 
-// Example: JavaScript (anketa.js) for handling fetch request to save a movie post
+
+async function fetchDataControler(url) {
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${TMDB_API_KEY}`
+    }
+  };
+
+  return fetch(url, options)
+  .then(res => res.json())
+  .then(data => {
+    return data
+  })
+  .catch(err => {
+    return 'Something Went wrong' + err;
+  })
+}
+
+
 
 const createMoviePost = async (movie_data) => {
-  console.log('movie_data');
-  console.log(movie_data);
-  
   try {
       const response = await fetch(movieAjax.ajax_url, {
           method: 'POST',
@@ -171,29 +157,5 @@ const createMoviePost = async (movie_data) => {
     console.log('Movie with this ID already exists! Post ID: ' + error)  
   }
 };
-
-
-function cyrillicFormat(text) {
-  const cyrillicToLatinMap = {
-    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',
-    'ђ': 'đ', 'е': 'e', 'ж': 'ž', 'з': 'z', 'и': 'i',
-    'ј': 'j', 'к': 'k', 'л': 'l', 'љ': 'lj', 'м': 'm',
-    'н': 'n', 'њ': 'nj', 'о': 'o', 'п': 'p', 'р': 'r',
-    'с': 's', 'т': 't', 'ћ': 'ć', 'у': 'u', 'ф': 'f',
-    'х': 'h', 'ц': 'c', 'ч': 'č', 'џ': 'dž','ш': 'š',
-    // Uppercase letters
-    'А': 'A',  'Б': 'B',  'В': 'V',  'Г': 'G',
-     'Д': 'D',  'Ђ': 'Đ',  'Е': 'E',  'Ж': 'Ž',
-     'З': 'Z',  'И': 'I',  'Ј': 'J',  'К': 'K',
-     'Л': 'L',  'Љ':'LJ','М':'M','Н':'N','Њ':'NJ',
-     'О':'O','П':'P','Р':'R','С':'S','Т':'T',
-     'Ћ':'Ć','У':'U','Ф':'F','Х':'H','Ц':'C',
-     'Ч':'Č','Џ':'Dž', 'Ш':'Š'
-  }
-
-
-  return text.split('').map(char => cyrillicToLatinMap[char] || char).join('');
-}
-
 
 export { tmdbCallHandler, tmdbSingleMovieHandler, movieWatchOn, movieTrailer }
