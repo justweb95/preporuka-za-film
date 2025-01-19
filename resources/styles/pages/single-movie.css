@@ -92,7 +92,7 @@
       align-items: stretch;
       .sm-info-poster {
         position: relative;
-        flex: 1 0 40%;
+        flex: 0 0 28%;
         border-radius: 12px;
         border: 1px solid var(--Grey, #22374A);
         max-width: 356px;
@@ -184,13 +184,35 @@
             border-color: var(--Grey, #22374A);;
           }
         }
+
+
+        .sm-info-content-description {
+          margin: 24px 0px 40px;
+          .sm-info-content-description-text {
+            color: var(--Light, #EDFEEC);
+            font-family: "Red Hat Display";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 140%; 
+          }
+        }
+
+
+
+        /* HR Line  */
         hr {
+          margin: 16px 0px;
           border-width: 1px;
           border-color: var(--Grey, #22374A);;
         }
+
+
+
         .sm-info-content-director, .sm-info-content-writers, .sm-info-content-cast {
           display: flex;
           h4 {
+            margin-right: 8px;
             color: var(--White, #FFF);
             font-family: "Red Hat Display";
             font-size: 16px;
@@ -200,8 +222,8 @@
           }
           ul {
           display: flex;
-          list-style: disc;
-          list-style-position: inside;
+          flex-wrap: wrap;
+          list-style: none;
             li {
               color: var(--Orange, #F57C36);
               font-family: "Red Hat Display";
@@ -209,19 +231,158 @@
               font-style: normal;
               font-weight: 600;
               line-height: normal;
-              &::marker {
-                margin: 0px 8px;
-                padding: 0px 8px;
+              svg {
+                vertical-align: middle;
+                margin: 0px 7px 0px 8px;
+              }
+              &:first-of-type {
+                svg {
+                  display: none;
+                }
               }
             }
           }
         }
 
+
+        .sm-info-content-cta {
+          margin: 40px 0px 0px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          button {
+            flex: 0 0 32%;
+            padding: 15px;
+            border-radius: 40px;
+            border: 1px solid #18BF7C;
+            background: #18BF7C;
+            color: var(--White, #FFF);
+            font-family: "Red Hat Display";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            text-decoration: none;
+            transition: .3s ease;
+            svg {
+              vertical-align: middle;
+              margin-right: 10px;
+            }
+            &:hover {
+              cursor: pointer;
+              background: #22374A;
+            }
+          }
+          a {
+            text-align: center;
+            flex: 0 0 32%;
+            border-radius: 40px;
+            background: var(--Grey, #22374A);
+            padding: 15px;
+            border: 1px solid #22374A;
+            color: var(--White, #FFF);
+            font-family: "Red Hat Display";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            text-decoration: none;
+            transition: .3s ease;
+            svg {
+              vertical-align: middle;
+              margin-right: 10px;
+            }
+            &:hover {
+              cursor: pointer;
+              border: 1px solid  var(--Green, #18BF7C);
+              background:  #22374A;
+              color: #FFF;
+            }
+          }
+        }
+      }
+    }
+    @media (max-width: 1024px) {
+      .sm-info {
+        flex-direction: column-reverse;
+        .sm-info-poster {
+          max-width: 100%;
+          img {
+            max-height: 600px;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 550px) {
+      .sm-info {
+        .sm-navigation {
+          li {
+            font-size: 14px;
+            a {
+              font-size: 14px;
+            }
+          }
+        }
+        .sm-info-content {
+          padding: 26px 20px;
+          .sm-info-content-title-holder {
+            .sm-info-content-title {
+              font-size: 24px;
+            }
+            .sm-info-imdb-rating-holder {
+              p {
+                font-size: 18px;
+              }
+            }
+          }
+
+
+          .sm-info-content-info {
+            margin: 18px 0px;
+          }
+
+          .sm-info-content-description {
+            margin: 18px 0px;
+            .sm-info-content-description-text  {
+              font-size: 14px;
+            }
+          }
+
+
+          /* Upitno */
+          hr {
+            display: none;
+          }
+
+          .sm-info-content-director, .sm-info-content-writers, .sm-info-content-cast {
+            display: none;
+            h4 {
+
+            }
+            ul {
+              li {
+                font-size: 13px;
+              }
+            }
+          }
+
+          .sm-info-content-cta {
+            flex-wrap: wrap;
+            gap: 16px;
+            button, a {
+              font-size: 16px;
+              padding: 11px;
+              flex: 1 0 100%;
+            }
+          }
+
+        }
       }
     }
     .sm-info-donation {
       display: inline-block;
-      margin-bottom: 46px;
+      margin-top: 46px;
       padding: 8px 20px;
       width: 100%;
       border-radius: 4px;
@@ -247,7 +408,7 @@
   }
 
   @media (max-width: 550px) {
-    padding: 40px 0px;
+    padding: 32px 0px;
     .sm-hero-holder {
       .sm-loader {
         height: 150px;

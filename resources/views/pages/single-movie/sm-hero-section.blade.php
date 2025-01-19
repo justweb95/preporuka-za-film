@@ -31,10 +31,9 @@
   $content = strip_tags(apply_filters('the_content', get_the_content()));
 
   // Release date
-  $director = get_post_meta($movie->ID, 'director', true);
-  $cast = get_post_meta($movie->ID, 'cast', true);
-  $writing = get_post_meta($movie->ID, 'writing', true);
-
+  $director = get_post_meta($movie->ID, 'director', true) ?: [];
+  $cast = get_post_meta($movie->ID, 'cast', true) ?: [];
+  $writing = get_post_meta($movie->ID, 'writing', true) ?: [];
 
   // Decode and trim the genres if it's a string
   if (is_string($genres)) {
@@ -136,9 +135,16 @@
         <div class="sm-info-content-director">
           <h4>Director:</h4>
           <ul>
-            @foreach($director as $dir)
-              <li class="sm-info-content-writer-text" id="sm-info-writer">{{ $dir }}</li>
-            @endforeach
+            @forelse($director as $dir)
+              <li class="sm-info-content-writer-text" id="sm-info-writer">
+          <svg width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="2" cy="2.5" r="2" fill="white"/>
+          </svg>
+          {{ $dir }}
+              </li>
+            @empty
+              <li>No data available</li>
+            @endforelse
           </ul>
         </div>
         
@@ -148,9 +154,16 @@
         <div class="sm-info-content-writers">
           <h4>Pisci:</h4>
           <ul>
-            @foreach($writing as $writer)
-              <li class="sm-info-content-writer-text" id="sm-info-writer">{{ $writer }}</li>
-            @endforeach
+            @forelse($writing as $writer)
+              <li class="sm-info-content-writer-text" id="sm-info-writer">
+          <svg width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="2" cy="2.5" r="2" fill="white"/>
+          </svg>
+          {{ $writer }}
+              </li>
+            @empty
+              <li>No data available</li>
+            @endforelse
           </ul>
         </div>
         
@@ -160,18 +173,28 @@
         <div class="sm-info-content-cast">
           <h4>Glumci:</h4>
           <ul>
-            @foreach($cast as $actor)
-              <li class="sm-info-content-cast" id="sm-info-cast">{{ $actor }}</li>
-            @endforeach
+            @forelse($cast as $actor)
+              <li class="sm-info-content-writer-text" id="sm-info-writer">
+          <svg width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="2" cy="2.5" r="2" fill="white"/>
+          </svg>
+          {{ $actor }}
+              </li>
+            @empty
+              <li>No data available</li>
+            @endforelse
           </ul>
         </div>
+        
+        <hr>
+
 
         {{-- sm-info CTA --}}
         <div class="sm-info-content-cta" id="sm-info-content-cta">
           <button href="#" onclick="openTrailerPopUp()" class="sm-info-cta-trailer">
-            <svg width="20" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M1.9241 4.33643V20.6636C1.9241 22.1931 3.63684 23.1054 4.91551 22.2569L17.2191 14.0934C18.3615 13.3354 18.3615 11.6646 17.2191 10.9066L4.91551 2.74306C3.63684 1.89465 1.9241 2.80693 1.9241 4.33643ZM0 4.33643V20.6636C0 23.7226 3.42546 25.5471 5.98281 23.8503L18.2864 15.6867C20.5712 14.1708 20.5712 10.8292 18.2864 9.31325L5.98281 1.14969C3.42546 -0.547141 0 1.27744 0 4.33643Z" fill="#18BF7C"/>
-            </svg>
+            <svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5911 3.83643V20.1636C2.5911 21.6931 4.30383 22.6054 5.5825 21.7569L17.8861 13.5934C19.0285 12.8354 19.0285 11.1646 17.8861 10.4066L5.5825 2.24306C4.30383 1.39465 2.5911 2.30693 2.5911 3.83643ZM0.666992 3.83643V20.1636C0.666992 23.2226 4.09246 25.0471 6.6498 23.3503L18.9534 15.1867C21.2382 13.6708 21.2382 10.3292 18.9534 8.81325L6.6498 0.649686C4.09245 -1.04714 0.666992 0.777436 0.666992 3.83643Z" fill="white"/>
+            </svg>              
             Trejler
           </button>
 
