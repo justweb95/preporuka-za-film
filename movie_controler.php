@@ -34,7 +34,7 @@ function create_movie_post_type() {
         'label'                 => 'Movie',
         'description'           => 'A custom post type for movies.',
         'labels'                => $labels,
-        'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields' ),
+        'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields', 'comments' ),
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
@@ -159,11 +159,14 @@ add_action( 'init', 'create_movie_post_type', 0 );
         
         // Insert the new movie post
         $post_id = wp_insert_post( $post_data );
-
         // Check if the post was created successfully
         if ( $post_id ) {
+            wp_update_post(array(
+                'ID' => $post_id,
+                'comment_status' => 'open' // Set to 'closed' if you want to disable comments
+            ));
+            // Save category
             wp_set_post_categories($post_id, array($category_id)); 
-
             // Save additional metadata
             update_post_meta($post_id, 'movie_id', $movie_id);
             update_post_meta($post_id, 'adult', $adult);
@@ -181,12 +184,16 @@ add_action( 'init', 'create_movie_post_type', 0 );
             update_post_meta($post_id, 'tagline', $tagline);
             update_post_meta($post_id, 'vote_average', $vote_average);
             update_post_meta($post_id, 'vote_count', $vote_count);
-
             update_post_meta($post_id, 'director', $director);
             update_post_meta($post_id, 'cast', $cast);
             update_post_meta($post_id, 'writing', $writing);
 
-            wp_send_json_success( array( 'message' => 'Movie created successfully!', 'post_id' => $post_id, 'movie_id' => $movie_id ) );
+            $post_url = get_permalink($post_id);
+
+            wp_send_json_success( array( 
+                'message' => 'Movie created successfully!', 
+                'post_url' => $post_url
+            ));
         } else {
             wp_send_json_success( array( 'message' => 'Movie exist!', 'post_id' => $post_id, 'movie_id' => $movie_id ) );
         }

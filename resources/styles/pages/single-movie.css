@@ -8,60 +8,6 @@
   background-repeat: no-repeat !important;
 
   .sm-hero-holder {
-    /* .sm-loader {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -80%);
-      flex: 0 0 auto;
-      padding: 24px;
-      color: var(--White, #FFF);
-      font-family: "Red Hat Display";
-      font-size: 26px;
-      font-weight: 700;
-      line-height: normal;
-
-      
-      display: none;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      opacity: 0;
-      animation: appearLoader 2s forwards;
-      background-color: #18BF7C;
-      border-radius: 50%;
-      height: 200px;
-      width: 200px;
-
-      &::before {
-        text-align: left;
-        content: url('../images/partials/circle-around-dot-green.svg');
-        display: block;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        z-index: -1;
-        border-radius: 50%;
-        animation: circleAroundLoadingOrange 1s infinite ease-in-out forwards;
-      }
-
-      &::after {
-        text-align: left;
-        content: url('../images/partials/circle-around-dot-orange.svg');
-        display: block;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        z-index: -1;
-        border-radius: 50%;
-        animation: circleAroundLoadingGreen 1s infinite ease-out forwards;
-      }
-    } */
-    /*  */
     .sm-navigation {
       display: flex;
       align-items: center;
@@ -415,6 +361,17 @@
         width: 150px;
         font-size: 16px;
         transform: translate(-50%, -100%);
+      }
+    }
+  }
+}
+
+
+.sm_subhero_wraper {
+  .comment-form-holder {
+    .form {
+      .comment-respond {
+        
       }
     }
   }

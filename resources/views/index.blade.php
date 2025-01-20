@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
   @include('partials.page-header')
+
 
   @if (! have_posts())
     <x-alert type="warning">
@@ -10,6 +12,9 @@
 
     {!! get_search_form(false) !!}
   @endif
+
+  <h2>pavs</h2>
+
 
   @while(have_posts()) @php(the_post())
     @includeFirst(['partials.content-' . get_post_type(), 'partials.content'])

@@ -61,6 +61,7 @@ async function tmdbCallHandler(movieParams) {
       single_movie_result.genres = cyrillicFormat(single_movie_result.genres[0].name.replace(/^"|"$/g, ''));
 
       single_movie_result.title = cyrillicFormat(single_movie_result.title);
+      single_movie_result.overview = cyrillicFormat(single_movie_result.overview);
 
       console.log('movie_result');
       console.log(movie_result );
@@ -69,7 +70,9 @@ async function tmdbCallHandler(movieParams) {
       console.log(single_movie_result);
 
       // Call Create movie Post function
-      createMoviePost(single_movie_result);
+      let response = await createMoviePost(single_movie_result);
+
+      single_movie_result.url = response.data.post_url;
       
       return single_movie_result;
     })
@@ -150,6 +153,7 @@ const createMoviePost = async (movie_data) => {
 
       if (data.success) {
         console.log('Movie created successfully! Post ID: ' + data.data.post_id)  
+        return data;
       } else {
         console.log('Movie with this ID already exists! Post ID: ' + data.data.post_id)  
       }

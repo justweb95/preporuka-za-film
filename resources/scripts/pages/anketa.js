@@ -195,14 +195,6 @@ async function poplateResult(resultObject) {
   imdb_rating.textContent = parseFloat(tmdbData.vote_average.toFixed(1));
 
   result_description_text.textContent = cyrillicFormat(tmdbData.overview.substring(0, 300));
-  
-  // if(tmdbData.genres.length > 0) {
-  //   result_genres_text.textContent = cyrillicFormat(tmdbData.genres[0].name);
-  // }
-  // else {
-  //   result_genres_text.textContent = cyrillicFormat(tmdbData.genres);
-  // }
-
 
   result_genres_text.textContent = cyrillicFormat(tmdbData.genres);
   movie_duration.textContent = durationFromat(tmdbData.runtime);
@@ -210,7 +202,7 @@ async function poplateResult(resultObject) {
 
 
   // Set the href attribute to the result_cta_read_more element
-  const fullUrl = urlBuilder(tmdbData);
+  const fullUrl = tmdbData.url;
   result_cta_read_more.setAttribute('href', fullUrl);
 
 
@@ -246,23 +238,5 @@ function durationFromat(time) {
   const minutes = time % 60; // Calculate remaining minutes
   return `${hours}h ${minutes}min`; // Return formatted string
 }
-
-function urlBuilder(tmdbData ) {
-  // Current url
-  const siteUrl = window.location.origin; 
-  // Is Production
-  const urlExtension = PRODUCTION ? '' : 'preporuka-za-film/index.php';
-  
-  // Replace spaces and special characters with underscores
-  let movieName = tmdbData.title.replace(/[\s:?&]+/g, '-');
-  // Text formating for url build;
-  movieName = cyrillicFormat(movieName);
-  movieName = removeDiacritics(movieName);
-
-  let dynamicUrl = `${siteUrl}/${urlExtension}/single-movie/${encodeURIComponent(movieName)}`;
-
-  return dynamicUrl;
-}
-
 
 changeQuestionHandler(currentQuestionIndex);
