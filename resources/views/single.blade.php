@@ -7,9 +7,9 @@
 
   @include('pages.single-movie.sm-hero-section')
   <section class="sm_subhero_wraper">
-    @include('components.comment-form')
-    @include('components.comment-list')
-    @include('components.comment-banner')
+      @include('components.comment-form')
+      @include('components.comment-list')
+      @include('components.comment-banner')
   </section>
   
 @endsection

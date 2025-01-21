@@ -368,11 +368,263 @@
 
 
 .sm_subhero_wraper {
-  .comment-form-holder {
+  padding: 20px 0px 80px;
+  position: relative;
+  background: var(--Background, #06131E);
+  .comment_form_holder {
+    .comment_form {
+      max-width: 800px;
+      h2 {
+        color: var(--White, #FFF);
+        font-family: "Red Hat Display";
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%; /* 44.8px */
+      }
+      .comment-respond {
+        .comment-form {
+
+          .comment-form-comment, .comment-form-author, .comment-form-email {
+            margin: 20px 0px;
+            width: 100%;
+            textarea, input {
+              padding: 18px 20px;
+              width: 100%;
+              border-radius: 4px;
+              background: #152533;
+
+
+              color: #FFF;
+              font-family: "Red Hat Display";
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 140%; /* 22.4px */
+              border: none;
+
+              &::placeholder {
+                color: #6587A4;
+
+              }
+            }
+          }
+
+          .comment-form-rating {
+            .stars-container {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              label {
+                padding: 14px 30px;
+                border-radius: 4px;
+                background: #152533;
+                text-align: center;
+                color: var(--White, #FFF);
+                font-family: "Red Hat Display";
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                border-bottom: 2px solid transparent;
+                transition: .3s ease;
+                svg {
+                  vertical-align: middle;
+                  margin-right: 12px;
+                }
+                &:hover {
+                  cursor: pointer;
+                  background: var(--Orange, #F57C36);
+                }    
+              }
+              input {
+                display: none;
+                &:checked + label {
+                  border-bottom: 2px solid var(--Orange, #F57C36);
+                  background: var(--Grey, #22374A);
+                  color: #F57C36;
+                  svg {
+                    circle, path {
+                      stroke: #F57C36 !important;
+                    }
+                    path {
+                      /* fill: #F57C36 !important; */
+                    }
+                  }
+                }    
+              }
+            }
+          }
+
+          .form-submit {
+            margin-top: 32px;
+            input {
+              padding: 18px 32px;
+              border-radius: 60px;
+              border: 2px solid var(--Green, #18BF7C);
+              background-color: transparent;
+              color: var(--White, #FFF);
+              font-family: "Red Hat Display";
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: 22px; /* 137.5% */
+              transition: .3s ease;
+              &:hover {
+                cursor: pointer;
+                background-color: #18BF7C;
+              }
+            }
+          }
+
+        }
+      }
+    }
+    .review_stats {
+      display: block;
+      margin: 48px 0px 32px;
+      max-width: 800px;
+      .review_number {
+        display: inline;
+        color: var(--White, #FFF);
+        font-family: "Red Hat Display";
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+    }
+    .reviews-display {
+      padding: 25px 23px;
+      display: block;
+      margin-bottom: 48px;
+      max-width: 800px;
+      border-radius: 4px;
+      background: #152533;
+      .review-bar {
+        display: flex;
+        align-items: center;
+        margin: 14px 0px;
+        svg {
+          vertical-align: middle;
+          margin-right: 12px;
+        }
+        .review-label {
+          min-width: 125px;
+          color: var(--White, #FFF);
+          font-family: "Red Hat Display";
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+        }
+        .review-progress {
+          flex: 1 0 60%;
+          progress {
+            display: block;
+            width: 100%;
+            appearance: none;
+            border-radius: 8px;
+            height: 4px;
+          }
+          progress::-webkit-progress-bar {
+            background-color: var(--Grey, #22374A);
+            border-radius: 8px;
+          }
+          progress::-webkit-progress-value {
+            background-color: var(--Orange, #F57C36);
+            border-radius: 8px;
+          }
+        }
+        .review-count {
+          min-width: 75px;
+          margin-left: 20px;
+          color: #FFF;
+          font-family: "Red Hat Display";
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+        }
+      }
+    }
     .form {
       .comment-respond {
         
       }
+    }
+  }
+
+  .comments_list {
+    .comment_list_holder {
+      max-width: 800px;
+      .comments_separator {
+        max-width: 100%;
+        &:first-of-type {
+          display: none;
+        }
+      }
+      .single_comment {
+        margin: 20px 0px 20px;
+        /* display: flex;
+        flex-wrap: wrap; */
+        .single_comment_header {
+          /* flex: 1 0 100%; */
+          display: flex;
+          gap: 24px;
+          img {
+            max-width: 48px;
+            border-radius: 50%;
+          }
+          .sing_comment_author {
+            align-content: center;
+            color: var(--White, #FFF);
+            font-family: "Red Hat Display";
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            span {
+              color: var(--Light, #EDFEEC);
+              font-family: "Red Hat Display";
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+            }
+          }
+        }
+        .single_comment_stars {
+          margin-top: 24px;
+        }
+        .single_comment_content {
+          margin-top: 20px;
+          color: var(--White, #FFF);
+          font-family: "Red Hat Display";
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 150%; /* 24px */
+          margin-bottom: 24px;
+        }
+      }
+    }
+
+  }
+  .comment_banner_holder {
+    position: absolute;
+    height: calc(100% - 100px);
+    top: 90px;
+    left: 50%;
+    transform: translate(-50%);
+    .banner-box {
+      position: sticky;
+      top: 10px;
+      left: calc(100% + 250px);
+      border-radius: 8px;
+      background-color: #6587A4;
+      height: 548px;
+      width: 250px;
     }
   }
 }

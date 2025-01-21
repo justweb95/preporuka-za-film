@@ -1,4 +1,4 @@
-<article class="comment_banner_holder">
+<article class="comment_banner_holder container">
   <!-- Banner content goes here -->
-  <h3>Banner</h3>
+  <div class="banner-box"></div>
 </article>

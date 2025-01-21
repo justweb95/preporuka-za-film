@@ -76,39 +76,40 @@ require_once get_template_directory() . '/movie_controler.php';
 // Star Reviews
 // Add star rating field to comment form
 function add_star_rating_field() {
-    echo '<p class="comment-form-rating">Vaša ocena:
+    echo '<p class="comment-form-rating">
     <span class="stars-container">
         <input required type="radio" name="rating" id="rating-5" value="5">
         <label for="rating-5">
-            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10.4004" cy="10" r="9.3" fill="white" stroke="#002635" stroke-width="1.4"/>
-                <mask id="path-2-inside-1_772_4603" fill="white">
-                <path d="M5.40039 11C5.40039 11.6566 5.52972 12.3068 5.78099 12.9134C6.03227 13.52 6.40056 14.0712 6.86486 14.5355C7.32915 14.9998 7.88034 15.3681 8.48697 15.6194C9.0936 15.8707 9.74378 16 10.4004 16C11.057 16 11.7072 15.8707 12.3138 15.6194C12.9204 15.3681 13.4716 14.9998 13.9359 14.5355C14.4002 14.0712 14.7685 13.52 15.0198 12.9134C15.2711 12.3068 15.4004 11.6566 15.4004 11L10.4004 11L5.40039 11Z"/>
-                </mask>
-                <path d="M5.40039 11C5.40039 11.6566 5.52972 12.3068 5.78099 12.9134C6.03227 13.52 6.40056 14.0712 6.86486 14.5355C7.32915 14.9998 7.88034 15.3681 8.48697 15.6194C9.0936 15.8707 9.74378 16 10.4004 16C11.057 16 11.7072 15.8707 12.3138 15.6194C12.9204 15.3681 13.4716 14.9998 13.9359 14.5355C14.4002 14.0712 14.7685 13.52 15.0198 12.9134C15.2711 12.3068 15.4004 11.6566 15.4004 11L10.4004 11L5.40039 11Z" fill="white" stroke="#002635" stroke-width="2.8" mask="url(#path-2-inside-1_772_4603)"/>
-                <circle cx="7.40039" cy="8" r="1" fill="#002635"/>
-                <circle cx="13.4004" cy="8" r="1" fill="#002635"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+            <circle cx="10.2998" cy="10" r="9.3" stroke="white" stroke-width="1.4"/>
+            <mask id="path-2-inside-1_342_1697" fill="white">
+                <path d="M5.2998 11C5.2998 11.6566 5.42913 12.3068 5.68041 12.9134C5.93168 13.52 6.29998 14.0712 6.76427 14.5355C7.22856 14.9998 7.77976 15.3681 8.38639 15.6194C8.99301 15.8707 9.6432 16 10.2998 16C10.9564 16 11.6066 15.8707 12.2132 15.6194C12.8198 15.3681 13.371 14.9998 13.8353 14.5355C14.2996 14.0712 14.6679 13.52 14.9192 12.9134C15.1705 12.3068 15.2998 11.6566 15.2998 11L10.2998 11L5.2998 11Z"/>
+            </mask>
+            <path d="M5.2998 11C5.2998 11.6566 5.42913 12.3068 5.68041 12.9134C5.93168 13.52 6.29998 14.0712 6.76427 14.5355C7.22856 14.9998 7.77976 15.3681 8.38639 15.6194C8.99301 15.8707 9.6432 16 10.2998 16C10.9564 16 11.6066 15.8707 12.2132 15.6194C12.8198 15.3681 13.371 14.9998 13.8353 14.5355C14.2996 14.0712 14.6679 13.52 14.9192 12.9134C15.1705 12.3068 15.2998 11.6566 15.2998 11L10.2998 11L5.2998 11Z" stroke="white" stroke-width="2.8" mask="url(#path-2-inside-1_342_1697)"/>
+            <circle cx="7.2998" cy="8" r="1" fill="white"/>
+            <circle cx="13.2998" cy="8" r="1" fill="white"/>
             </svg>
             Odličan
         </label>
         
         <input required type="radio" name="rating" id="rating-4" value="4">
         <label for="rating-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                <circle cx="10.2012" cy="10" r="9.3" fill="white" stroke="#002635" stroke-width="1.4"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.6601 12C13.2267 13.5017 11.842 14.6 10.2008 14.6C8.55953 14.6 7.17481 13.5017 6.74147 12H5.30078C5.76405 14.2822 7.78181 16 10.2008 16C12.6197 16 14.6375 14.2822 15.1007 12H13.6601Z" fill="#002635"/>
-                <circle cx="7.20117" cy="8" r="1" fill="#002635"/>
-                <circle cx="13.2012" cy="8" r="1" fill="#002635"/>
-            </svg>Vrlo Dobar
+            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10.8994" cy="10" r="9.3" stroke="#EDFEEC" stroke-width="1.4"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.3593 12C13.9259 13.5017 12.5412 14.6 10.9 14.6C9.25874 14.6 7.87403 13.5017 7.44069 12H6C6.46327 14.2822 8.48102 16 10.9 16C13.3189 16 15.3367 14.2822 15.8 12H14.3593Z" fill="#EDFEEC"/>
+                <circle cx="7.89941" cy="8" r="1" fill="#EDFEEC"/>
+                <circle cx="13.8994" cy="8" r="1" fill="#EDFEEC"/>
+            </svg>
+            Vrlo Dobar
         </label>
         
         <input required type="radio" name="rating" id="rating-3" value="3">
         <label for="rating-3">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10" cy="10" r="9.3" fill="white" stroke="#002635" stroke-width="1.4"/>
-                <circle cx="7" cy="8" r="1" fill="#002635"/>
-                <circle cx="13" cy="8" r="1" fill="#002635"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M14 13.6998H6V12.2998H14V13.6998Z" fill="#002635"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                <circle cx="10.5" cy="10" r="9.3" stroke="#EDFEEC" stroke-width="1.4"/>
+                <circle cx="7.5" cy="8" r="1" fill="#EDFEEC"/>
+                <circle cx="13.5" cy="8" r="1" fill="#EDFEEC"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5 13.6998H6.5V12.2998H14.5V13.6998Z" fill="#EDFEEC"/>
             </svg>
             Prosek
         </label>
@@ -116,10 +117,10 @@ function add_star_rating_field() {
         <input required type="radio" name="rating" id="rating-2" value="2">
         <label for="rating-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                <circle cx="10.8008" cy="10" r="9.3" fill="white" stroke="#002635" stroke-width="1.4"/>
-                <circle cx="7.80078" cy="8" r="1" fill="#002635"/>
-                <circle cx="13.8008" cy="8" r="1" fill="#002635"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.252 13.0503C9.11459 13.3916 8.19069 13.9625 7.22087 14.6899L6.38086 13.5699C7.41104 12.7972 8.48713 12.1182 9.84972 11.7094C11.2134 11.3003 12.8147 11.1761 14.8877 11.4353L14.714 12.8245C12.7871 12.5836 11.3884 12.7094 10.252 13.0503Z" fill="#002635"/>
+                <circle cx="10.5996" cy="10" r="9.3" stroke="#EDFEEC" stroke-width="1.4"/>
+                <circle cx="7.59961" cy="8" r="1" fill="#EDFEEC"/>
+                <circle cx="13.5996" cy="8" r="1" fill="#EDFEEC"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0508 13.0503C8.91342 13.3916 7.98952 13.9625 7.0197 14.6899L6.17969 13.5699C7.20986 12.7972 8.28596 12.1182 9.64855 11.7094C11.0122 11.3003 12.6135 11.1761 14.6865 11.4353L14.5129 12.8245C12.5859 12.5836 11.1872 12.7094 10.0508 13.0503Z" fill="#EDFEEC"/>
             </svg>
             Loš
         </label>
@@ -127,10 +128,10 @@ function add_star_rating_field() {
         <input required type="radio" name="rating" id="rating-1" value="1">
         <label for="rating-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                <circle cx="10.5996" cy="10" r="9.3" fill="white" stroke="#002635" stroke-width="1.4"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9589 15C13.5255 13.4983 12.1408 12.4 10.4996 12.4C8.85835 12.4 7.47364 13.4983 7.0403 15H5.59961C6.06288 12.7178 8.08063 11 10.4996 11C12.9185 11 14.9363 12.7178 15.3996 15H13.9589Z" fill="#002635"/>
-                <circle cx="7.59961" cy="8" r="1" fill="#002635"/>
-                <circle cx="13.5996" cy="8" r="1" fill="#002635"/>
+                <circle cx="10.7012" cy="10" r="9.3" stroke="#EDFEEC" stroke-width="1.4"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.0604 15C13.6271 13.4983 12.2424 12.4 10.6012 12.4C8.95992 12.4 7.5752 13.4983 7.14186 15H5.70117C6.16444 12.7178 8.1822 11 10.6012 11C13.0201 11 15.0379 12.7178 15.5011 15H14.0604Z" fill="#EDFEEC"/>
+                <circle cx="7.70117" cy="8" r="1" fill="#EDFEEC"/>
+                <circle cx="13.7012" cy="8" r="1" fill="#EDFEEC"/>
             </svg>
             Užasan
         </label>
