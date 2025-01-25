@@ -48,7 +48,7 @@
             </div>
         @endforeach
     @else
-        <p>Nema komentara za izabrani apartman.</p>
+        <p class="no-comment">Još nema komentara! Budi prvi i reci nam šta misliš o ovom filmu. Tvoje mišljenje je važno!</p>
     @endif
 
     </div>

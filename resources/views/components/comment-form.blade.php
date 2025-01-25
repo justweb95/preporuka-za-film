@@ -27,7 +27,7 @@
 
 
   <span class="review_stats">
-    <p class="review_number">{{ $average_rating }} Recenzije</p>
+    <p class="review_number">{{ $total_comments }} Recenzije</p>
   </span>
 
   <div class="reviews-display">
@@ -62,9 +62,9 @@
                 @endif
             </span>
             <div class="review-progress">
-                {{-- <progress value="{{ $rating_counts[$i] }}" max="{{ $total_comments }}"></progress> --}}
+                <progress value="{{ $rating_counts[$i] }}" max="{{ $total_comments }}"></progress>
             </div>
-            <span class="review-count">{{ $rating_counts[$i] }} Recenzija</span>
+            <span class="review-count">{{ $rating_counts[$i] }} <p>Recenzija</p></span>
         </div>
     @endfor
 </div>
