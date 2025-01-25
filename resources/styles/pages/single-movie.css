@@ -438,6 +438,10 @@
             }
           }
 
+          .comment-form-cookies-consent {
+            display: none;
+          }
+
           .comment-form-rating {
             .stars-container {
               display: flex;
