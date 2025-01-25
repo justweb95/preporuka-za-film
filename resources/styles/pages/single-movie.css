@@ -596,6 +596,7 @@
 
   .comments_list {
     .comment_list_holder {
+      margin: 24px 0px;
       width: 70%;
       max-width: 800px;
 
