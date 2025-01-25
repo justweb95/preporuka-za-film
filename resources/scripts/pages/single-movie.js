@@ -6,203 +6,209 @@ function showToast(message) {
   Toastify({
     text: message,
     duration: 3000,
-    gravity: 'top', 
-    position: 'right', 
+    gravity: 'top',
+    position: 'right',
     stopOnFocus: true,
     style: {
-      background: "linear-gradient(90deg, #172938 70%, #172938 100%)",
-      fontFamily: "Red Hat Display",
-      fontSize: "16px",
-    }
-
+      background: 'linear-gradient(90deg, #172938 70%, #172938 100%)',
+      fontFamily: 'Red Hat Display',
+      fontSize: '16px',
+    },
   }).showToast();
 }
 
-
-import { 
-  tmdbSingleMovieHandler,
-  movieWatchOn, 
-  movieTrailer
-
-  } from "@scripts/partials/tmdbControler";
-
-  import { cyrillicFormat } from '@scripts/partials/textFormatingControler';
-
-// // Get the current URL
-// const url = window.location.href;
-// // Separate the URL from '/#'
-// const [baseUrl, movieDetails] = url.split('single-movie/');
-// // Extract the movie name and name_id
-// const [movie_name, movie_id] = movieDetails.split('&');
-
-// Log the results
-// console.log('Movie Name:', movie_name);
-// console.log('Movie ID:', movie_id);
-
-// tmdbSingleMovieHandler(movie_id)
-//   .then((res) => {
-//     // Turn off loader;
-//     handleLoader();
-
-//     // Turn populate hero navigation;
-//     populateHeroNavigation(cyrillicFormat(res.genres[0].name), cyrillicFormat(res.title));
-
-//     // Populate Hero Background Image
-//     populateHeroBackground(res.backdrop_path)
-    
-    
-//     console.log('Podaci skinuti');
-//     console.log(res);
-//   })
-//   .catch((err) => console.log(err))
-
+// Needs refactoring
+// Bulshit code that remove not-valid class from inputs
 let form_comment = document.querySelector('form#commentform');
-let form_submit_button = document.querySelector('#submit');
-let smHeroSection = document.querySelector('#sm_hero_section');
-let movie_id = smHeroSection.dataset.movieId;
+form_comment.addEventListener('click', (e) => {
+  if (
+    (e.target.tagName === 'INPUT' && e.target.type !== 'submit') ||
+    e.target.tagName === 'TEXTAREA'
+  ) {
+    e.target.classList.remove('input-not-valid');
+  }
+});
 
+form_comment.addEventListener('input', (e) => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+    e.target.classList.remove('input-not-valid');
+  }
+});
+
+let form_labels = document.querySelectorAll('form#commentform label');
+form_labels.forEach((label) => {
+  label.addEventListener('click', () => {
+    form_labels.forEach((l) => l.classList.remove('input-not-valid'));
+  });
+});
+// Needs refactoring
+// Bulshit code that remove not-valid class from inputs
+
+// Handle Form Submit Click;
+let form_submit_button = document.querySelector('#submit');
 form_submit_button.addEventListener('click', handleFormSubmit);
 
-let stars_rating_holder = document.querySelector('.stars-container');
-let ratingInputs = stars_rating_holder.querySelectorAll('input[type="radio"]');
-let selectedRating = null;
-
-
-
-
 function handleFormSubmit(e) {
+  // Prevent defult behavior
   e.preventDefault();
-  let form_comment = document.querySelector('#comment');
-  let form_author = document.querySelector('#author');
-  let form_email = document.querySelector('#email');
 
-  ratingInputs.forEach(input => {
-    if (input.checked) {
-      selectedRating = input.value;
-    }
-  });
+  // Collect data from form
+  let comment_data = handleCollectingData();
 
-  let isValid = true;
-
-  if (form_comment.value.trim() === '') {
-    form_comment.classList.add('input-not-valid');
-    isValid = false;
-  } else {
-    form_comment.classList.remove('input-not-valid');
-  }
-
-  if (form_author.value.trim() === '') {
-    form_author.classList.add('input-not-valid');
-    isValid = false;
-  } else {
-    form_author.classList.remove('input-not-valid');
-  }
-
-  if (form_email.value.trim() === '') {
-    form_email.classList.add('input-not-valid');
-    isValid = false;
-  } else if (!validateEmail(form_email.value.trim())) {
-    form_email.classList.add('input-not-valid');
-    isValid = false;
-  } else {
-    form_email.classList.remove('input-not-valid');
-  }
-
-  if (!isValid) {
+  // Validate form
+  if (!validateFormHandler(comment_data)) {
     console.log('Forma nije validna');
+    showToast('Popunite sva polja unutar forme!');
     return;
   }
 
-
-   // Prepare data to be sent
-   const data = new FormData();
-   data.append('comment', form_comment.value);
-   data.append('author', form_author.value);
-   data.append('email', form_email.value);
-   data.append('rating', selectedRating);
-   data.append('submit', 'Pošalji'); // Submit button value
-   data.append('comment_post_ID', movie_id); // Replace with actual post ID as needed
-   data.append('comment_parent', 0); // Assuming no parent comment for now
-
-
-   // Construct the action URL dynamically based on current location
-   let actionUrl = ``;
-   if(PRODUCTION) {
-    actionUrl = `${window.location.origin}/wp-comments-post.php`;
-   }
-   else {
-    actionUrl = `${window.location.origin}/preporuka-za-film/wp-comments-post.php`;
-   }
-
-   fetch(actionUrl, {
-    method: 'POST',
-    body: data,
-    headers: {
-      'X-Requested-With': 'XMLHttpRequest' // Indicate that this is an AJAX request
-    }
-  })
-  .then(response => {return response;})
-  .then(data => {
-      if (data) {
-          showToast('Vaš komentar je uspešno poslat!');
-          // Optionally, clear the form or provide user feedback here
-          form_comment.value = '';
-          form_author.value = '';
-          form_email.value = '';
-          return;
-        } else {
-          console.log('No data returned.');
-          return;
-      }
-  })
-  .catch(error => {
-      console.error('Error:', error); // Handle errors
-  });
+  // Handle Comment Post
+  handleCommentPost(comment_data);
 }
 
+// Valdiate Email Regex
 function validateEmail(email) {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(email);
 }
 
-// function generateUniqueId() {
-//   const now = new Date();
-//   const year = now.getFullYear(); // e.g., 2025
-//   const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-based, pad to 2 digits
-//   const day = String(now.getDate()).padStart(2, '0'); // Pad to 2 digits
-//   const hours = String(now.getHours()).padStart(2, '0'); // Pad to 2 digits
-//   const minutes = String(now.getMinutes()).padStart(2, '0'); // Pad to 2 digits
-//   const seconds = String(now.getSeconds()).padStart(2, '0'); // Pad to 2 digits
+// Validate Form Handler for Comment Form Adding class input-not-valid
+function validateFormHandler(comment_data) {
+  // set isValid to true
+  let isValid = true;
 
-//   // Create a unique numeric ID in the format: YYYYMMDDHHMMSS
-//   const uniqueId = Number(`${year}${month}${day}${hours}${minutes}${seconds}`);
-//   console.log(uniqueId);
-  
-//   return uniqueId;
-// }
+  // Check if form_comment is empty
+  if (comment_data.form_comment.value.trim() === '') {
+    comment_data.form_comment.classList.add('input-not-valid');
+    isValid = false;
+  } else {
+    comment_data.form_comment.classList.remove('input-not-valid');
+  }
 
+  // Check if form_author is empty
+  if (comment_data.form_author.value.trim() === '') {
+    comment_data.form_author.classList.add('input-not-valid');
+    isValid = false;
+  } else {
+    comment_data.form_author.classList.remove('input-not-valid');
+  }
 
-function handleLoader() {
-  let loadingElement = document.querySelector('#loading');
-  let smNavigationElement = document.querySelector('#sm_navigation');
+  // Check if form_email is empty or not valid
+  if (comment_data.form_email.value.trim() === '') {
+    comment_data.form_email.classList.add('input-not-valid');
+    isValid = false;
+  } else if (!validateEmail(comment_data.form_email.value.trim())) {
+    comment_data.form_email.classList.add('input-not-valid');
+    isValid = false;
+  } else {
+    comment_data.form_email.classList.remove('input-not-valid');
+  }
 
-  loadingElement.style.animation = 'moveLeftLoader 1s forwards';
-  smNavigationElement.style.display = 'flex';
+  // Check if form_stars_rating is empty
+  if (comment_data.selected_stars_rating === null) {
+    Array.from(comment_data.form_stars_ratin_label).forEach((label) => {
+      label.classList.add('input-not-valid');
+    });
+    isValid = false;
+  } else {
+    Array.from(comment_data.form_stars_ratin_label).forEach((label) => {
+      label.classList.remove('input-not-valid');
+    });
+  }
 
+  // Return isValid
+  return isValid;
 }
 
-function populateHeroNavigation(movie_category, movie_name) {
-  let movieCategoryElement = document.querySelector('#movie_category');
-  let movieNameElement = document.querySelector('#movie_name');
-  
-  movieCategoryElement.textContent = movie_category;
-  movieNameElement.textContent = movie_name;
+// Collecting data from form and returning it as object
+function handleCollectingData() {
+  // data about outhor, email, comment
+  let form_comment = document.querySelector('#comment');
+  let form_author = document.querySelector('#author');
+  let form_email = document.querySelector('#email');
+
+  // Collect stars rating
+  let form_stars_rating = document
+    .querySelector('.stars-container')
+    .querySelectorAll('input[type="radio"]');
+  let form_stars_ratin_label = document
+    .querySelector('.stars-container')
+    .querySelectorAll('label');
+  let selected_stars_rating = null;
+
+  // Collect movie_id
+  let smHeroSection = document.querySelector('#sm_hero_section');
+  let movie_id = smHeroSection.dataset.movieId;
+
+  // Loop through form_stars_rating and check if input is checked
+  form_stars_rating.forEach((input) => {
+    if (input.checked) {
+      selected_stars_rating = input.value;
+    }
+  });
+
+  // prepare comment_data object
+  let comment_data = {
+    form_comment: form_comment,
+    form_author: form_author,
+    form_email: form_email,
+    selected_stars_rating: selected_stars_rating,
+    movie_id: movie_id,
+    form_stars_rating: form_stars_rating,
+    form_stars_ratin_label: form_stars_ratin_label,
+  };
+
+  // return comment_data object
+  return comment_data;
 }
 
-function populateHeroBackground(movie_backdrop_path) {
-  let backgroundImageUrl = `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${movie_backdrop_path}`;
-  let sm_hero_section = document.querySelector('#sm_hero_section');
+function handleCommentPost(comment_data) {
+  // Construct the action URL dynamically based on current location
+  let actionUrl = ``;
+  if (PRODUCTION) {
+    actionUrl = `${window.location.origin}/wp-comments-post.php`;
+  } else {
+    actionUrl = `${window.location.origin}/preporuka-za-film/wp-comments-post.php`;
+  }
 
-  sm_hero_section.style.backgroundImage = `linear-gradient(180deg, #06131E 0%, rgba(6, 19, 30, 0.60) 100%),  url(${backgroundImageUrl})`;
+  // Prepare data to be sent
+  const data = new FormData();
+  data.append('comment', comment_data.form_comment.value);
+  data.append('author', comment_data.form_author.value);
+  data.append('email', comment_data.form_email.value);
+  data.append('rating', comment_data.selected_stars_rating);
+  data.append('submit', 'Pošalji');
+  data.append('comment_post_ID', comment_data.movie_id);
+  data.append('comment_parent', 0);
 
+  fetch(actionUrl, {
+    method: 'POST',
+    body: data,
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest',
+    },
+  })
+    .then((response) => {
+      return response;
+    })
+    .then((data) => {
+      if (data) {
+        // Handle success response with toast message and clear form inputs
+        showToast('Vaš komentar je uspešno poslat!');
+        comment_data.form_comment.value = '';
+        comment_data.form_author.value = '';
+        comment_data.form_email.value = '';
+        Array.from(comment_data.form_stars_rating).forEach((input) => {
+          input.checked = false;
+        });
+        return;
+      } else {
+        console.log('No data returned.');
+        return;
+      }
+    })
+    .catch((error) => {
+      // Handle error response with toast message
+      console.log('Error:', error);
+    });
 }

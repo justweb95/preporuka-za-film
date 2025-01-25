@@ -105,7 +105,7 @@
             <p class="sm-info-genres-text" id="sm-info-genres-text">{{ $category_name }}</p>
           </span>
 
-          <hr>
+          <hr class="sm-info-hr">
 
           <span class="sm-info-duration-holder">
             <svg class="sm-info-duration-icon" width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -115,7 +115,7 @@
             <p class="sm-info-duration-text" id="sm-info-duration-text">{{  $formatted_runtime }}</p>
           </span>
 
-          <hr>
+          <hr class="sm-info-hr">
 
           <span class="sm-info-year-holder">
             <svg class="sm-info-year-icon" width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">

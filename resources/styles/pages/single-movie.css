@@ -126,8 +126,10 @@
               line-height: normal;
             }
           }
-          hr {
-            border-color: var(--Grey, #22374A);;
+          .sm-info-hr {
+            margin: 0px;
+            border-color: var(--Grey, #22374A);
+
           }
         }
 
@@ -433,9 +435,6 @@
                 border: 1px solid var(--Orange) !important;
               }
             }
-            .input-not-valid{
-              border: 1px solid var(--Red, #FF6161);
-            }
           }
 
           .comment-form-cookies-consent {
@@ -490,6 +489,10 @@
                 }    
               }
             }
+          }
+          
+          .input-not-valid{
+            border: 1px solid var(--Red, #FF6161) !important;
           }
 
           .form-submit {
