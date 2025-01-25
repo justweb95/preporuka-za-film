@@ -1,6 +1,7 @@
 @php
   // Get the current post object
   $movie = get_post();
+  $movie_id = $movie->ID;
 
   // Get the title of the movie (post title) and sanitize it
   $title = get_the_title($movie);
@@ -49,7 +50,7 @@
 @endphp
 
 {{-- Hero Single Movie --}}
-<section id="sm_hero_section" class="sm-hero-section" style="<?php echo $backgroundImageUrl; ?>">
+<section id="sm_hero_section" class="sm-hero-section" data-movie-id="{{ $movie_id }}" style="<?php echo $backgroundImageUrl; ?>">
   {{-- <h2>{{ $movie->ID }}</h2> --}}
 
   <div class="sm-hero-holder container">

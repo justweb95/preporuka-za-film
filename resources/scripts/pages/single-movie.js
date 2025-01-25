@@ -58,17 +58,29 @@ import {
 
 let form_comment = document.querySelector('form#commentform');
 let form_submit_button = document.querySelector('#submit');
-
+let smHeroSection = document.querySelector('#sm_hero_section');
+let movie_id = smHeroSection.dataset.movieId;
 
 form_submit_button.addEventListener('click', handleFormSubmit);
+
+let stars_rating_holder = document.querySelector('.stars-container');
+let ratingInputs = stars_rating_holder.querySelectorAll('input[type="radio"]');
+let selectedRating = null;
+
+
 
 
 function handleFormSubmit(e) {
   e.preventDefault();
-
   let form_comment = document.querySelector('#comment');
   let form_author = document.querySelector('#author');
   let form_email = document.querySelector('#email');
+
+  ratingInputs.forEach(input => {
+    if (input.checked) {
+      selectedRating = input.value;
+    }
+  });
 
   let isValid = true;
 
@@ -107,8 +119,9 @@ function handleFormSubmit(e) {
    data.append('comment', form_comment.value);
    data.append('author', form_author.value);
    data.append('email', form_email.value);
+   data.append('rating', selectedRating);
    data.append('submit', 'Pošalji'); // Submit button value
-   data.append('comment_post_ID', generateUniqueId()); // Replace with actual post ID as needed
+   data.append('comment_post_ID', movie_id); // Replace with actual post ID as needed
    data.append('comment_parent', 0); // Assuming no parent comment for now
 
 
@@ -136,8 +149,10 @@ function handleFormSubmit(e) {
           form_comment.value = '';
           form_author.value = '';
           form_email.value = '';
-      } else {
+          return;
+        } else {
           console.log('No data returned.');
+          return;
       }
   })
   .catch(error => {
@@ -150,21 +165,21 @@ function validateEmail(email) {
   return re.test(email);
 }
 
-function generateUniqueId() {
-  const now = new Date();
-  const year = now.getFullYear(); // e.g., 2025
-  const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-based, pad to 2 digits
-  const day = String(now.getDate()).padStart(2, '0'); // Pad to 2 digits
-  const hours = String(now.getHours()).padStart(2, '0'); // Pad to 2 digits
-  const minutes = String(now.getMinutes()).padStart(2, '0'); // Pad to 2 digits
-  const seconds = String(now.getSeconds()).padStart(2, '0'); // Pad to 2 digits
+// function generateUniqueId() {
+//   const now = new Date();
+//   const year = now.getFullYear(); // e.g., 2025
+//   const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-based, pad to 2 digits
+//   const day = String(now.getDate()).padStart(2, '0'); // Pad to 2 digits
+//   const hours = String(now.getHours()).padStart(2, '0'); // Pad to 2 digits
+//   const minutes = String(now.getMinutes()).padStart(2, '0'); // Pad to 2 digits
+//   const seconds = String(now.getSeconds()).padStart(2, '0'); // Pad to 2 digits
 
-  // Create a unique numeric ID in the format: YYYYMMDDHHMMSS
-  const uniqueId = Number(`${year}${month}${day}${hours}${minutes}${seconds}`);
-  console.log(uniqueId);
+//   // Create a unique numeric ID in the format: YYYYMMDDHHMMSS
+//   const uniqueId = Number(`${year}${month}${day}${hours}${minutes}${seconds}`);
+//   console.log(uniqueId);
   
-  return uniqueId;
-}
+//   return uniqueId;
+// }
 
 
 function handleLoader() {
