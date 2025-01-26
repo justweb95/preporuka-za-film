@@ -14,42 +14,42 @@
             <path d="M12 1L6.49999 6L1 1" stroke="#18BF7C" stroke-width="2"/>
           </svg>          
           <ul class="link-drop-down">
-            <li class="drop-down-item"><a href="#">
+            <li class="drop-down-item"><a href="{{ url('/category/akcioni') }}">
               Akcija
               <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
                 <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
               </svg>              
             </a></li>
-            <li class="drop-down-item"><a href="#">
+            <li class="drop-down-item"><a href="{{ url('/category/komedija') }}">
               Komedija
               <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
                 <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
               </svg>              
             </a></li>
-            <li class="drop-down-item"><a href="#">
+            <li class="drop-down-item"><a href="{{ url('/category/drama') }}">
               Drama
               <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
                 <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
               </svg>              
             </a></li>
-            <li class="drop-down-item"><a href="#">
+            <li class="drop-down-item"><a href="{{ url('/category/avanturisticki') }}">
               Avantura
               <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
                 <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
               </svg>              
             </a></li>
-            <li class="drop-down-item"><a href="#">
+            <li class="drop-down-item"><a href="{{ url('/category/triler') }}">
               Triler
               <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
                 <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
               </svg>
             </a></li>
-            <li class="drop-down-item"><a href="#">
+            <li class="drop-down-item"><a href="{{ url('/category/horor') }}">
               Horor
               <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>

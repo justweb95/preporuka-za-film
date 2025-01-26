@@ -2,25 +2,28 @@
 
 @section('content')
 
-  @include('partials.page-header')
+  {{-- @include('partials.page-header') --}}
+  
+  
+  @include('pages.category.category-hero')
+  @include('pages.category.category-list')
 
 
-  @if (! have_posts())
+  {{-- @if (! have_posts())
     <x-alert type="warning">
       {!! __('Sorry, no results were found.', 'sage') !!}
     </x-alert>
 
     {!! get_search_form(false) !!}
-  @endif
-
-  <h2>pavs</h2>
+  @endif --}}
 
 
-  @while(have_posts()) @php(the_post())
+
+  {{-- @while(have_posts()) @php(the_post())
     @includeFirst(['partials.content-' . get_post_type(), 'partials.content'])
-  @endwhile
+  @endwhile --}}
 
-  {!! get_the_posts_navigation() !!}
+  {{-- {!! get_the_posts_navigation() !!} --}}
 @endsection
 {{-- 
 @section('sidebar')
