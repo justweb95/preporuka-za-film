@@ -23,6 +23,11 @@ domReady(async () => {
     // Only import single-movie.js if we're on the correct page
     await import('./pages/single-movie.js');
   }
+
+  if (window.location.pathname.includes('/category')) {
+    // Only import category.js if we're on the correct page
+    await import('./pages/category-page.js');
+  }
   
   // ...
 });
