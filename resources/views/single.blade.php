@@ -6,6 +6,7 @@
   @endwhile --}}
 
   @include('pages.single-movie.sm-hero-section')
+  
   <section class="sm_subhero_wraper">
       @include('components.comment-form')
       @include('components.comment-list')

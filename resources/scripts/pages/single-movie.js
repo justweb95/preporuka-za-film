@@ -16,7 +16,6 @@ function showToast(message) {
     },
   }).showToast();
 }
-
 // Needs refactoring
 // Bulshit code that remove not-valid class from inputs
 let form_comment = document.querySelector('form#commentform');
@@ -211,4 +210,36 @@ function handleCommentPost(comment_data) {
       // Handle error response with toast message
       console.log('Error:', error);
     });
+}
+
+
+window.openTrailerPopUp = function () {
+  const trailerModal = document.querySelector('#trailer-modal');
+  
+  // Show the modal
+  trailerModal.showModal();
+
+  // Close button functionality
+  const closeModalBtn = document.getElementById('closeModalBtn');
+
+  closeModalBtn.onclick = function() {
+      trailerModal.close();
+      stopVideo()
+  };
+
+  // Close modal when clicking outside of it
+  trailerModal.addEventListener('click', function(event) {
+      if (event.target === trailerModal) {
+          trailerModal.close();
+          stopVideo()
+      }
+  });
+}
+
+// Function to stop the YouTube video
+function stopVideo() {
+  const iframe = document.getElementById('youtube-player');
+  const src = iframe.src;
+  iframe.src = '';
+  iframe.src = src;
 }

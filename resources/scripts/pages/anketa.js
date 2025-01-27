@@ -127,7 +127,6 @@ window.openTrailerPopUp = function () {
           stopVideo()
       }
   });
-
 }
 
 // Function to stop the YouTube video

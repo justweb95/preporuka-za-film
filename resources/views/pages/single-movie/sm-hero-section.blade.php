@@ -14,6 +14,10 @@
   $backdrop_path = get_post_meta($movie->ID, 'backdrop_path', true);
   $base_url = "background: linear-gradient(180deg, rgba(6,19,30,1) 0%, rgba(6,19,30,0.7) 50%, rgba(6,19,30,0.1) 50%, rgba(6,19,30,1) 50%), url('https://media.themoviedb.org/t/p/w300_and_h450_bestv2/";
   $backgroundImageUrl = $base_url . $backdrop_path . "')";
+  // Movie Trailer
+  $video_trailer = get_post_meta($movie->ID, 'video_trailer', true);
+  $video_trailer_data = json_decode($video_trailer, true);
+  $video_url = $video_trailer_data['key'];
 
   // Movie Count
   $vote_average = round(get_post_meta($movie->ID, 'vote_average', true), 1);
@@ -234,11 +238,8 @@
         </svg>
       </a>
     </div>
-
-
-
-
-
-
   </div>
 </section>
+
+{{-- Video Pop Up --}}
+@include('pages.questions.video-popup', ['video_url' => $video_url])

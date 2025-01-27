@@ -697,6 +697,12 @@
         strong {
           font-size: 24px;
         }
+        a {
+          color: #FFF;
+          text-decoration: none;
+          font-weight: 700;
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -826,5 +832,47 @@
         }
       }
     }
+  }
+}
+
+
+.trailer-modal {
+  padding-top: 50px;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  width: 1000px; /* You can adjust this */
+  max-width: 90%; /* Ensures responsiveness */
+  transform: translate(-50%, -30%);
+  border: 1px solid transparent;
+  outline: none;
+  background-color: transparent;
+
+  .modal-content {
+    background-color: transparent;
+    .close {
+        position: absolute;
+        top: -10px;
+        right: 0px;
+        &:hover {
+            cursor: pointer;
+        }
+      }
+
+    iframe {
+      border-radius: 12px;
+      user-select: none;
+      padding: 0px !important;
+      margin: 0px !important;
+      width: 100%; /* Full width */
+      height: 500px;
+      max-height: 80vh; /* Set a max-height to keep it within view */
+      border: none; /* Optional: remove border */
+    }
+  }
+
+  &::backdrop {
+    background: rgba(6, 19, 30, 0.39);
+    backdrop-filter: blur(20px);
   }
 }

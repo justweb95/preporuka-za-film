@@ -131,6 +131,7 @@ add_action( 'init', 'create_movie_post_type', 0 );
         $tagline = isset($movie_data['movie_data']['tagline']) ? sanitize_text_field($movie_data['movie_data']['tagline']) : '';
         $vote_average = isset($movie_data['movie_data']['vote_average']) ? floatval($movie_data['movie_data']['vote_average']) : 0;
         $vote_count = isset($movie_data['movie_data']['vote_count']) ? intval($movie_data['movie_data']['vote_count']) : 0;
+        $video_trailer = isset($movie_data['movie_data']['video_trailer']) ? json_encode($movie_data['movie_data']['video_trailer']) : '';
 
         // Check if the movie already exists by checking the movie_id in the database
         $existing_movie = get_posts( array(
@@ -187,6 +188,7 @@ add_action( 'init', 'create_movie_post_type', 0 );
             update_post_meta($post_id, 'director', $director);
             update_post_meta($post_id, 'cast', $cast);
             update_post_meta($post_id, 'writing', $writing);
+            update_post_meta($post_id, 'video_trailer', $video_trailer);
 
             $post_url = get_permalink($post_id);
 
