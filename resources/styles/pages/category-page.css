@@ -232,6 +232,14 @@
           }
         }
       }
+      .liked {
+        stroke: var(--Orange, #F57C36);
+        fill: var(--Orange, #F57C36);
+        path {
+          stroke: var(--Orange, #F57C36);
+          fill: var(--Orange, #F57C36);
+        }
+      }
     }
     h2 {
       margin: 16px 0px 8px;
