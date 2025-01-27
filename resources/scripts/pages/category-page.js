@@ -60,18 +60,10 @@ function populateList(movie_id) {
 }
 
 function checkLocalSort() {
-  let favoritesList;
-
   if (localStorage.getItem('favorit') === null) {
-    favoritesList = [];
-    colorLikedButton(favoritesList);
     return false;
   }
-  else {
-    favoritesList = JSON.parse(localStorage.getItem('favorit'));
-    colorLikedButton(favoritesList);
-    return true;
-  }
+  return true;
 }
 
 function pushInLocalStorage(movie_ids) {
@@ -85,11 +77,12 @@ function colorLikedButton(all_movies_id) {
   allButtons.forEach(element => {
     element.classList.remove('liked');
   });
-  
-  console.log(allButtons);
-  
 
   all_movies_id.forEach(element => {
-    document.getElementById(element).classList.add('liked');
+    let movieElement = document.getElementById(element);
+    
+    if (movieElement) {
+      movieElement.classList.add('liked');
+    }
   });
 }

@@ -255,7 +255,6 @@
     .category-list-holder {
       gap: 32px 16px;
       .movie-item {
-        max-width: 100%;
         flex: 1 0 45%;
         .movie-poster {
           border-radius: 8px;
