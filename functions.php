@@ -165,3 +165,23 @@ function display_star_rating( $comment_text, $comment ) {
 }
 add_filter( 'comment_text', 'display_star_rating', 10, 2 );
 
+
+
+// Custom pagination rewrite rule
+// function custom_movie_pagination_rewrite() {
+//     // Rewrite rule for category-based pagination for movie post type
+//     add_rewrite_rule(
+//         '^category/([^/]+)/page/([0-9]+)/?$',
+//         'index.php?category_name=$matches[1]&paged=$matches[2]&post_type=movie',
+//         'top'
+//     );
+// }
+// add_action('init', 'custom_movie_pagination_rewrite');
+
+// // Flush rewrite rules on theme activation
+// function custom_flush_rewrite_rules() {
+//     custom_movie_pagination_rewrite();
+//     flush_rewrite_rules();
+// }
+// add_action('after_switch_theme', 'custom_flush_rewrite_rules');
+// add_action('init', 'custom_flush_rewrite_rules');

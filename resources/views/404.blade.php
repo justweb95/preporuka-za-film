@@ -1,13 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-  @include('partials.page-header')
-
-  @if (! have_posts())
-    <x-alert type="warning">
-      {!! __('Sorry, but the page you are trying to view does not exist.', 'sage') !!}
-    </x-alert>
-
-    {!! get_search_form(false) !!}
-  @endif
+  <section class="page-not-found">
+    <div class="page-not-found-holder container">
+      
+    </div>
+  </section>
 @endsection
