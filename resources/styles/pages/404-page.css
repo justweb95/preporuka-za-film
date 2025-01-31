@@ -1,0 +1,90 @@
+.page-not-found {
+  width: 100%;
+  padding: 80px 0px;
+  background-image: url('../images/home/hero-background.webp');
+  background-position: center 70%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  .page-not-found-holder {
+    padding-bottom: 50px;
+    width: 50%;
+    border-radius: 32px;
+    background: rgba(6, 19, 30, 0.49);
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 0px auto;
+    }
+    p {
+      margin: -20px auto 0px;
+      width: 70%;
+      color: #FFF;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    .btn-holder {
+      margin-top: 32px;
+      text-decoration: none;
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      gap: 24px;
+      width: 100%;
+      a {
+        text-decoration: none;
+        padding: 16px 40px;
+        border-radius: 80px;
+        border: 2px solid var(--Green);
+        background: var(--Green, #18BF7C);
+        transition: .3s ease;
+        animation: fadeInUp .9s ease-in-out;
+        text-align: center;
+        color: #FFF;
+        font-family: 'Unbounded', sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        &:hover {
+          cursor: pointer;
+          background: transparent;
+          border: 2px solid var(--Green);
+          color: var(--Green);
+        }  
+      }
+    }
+  }
+  @media (max-width: 800px) {
+    padding: 40px 0px;
+    .page-not-found-holder {
+      width: 90%;
+      .btn-holder {
+        a {
+          padding: 12px 24px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  @media (max-width: 550px) {
+    .page-not-found-holder {
+      p {
+        text-align: center;
+        width: 90%;
+        font-size: 14px;
+      }
+      .btn-holder {
+        margin: 12px auto;
+        width: 90%;
+        a {
+          padding: 12px 18px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

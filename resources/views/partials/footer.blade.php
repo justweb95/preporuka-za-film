@@ -17,9 +17,9 @@
         <img class="mobile-logo" src="@asset('images/partials/footer-logo.svg')" alt="Footer Logo">        
       </li>
 
-      <li class="footer-link-item"><a href="#">Početna</a></li>
-      <li class="footer-link-item"><a href="#">Blog</a></li>
-      <li class="footer-link-item"><a href="#">Kontakt</a></li>
+      <li class="footer-link-item"><a href="{{ home_url() }}/">Početna</a></li>
+      <li class="footer-link-item"><a href="{{ home_url() }}/blog">Blog</a></li>
+      <li class="footer-link-item"><a href="{{ home_url() }}/kontakt">Kontakt</a></li>
 
       <li class="footer-justweb">
         <a href="#">

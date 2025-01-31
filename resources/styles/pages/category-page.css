@@ -1,5 +1,5 @@
 
-.category  {
+.category, .paged  {
   .main {
     padding: 20px 0px 120px;
     background-image: url('../images/home/hero-background.webp');
@@ -249,6 +249,61 @@
       font-style: normal;
       font-weight: 700;
       line-height: normal;
+    }
+  }
+  .pagination  {
+    margin: 80px auto 0px;
+    .pagination-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      .page-number {
+        text-align: center;
+        border-radius: 40px;
+        background: #172938;
+        transition: .3s ease;
+        border-radius: 1px solid #172938;
+        a {
+          display: block;
+          width: 56px;
+          height: 56px;
+          padding: 16.5px 22px;
+          text-decoration: none;
+          color: #FFF;
+          text-align: center;
+          font-family: "Red Hat Display";
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+        }
+        &:hover {
+          cursor: pointer;
+          background-color: var(--Orange, #F57C36);
+        }
+      }
+      .active-page {
+        border-radius: 40px;
+        background: var(--Green, #18BF7C);
+        &:hover {
+          cursor: pointer;
+          background: var(--Green, #18BF7C);
+        }
+      }
+      .forward-button, .back-button {
+        border-radius: 40px;
+        border: 2px solid var(--Orange, #F57C36);
+        transition: .3s ease;
+        a {
+          padding: 16.5px 17px;
+          vertical-align: middle;
+        }
+        &:hover {
+          cursor: pointer;
+          background-color: var(--Orange, #F57C36);
+        }
+      }
     }
   }
   @media (max-width: 550px) {

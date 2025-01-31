@@ -6,7 +6,7 @@
     
     <nav class="main-nav-desktop">
       <ul class="nav-link">
-        <li class="link-item"><a href="#">Početna</a></li>
+        <li class="link-item"><a href="{{ home_url() }}/">Početna</a></li>
         <li class="link-item">
           <a href="#">Kategorije</a>
           <svg class="category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +58,7 @@
             </a></li>
           </ul>
         </li>
-        <li class="link-item"><a href="#">Blog</a></li>
+        <li class="link-item"><a href="{{ home_url() }}/blog">Blog</a></li>
         <li class="link-item search">
           <input class="link-search-input" type="text" aria-label="Search" placeholder="Pretraga..."> 
           <svg aria-label="Search" class="link-search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,9 +82,9 @@
             <path fill-rule="evenodd" clip-rule="evenodd" d="M18.409 19.9203L12.7607 25.5686L14.3517 27.1596L20 21.5113L25.6483 27.1596L27.2393 25.5686L21.591 19.9203L27.0797 14.4317L25.4887 12.8407L20 18.3293L14.5113 12.8407L12.9203 14.4317L18.409 19.9203Z" fill="#EDFEEC"/>
           </svg>
         </li>
-        <li class="burger-link-item"><a href="#">Početna</a></li>
+        <li class="burger-link-item"><a href="{{ home_url() }}/">Početna</a></li>
         <li class="burger-link-item burger-open-dropdown">
-          <a href="#">Kategorije</a>
+          <a>Kategorije</a>
            <svg class="category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 1L6.49999 6L12 1ZM6.49999 6L1 1L6.49999 6Z" fill="#EDFEEC"/>
             <path d="M12 1L6.49999 6L1 1" stroke="#18BF7C" stroke-width="2"/>
@@ -134,7 +134,7 @@
             </a></li>
           </ul>
         </li>
-        <li class="burger-link-item"><a href="#">Blog</a></li>
+        <li class="burger-link-item"><a href="{{ home_url() }}/blog">Blog</a></li>
         <li class="burger-link-item burger-search">
           <input class="link-search-input" type="text" aria-label="Search" placeholder="Pretraga..."> 
           <svg aria-label="Search" class="link-search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
