@@ -110,7 +110,6 @@
         display: flex;
         .link-search-input {
           width: 0px;
-          transition: .3s ease;    
           border: 0px solid;
           margin: 0px;
           padding: 0px;  
@@ -121,6 +120,7 @@
           font-style: normal;
           font-weight: 500;
           line-height: normal;
+          transition: .3s ease;
           &::placeholder {
             opacity: 0.4;
           }
@@ -137,6 +137,10 @@
             padding: 0px 0px 0px 4px;
             width: 150px;
             transition: .3s ease;
+          }
+          &:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 30px #22374A inset !important;
+            -webkit-text-fill-color: white !important;
           }
         }
         .link-search-icon {
@@ -155,7 +159,10 @@
             margin: 0px 16px 0px 0px;
             padding: 0px 0px 0px 4px;
             width: 150px;
-            transition: .3s ease;
+            &:-webkit-autofill {
+              -webkit-box-shadow: 0 0 0 30px #172938 inset !important;
+              -webkit-text-fill-color: white !important;
+            }
           }
         }
       }

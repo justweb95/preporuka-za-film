@@ -7,6 +7,8 @@ domReady(async () => {
   // Dynamically import the burger menu script
   await import('./partials/burger.js');
 
+  await import('./partials/search.js');
+
 
   if (window.location.pathname.includes('/home')) {
     // Only import home.js if we're on the correct page

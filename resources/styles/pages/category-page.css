@@ -310,7 +310,7 @@
     .category-list-holder {
       gap: 32px 16px;
       .movie-item {
-        flex: 1 0 45%;
+        flex:  0 47%;
         .movie-poster {
           border-radius: 8px;
         }

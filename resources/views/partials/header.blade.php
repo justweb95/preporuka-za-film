@@ -60,8 +60,8 @@
         </li>
         <li class="link-item"><a href="{{ home_url() }}/blog">Blog</a></li>
         <li class="link-item search">
-          <input class="link-search-input" type="text" aria-label="Search" placeholder="Pretraga..."> 
-          <svg aria-label="Search" class="link-search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <input id="movie-search" class="link-search-input" type="text" aria-label="Search" placeholder="Pretraga..."> 
+          <svg id="movie-search-submit" aria-label="Search" class="link-search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0882 16.7415C13.5044 17.9727 11.5143 18.7058 9.3529 18.7058C4.18744 18.7058 0 14.5184 0 9.3529C0 4.18744 4.18744 0 9.3529 0C14.5184 0 18.7058 4.18744 18.7058 9.3529C18.7058 11.5143 17.9727 13.5044 16.7415 15.0882L20 18.3466L18.3466 20L15.0882 16.7415ZM16.3676 9.3529C16.3676 13.227 13.227 16.3676 9.3529 16.3676C5.4788 16.3676 2.33823 13.227 2.33823 9.3529C2.33823 5.4788 5.4788 2.33823 9.3529 2.33823C13.227 2.33823 16.3676 5.4788 16.3676 9.3529Z" fill="#EDFEEC"/>
           </svg>      
         </li>
@@ -136,8 +136,8 @@
         </li>
         <li class="burger-link-item"><a href="{{ home_url() }}/blog">Blog</a></li>
         <li class="burger-link-item burger-search">
-          <input class="link-search-input" type="text" aria-label="Search" placeholder="Pretraga..."> 
-          <svg aria-label="Search" class="link-search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <input id="movie-search-mobile" class="link-search-input" type="text" aria-label="Search" placeholder="Pretraga..."> 
+          <svg id="movie-search-submit-mobile" aria-label="Search" class="link-search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0882 16.7415C13.5044 17.9727 11.5143 18.7058 9.3529 18.7058C4.18744 18.7058 0 14.5184 0 9.3529C0 4.18744 4.18744 0 9.3529 0C14.5184 0 18.7058 4.18744 18.7058 9.3529C18.7058 11.5143 17.9727 13.5044 16.7415 15.0882L20 18.3466L18.3466 20L15.0882 16.7415ZM16.3676 9.3529C16.3676 13.227 13.227 16.3676 9.3529 16.3676C5.4788 16.3676 2.33823 13.227 2.33823 9.3529C2.33823 5.4788 5.4788 2.33823 9.3529 2.33823C13.227 2.33823 16.3676 5.4788 16.3676 9.3529Z" fill="#EDFEEC"/>
           </svg>      
         </li>

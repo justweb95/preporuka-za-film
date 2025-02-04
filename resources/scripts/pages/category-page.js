@@ -26,13 +26,15 @@ else {
   colorLikedButton([]);
 }
 
-window.likeButtonHandler = function(clicked_movie_id) {
+export function likeButtonHandler(clicked_movie_id) {
   let movie_id = clicked_movie_id;
-  
+
   populateList(movie_id);
 
   colorLikedButton(JSON.parse(localStorage.getItem('favorit')));
 }
+
+window.likeButtonHandler = likeButtonHandler;
 
 function populateList(movie_id) {
   let favoritesList;

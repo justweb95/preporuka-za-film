@@ -1,0 +1,201 @@
+.search {
+  .main {
+    padding: 20px 0px 120px;
+    background-image: url('../images/home/hero-background.webp');
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    @media (max-width: 550px) {
+      padding: 20px 0px 40px;
+    }
+  } 
+}
+
+.search-hero {
+  .search_hero_navigation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    li, a {
+      text-decoration: none;
+      color: #A6ABAE;
+      text-align: center;
+      font-family: "Red Hat Display";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      &:last-of-type {
+        a {
+          font-weight: 700;
+        }
+      }
+      svg {
+        vertical-align: middle;
+      }
+    }
+  }
+  h1 {
+    margin: 40px 0px 12px;
+    color: var(--White, #FFF);
+    text-align: center;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 56px */
+    span {
+      font-weight: 500;
+    }
+  }
+  h2 {
+    margin-bottom: 40px;
+    color: #CDD0D2;
+    text-align: center;
+    font-family: "Red Hat Display";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    a {
+      color: var(--Orange, #F57C36);
+      font-family: "Red Hat Display";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      text-decoration-line: underline;
+      text-decoration-style: solid;
+      text-decoration-skip-ink: auto;
+      text-decoration-thickness: auto;
+      text-underline-offset: auto;
+      text-underline-position: from-font;
+    }
+  }
+  @media (max-width: 550px) {
+    h1 {
+      font-size: 32px;
+    }
+    h2 {
+      margin-top: 12px;
+      font-size: 16px;
+    }  
+  }
+}
+
+.search-not-found {
+  .search-not-found-box {
+    max-width: 90%;
+    width: 600px;
+    padding: 32px 14px;
+    border-radius: 8px;
+    border: 1px solid #E3EAEC;
+    background: var(--GreyTransparent, #ffffff18);
+    svg {
+      display: block;
+      width: fit-content;
+      margin: 0px auto;
+    }
+    h2 {
+      margin-top: 24px;
+      text-align: center;
+      color: var(--White, #FFF);
+      font-family: 'Unbounded', sans-serif;
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 145%; /* 29px */
+    }
+  }
+}
+
+.search-list {
+  padding: 40px 0px;
+  .search-list-holder {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 40px 20px;
+    .movie-item {
+      position: relative;
+      text-decoration: none;
+      max-width: 226px;
+      a {
+        text-decoration: none;
+      }
+      .movie-poster {
+        user-select: none;
+        display: block;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        border: 1px solid var(--Grey, #22374A);
+      }
+      h2 {
+        user-select: none;
+        margin: 16px 0px 8px;
+        color: var(--White, #FFF);
+        font-family: "Red Hat Display";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+      p {
+        user-select: none;
+        color: var(--Light, #EDFEEC);
+        font-family: "Red Hat Display";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        opacity: .8;
+      }
+      .like-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 2;
+        path {
+          transition: .3s ease;
+        }
+        &:hover {
+          cursor: pointer;
+          path {
+            stroke: var(--Orange, #F57C36);
+            fill: var(--Orange, #F57C36);
+          }
+        }
+      }
+      .liked {
+        stroke: var(--Orange, #F57C36);
+        fill: var(--Orange, #F57C36);
+        path {
+          stroke: var(--Orange, #F57C36);
+          fill: var(--Orange, #F57C36);
+        }
+      }
+    }
+  }
+  @media (max-width: 550px) {
+    .search-list-holder {
+      gap: 32px 16px;
+      .movie-item {
+        flex: 0 0 47%;
+        .movie-poster {
+          border-radius: 8px;
+        }
+        h2 {
+          font-size: 16px;
+        }
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
