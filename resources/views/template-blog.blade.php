@@ -6,5 +6,7 @@
 
 @section('content')
   @include('pages.blog.blog-hero')
+  @include('pages.blog.blog-list')
+
 
 @endsection

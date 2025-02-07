@@ -303,6 +303,11 @@
               padding: 0px 0px 0px 4px;
               width: 150px;
               transition: .3s ease;
+              scroll-behavior: auto;
+            }
+            &:-webkit-autofill {
+              -webkit-box-shadow: 0 0 0 30px #172938 inset !important;
+              -webkit-text-fill-color: white !important;
             }
           }           
         }

@@ -11,6 +11,7 @@ const search_input_submit_mobile = document.getElementById('movie-search-submit-
 
 function inputHandler(isMobile) {
   let search_term = '';
+  let home_url = ''; 
 
   if(isMobile) {
     search_term = search_input_filed_mobile.value; 
@@ -18,8 +19,15 @@ function inputHandler(isMobile) {
   else {
     search_term = search_input_filed.value; 
   }
+  
+  if (PRODUCTION) {
+    home_url = `${window.location.origin}/`; 
+  } else {
+    home_url = `${window.location.origin}/preporuka-za-film`;
+  }
 
-  window.location.href = `?s=${search_term}`;  
+  window.location = `${home_url}?s=${search_term}`;  
+
 }
 
 search_input_filed.addEventListener('keydown', function(event) {

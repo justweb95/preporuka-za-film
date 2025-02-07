@@ -258,5 +258,44 @@ add_action( 'init', 'create_movie_post_type', 0 );
 
 
 
-
+    function get_serbian_post_date($post_id) {
+        // Try setting the locale to Serbian
+        setlocale(LC_TIME, 'sr_RS.UTF-8'); // Make sure this is available on your server
+    
+        // If the locale is not working, try other variants:
+        if (!setlocale(LC_TIME, 'sr_RS.UTF-8')) {
+            setlocale(LC_TIME, 'sr_RS'); // Fallback
+        }
+    
+        // If setlocale still doesn't work, manually map English months to Serbian months
+        $months = [
+            'January' => 'Januar',
+            'February' => 'Februar',
+            'March' => 'Mart',
+            'April' => 'April',
+            'May' => 'Maj',
+            'June' => 'Jun',
+            'July' => 'Jul',
+            'August' => 'Avgust',
+            'September' => 'Septembar',
+            'October' => 'Oktobar',
+            'November' => 'Novembar',
+            'December' => 'Decembar',
+        ];
+    
+        // Get the month name in English
+        $english_month = strftime('%B', strtotime(get_the_date('', $post_id)));  // Get month in English
+    
+        // Check if month is valid and map to Serbian
+        if (isset($months[$english_month])) {
+            $serbian_month = $months[$english_month];  // Map to Serbian
+        } else {
+            $serbian_month = $english_month;  // Fallback to English month name
+        }
+    
+        // Format the full date, replacing the English month name with the Serbian one
+        $post_date = str_replace($english_month, $serbian_month, strftime('%B %d, %Y', strtotime(get_the_date('', $post_id))));
+    
+        return $post_date;
+    }    
 ?>
