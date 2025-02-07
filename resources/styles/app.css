@@ -19,6 +19,7 @@
 @import url('./pages/404-page.css');
 @import url('./pages/search-page.css');
 @import url('./pages/blog-page.css');
+@import url('./pages/single-blog-page.css');
 @import url('./pages/comming-soon.css');
 
 
@@ -27,6 +28,12 @@
 .container {
   max-width: 1280px;
   width: 90%;
+  margin: 0px auto;
+}
+
+.container_blog {
+  max-width: 800px;
+  width: 80%;
   margin: 0px auto;
 }
 
