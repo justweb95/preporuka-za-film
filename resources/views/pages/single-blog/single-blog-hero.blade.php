@@ -2,17 +2,14 @@
   // Getting post
   $post = get_post();
   // Getting post featured img
-  // $backgroundImageUrl = get_the_post_thumbnail_url($post->ID);
   $base = "background-image: linear-gradient(180deg, #06131E 0%, rgba(6,19,30,0.7) 50%, rgba(6,19,30,0.7) 100%), url('";
   $backgroundImageUrl = $base . get_the_post_thumbnail_url($post->ID) . "')";
-
-          
+  // Categories
   $categories = get_the_category($post->ID);
   $category_name = !empty($categories) ? $categories[0]->name : 'Uncategorized';
-
+  // Post Name
   $post_name = $post->post_title;
 @endphp
-
 
 <section class="single_blog_hero" style="{{ $backgroundImageUrl }}">
     <div class="single_blog_hero_holder container_blog">
@@ -30,9 +27,9 @@
         </svg></li>
         <li id="sb_name">{{ $post_name }}</li>
       </ul>
-      
+      {{-- Badge --}}
       <span class="sb_badge {{ $categories[0]->slug }}">{{ $category_name }}</span>
-
+      {{-- Post name --}}
       <h1>{{ $post_name }}</h1>
     </div>
 </section>

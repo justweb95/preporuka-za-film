@@ -11,7 +11,8 @@
   @else
     @include('pages.single-blog.single-blog-hero')  
     @include('pages.single-blog.single-blog-content')  
-
+    @include('pages.single-blog.single-blog-comment')  
+    @include('components.comment-list')
   @endif
 
   
