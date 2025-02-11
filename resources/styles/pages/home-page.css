@@ -345,7 +345,8 @@
         }
         .standard-content-icon {
           animation: bounceIconHomePage 1.5s ease-in-out;
-          animation-timeline: view(500px 0px); 
+          animation-timeline: view(0px);
+          animation-range: contain;
         }
         .standard-content-heading {
           margin: 16px auto 12px;

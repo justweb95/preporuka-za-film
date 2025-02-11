@@ -1,6 +1,9 @@
 <article class="question-holder container qa" id="six-question" style="display: none !important;">
   <h1 class="questionnaire-header">6. Izaberi neku drugu kategoriju koja te interesuje:</h1>
   <form id="form-holder-5">
+      <label for="no-other-category">
+        <input type="radio" id="no-other-category" name="film" value="none">Ne želim drugu kategoriju
+      </label>
       <label for="filmovi-koji-menjaju-pogled-na-zivot">
         <input type="radio" id="filmovi-koji-menjaju-pogled-na-zivot" name="film" value="191446">Filmovi koji menjaju pogled na zivot
       </label>

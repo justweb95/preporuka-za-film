@@ -2,7 +2,8 @@ import {
   collectProgressItems,
   handleProgressNumber,
   handleProgressCheckbox,
-  removeProgressBar
+  removeProgressBar,
+  removeadvertisementBanner
 
 } from '@scripts/partials/question-progress';
 import { 
@@ -61,7 +62,8 @@ function changeQuestionHandler(currentQuestionIndex) {
 
   if(currentQuestionIndex === 6) {
     removeProgressBar();
-    
+    removeadvertisementBanner();
+
     const tmdbResult =  tmdbCallHandler(allAnswers);
 
     poplateResult(tmdbResult);
@@ -215,19 +217,23 @@ async function poplateResult(resultObject) {
   let amazonProvider;
 
   if (tmdbData.movie_watch_on && Array.isArray(tmdbData.movie_watch_on.buy)) {
-    amazonProvider = tmdbData.movie_watch_on.buy.find(provider => provider.provider_name === 'Amazon Video');
+    amazonProvider = tmdbData.movie_watch_on.buy.find(provider => 
+      provider.provider_name === 'Amazon Video' || provider.provider_name === 'Amazon Prime Video'
+    );
   } else {
     console.log("movie_watch_on or buy array does not exist.");
   }
 
   if (amazonProvider) {
-    affiliate_amazon.setAttribute('href', `https://www.amazon.com/dp/${amazonProvider.provider_id}`);
+    affiliate_amazon.setAttribute('href', `https://www.amazon.com/gp/video/primesignup?tag=preporukazafi-20`);
     affiliate_amazon.removeAttribute('aria-disabled');
     affiliate_amazon.style.opacity = '1';
+    affiliate_amazon.style.pointerEvents = 'auto';
     affiliate_amazon.disabled = false;
   } else {
     affiliate_amazon.setAttribute('aria-disabled', 'true');
     affiliate_amazon.style.opacity = '.6';
+    affiliate_amazon.style.pointerEvents = 'none';
     affiliate_amazon.disabled = true;
   }
 }

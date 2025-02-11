@@ -1,7 +1,8 @@
 <footer class="footer">
   <div class="footer-holder container">
     <figure  class="banner-holder">
-      <img src="@asset('images/partials/footer-banner.webp')" alt="Banner Add">
+      <p><strong>Mesto za vašu reklamu!</strong> <br><br><a href="mailto:info@preporukazafilm.com">Kontaktirajte nas</a> i saznajte više o mogućnostima oglašavanja!</p>
+      {{-- <img src="@asset('images/partials/footer-banner.webp')" alt="Banner Add"> --}}
       {{-- <figcaption>Big discounts on summer clothes!</figcaption> --}}
     </figure>
 

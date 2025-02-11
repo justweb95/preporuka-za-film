@@ -2,8 +2,7 @@
   <div class="header-holder container">
     <a href="{{ url('/') }}">
       <img class="header-logo" src="@asset('images/partials/preporuka-za-film-logo.svg')" alt="Preporuka za film logo">
-    </a>
-    
+    </a>   
     <nav class="main-nav-desktop">
       <ul class="nav-link">
         <li class="link-item"><a href="{{ home_url() }}/">Početna</a></li>

@@ -248,6 +248,33 @@
               color: #FFF;
             }
           }
+          .sm-info-cta-affiliate-netflix {
+            position: relative;
+            user-select: none;
+            pointer-events: none;
+            background-color: #22374a5c;
+            color: rgba(255, 255, 255, 0.267);
+            svg {
+              opacity: .4;
+            }
+            /* opacity: .4; */
+            &::after {
+              display: block;
+              width: auto;
+              content: 'Uskoro';
+              position: absolute;
+              right: 5px;
+              top: -12px;
+              background-color: #06131E;
+              color: var(--White, #FFF);
+              font-family: "Red Hat Display";
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 400;
+              border-radius: 16px;
+              padding: 4px 6px;
+            }
+          }
         }
       }
     }

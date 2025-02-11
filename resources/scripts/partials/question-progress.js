@@ -64,5 +64,13 @@ function removeProgressBar() {
     }
 }
 
+function removeadvertisementBanner() {
+    const advertisementBanner = document.querySelector('.single_blog_banner_holder');
 
-export { collectProgressItems, handleProgressNumber, handleProgressCheckbox, removeProgressBar };
+    if (advertisementBanner) {
+        advertisementBanner.style.display = 'none';
+    }
+}
+
+
+export { collectProgressItems, handleProgressNumber, handleProgressCheckbox, removeProgressBar, removeadvertisementBanner };

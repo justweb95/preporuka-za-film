@@ -1,5 +1,7 @@
 .questionnaire-holder {
-  padding: 60px 0px 20px;
+  position: relative;
+
+  padding: 60px 0px 40px;
   min-height: calc(100svh - 104px);
   height: auto;
   background-color: var(--Background);
@@ -7,6 +9,8 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+
 
   article {
     max-width: 720px;
@@ -317,9 +321,31 @@
         .result-content-affiliate {
           text-align: center;
           .affiliate-netflix {
-            opacity: .6;
-            pointer-events: none;
+            position: relative;
             user-select: none;
+            pointer-events: none;
+            background-color: #22374a5c;
+            color: rgba(255, 255, 255, 0.267);
+            svg {
+              opacity: .4;
+            }
+            /* opacity: .4; */
+            &::after {
+              display: block;
+              width: auto;
+              content: 'Uskoro';
+              position: absolute;
+              right: 5px;
+              top: -12px;
+              background-color: #06131E;
+              color: var(--White, #FFF);
+              font-family: "Red Hat Display";
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 400;
+              border-radius: 16px;
+              padding: 4px 6px;
+            }
           }
           a {
             display: inline-block;
@@ -522,7 +548,9 @@
 
   /* Progress bar */
   .question-holder {
+    position: relative;
     height: 100%;
+    z-index: 10;
   }
 
   #third-question {
@@ -574,11 +602,60 @@
   &::backdrop {
       background: rgba(6, 19, 30, 0.39);
       backdrop-filter: blur(20px);
+    }
   }
-}
+
+  .single_blog_banner_holder {    
+    max-width: 1280px;
+    width: 98%;
+    margin: 0px auto;
+    
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translate(-50%);
+
+    display: flex;
+    justify-content: space-between;    
+    .banner-box {
+      border-radius: 8px;
+      background-color: #42a7ff26;
+      height: 548px;
+      max-width: 220px;
+      width: 50%;
+      p {
+        text-align: center;
+        height: 100%;
+        color: var(--White, #FFF);
+        font-family: "Red Hat Display";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        padding: 20px;
+        width: 100%;
+        margin: 0px;
+        vertical-align: middle;
+        strong {
+          font-size: 24px;
+        }
+        a {
+          color: #FFF;
+          text-decoration: none;
+          font-weight: 700;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 
 
-
+  @media (max-width: 1280px) {
+    .single_blog_banner_holder {
+      display: none;
+    }
+  }
+  
   @media (max-width: 768px) {
     article {
       form {

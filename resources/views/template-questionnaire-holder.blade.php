@@ -20,5 +20,8 @@
     @include('pages/questions/results')
 
     @include('pages/questions/video-popup', ['video_url' => ''])
+
+    {{-- Banner --}}
+    @include('pages.single-blog.single-blog-banner')    
   </section>
 @endsection
