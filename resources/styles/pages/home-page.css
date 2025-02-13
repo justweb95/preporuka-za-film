@@ -84,6 +84,8 @@
     }
   }
   .movie-card-holder {
+    pointer-events: none;
+    user-select: none;
     margin-inline: auto;
     margin-top: 80px;
     position: relative;

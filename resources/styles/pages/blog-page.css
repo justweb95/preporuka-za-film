@@ -212,6 +212,103 @@
       }
     }
   }
+  .category-drop-down {
+    max-width: fit-content;
+    position: relative;
+    margin: 0px auto 40px 5%;
+    .category-drop-down-holder {
+      border-radius: 8px;
+      border: 1px solid var(--Green, #18BF7C);
+      background: rgba(0, 11, 20, 0.26);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      color: var(--White, #FFF);
+      font-family: "Red Hat Display";
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 145%; /* 23.2px */
+      .cat {
+        margin-right: 6px;
+      }
+      .cat-net {
+        margin-right: 32px;
+        font-weight: 700;
+      }
+      svg {
+        transition: .3s ease;
+        margin-left: auto;
+      }
+    }
+    .category-drop-down-list {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      position: absolute;
+      z-index: 3;
+      list-style: none;
+      width: 100%;
+      background-color: #172938;
+      border-radius: 20px;
+      .category-drop-down-item {
+        padding: 10px 20px;
+        a {
+          text-decoration: none;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: var(--White, #FFF);
+          font-family: "Red Hat Display";
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 145%;
+        }
+        &:last-of-type {
+          border-radius: 0px 0px 12px 12px;
+        }
+        &:first-of-type {
+          border-radius: 12px 12px 0px 0px;
+        }
+        &:hover {
+          background-color: #2d3e4e;
+          a {
+            svg {
+              animation: arrowBounceDropDown 1.2s infinite
+            }
+          }
+        }
+      }
+
+    }
+    &:hover {
+      cursor: pointer;
+      .category-drop-down-holder {
+        svg {
+          transform: rotate(180deg) !important;
+        }
+      }
+      .category-drop-down-list {
+        display: flex !important;
+      }
+    }
+  }
+  @media (max-width: 550px) {
+    max-width: unset;
+    .category-header {
+      h1 {
+        font-size: 32px;
+      }
+      h2 {
+        margin-top: 12px;
+        font-size: 16px;
+      }
+    }
+    .category-drop-down {
+      max-width: 100%;
+    }
+  }
   .pagination  {
     margin: 80px auto 0px;
     .pagination-links {

@@ -11,7 +11,16 @@
     'taxonomy' => 'category',
     'type' => 'movie',
   ));
+
+  // Remove category with name 'Blog' from the list
+  $movie_categories = array_filter($movie_categories, function($cat) {
+    return $cat->name !== 'Blog';
+  });
+  
+  // Re-index the array to avoid any gaps in the keys after filtering
+  $movie_categories = array_values($movie_categories);
 @endphp
+
 
 <section class="category_hero container">
     {{-- Category navigation --}}
@@ -39,7 +48,7 @@
 
     {{-- Category drop-down --}}
     <div class="category-drop-down">
-      <span class="category-drop-down-holder">
+      <span class="category-drop-down-holder" onclick="handleCategoryDropdown()">
         <p class="cat">Katekorija:</p>
         <p class="cat-net">{{ $category_name }}</p>
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="8" viewBox="0 0 13 8" fill="none">
@@ -60,4 +69,5 @@
           </li>
         @endforeach
       </ul>
-  </section>
+    </div>
+</section>

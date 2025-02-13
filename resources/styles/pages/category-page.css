@@ -135,11 +135,11 @@
       cursor: pointer;
       .category-drop-down-holder {
         svg {
-          transform: rotate(180deg);
+          transform: rotate(180deg) !important;
         }
       }
       .category-drop-down-list {
-        display: flex;
+        display: flex !important;
       }
     }
   }

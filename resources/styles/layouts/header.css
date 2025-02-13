@@ -191,7 +191,7 @@
       height: 100svh;
       left: 0px;
       top: 0px;
-      z-index: 10;
+      z-index: 12;
       .nav-link {
         padding: 0px 18px 48px 18px;
         margin-left: auto;

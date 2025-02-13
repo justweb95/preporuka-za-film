@@ -88,3 +88,26 @@ function colorLikedButton(all_movies_id) {
     }
   });
 }
+
+
+window.handleCategoryDropdown = handleCategoryDropdown;
+
+export function handleCategoryDropdown() {
+  let categoryDropdownList = document.querySelector('.category-drop-down-list');
+  let categorySVG = document.querySelector('.category-drop-down-holder').querySelector('svg');
+
+  // Work only on mobile devices
+  let isMobile = window.innerWidth > 550 ? false : true;
+  if(!isMobile) {
+    return;
+  }
+  
+  if(!categoryDropdownList.style.display || categoryDropdownList.style.display === 'none') {
+    categoryDropdownList.style.display = 'flex';
+    categorySVG.style.transform = 'rotate(180deg)';
+  }
+  else {
+    categoryDropdownList.style.display = 'none';
+    categorySVG.style.transform = 'rotate(0deg)';
+  }
+}
