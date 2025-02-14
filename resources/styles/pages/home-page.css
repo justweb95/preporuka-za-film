@@ -104,9 +104,10 @@
       height: 320px;
       border-radius: 6px;
       position: absolute;
-      left: max(calc(230px * 8), 100%);
+      /* left: max(calc(230px * 8), 100%); */
+      transform: translateX(max(calc(240px * 8), 100%));
       animation-name: scrollLeft;
-      animation-duration: 70s;
+      animation-duration: 40s;
       animation-timing-function: linear;
       animation-iteration-count: infinite;      
       p {
@@ -121,40 +122,40 @@
         line-height: normal;
       }
       &:nth-of-type(1) {
-        animation-delay: calc(70s / 8 * (8 - 1) * -1);
+        animation-delay: calc(40s / 8 * (8 - 1) * -1);
       }
       &:nth-of-type(2) {
-        animation-delay: calc(70s / 8 * (8 - 2) * -1);
+        animation-delay: calc(40s / 8 * (8 - 2) * -1);
       }
       &:nth-of-type(3) {
-        animation-delay: calc(70s / 8 * (8 - 3) * -1);
+        animation-delay: calc(40s / 8 * (8 - 3) * -1);
       }
       &:nth-of-type(4) {
-        animation-delay: calc(70s / 8 * (8 - 4) * -1);
+        animation-delay: calc(40s / 8 * (8 - 4) * -1);
       }
       &:nth-of-type(5) {
-        animation-delay: calc(70s / 8 * (8 - 5) * -1);
+        animation-delay: calc(40s / 8 * (8 - 5) * -1);
       }
       &:nth-of-type(6) {
-        animation-delay: calc(70s / 8 * (8 - 6) * -1);
+        animation-delay: calc(40s / 8 * (8 - 6) * -1);
       }
       &:nth-of-type(7) {
-        animation-delay: calc(70s / 8 * (8 - 7) * -1);
+        animation-delay: calc(40s / 8 * (8 - 7) * -1);
       }
       &:nth-of-type(8) {
-        animation-delay: calc(70s / 8 * (8 - 8) * -1);
+        animation-delay: calc(40s / 8 * (8 - 8) * -1);
       }
       &:nth-of-type(9) {
-        animation-delay: calc(70s / 8 * (8 - 9) * -1);
+        animation-delay: calc(40s / 8 * (8 - 9) * -1);
       }
       &:nth-of-type(10) {
-        animation-delay: calc(70s / 8 * (8 - 10) * -1);
+        animation-delay: calc(40s / 8 * (8 - 10) * -1);
       }
       &:nth-of-type(11) {
-        animation-delay: calc(70s / 8 * (8 - 11) * -1);
+        animation-delay: calc(40s / 8 * (8 - 11) * -1);
       }
       &:nth-of-type(12) {
-        animation-delay: calc(70s / 8 * (8 - 12) * -1);
+        animation-delay: calc(40s / 8 * (8 - 12) * -1);
       }
     }
   }
@@ -222,7 +223,7 @@
       font-size: clamp(14px, 3vw + 2px, 20px);
       font-style: normal;
       font-weight: 500;
-      line-height: normal;
+      line-height: 150%;
       animation: fadeInUp .7s ease-in-out;
       animation-timeline: view(500px 0px); 
     }
@@ -260,7 +261,7 @@
           font-size: 18px;
           font-style: normal;
           font-weight: 500;
-          line-height: normal;
+          line-height: 150%;
         }
       }
     }
@@ -395,13 +396,13 @@
           font-size: clamp(14px, 3vw + 2px, 20px);
           font-style: normal;
           font-weight: 500;
-          line-height: normal;
+          line-height: 150%;
           animation: fadeInUp .7s ease-in-out;
           animation-timeline: view(500px 0px); 
     
         }
         .our-heading-content {
-          margin: 1px auto 12px;
+          margin: 16px auto 12px;
           color: var(--White, #FFF);
           font-family: "Red Hat Display";
           font-size: clamp(18px, 3vw + 2px, 20px);
@@ -469,6 +470,7 @@
       font-weight: 400;
       letter-spacing: 0.8px;
       line-height: 140%;
+      text-transform: uppercase;
     }
     .system-card-holder {
       margin-top: 40px;
@@ -498,6 +500,7 @@
           font-style: normal;
           font-weight: 500;
           line-height: normal;
+          opacity: .6;
         }
       }
     }

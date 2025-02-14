@@ -122,13 +122,15 @@
           line-height: normal;
           transition: .3s ease;
           &::placeholder {
-            opacity: 0.4;
+            opacity: 0.8;
+            background-color: transparent;
           }
           &:focus {
+            background-color: transparent;
             outline: none;
             margin: 0px 16px 0px 0px;
             padding: 0px 0px 0px 4px;
-            width: 150px;
+            width: 170px;
             transition: .3s ease;
           }
           &:not(:placeholder-shown) {

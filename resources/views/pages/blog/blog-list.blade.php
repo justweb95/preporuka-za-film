@@ -1,28 +1,54 @@
 @php
-  // Get the parent category "Blog" by slug (assuming "blog" is the slug of the parent category)
-  $blog_parent_category = get_category_by_slug('blog');  // Replace with correct slug if necessary
-  
-  if ($blog_parent_category) {
-    $parent_category_id = $blog_parent_category->term_id;
-    
-    // Get child categories of the "Blog" category
-    $categories = get_categories(array(
-      'parent' => $parent_category_id,  // Get categories with this parent ID
-    ));
+// Get the parent category "Blog" by slug (assuming "blog" is the slug of the parent category)
+$blog_parent_category = get_category_by_slug('blog');  // Replace with correct slug if necessary
 
-  }  
-  // Get the name and slug of the category
-  $category_name = !empty($category->name) ? $category->name : "Sve Kategorije";
-  $category_link =  !empty($category->slug) ? $category->slug : "Sve Kategorije";
+if ($blog_parent_category) {
+  $parent_category_id = $blog_parent_category->term_id;
+  
+  // Get child categories of the "Blog" category
+  $categories = get_categories(array(
+    'parent' => $parent_category_id,  // Get categories with this parent ID
+  ));
+}
+
+// Add default category "Sve Kategorije" to the beginning of the categories array
+array_unshift($categories, (object) [
+  'term_id' => 0,
+  'name' => 'Sve Kategorije',
+  'slug' => 'sve-kategorije'
+]);
+
+// Get the name and slug of the category
+$category_name = !empty($category->name) ? $category->name : "Sve Kategorije";
+$category_link =  !empty($category->slug) ? $category->slug : "Sve Kategorije";
 
 // Get the current page for pagination
-  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-  $blog_posts = new WP_Query([
-    'posts_per_page' => 6,  // One post per page
-    'post_type' => 'post',  // Ensure we're querying the 'movie' post type
-    'paged' => $paged,  // Handle pagination
-  ]);
+$category = get_queried_object();
+
+$haveCategory = $category->name === '' ? false : true;
+
+// Check if a category is selected
+$category_id = $haveCategory ? $category->term_id : '';
+
+// If 'Sve Kategorije' is selected, set category_id to null (to show all posts)
+if ($category_id === 0) {
+    $category_id = ''; // Show all posts if 'Sve Kategorije' is selected
+}
+
+$args = [
+  'posts_per_page' => 6,  // Show 6 posts per page
+  'post_type' => 'post',  // Ensure we're querying the 'post' post type
+  'paged' => $paged,  // Handle pagination
+];
+
+// If a category is selected, add it to the query arguments
+if ($category_id) {
+  $args['cat'] = $category_id;
+}
+
+$blog_posts = new WP_Query($args);
 @endphp
 
 <section class="blog_list">
@@ -35,20 +61,31 @@
         <path d="M12 1.5L6.49999 6.5L12 1.5ZM6.49999 6.5L1 1.5L6.49999 6.5Z" fill="#EDFEEC"/>
         <path d="M12 1.5L6.49999 6.5L1 1.5" stroke="white" stroke-width="2"/>
       </svg>
+      <ul class="category-drop-down-list">
+        @foreach ($categories as $movie_category)
+          <li class="category-drop-down-item">
+            @if ($movie_category->term_id === 0)
+              <a href="{{ home_url() }}/blog">
+                {{ $movie_category->name }}
+                <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+                  <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+                </svg>
+              </a>
+            @else
+              <a href="{{ get_category_link($movie_category->term_id) }}">  <!-- Normal category link -->
+                {{ $movie_category->name }}
+                <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+                  <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+                </svg>
+              </a>
+            @endif
+          </li>
+        @endforeach
+      </ul>
+      
     </span>
-    <ul class="category-drop-down-list">
-      @foreach ($categories as $movie_category)
-        <li class="category-drop-down-item">
-          <a href="{{ get_category_link($movie_category->term_id) }}">
-            {{ $movie_category->name }}
-            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
-              <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
-            </svg>
-          </a>
-        </li>
-      @endforeach
-    </ul>
   </div>
 
   <div class="blog_list_holder container">

@@ -124,6 +124,11 @@
         gap: 14px;
         .share_link {
           text-decoration: none;
+          transition: .3s;
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+          }
         }  
       }
     }
@@ -217,8 +222,13 @@
       a {
         text-decoration: none;
         margin-right: 14px;
+        transition: .3s;
         svg {
           vertical-align: bottom;
+        }
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.1);
         }
       }
     }

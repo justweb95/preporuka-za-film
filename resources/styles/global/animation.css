@@ -23,7 +23,7 @@
 /* Header burger menu  */
 @keyframes scrollLeft {
   to {
-    left: -200px;
+    transform: translateX(-200px);
   }
 }
 

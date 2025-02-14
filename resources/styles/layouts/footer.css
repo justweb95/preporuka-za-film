@@ -168,6 +168,7 @@ footer {
         .footer-link-item {
           flex: 1 0 28%;
           text-align: center;
+          margin: 12px 0px;
         }
         .footer-justweb {
           margin-left: 0px;

@@ -3,11 +3,18 @@
 @section('content')
 
   {{-- @include('partials.page-header') --}}
-  
-  
-  @include('pages.category.category-hero')
-  @include('pages.category.category-list')
+  @php
+    $category = get_queried_object();
+    $isBlog = $category->parent === 0 
+  @endphp
 
+  @if ($isBlog)
+    @include('pages.category.category-hero')
+    @include('pages.category.category-list')
+  @else
+    @include('pages.blog.blog-hero')
+    @include('pages.blog.blog-list')
+  @endif
 
   {{-- @if (! have_posts())
     <x-alert type="warning">
@@ -16,8 +23,6 @@
 
     {!! get_search_form(false) !!}
   @endif --}}
-
-
 
   {{-- @while(have_posts()) @php(the_post())
     @includeFirst(['partials.content-' . get_post_type(), 'partials.content'])

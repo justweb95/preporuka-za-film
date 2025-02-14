@@ -28,6 +28,10 @@
           vertical-align: middle;
         }
       }
+      #movie_name {
+        color: #ffffff;
+        font-weight: 700;
+      }
     }
     /* Single Movie Information  */
     .sm-info {
@@ -473,6 +477,7 @@
           }
 
           .comment-form-rating {
+            display: block;
             .stars-container {
               display: flex;
               justify-content: space-between;

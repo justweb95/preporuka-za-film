@@ -12,11 +12,10 @@
     'type' => 'movie',
   ));
 
-  // Remove category with name 'Blog' from the list
+  // Remove categories with names 'Blog', 'Recenzije', 'Top List', and 'Vesti' from the list
   $movie_categories = array_filter($movie_categories, function($cat) {
-    return $cat->name !== 'Blog';
+    return !in_array($cat->name, ['Blog', 'Recenzije', 'Top List', 'Vesti']);
   });
-  
   // Re-index the array to avoid any gaps in the keys after filtering
   $movie_categories = array_values($movie_categories);
 @endphp
@@ -35,8 +34,8 @@
         <path d="M3 1.5L8 7.00001L3 1.5ZM8 7.00001L3 12.5L8 7.00001Z" fill="#EDFEEC"/>
         <path d="M3 1.5L8 7.00001L3 12.5" stroke="#18BF7C" stroke-width="2"/>
       </svg></li>
-      <li id="movie_category">
-        <a href="{{ url('/category/' . $category_link) }}">{{ $category_name }} Filmovi</a>
+      <li>
+        <a id="movie_category" href="{{ url('/category/' . $category_link) }}">{{ $category_name }} Filmovi</a>
       </li>
     </ul>
   

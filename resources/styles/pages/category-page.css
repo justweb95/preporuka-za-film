@@ -15,14 +15,13 @@
       font-style: normal;
       font-weight: 500;
       line-height: normal;
-      &:last-of-type {
-        a {
-          font-weight: 700;
-        }
-      }
       svg {
         vertical-align: middle;
       }
+    }
+    #movie_category {
+      color: #ffffff;
+      font-weight: 700;
     }
   }
   .category-header {
@@ -99,7 +98,7 @@
       list-style: none;
       width: 100%;
       background-color: #172938;
-      border-radius: 20px;
+      border-radius: 8px;
       .category-drop-down-item {
         padding: 10px 20px;
         a {
@@ -115,10 +114,10 @@
           line-height: 145%;
         }
         &:last-of-type {
-          border-radius: 0px 0px 12px 12px;
+          border-radius: 0px 0px 8px 8px;
         }
         &:first-of-type {
-          border-radius: 12px 12px 0px 0px;
+          border-radius: 8px 8px 0px 0px;
         }
         &:hover {
           background-color: #2d3e4e;
