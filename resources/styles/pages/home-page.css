@@ -105,9 +105,9 @@
       border-radius: 6px;
       position: absolute;
       /* left: max(calc(230px * 8), 100%); */
-      transform: translateX(max(calc(240px * 8), 100%));
+      transform: translateX(max(calc(220px * 9), 100%));
       animation-name: scrollLeft;
-      animation-duration: 40s;
+      animation-duration: 45s;
       animation-timing-function: linear;
       animation-iteration-count: infinite;      
       p {
@@ -122,40 +122,40 @@
         line-height: normal;
       }
       &:nth-of-type(1) {
-        animation-delay: calc(40s / 8 * (8 - 1) * -1);
+        animation-delay: calc(45s / 9 * (9 - 1) * -1);
       }
       &:nth-of-type(2) {
-        animation-delay: calc(40s / 8 * (8 - 2) * -1);
+        animation-delay: calc(45s / 9 * (9 - 2) * -1);
       }
       &:nth-of-type(3) {
-        animation-delay: calc(40s / 8 * (8 - 3) * -1);
+        animation-delay: calc(45s / 9 * (9 - 3) * -1);
       }
       &:nth-of-type(4) {
-        animation-delay: calc(40s / 8 * (8 - 4) * -1);
+        animation-delay: calc(45s / 9 * (9 - 4) * -1);
       }
       &:nth-of-type(5) {
-        animation-delay: calc(40s / 8 * (8 - 5) * -1);
+        animation-delay: calc(45s / 9 * (9 - 5) * -1);
       }
       &:nth-of-type(6) {
-        animation-delay: calc(40s / 8 * (8 - 6) * -1);
+        animation-delay: calc(45s / 9 * (9 - 6) * -1);
       }
       &:nth-of-type(7) {
-        animation-delay: calc(40s / 8 * (8 - 7) * -1);
+        animation-delay: calc(45s / 9 * (9 - 7) * -1);
       }
       &:nth-of-type(8) {
-        animation-delay: calc(40s / 8 * (8 - 8) * -1);
+        animation-delay: calc(45s / 9 * (9 - 8) * -1);
       }
       &:nth-of-type(9) {
-        animation-delay: calc(40s / 8 * (8 - 9) * -1);
+        animation-delay: calc(45s / 9 * (9 - 9) * -1);
       }
       &:nth-of-type(10) {
-        animation-delay: calc(40s / 8 * (8 - 10) * -1);
+        animation-delay: calc(45s / 9 * (9 - 10) * -1);
       }
       &:nth-of-type(11) {
-        animation-delay: calc(40s / 8 * (8 - 11) * -1);
+        animation-delay: calc(45s / 9 * (9 - 11) * -1);
       }
       &:nth-of-type(12) {
-        animation-delay: calc(40s / 8 * (8 - 12) * -1);
+        animation-delay: calc(45s / 9 * (9 - 12) * -1);
       }
     }
   }
@@ -177,7 +177,8 @@
       margin-top: 40px;
       height: 240px;
       .movie-single-card {
-        left: max(calc(160px * 8), 100%);
+        /* left: max(calc(160px * 8), 100%); */
+        transform: translateX(max(calc(150px * 9), 100%));
         width: 160px;
         height: 240px;
       }
