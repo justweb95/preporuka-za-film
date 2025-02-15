@@ -24,7 +24,9 @@ $movies = new WP_Query([
         @endphp
         <article class="movie-item">
           <a href="{{ get_permalink() }}">
-            <img src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/' . $poster_path }}" alt="{{ get_the_title() }} Poster" class="movie-poster">
+            <img src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/' . $poster_path }}"
+              alt="{{ get_the_title() }} Poster" 
+              class="movie-poster">
             <h2>{{ get_the_title() }}</h2>
           </a>
           <p>Godina: {{ $release_year }}</p>

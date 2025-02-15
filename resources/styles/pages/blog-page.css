@@ -95,6 +95,7 @@
       flex: 1 0 40%;
       display: flex;
       flex-direction: column;
+      /* filter: drop-shadow(3px 4px 6px var(--Green, #18BF7C)); */
       .blog_post_heading_img {
         position: relative;
         display: block;
@@ -254,7 +255,7 @@
         flex-direction: column;
         gap: 5px;
         position: absolute;
-        top: 50px;
+        top: 48px;
         left: 0px;
         z-index: 3;
         list-style: none;

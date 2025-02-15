@@ -180,6 +180,7 @@
         height: auto;
         border-radius: 8px;
         border: 1px solid var(--Grey, #22374A);
+        filter: drop-shadow(3px 4px 6px var(--Green, #18BF7C));
       }
       h2 {
         user-select: none;

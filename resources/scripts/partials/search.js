@@ -9,9 +9,15 @@ const search_input_submit = document.getElementById('movie-search-submit');
 const search_input_filed_mobile = document.getElementById('movie-search-mobile');
 const search_input_submit_mobile = document.getElementById('movie-search-submit-mobile');
 
+
+
 function inputHandler(isMobile) {
   let search_term = '';
   let home_url = ''; 
+
+  console.log(search_input_filed_mobile);
+  console.log(search_input_submit_mobile);
+    
 
   if(isMobile) {
     search_term = search_input_filed_mobile.value; 
@@ -38,10 +44,4 @@ search_input_filed.addEventListener('keydown', function(event) {
 
 search_input_submit.addEventListener('click', () => inputHandler(false));
 
-search_input_filed_mobile.addEventListener('keydown', function(event) {
-  if (event.key === 'Enter') {
-    inputHandler(true);
-  }
-});
-
-search_input_submit_mobile.addEventListener('click', () => inputHandler(false));
+search_input_submit_mobile.addEventListener('click', () => inputHandler(true));

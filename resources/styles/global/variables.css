@@ -19,4 +19,10 @@
   --Background: #06131E;
   --Grey: #22374A;
   --GreyTransparent: #ffffff18;
+
+  --bg-blur: radial-gradient(circle at 50% 0%, 
+  var(--Green) 0%, 
+  var(--Orange) 30%, 
+  var(--Red) 70%, 
+  var(--Light) 100%);
 }
