@@ -5,10 +5,10 @@
         <input type="radio" id="bez-ograničenja" name="film" value="true">Bez ograničenja
       </label> --}}
       <label for="celu-porodicu">
-        <input type="radio" id="celu-porodicu" name="film" value="false">Pogodan za celu porodicu
+        <input type="radio" id="celu-porodicu" name="film" value="Pogodan za celu porodicu">Pogodan za celu porodicu
       </label>
       <label for="odrasli">
-        <input type="radio" id="odrasli" name="film" value="true">Samo za odrasle
+        <input type="radio" id="odrasli" name="film" value="Samo za odrasle">Samo za odrasle
       </label>
   </form>
   <div class="form-control">

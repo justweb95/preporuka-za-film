@@ -14,7 +14,7 @@
         <input type="radio" id="opustajuci" name="film" value="Opuštajući">Opuštajući
       </label>
       <label for="svejedno">
-        <input type="radio" id="svejedno" name="film" value="319837">Svejedno
+        <input type="radio" id="svejedno" name="film" value="Svejedno">Svejedno
       </label>
   </form>
   <div class="form-control">

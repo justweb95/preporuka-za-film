@@ -14,8 +14,8 @@ import {
 } from '@scripts/partials/tmdbControler';
 
 import {
-  start,
-  callDeepSeek,
+  callPerplexity,
+  buildPromt
 
 
 
@@ -52,7 +52,7 @@ function showToast(message) {
 
 
 // Here is the function to show the next question
-function changeQuestionHandler(currentQuestionIndex) {
+async function changeQuestionHandler(currentQuestionIndex) {
   handleProgressNumber(currentQuestionIndex);
   handleProgressCheckbox(currentQuestionIndex);
 
@@ -71,7 +71,20 @@ function changeQuestionHandler(currentQuestionIndex) {
     removeProgressBar();
     removeadvertisementBanner();
 
-    const tmdbResult =  tmdbCallHandler(allAnswers);
+    // Call ai
+    const createdPropmt = buildPromt(allAnswers);
+    const recommendation = await callPerplexity(createdPropmt);
+    const recommendation_movie_array = JSON.parse(recommendation.choices[0].message.content);
+
+
+
+    console.log('recommendation');
+    console.log(recommendation_movie_array);
+
+    
+    // Call ai
+    const tmdbResult = tmdbCallHandler(recommendation_movie_array);
+    // Call ai
 
     poplateResult(tmdbResult);
 
@@ -85,17 +98,12 @@ function changeQuestionHandler(currentQuestionIndex) {
 
 // Here is the function to show the next question
 window.nextQuestion = function() {
-
   if(inputVerification()) {
     showToast('Izaberite polje.', 'warning')
     return
   };
-
-  allAnswers.push(inputValue());
-
-  console.log("All Answers: ");
-  console.log(allAnswers);
   
+  allAnswers.push(inputValue());
 
   if(currentQuestionIndex < 6) {
     currentQuestionIndex++;
@@ -250,5 +258,15 @@ function durationFromat(time) {
   const minutes = time % 60; // Calculate remaining minutes
   return `${hours}h ${minutes}min`; // Return formatted string
 }
+
+
+function extractPureJSON(response) {
+  const cleaned = response.replace(/```json/g, '').replace(/```/g, '');
+
+  const jsonStart = cleaned.indexOf('{');
+  const jsonEnd = cleaned.lastIndexOf('}') + 1;
+  return cleaned.slice(jsonStart, jsonEnd);
+}
+
 
 changeQuestionHandler(currentQuestionIndex);

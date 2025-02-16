@@ -2,19 +2,19 @@
   <h1 class="questionnaire-header">4. Koliko bi voleo/ la da film bude star?</h1>
   <form id="form-holder-3">
       <label for="nije-bitno">
-        <input type="radio" id="nije-bitno" name="film" value="30">Nije bitno
+        <input type="radio" id="nije-bitno" name="film" value="Nije bitno">Nije bitno
       </label>
       <label for="objavljeno-u-prethodne-2-godine">
-        <input type="radio" id="objavljeno-u-prethodne-2-godine" name="film" value="2">Objavljeno u prethodne 2 godine
+        <input type="radio" id="objavljeno-u-prethodne-2-godine" name="film" value="Objavljeno u prethodne 2 godine">Objavljeno u prethodne 2 godine
       </label>
       <label for="objavljeno-u-prethodne-5-godine">
-        <input type="radio" id="objavljeno-u-prethodne-5-godine" name="film" value="5">Objavljeno u prethodne 5 godine
+        <input type="radio" id="objavljeno-u-prethodne-5-godine" name="film" value="Objavljeno u prethodne 5 godine">Objavljeno u prethodne 5 godine
       </label>
       <label for="objavljeno-u-prethodnih-10-godina">
-        <input type="radio" id="objavljeno-u-prethodnih-10-godina" name="film" value="10">Objavljeno u prethodnih 10 godina
+        <input type="radio" id="objavljeno-u-prethodnih-10-godina" name="film" value="Objavljeno u prethodnih 10 godina">Objavljeno u prethodnih 10 godina
       </label>
       <label for="objavljeno-u-prethodnih-20-godina">
-        <input type="radio" id="objavljeno-u-prethodnih-20-godina" name="film" value="20">Objavljeno u prethodnih 20 godina
+        <input type="radio" id="objavljeno-u-prethodnih-20-godina" name="film" value="Objavljeno u prethodnih 20 godina">Objavljeno u prethodnih 20 godina
       </label>
   </form>
   <div class="form-control">
