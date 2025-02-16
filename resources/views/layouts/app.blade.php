@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ asset('images/partials/favicon.svg') }}" type="image/svg+xml">
+    <link rel="preload" href="{{ asset('images/home/hero-background.webp') }}" as="image">
+    
     @php(do_action('get_header'))
     @php(wp_head())
   </head>

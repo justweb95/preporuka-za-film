@@ -2,16 +2,16 @@
   <h1 class="questionnaire-header">1. Kakav film želite da gledate večeras?</h1>
   <form id="form-holder-0">
       <label for="uzbudljiv">
-        <input type="radio" id="uzbudljiv" name="film" value="319837">Uzbudljiv
+        <input type="radio" id="uzbudljiv" name="film" value="Uzbudljiv">Uzbudljiv
       </label>
       <label for="smesna">
-        <input type="radio" id="smesna" name="film" value="340685">Smešan
+        <input type="radio" id="smesna" name="film" value="Smešan">Smešan
       </label>
       <label for="emotivan">
-        <input type="radio" id="emotivan" name="film" value="303624">Emotivan
+        <input type="radio" id="emotivan" name="film" value="Emotivan">Emotivan
       </label>
       <label for="opustajuci">
-        <input type="radio" id="opustajuci" name="film" value="305015">Opuštajući
+        <input type="radio" id="opustajuci" name="film" value="Opuštajući">Opuštajući
       </label>
       <label for="svejedno">
         <input type="radio" id="svejedno" name="film" value="319837">Svejedno

@@ -13,13 +13,20 @@ import {
 
 } from '@scripts/partials/tmdbControler';
 
+import {
+  start,
+  callDeepSeek,
+
+
+
+} from '@scripts/partials/openAiControler'
+
 import { cyrillicFormat, removeDiacritics } from '@scripts/partials/textFormatingControler';
 
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css'; // Importing CSS for Toastify
 
 collectProgressItems();
-
 // Here is all questions components
 const allQuestionsCompontents = document.querySelectorAll('.qa');
 let currentQuestionIndex = 0;
