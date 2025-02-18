@@ -110,6 +110,9 @@ async function changeQuestionHandler(currentQuestionIndex) {
 
 // Here is the function to show the next question
 window.nextQuestion = function() {
+  if (currentQuestionIndex === 6) {
+    currentQuestionIndex = 0;
+  }
   if(inputVerification()) {
     showToast('Izaberite polje.', 'warning')
     return

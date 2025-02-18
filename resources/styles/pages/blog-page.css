@@ -293,11 +293,9 @@
       }
       &:hover {
         cursor: pointer;
-        .category-drop-down-holder {
-          svg {
+          .cat-svg {
             transform: rotate(180deg);
           }
-        }
         .category-drop-down-list {
           display: flex;
         }

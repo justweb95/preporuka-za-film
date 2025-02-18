@@ -57,7 +57,7 @@ $blog_posts = new WP_Query($args);
     <span class="category-drop-down-holder" onclick="handleCategoryDropdown()">
       <p class="cat">Katekorija:</p>
       <p class="cat-net">{{ $category_name }}</p>
-      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="8" viewBox="0 0 13 8" fill="none">
+      <svg class="cat-svg" xmlns="http://www.w3.org/2000/svg" width="13" height="8" viewBox="0 0 13 8" fill="none">
         <path d="M12 1.5L6.49999 6.5L12 1.5ZM6.49999 6.5L1 1.5L6.49999 6.5Z" fill="#EDFEEC"/>
         <path d="M12 1.5L6.49999 6.5L1 1.5" stroke="white" stroke-width="2"/>
       </svg>
