@@ -26,6 +26,11 @@ import { cyrillicFormat, removeDiacritics } from '@scripts/partials/textFormatin
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css'; // Importing CSS for Toastify
 
+// Spanm COunter
+let spamCounter = 0
+let newRecomendationButton = document.getElementById ('new-recomendation');
+let startOverButton = document.getElementById('start-over');
+
 collectProgressItems();
 // Here is all questions components
 const allQuestionsCompontents = document.querySelectorAll('.qa');
@@ -34,10 +39,10 @@ let allAnswers = [];
 
 
 // Toster
-function showToast(message) {
+function showToast(message, duration) {
   Toastify({
     text: message,
-    duration: 2000,
+    duration: 3000,
     gravity: 'top', 
     position: 'right', 
     stopOnFocus: true,
@@ -46,7 +51,6 @@ function showToast(message) {
       fontFamily: "Red Hat Display",
       fontSize: "16px",
     }
-
   }).showToast();
 }
 
@@ -64,6 +68,7 @@ async function changeQuestionHandler(currentQuestionIndex) {
   allQuestionsCompontents[currentQuestionIndex].style.setProperty('display', 'block');
 
   if(currentQuestionIndex === 0) {
+    // spamCounter = 0
     disableBackButton();
   }
 
@@ -74,25 +79,32 @@ async function changeQuestionHandler(currentQuestionIndex) {
     // Call ai
     const createdPropmt = buildPromt(allAnswers);
     const recommendation = await callPerplexity(createdPropmt);
-    const recommendation_movie_array = JSON.parse(recommendation.choices[0].message.content);
+    let recommendation_movie_array;
+    let isOkay = false;
 
+    try {
+      recommendation_movie_array = JSON.parse(recommendation.choices[0].message.content);
+      isOkay = Array.isArray(recommendation_movie_array) && recommendation_movie_array.length > 0;
+      isOkay = true;
+    } catch (error) {
+      isOkay = false;
+    }
 
-
-    console.log('recommendation');
-    console.log(recommendation_movie_array);
-
-    
-    // Call ai
-    const tmdbResult = tmdbCallHandler(recommendation_movie_array);
-    // Call ai
-
-    poplateResult(tmdbResult);
-
-
-    setTimeout(() => {
-      currentQuestionIndex = 7;
+    if(isOkay) {
+      const tmdbResult = tmdbCallHandler(recommendation_movie_array);  
+      poplateResult(tmdbResult);
+  
+      setTimeout(() => {
+        currentQuestionIndex = 7;
+        changeQuestionHandler(currentQuestionIndex);
+      }, 3000)
+    }
+    else {
+      showToast('Oops doslo je do greske.', 'warning')
+      showToast('Probaj ponovo.', 'warning')
+      currentQuestionIndex = 0;
       changeQuestionHandler(currentQuestionIndex);
-    }, 4300)
+    }
   }
 }
 
@@ -120,6 +132,18 @@ window.backQuestion = function(event) {
 }
 
 window.newRecomendation = function() {
+  if (spamCounter === 1) {
+    showToast('Popuni anketu ponovo za bolje rezultate.', 'warning');
+    startOverButton.style.display = 'inline';
+  } else if (spamCounter > 2) {
+    changeQuestionHandler(6);
+    newRecomendationButton.style.pointerEvents = 'none';
+    newRecomendationButton.style.opacity = '0.6';
+    newRecomendationButton.disabled = true;
+    return;
+  }
+
+  spamCounter++;
   changeQuestionHandler(6);
 }
 

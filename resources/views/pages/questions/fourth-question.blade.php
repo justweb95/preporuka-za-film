@@ -2,19 +2,19 @@
   <h1 class="questionnaire-header">4. Koliko bi voleo/ la da film bude star?</h1>
   <form id="form-holder-3">
       <label for="nije-bitno">
-        <input type="radio" id="nije-bitno" name="film" value="Nije bitno">Nije bitno
-      </label>
-      <label for="objavljeno-u-prethodne-2-godine">
-        <input type="radio" id="objavljeno-u-prethodne-2-godine" name="film" value="Objavljeno u prethodne 2 godine">Objavljeno u prethodne 2 godine
+        <input type="radio" id="nije-bitno" name="film" value="Doesn't matter">Nije bitno
       </label>
       <label for="objavljeno-u-prethodne-5-godine">
-        <input type="radio" id="objavljeno-u-prethodne-5-godine" name="film" value="Objavljeno u prethodne 5 godine">Objavljeno u prethodne 5 godine
+        <input type="radio" id="objavljeno-u-prethodne-5-godine" name="film" value="Released in the last 5 years">Objavljeno u prethodne 5 godine
       </label>
-      <label for="objavljeno-u-prethodnih-10-godina">
-        <input type="radio" id="objavljeno-u-prethodnih-10-godina" name="film" value="Objavljeno u prethodnih 10 godina">Objavljeno u prethodnih 10 godina
+      <label for="objavljeno-u-prethodne-10-godine">
+        <input type="radio" id="objavljeno-u-prethodne-10-godine" name="film" value="Released in the last 10 years">Objavljeno u prethodne 10 godine
       </label>
-      <label for="objavljeno-u-prethodnih-20-godina">
-        <input type="radio" id="objavljeno-u-prethodnih-20-godina" name="film" value="Objavljeno u prethodnih 20 godina">Objavljeno u prethodnih 20 godina
+      <label for="objavljeno-u-prethodnih-15-godina">
+        <input type="radio" id="objavljeno-u-prethodnih-15-godina" name="film" value="Released in the last 15 years">Objavljeno u prethodnih 15 godina
+      </label>
+      <label for="objavljeno-u-prethodnih-25-godina">
+        <input type="radio" id="objavljeno-u-prethodnih-25-godina" name="film" value="Released in the last 25 years">Objavljeno u prethodnih 25 godina
       </label>
   </form>
   <div class="form-control">

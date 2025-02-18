@@ -1,14 +1,14 @@
 <article class="question-holder container qa" id="fifth-question" style="display: none !important;">
   <h1 class="questionnaire-header">5. Da li želite da film bude:</h1>
   <form id="form-holder-4">
-      {{-- <label for="bez-ograničenja">
-        <input type="radio" id="bez-ograničenja" name="film" value="true">Bez ograničenja
-      </label> --}}
+      <label for="bez-ograničenja">
+        <input type="radio" id="bez-ograničenja" name="film" value="No Age restrictions">Bez ograničenja
+      </label>
       <label for="celu-porodicu">
-        <input type="radio" id="celu-porodicu" name="film" value="Pogodan za celu porodicu">Pogodan za celu porodicu
+        <input type="radio" id="celu-porodicu" name="film" value="Suitable for the whole family">Pogodan za celu porodicu
       </label>
       <label for="odrasli">
-        <input type="radio" id="odrasli" name="film" value="Samo za odrasle">Samo za odrasle
+        <input type="radio" id="odrasli" name="film" value="Adults only">Samo za odrasle
       </label>
   </form>
   <div class="form-control">

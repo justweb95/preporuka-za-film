@@ -15,7 +15,6 @@ domReady(async () => {
     await import('./pages/home.js');
   }
 
-
   if (window.location.pathname.includes('/anketa')) {
     // Only import anketa.js if we're on the correct page
     await import('./pages/anketa.js');

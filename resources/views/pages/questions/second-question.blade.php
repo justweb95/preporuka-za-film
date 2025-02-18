@@ -1,18 +1,18 @@
 <article class="question-holder container qa" id="second-question" style="display: none !important;">
   <h1 class="questionnaire-header">2. Šta najviše odgovara tvojoj prilici?</h1>
   <form id="form-holder-1">
-      <label for="gledam-film-sam">
-        <input type="radio" id="gledam-film-sam" name="film" value="Gledam film sam">Gledam film sam
-      </label>
-      <label for="sa-prijateljima">
-        <input type="radio" id="sa-prijateljima" name="film" value="Gledam film sa prijateljima">Gledam film sa prijateljima
-      </label>
-      <label for="devojkom-dečkom">
-        <input type="radio" id="devojkom-dečkom" name="film" value="Gledam film sa devojkom/dečkom">Gledam film sa devojkom/dečkom
-      </label>
-      <label for="porodicom/rođacima">
-        <input type="radio" id="porodicom/rođacima" name="film" value="Gledam film sa porodicom/rođacima">Gledam film sa porodicom/rođacima
-      </label>
+    <label for="gledam-film-sam">
+      <input type="radio" id="gledam-film-sam" name="film" value="Watching movie alone">Gledam film sam
+    </label>
+    <label for="sa-prijateljima">
+      <input type="radio" id="sa-prijateljima" name="film" value="Watching movie with friends">Gledam film sa prijateljima
+    </label>
+    <label for="devojkom-dečkom">
+      <input type="radio" id="devojkom-dečkom" name="film" value="Watching movie with girlfriend/boyfriend">Gledam film sa devojkom/dečkom
+    </label>
+    <label for="porodicom/rođacima">
+      <input type="radio" id="porodicom/rođacima" name="film" value="Watching movie with family">Gledam film sa porodicom/rođacima
+    </label>
   </form>
   <div class="form-control">
     <button onclick="backQuestion()" class="back-btn">

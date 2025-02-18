@@ -235,14 +235,14 @@
             max-width: 100%;
             width: 100%;
             position: absolute;
-            top: 60px;
+            top: 57px;
             left: 0px;
             background-color: #172938;
             list-style: none;
             display: none;
             flex-wrap: wrap;
             padding-inline-start: 0px;
-            border-radius: 12px;
+            border-radius: 8px;
             .drop-down-item {
               width: 100%;
               max-width: 100%;

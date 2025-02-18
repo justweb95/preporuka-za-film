@@ -2,8 +2,15 @@ import { cyrillicFormat } from '@scripts/partials/textFormatingControler';
 
 async function tmdbCallHandler(movieParams) {
 
-  console.log('movieParams movie_title');
-  console.log(movieParams[0].movie_title);
+  let rendom_movie = Math.floor(Math.random() * 5);
+  // console.log('rendom_movie');
+  // console.log(rendom_movie);
+
+  // console.log('Ime Filma');
+  // console.log(movieParams[rendom_movie].movie_title);
+
+  // console.log('Kada je film izasao');
+  // console.log(movieParams[rendom_movie].movie_year);
   
   // Keywords
   // let key_words = [];
@@ -27,7 +34,7 @@ async function tmdbCallHandler(movieParams) {
 
 
   // const url = `https://api.themoviedb.org/3/discover/movie?include_adult=${include_adult}&with_genres=${with_genres}&primary_release_date.lte=${url_current_date}&primary_release_date.gte=${url_past_date}&include_video=true&language=sr-Latn&page=1&sort_by=popularity.desc&with_keywords=${key_words}&with_origin_country=US%7CSRB%7CES%7CCA%7CMX%7CGB%7CDE%7CFR%7CBR'`;
-  const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movieParams[0].movie_title)}&year=${movieParams[0].movie_year}&language=sr-Latn&`;
+  const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movieParams[rendom_movie].movie_title)}&year=${movieParams[rendom_movie].movie_year}&language=sr-Latn&`;
   
   const options = {
     method: 'GET',
@@ -40,20 +47,13 @@ async function tmdbCallHandler(movieParams) {
   return fetch(url, options)
     .then(res => res.json())
     .then( async json => {
-      
-      let movie_result = json.results[0];
-      console.log('movie_result');
-      console.log(movie_result);
-      
+      let movie_result = json.results[0];      
       const movie_id = movie_result.id;
 
       let single_movie_result = await tmdbSingleMovieHandler(movie_id);
       let single_movie_trailer = await movieTrailer(movie_id);
       let single_movie_watch_on = await movieWatchOn(movie_id);
       let single_movie_credits = await movieCredits(movie_id);
-
-      console.log('single_movie_credits');
-      console.log(single_movie_credits);
       
       single_movie_result.video_trailer = single_movie_trailer.results[0];
       single_movie_result.movie_watch_on = single_movie_watch_on.results['US'];
@@ -67,11 +67,8 @@ async function tmdbCallHandler(movieParams) {
       single_movie_result.title = cyrillicFormat(single_movie_result.title);
       single_movie_result.overview = cyrillicFormat(single_movie_result.overview);
 
-      console.log('movie_result');
-      console.log(movie_result);
-
-      console.log('single_movie_result');
-      console.log(single_movie_result);
+      // console.log('single_movie_result');
+      // console.log(single_movie_result);
 
       // Call Create movie Post function
       let response = await createMoviePost(single_movie_result);

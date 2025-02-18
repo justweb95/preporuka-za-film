@@ -1,6 +1,7 @@
   // Function to animate number increment
   function animateNumber(id, start, end, duration) {
     const element = document.getElementById(id);
+    if (!element) return; // Return if the element does not exist
     let startTime = null;
 
     function updateNumber(timestamp) {
@@ -20,6 +21,7 @@
   // Function to observe when element is in viewport
   function observeElement(id, start, end, duration) {
     const element = document.getElementById(id);
+    if (!element) return; // Return if the element does not exist
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
