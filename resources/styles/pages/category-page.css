@@ -134,11 +134,11 @@
       cursor: pointer;
       .category-drop-down-holder {
         svg {
-          transform: rotate(180deg) !important;
+          transform: rotate(180deg);
         }
       }
       .category-drop-down-list {
-        display: flex !important;
+        display: flex;
       }
     }
   }
