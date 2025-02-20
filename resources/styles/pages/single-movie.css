@@ -76,7 +76,6 @@
         .sm-info-content-title-holder {
           display: flex;
           justify-content: space-between;
-          align-items: center;
           .sm-info-content-title {
             display: inline;
             color: var(--White, #FFF);
@@ -88,12 +87,19 @@
           }
           .sm-info-imdb-rating-holder {
             min-width: fit-content;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
             img {
               vertical-align: middle;
             }
             svg {
-              height: 42px;
+              height: 32px;
               vertical-align: middle;
+            }
+            .preporuka-svg {
+              min-width: 64px;
             }
             p {
               margin: 0px 12px 0px 6px;
@@ -311,8 +317,22 @@
               font-size: 24px;
             }
             .sm-info-imdb-rating-holder {
+              gap: 6px;
               p {
+                margin: 0px 6px 0px 0px;
                 font-size: 18px;
+              }
+              img, svg {
+                max-height: 26px;
+              }
+              svg {
+                max-width: 24px;
+              }
+              .star-gold {
+                max-width: 14px;
+              }
+              .preporuka-svg {
+                min-width: 52px;
               }
             }
           }
@@ -444,7 +464,12 @@
           .comment-form-comment, .comment-form-author, .comment-form-email {
             margin: 20px 0px;
             width: 100%;
+            max-width: 100%;
             textarea, input {
+              max-width: 100%;
+              min-width: 100%;
+              max-height: 300px;
+              min-height: 75px;
               padding: 18px 20px;
               width: 100%;
               border-radius: 4px;
@@ -634,6 +659,7 @@
   }
 
   .comments_list {
+    max-width: 1280px !important;
     .comment_list_holder {
       margin: 24px 0px;
       width: 70%;
