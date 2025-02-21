@@ -1,5 +1,6 @@
 <?php
-
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
@@ -187,6 +188,7 @@ add_filter( 'comment_text', 'display_star_rating', 10, 2 );
 // add_action('init', 'custom_flush_rewrite_rules');
 
 
+<<<<<<< HEAD
 // function myprefix_modify_movie_category_archive( $query ) {
 //     // Only modify the main query on the front end on category archives
 //     if ( ! is_admin() && $query->is_main_query() && $query->is_category() ) {
@@ -228,3 +230,18 @@ function modify_category_and_blog_archive( $query ) {
     }
 }
 add_action( 'pre_get_posts', 'modify_category_and_blog_archive' );
+=======
+
+add_action( 'phpmailer_init', 'configure_smtp' );
+    function configure_smtp( $phpmailer ) {
+        $phpmailer->isSMTP();
+        $phpmailer->Host       = 'mail.preporukazafilm.com'; // SMTP server
+        $phpmailer->SMTPAuth   = true;
+        $phpmailer->Port       = 465; // SMTP port
+        $phpmailer->Username   = 'info@preporukazafilm.com'; // SMTP username
+        $phpmailer->Password   = 'OZ=O&q%T#&Ov'; // SMTP password
+        $phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Use SSL/TLS
+        $phpmailer->From       = 'info@preporukazafilm.com'; // From email address
+        $phpmailer->FromName   = 'Preporuka Za Film'; // From name
+    }
+>>>>>>> a0f3cfc (Mail sending is working)
