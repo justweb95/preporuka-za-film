@@ -16,6 +16,7 @@
     @include('pages.blog.blog-list')
   @endif
 
+
   {{-- @if (! have_posts())
     <x-alert type="warning">
       {!! __('Sorry, no results were found.', 'sage') !!}

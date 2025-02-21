@@ -44,11 +44,10 @@ function create_movie_post_type() {
         'menu_icon'             => 'dashicons-video-alt2', // Dashicon for Movies
         'can_export'            => true,
         'has_archive'           => true,
-        'rewrite'               => array( 'slug' => 'single-movie' ),
-        'show_in_rest'          => true, // Enable Gutenberg editor
+        'rewrite'               => array( 'slug' => 'single-movie', 'paged' => true ),
         'rest_base'             => 'movies',
         'rest_controller_class' => 'WP_REST_Posts_Controller',
-        'taxonomies'            => array( 'category' ), // Enable categories
+        'taxonomies'            => array( 'category', 'tags', 'paged' ), // Enable categories
     );
 
     register_post_type( 'movie', $args );

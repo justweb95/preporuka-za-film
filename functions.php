@@ -185,3 +185,46 @@ add_filter( 'comment_text', 'display_star_rating', 10, 2 );
 // }
 // add_action('after_switch_theme', 'custom_flush_rewrite_rules');
 // add_action('init', 'custom_flush_rewrite_rules');
+
+
+// function myprefix_modify_movie_category_archive( $query ) {
+//     // Only modify the main query on the front end on category archives
+//     if ( ! is_admin() && $query->is_main_query() && $query->is_category() ) {
+//       // Set the query to pull the 'movie' post type posts
+//       $query->set( 'post_type', 'movie' );
+//       $query->set( 'posts_per_page', 20 );
+//     }
+//   }
+//   add_action( 'pre_get_posts', 'myprefix_modify_movie_category_archive' );
+
+
+
+
+
+function modify_category_and_blog_archive( $query ) {
+    if ( ! is_admin() && $query->is_main_query() ) {
+        // Check if it's the 'vesti' category and has a parent category 'blog'
+        if ( $query->is_category('vesti') ) {
+            // Get the current category object
+            $current_cat = get_queried_object();
+            // Check if the parent category is 'blog' (by slug)
+            if ( $current_cat && $current_cat->parent ) {
+                $parent_cat = get_term( $current_cat->parent, 'category' );
+                if ( $parent_cat->slug === 'blog' ) {
+                    // Show ONLY 'post' type for this specific category
+                    $query->set( 'post_type', 'post' );
+                    $query->set( 'posts_per_page', 20 );
+                    return; // Exit early to avoid conflicting rules
+                }
+            }
+        }
+        
+        // Default behavior for other categories and the blog posts index
+        if ( $query->is_category() || $query->is_home() ) {
+            // Include both 'movie' and 'post'
+            $query->set( 'post_type', array( 'movie', 'post' ) );
+            $query->set( 'posts_per_page', 20 );
+        }
+    }
+}
+add_action( 'pre_get_posts', 'modify_category_and_blog_archive' );
