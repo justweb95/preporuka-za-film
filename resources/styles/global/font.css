@@ -4,7 +4,7 @@
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
-  src: url('@fonts/Unbounded/Unbounded-VariableFont_wght.ttf'), format('truetype');
+  src: url('@fonts/Unbounded/Unbounded-VariableFont_wght.woff2') format('woff2');
 }
 
 /* Red Hat Display Font */
@@ -13,5 +13,5 @@
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
-  src: url('@fonts/Red_Hat_Display/RedHatDisplay-VariableFont_wght.ttf'), format('truetype');
+  src: url('@fonts/Red_Hat_Display/RedHatDisplay-VariableFont_wght.woff2') format('woff2');
 }

@@ -75,7 +75,7 @@
     <nav class="burger-menu-content">
       <ul class="nav-link">
         <li class="burger-header">
-          <img src="@asset('images/partials/burger-logo.svg')" alt="Burger Logo">
+            <img src="@asset('images/partials/burger-logo.svg')" loading="lazy" alt="Burger Logo">
           <svg class="burger-close" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect y="0.00012207" width="40" height="40" rx="20" fill="#172938"/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M18.409 19.9203L12.7607 25.5686L14.3517 27.1596L20 21.5113L25.6483 27.1596L27.2393 25.5686L21.591 19.9203L27.0797 14.4317L25.4887 12.8407L20 18.3293L14.5113 12.8407L12.9203 14.4317L18.409 19.9203Z" fill="#EDFEEC"/>

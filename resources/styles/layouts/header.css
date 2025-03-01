@@ -18,7 +18,7 @@
         height: 1px;
       }
     }
-    padding: 24px 0px;
+    padding: 18px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -335,6 +335,7 @@
   }
   @media (max-width: 550px) {
     .header-holder {
+      padding: 12px 0px;
       .header-logo {
         display: block;
         height: auto;

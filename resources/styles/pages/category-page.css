@@ -222,8 +222,8 @@
         stroke: var(--Orange, #F57C36);
         fill: var(--Orange, #F57C36);
         path {
-          stroke: var(--Orange, #F57C36);
-          fill: var(--Orange, #F57C36);
+          stroke: var(--Orange, #F57C36) !important;
+          fill: var(--Orange, #F57C36) !important;
         }
       }
     }
@@ -304,6 +304,14 @@
         flex:  0 47%;
         .movie-poster {
           border-radius: 8px;
+        }
+        .like-button {
+          &:hover {
+            path {
+              fill: #06131E;
+              stroke: #EDFEEC;
+            }
+          }
         }
         h2 {
           font-size: 16px;

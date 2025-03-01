@@ -116,8 +116,6 @@ add_action( 'init', 'create_movie_post_type', 0 );
             }, $movie_data['movie_data']['single_movie_cast']) : 
             array();
 
-
-
         $budget = isset($movie_data['movie_data']['budget']) ? intval($movie_data['movie_data']['budget']) : 0;
         $genres = isset($movie_data['movie_data']['genres']) ? sanitize_text_field($movie_data['movie_data']['genres']) : [];
         $homepage = isset($movie_data['movie_data']['homepage']) ? esc_url_raw($movie_data['movie_data']['homepage']) : '';
@@ -142,7 +140,8 @@ add_action( 'init', 'create_movie_post_type', 0 );
         ) );
 
         if ( $existing_movie ) {
-            wp_send_json_success(array( 'message' => 'Movie with this ID already exists'));
+            $post_url = get_permalink($existing_movie[0]->ID);
+            wp_send_json_success(array( 'message' => 'Movie with this ID already exists', 'post_url' => $post_url ));
             return;
         }
         
@@ -196,7 +195,7 @@ add_action( 'init', 'create_movie_post_type', 0 );
                 'post_url' => $post_url
             ));
         } else {
-            wp_send_json_success( array( 'message' => 'Movie exist!', 'post_id' => $post_id, 'movie_id' => $movie_id ) );
+            wp_send_json_error( array( 'message' => 'Failed to create movie.' ) );
         }
     }
 

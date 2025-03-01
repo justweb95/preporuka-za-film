@@ -2,7 +2,7 @@
   position: relative;
 
   padding: 60px 0px 40px;
-  min-height: calc(100svh - 104px);
+  min-height: calc(100svh - 92px);
   height: auto;
   background-color: var(--Background);
   background-image: url('/images/questionnaire/questionnaire-bg.webp');

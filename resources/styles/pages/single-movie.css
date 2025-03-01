@@ -354,11 +354,6 @@
             }
           }
 
-
-          /* Upitno */
-          hr {
-          }
-
           .sm-info-content-director, .sm-info-content-writers, .sm-info-content-cast {
             justify-content: flex-start;
             /* display: none; */
@@ -651,11 +646,6 @@
         }
       }
     }
-    .form {
-      .comment-respond {
-        
-      }
-    }
   }
 
   .comments_list {
@@ -731,12 +721,13 @@
     pointer-events: none;
     position: absolute;
     height: calc(100% - 100px);
-    top: 85px;
+    top: 140px;
     left: 50%;
     transform: translate(-50%);
+    padding-bottom: 20px;
     .banner-box {
       position: sticky;
-      top: 10px;
+      top: 100px;
       left: calc(100% + 250px);
       border-radius: 8px;
       background-color: #42a7ff26;

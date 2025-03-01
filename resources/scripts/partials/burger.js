@@ -29,14 +29,14 @@ if (burgerClose && burgerMenuContent) {
   burgerClose.addEventListener('click', () => toggleDisplay(burgerMenuContent));
 }
 
-const headerHolder = document.querySelector('.header-holder');
+// const headerHolder = document.querySelector('.header-holder');
 
-window.addEventListener('scroll', () => {
-  if (headerHolder) {
-    if (window.scrollY > 16) {
-      headerHolder.style.padding = '16px 0px';
-    } else {
-      headerHolder.style.padding = '';
-    }
-  }
-});
+// window.addEventListener('scroll', () => {
+//   if (headerHolder) {
+//     if (window.scrollY > 16) {
+//       headerHolder.style.padding = '16px 0px';
+//     } else {
+//       headerHolder.style.padding = '';
+//     }
+//   }
+// });

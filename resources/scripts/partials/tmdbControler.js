@@ -34,7 +34,8 @@ async function tmdbCallHandler(movieParams) {
 
 
   // const url = `https://api.themoviedb.org/3/discover/movie?include_adult=${include_adult}&with_genres=${with_genres}&primary_release_date.lte=${url_current_date}&primary_release_date.gte=${url_past_date}&include_video=true&language=sr-Latn&page=1&sort_by=popularity.desc&with_keywords=${key_words}&with_origin_country=US%7CSRB%7CES%7CCA%7CMX%7CGB%7CDE%7CFR%7CBR'`;
-  const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movieParams[rendom_movie].movie_title)}&year=${movieParams[rendom_movie].movie_year}&language=sr-Latn&`;
+  const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movieParams[rendom_movie].movie_title)}&year=${movieParams[rendom_movie].movie_year}&language=sr-Latn&with_runtime.gte=40`;
+
   
   const options = {
     method: 'GET',
@@ -153,10 +154,10 @@ const createMoviePost = async (movie_data) => {
       const data = await response.json();
 
       if (data.success) {
-        console.log('Movie created successfully! Post ID: ' + data.data.post_id)  
+        console.log('Movie created successfully!')
         return data;
       } else {
-        console.log('Movie with this ID already exists! Post ID: ' + data.data.post_id)  
+        console.log('Movie with this ID already exists!')  
       }
   } catch (error) {
     console.log('Movie with this ID already exists! Post ID: ' + error)  
