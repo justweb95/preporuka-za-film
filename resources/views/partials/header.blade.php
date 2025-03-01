@@ -1,7 +1,7 @@
 <header class="header-main">
   <div class="header-holder container">
     <a href="{{ url('/') }}">
-      <img class="header-logo" src="@asset('images/partials/preporuka-za-film-logo.svg')" alt="Preporuka za film logo">
+      <img class="header-logo" width="188" height="40" src="@asset('images/partials/preporuka-za-film-logo.svg')" alt="Preporuka za film logo">
     </a>   
     <nav class="main-nav-desktop">
       <ul class="nav-link">

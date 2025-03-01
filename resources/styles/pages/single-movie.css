@@ -145,7 +145,17 @@
 
 
         .sm-info-content-description {
-          margin: 24px 0px 40px;
+          margin: 12px 0px 20px;
+          display: inline-block;
+          .sm-info-content-description-image {
+            display: none;
+            max-width: 35%;
+            border-radius: 8px;
+            margin-top: 4px;
+            float: left; /* Floats the image to the left */
+            margin-right: 12px; /* Adds some space between the image and the text */
+            margin-bottom: 6px; /* Adds space below the image for a cleaner layout */
+          }
           .sm-info-content-description-text {
             color: var(--Light, #EDFEEC);
             font-family: "Red Hat Display";
@@ -153,6 +163,8 @@
             font-style: normal;
             font-weight: 400;
             line-height: 140%; 
+            line-height: 1.5;
+            text-align: justify;
           }
         }
 
@@ -291,7 +303,15 @@
     @media (max-width: 1024px) {
       .sm-info {
         flex-direction: column-reverse;
+        .sm-info-content {
+          .sm-info-content-description {
+            .sm-info-content-description-image {
+              display: block;
+            }
+          }
+        }
         .sm-info-poster {
+          display: none;
           max-width: 100%;
           img {
             max-height: 600px;
@@ -348,7 +368,8 @@
           }
 
           .sm-info-content-description {
-            margin: 18px 0px;
+            margin: 0px 0px;
+            display: inline-block;
             .sm-info-content-description-text  {
               font-size: 14px;
             }
@@ -356,7 +377,6 @@
 
           .sm-info-content-director, .sm-info-content-writers, .sm-info-content-cast {
             justify-content: flex-start;
-            /* display: none; */
             h4 {
               min-width: 65px;
             }
@@ -409,6 +429,7 @@
 
   @media (max-width: 550px) {
     padding: 32px 0px;
+    
     .sm-hero-holder {
       .sm-loader {
         height: 150px;

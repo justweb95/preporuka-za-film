@@ -729,7 +729,7 @@
 
   @media (max-width: 550px) {
     padding: 12px 0px 48px;
-    min-height: calc(100svh - 88px);
+    min-height: calc(100svh - 64px);
     height: auto;
     article {
       display: none;

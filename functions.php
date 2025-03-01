@@ -242,3 +242,13 @@ add_action( 'phpmailer_init', 'configure_smtp' );
         $phpmailer->From       = 'info@preporukazafilm.com'; // From email address
         $phpmailer->FromName   = 'Preporuka Za Film'; // From name
     }
+
+
+    function custom_query_override($query) {
+        if (!is_admin() && $query->is_main_query()) {
+            if (is_category(array('vesti', 'recenzije', 'top-liste'))) {
+                $query->set('posts_per_page', 6); // Show 6 posts per page
+            }
+        }
+    }
+    add_action('pre_get_posts', 'custom_query_override');

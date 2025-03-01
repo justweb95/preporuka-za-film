@@ -53,7 +53,7 @@
     </ul>
     <div class="footer-info">
       <p class="footer-par">Copyright © 2024 preporukazafilm.com. Sva prava zadržana</p>
-      <a class="footer-link" href="#">Pravila Korišćenja</a>
+      <a class="footer-link" href="{{ home_url() }}/privacy-policy">Pravila Korišćenja</a>
     </div>
   </div>
 </footer>

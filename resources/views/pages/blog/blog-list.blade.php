@@ -73,7 +73,7 @@ $blog_posts = new WP_Query($args);
                 </svg>
               </a>
             @else
-              <a href="{{ get_category_link($movie_category->term_id) }}">  <!-- Normal category link -->
+              <a href="{{ get_category_link($movie_category->term_id) }}">
                 {{ $movie_category->name }}
                 <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
