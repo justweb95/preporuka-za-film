@@ -145,6 +145,7 @@
 
 
         .sm-info-content-description {
+          width: 100%;
           margin: 12px 0px 20px;
           display: inline-block;
           .sm-info-content-description-image {

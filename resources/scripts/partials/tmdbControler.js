@@ -66,7 +66,7 @@ async function tmdbCallHandler(movieParams) {
       single_movie_result.genres = cyrillicFormat(single_movie_result.genres[0].name.replace(/^"|"$/g, ''));
 
       single_movie_result.title = cyrillicFormat(single_movie_result.title);
-      single_movie_result.overview = cyrillicFormat(single_movie_result.overview);
+      single_movie_result.overview = single_movie_result.overview ? cyrillicFormat(single_movie_result.overview) : "Trenutno nema opis za ovaj film";
 
       // console.log('single_movie_result');
       // console.log(single_movie_result);

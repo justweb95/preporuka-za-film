@@ -191,7 +191,7 @@
         border-radius: 8px;
         overflow: hidden;
         max-width: 316px;
-        flex: 1 0 36%;
+        flex: 0 0 36%;
         img {
           object-fit: cover;
           display: block;
@@ -270,7 +270,8 @@
             border-radius: 8px;
             overflow: hidden;
             align-self: stretch;
-            flex: 1 0 36%;
+            max-width: 35%;
+            flex: 0 0 35%;
             img {
               object-fit: cover;
               display: block;
@@ -279,6 +280,7 @@
             }
           }
           .result-content-description-text {
+            width: 100%;
             color: var(--Light, #EDFEEC);
             font-family: "Red Hat Display";
             font-size: 16px;
@@ -541,7 +543,7 @@
         align-items: center;
         text-align: center;
         opacity: 0;
-        animation: appearTMDB 2s 2s forwards, moveLeftTMDB 2s 4s forwards;
+        animation: appearTMDB 2s 2s forwards, moveLeftTMDB 2s 20s forwards;
         background-color: #172938;
         border-radius: 50%;
         height: 200px;
@@ -558,7 +560,7 @@
           left: 0px;
           z-index: -1;
           border-radius: 50%;
-          animation: circleAroundTMDBOrange 1s 2s 2 ease-in-out forwards;
+          animation: circleAroundTMDBOrange 1s 2s 20 ease-in-out forwards;
         }
 
         &::after {
@@ -572,7 +574,7 @@
           left: 0px;
           z-index: -1;
           border-radius: 50%;
-          animation: circleAroundTMDBGreen 1s 2s 2 ease-out forwards;
+          animation: circleAroundTMDBGreen 1s 2s 20 ease-out forwards;
         }
       }
     }

@@ -90,21 +90,53 @@ async function changeQuestionHandler(currentQuestionIndex) {
       isOkay = false;
     }
 
-    if(isOkay) {
-      const tmdbResult = tmdbCallHandler(recommendation_movie_array);  
-      poplateResult(tmdbResult);
-  
-      setTimeout(() => {
-        currentQuestionIndex = 7;
+    if (isOkay) {
+      try {
+        const tmdbResult = await tmdbCallHandler(recommendation_movie_array);
+
+        await poplateResult(tmdbResult);
+
+        setTimeout(() => {
+
+          currentQuestionIndex = 7;
+          changeQuestionHandler(currentQuestionIndex);
+        }, 300)
+        // You can directly change the question after tmdbResult is populated
+        // currentQuestionIndex = 7;
+        // changeQuestionHandler(currentQuestionIndex);
+      } catch (error) {
+        // Handle any errors that may have occurred during tmdbCallHandler
+        console.error('Error fetching TMDB data:', error);
+        showToast('Oops doslo je do greske.', 'warning');
+        showToast('Probaj ponovo.', 'warning');
+        currentQuestionIndex = 0;
         changeQuestionHandler(currentQuestionIndex);
-      }, 3000)
-    }
-    else {
-      showToast('Oops doslo je do greske.', 'warning')
-      showToast('Probaj ponovo.', 'warning')
+      }
+    } else {
+      showToast('Oops doslo je do greske.', 'warning');
+      showToast('Probaj ponovo.', 'warning');
       currentQuestionIndex = 0;
       changeQuestionHandler(currentQuestionIndex);
     }
+
+    // if(isOkay) {
+    //   const tmdbResult = await tmdbCallHandler(recommendation_movie_array);  
+
+
+    //   console.log(tmdbResult);
+    //   poplateResult(tmdbResult);
+  
+    //   setTimeout(() => {
+    //     currentQuestionIndex = 7;
+    //     changeQuestionHandler(currentQuestionIndex);
+    //   }, 3000)
+    // }
+    // else {
+    //   showToast('Oops doslo je do greske.', 'warning')
+    //   showToast('Probaj ponovo.', 'warning')
+    //   currentQuestionIndex = 0;
+    //   changeQuestionHandler(currentQuestionIndex);
+    // }
   }
 }
 
