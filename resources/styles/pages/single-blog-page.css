@@ -386,6 +386,9 @@
           textarea, input {
             padding: 18px 20px;
             width: 100%;
+            max-width: 100%;
+            min-width: 100%;
+            max-height: 300px;
             border-radius: 4px;
             background: #152533;
             color: #FFF;
@@ -409,6 +412,10 @@
               -webkit-text-fill-color: white !important;
             }
           }
+          textarea {
+            min-height: 75px;
+          }
+
         }
 
         .comment-form-cookies-consent {

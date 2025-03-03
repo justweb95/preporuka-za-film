@@ -1,6 +1,17 @@
 <!doctype html>
 <html @php(language_attributes())>
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LVKSE9X06E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'G-LVKSE9X06E');
+    </script>
+    <!-- Google tag (gtag.js) -->
+  
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ asset('images/partials/favicon.svg') }}" type="image/svg+xml">
@@ -9,7 +20,6 @@
     @php(do_action('get_header'))
     @php(wp_head())
   </head>
-
   <body @php(body_class())>
     @php(wp_body_open())
     <div id="app">
