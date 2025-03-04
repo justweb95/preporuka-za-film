@@ -17,8 +17,6 @@ const toggleDisplay = (element, icon) => {
   }  
 
   if(icon) {
-    console.log('clicked');
-    console.log(categoriesIcon);
     categoriesIcon.classList.toggle('rotate-icon');
   }
 };

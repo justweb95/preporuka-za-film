@@ -56,7 +56,6 @@ function handleFormSubmit(e) {
 
   // Validate form
   if (!validateFormHandler(comment_data)) {
-    console.log('Forma nije validna');
     showToast('Popunite sva polja unutar forme!');
     return;
   }
@@ -202,7 +201,6 @@ function handleCommentPost(comment_data) {
         });
         return;
       } else {
-        console.log('No data returned.');
         return;
       }
     })

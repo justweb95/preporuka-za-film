@@ -1,9 +1,6 @@
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css'; // Importing CSS for Toastify
 
-console.log('Alo');
-
-
 // Toster
 function showToast(message) {
   Toastify({
@@ -60,7 +57,6 @@ function handleFormSubmit(e) {
 
   // Validate form
   if (!validateFormHandler(comment_data)) {
-    console.log('Forma nije validna');
     showToast('Popunite sva polja unutar forme!');
     return;
   }
@@ -135,8 +131,6 @@ function handleCollectingData() {
 }
 
 function handleCommentPost(comment_data) {
-  console.log(PRODUCTION);
-  
   // Construct the action URL dynamically based on current location
   let actionUrl = ``;
   if (PRODUCTION) {
@@ -173,7 +167,6 @@ function handleCommentPost(comment_data) {
       comment_data.form_email.value = '';
       return;
     } else {
-      console.log('No data returned.');
       return;
     }
   })

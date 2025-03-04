@@ -154,10 +154,10 @@ const createMoviePost = async (movie_data) => {
       const data = await response.json();
 
       if (data.success) {
-        console.log('Movie created successfully!')
+        // console.log('Movie created successfully!')
         return data;
       } else {
-        console.log('Movie with this ID already exists!')  
+        // console.log('Movie with this ID already exists!')  
       }
   } catch (error) {
     console.log('Movie with this ID already exists! Post ID: ' + error)  
