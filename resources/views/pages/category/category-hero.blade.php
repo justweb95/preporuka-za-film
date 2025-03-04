@@ -14,7 +14,7 @@
 
   // Remove categories with slugs 'blog', 'recenzije', 'top-list', and 'vesti' from the list
   $movie_categories = array_filter($movie_categories, function($cat) {
-    return !in_array($cat->slug, ['blog', 'recenzije', 'top-list', 'vesti']);
+    return !in_array($cat->slug, ['blog', 'recenzije', 'top-liste', 'vesti']);
   });
   // Re-index the array to avoid any gaps in the keys after filtering
   $movie_categories = array_values($movie_categories);
