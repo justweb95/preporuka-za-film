@@ -185,6 +185,9 @@ window.newRecomendation = function() {
 window.openTrailerPopUp = function () {
   const trailerModal = document.querySelector('#trailer-modal');
   
+  // Scroll to the top
+  window.scrollTo({ top: 0, behavior: 'smooth' });  
+
   // Show the modal
   trailerModal.showModal();
 
@@ -193,14 +196,14 @@ window.openTrailerPopUp = function () {
 
   closeModalBtn.onclick = function() {
       trailerModal.close();
-      stopVideo()
+      stopVideo();
   };
 
   // Close modal when clicking outside of it
   trailerModal.addEventListener('click', function(event) {
       if (event.target === trailerModal) {
           trailerModal.close();
-          stopVideo()
+          stopVideo();
       }
   });
 }

@@ -5,7 +5,8 @@
     </a>   
     <nav class="main-nav-desktop">
       <ul class="nav-link">
-        <li class="link-item"><a href="{{ home_url() }}/">Početna</a></li>
+        {{-- <li class="link-item"><a href="{{ home_url() }}/">Početna</a></li> --}}
+        <li class="link-item"><a href="{{ home_url() }}/anketa">Anketa</a></li>
         <li class="link-item">
           <a href="#">Kategorije</a>
           <svg class="category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,9 +83,10 @@
           </svg>
         </li>
         <li class="burger-link-item"><a href="{{ home_url() }}/">Početna</a></li>
+        <li class="burger-link-item"><a href="{{ home_url() }}/anketa">Anketa</a></li>
         <li class="burger-link-item burger-open-dropdown">
           <a>Kategorije</a>
-           <svg class="category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+           <svg class="burger-category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 1L6.49999 6L12 1ZM6.49999 6L1 1L6.49999 6Z" fill="#EDFEEC"/>
             <path d="M12 1L6.49999 6L1 1" stroke="#18BF7C" stroke-width="2"/>
           </svg>          

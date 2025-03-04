@@ -5,28 +5,34 @@ const burgerDropdownContent = document.querySelector('.burger-dropdown-content')
 const burgerOpenBtn = document.querySelector('.burger-open-btn');
 const burgerClose = document.querySelector('.burger-close');
 const burgerMenuContent = document.querySelector('.burger-menu-content');
+const categoriesIcon = document.querySelector('.burger-category-icon');
 
-const toggleDisplay = (element) => {    
+const toggleDisplay = (element, icon) => {    
   let body = document.querySelector('body');
   element.style.display = (element.style.display === 'flex') ? 'none' : 'flex';
     
   if (element.classList.contains('burger-menu-content')) {
     element.classList.toggle('burger-active');
     body.style.overflowY =  (body.style.overflowY === 'hidden') ? 'auto' : 'hidden';
+  }  
+
+  if(icon) {
+    console.log('clicked');
+    console.log(categoriesIcon);
+    categoriesIcon.classList.toggle('rotate-icon');
   }
-  
 };
 
 if (burgerOpenDropdown && burgerDropdownContent) {
-  burgerOpenDropdown.addEventListener('click', () => toggleDisplay(burgerDropdownContent));
+  burgerOpenDropdown.addEventListener('click', () => toggleDisplay(burgerDropdownContent, true));  
 }
 
 if (burgerOpenBtn && burgerMenuContent) {
-  burgerOpenBtn.addEventListener('click', () => toggleDisplay(burgerMenuContent));
+  burgerOpenBtn.addEventListener('click', () => toggleDisplay(burgerMenuContent, false));
 }
 
 if (burgerClose && burgerMenuContent) {
-  burgerClose.addEventListener('click', () => toggleDisplay(burgerMenuContent));
+  burgerClose.addEventListener('click', () => toggleDisplay(burgerMenuContent, false));
 }
 
 // const headerHolder = document.querySelector('.header-holder');

@@ -216,6 +216,9 @@ function handleCommentPost(comment_data) {
 window.openTrailerPopUp = function () {
   const trailerModal = document.querySelector('#trailer-modal');
   
+  // Scroll to the top
+  window.scrollTo({ top: 0, behavior: 'smooth' });  
+  
   // Show the modal
   trailerModal.showModal();
 

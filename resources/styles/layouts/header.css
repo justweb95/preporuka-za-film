@@ -247,6 +247,9 @@
             margin-left: 10px;
             transition: .3s ease;
           }
+          .burger-category-icon {
+            transition: .3s ease;
+          }
           .link-drop-down {
             z-index: 2;
             max-width: 100%;
@@ -350,6 +353,11 @@
   .nav-link {
     animation: fromRight 0.4s ease-in-out;
   }
+}
+
+
+.rotate-icon {
+  transform: rotate(180deg) !important;
 }
 
 
