@@ -122,7 +122,7 @@ async function callPerplexity(prompt) {
       max_tokens: 150,
       temperature: 0.4,
       top_p: 0.9,
-      search_domain_filter: ['https://www.themoviedb.org/'],
+      // search_domain_filter: ['https://www.themoviedb.org/'],
     })
   };
 
