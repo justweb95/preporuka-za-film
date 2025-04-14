@@ -212,7 +212,7 @@
       top: 0px;
       z-index: 12;
       .nav-link {
-        padding: 0px 18px 48px 18px;
+        padding: 0px 18px 18px 18px;
         margin-left: auto;
         width: 90%;
         height: 100%;
@@ -297,8 +297,39 @@
             }
           }
         }
+        .follow-us-on-instagram {
+          padding: 0px !important;
+          position: relative;
+          border-bottom: 1px solid transparent !important;
+          justify-content: flex-start;
+          .follow-us-on-insta-link {
+            width: 100%;
+            display: flex;
+            align-items: center;
+          }
+          svg {
+            margin-right: 8px;
+            padding: 8px;
+            background-color: #17293800;
+            border-radius: 4px;
+            width: 42px;
+            height: 42px;
+            vertical-align: middle;
+          }
+          a {
+            text-decoration: none;
+            color: #FFF;
+            font-family: "Red Hat Display", sans-serif;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            transition: .3s ease;  
+          }
+        }
         .burger-search {
           margin-top: auto;
+          margin-bottom: 16px;
           padding: 16px 18px;
           border-radius: 40px;
           background: #172938;

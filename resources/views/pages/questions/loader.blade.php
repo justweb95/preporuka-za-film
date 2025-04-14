@@ -5,7 +5,7 @@
       AI Trazi film
     </p>
     <p id="tmdb-loader" class="tmdb-loading-text">
-      IMDB Salje Podatke
+      TMDB Salje Podatke
     </p>
   </div>
 </article>

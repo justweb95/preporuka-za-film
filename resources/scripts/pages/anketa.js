@@ -160,6 +160,8 @@ window.nextQuestion = function() {
 
 // Here is the function to show the previous question
 window.backQuestion = function(event) {
+  allAnswers.pop();
+
   if(currentQuestionIndex > 0) {
     currentQuestionIndex--;
     changeQuestionHandler(currentQuestionIndex);

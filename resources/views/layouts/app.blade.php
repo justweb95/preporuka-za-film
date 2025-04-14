@@ -14,6 +14,9 @@
   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="🎬 Tražite film za večeras? Odgovorite na 6 brzih pitanja i dobijte pametnu AI preporuku za 1 min! Prema vašem raspoloženju i društvu.🍿📽️">
+    <meta name="keywords" content="preporuka za film, koji film gledati, preporuka filma, preporučeni filmovi, AI preporuka filma, film prema raspoloženju, najbolji filmovi, šta gledati večeras">
+    
     <link rel="icon" href="{{ asset('images/partials/favicon.svg') }}" type="image/svg+xml">
     <link rel="preload" href="{{ asset('images/home/hero-background.webp') }}" as="image">
     

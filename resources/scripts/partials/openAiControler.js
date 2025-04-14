@@ -8,6 +8,7 @@
 
 
 function buildPromt(movieData) {
+  
   // let prompt = `
   //   You are a movie recommendation expert. 
     
@@ -65,35 +66,37 @@ function buildPromt(movieData) {
       4. Prioritize this priority list:
         a) Try to Matches 4+ user criteria exactly
         b) High TMDB popularity (6+)
-        d) IMDb rating 6.0+
+        c) IMDb rating 6.0+
+        d) Year of release 
 
       5. If needed, include movies matching 3 criteria but with strong secondary indicators
 
       User Criteria Analysis:
-      1. Type: ${movieData[0]}
+      1. Viewing Mood: ${movieData[0]}
       2. Viewing Company: ${movieData[1]}
       3. Primary Genre(s): ${movieData[2]}
-      4. Release Era: ${movieData[3]}
+      4. Release Period: ${movieData[3]}
       5. Age Rating: ${movieData[4]}
-      6. Secondary Genre: ${movieData[5]}
+      6. Theme: ${movieData[5]}
 
       Processing Steps:
-      1. NLP analysis of all criteria
-      2. Cross-reference with TMDB/IMDb datasets
-      3. Content-based filtering for genre/themes
-      4. Collaborative filtering for viewing context
-      5. Validate against age restrictions
-      6. Sort by match strength & popularity
+      1. Analyze user criteria using Natural Language Processing (NLP).
+      2. Cross-reference potential movies with TMDB and IMDb databases.
+      3. Apply content-based filtering based on specified genres and themes.
+      4. Utilize collaborative filtering techniques considering the viewing context.
+      5. Ensure all recommendations comply with specified age ratings.
+      6. Rank movies based on the strength of matches to user criteria, popularity metrics, and release recency.
 
       REQUIRED OUTPUT EXAMPLE:
       [
-        {"movie_title":"Inception","movie_year":2010},
-        {"movie_title":"The Dark Knight","movie_year":2008},
-        {"movie_title":"Interstellar","movie_year":2014},
-        {"movie_title":"The Matrix","movie_year":1999},
-        {"movie_title":"Gladiator","movie_year":2000}
+        {"movie_title": "Full Movie Title", "movie_year": "Release Year"},
+        {"movie_title": "Full Movie Title", "movie_year": "Release Year"},
+        {"movie_title": "Full Movie Title", "movie_year": "Release Year"},
+        {"movie_title": "Full Movie Title", "movie_year": "Release Year"},
+        {"movie_title": "Full Movie Title", "movie_year": "Release Year"}
       ]
       REQUIRED OUTPUT EXAMPLE:
+
 
       STRICT RULES:
       - Only 5 entries

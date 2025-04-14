@@ -1,6 +1,6 @@
 <article class="question-holder container qa" id="results">  
   {{-- Results --}}
-  <h1 class="questionnaire-header">Preporuke za tebe</h1>   
+  <h1 class="questionnaire-header">Preporuka za tebe</h1>   
   <div class="result-data-holder">
     {{-- Image --}}
     <span class="result-poster-holder" id="result-poster-holder">

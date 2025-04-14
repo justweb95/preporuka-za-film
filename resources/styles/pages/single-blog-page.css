@@ -125,6 +125,14 @@
         .share_link {
           text-decoration: none;
           transition: .3s;
+          padding: 8px;
+          background-color: #22374A;
+          border-radius: 4px;
+          svg {
+            width: 22px;
+            height: 22px;
+            vertical-align: middle;
+          }
           &:hover {
             cursor: pointer;
             transform: scale(1.1);
@@ -230,6 +238,26 @@
           cursor: pointer;
           transform: scale(1.1);
         }
+      }
+      .share-link-header {
+        /* margin-left: auto; */
+        display: flex;
+        .share_link {
+          text-decoration: none;
+          transition: .3s;
+          padding: 8px;
+          background-color: #22374A;
+          border-radius: 4px;
+          svg {
+            width: 22px;
+            height: 22px;
+            vertical-align: middle;
+          }
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+          }
+        }  
       }
     }
     .single_blog_banner_holder {
