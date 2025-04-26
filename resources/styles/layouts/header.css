@@ -182,9 +182,20 @@
               -webkit-box-shadow: 0 0 0 30px #172938 inset !important;
               -webkit-text-fill-color: white !important;
             }
+          }  
+        }
+      }
+      .login {
+        padding: 18px 18px;
+        a {
+          svg {
+            max-height: 25px;
+            max-width: 25px;
+            vertical-align: middle;
           }
         }
       }
+
     }
   }
   .burger-open-btn {
