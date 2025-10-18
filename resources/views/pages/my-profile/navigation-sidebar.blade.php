@@ -11,9 +11,9 @@
 @endphp
 
 <aside class="sidebar-navigation">
-  <div class="sidebar-logo">
+  <a href="{{ home_url() }}/" class="sidebar-logo">
     <img src="@asset('images/partials/preporuka-za-film-logo.svg')" alt="Preporuka za film logo">
-  </div>
+  </a>
   <div class="sidebar-avatar">
     <img class="avatar-image" src="@asset('images/avatars/Profile2.svg')" alt="User Avatar">
 

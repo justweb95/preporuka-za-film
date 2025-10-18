@@ -22,12 +22,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .header-logo {
-      max-width: 264px;
-      height: auto;
-      display: block;
+    .header-logo-holder {
+      min-width: 380px;
+      .header-logo {
+        max-width: 264px;
+        height: auto;
+        display: block;
+      }
     }
-    .nav-link {
+    .nav-link, .search-login-list {
       margin: 0px;
       list-style: none;
       display: flex;
@@ -119,7 +122,6 @@
         }
       }
       .search {
-        margin-left: 8px;
         padding: 16px 18px;
         border-radius: 40px;
         background: var(--Grey, #22374A);
@@ -147,14 +149,14 @@
             outline: none;
             margin: 0px 16px 0px 0px;
             padding: 0px 0px 0px 4px;
-            width: 170px;
+            width: 130px;
             transition: .3s ease;
           }
           &:not(:placeholder-shown) {
             outline: none;
             margin: 0px 16px 0px 0px;
             padding: 0px 0px 0px 4px;
-            width: 150px;
+            width: 130px;
             transition: .3s ease;
           }
           &:-webkit-autofill {
@@ -177,7 +179,7 @@
           .link-search-input {
             margin: 0px 16px 0px 0px;
             padding: 0px 0px 0px 4px;
-            width: 150px;
+            width: 130px;
             &:-webkit-autofill {
               -webkit-box-shadow: 0 0 0 30px #172938 inset !important;
               -webkit-text-fill-color: white !important;
@@ -186,16 +188,24 @@
         }
       }
       .login {
-        padding: 18px 18px;
+        padding: 16px 18px;
+        border-radius: 40px;
+        background: var(--Grey, #22374A);
         a {
+          text-decoration: none;
           svg {
+            margin-right: 10px;
             max-height: 25px;
             max-width: 25px;
             vertical-align: middle;
           }
         }
       }
-
+    }
+    .search-login-list {
+      min-width: 380px;
+      justify-content: flex-end;
+      gap: 12px;
     }
   }
   .burger-open-btn {
@@ -204,10 +214,13 @@
   .burger-menu-content {
     display: none;
   }
-  @media (max-width: 1023px) {
+  @media (max-width: 1279px) {
     /* position: relative; */
     .main-nav-desktop {
       display: none;
+    }
+    .search-login-list {
+      display: none !important;
     }
     .burger-open-btn {
       display: block;
@@ -227,7 +240,7 @@
         margin-left: auto;
         width: 90%;
         height: 100%;
-        background: var(--Grey, #22374A);
+        background: #172938;
         display: flex;
         flex-direction: column;
         transition: .3s ease;
@@ -239,30 +252,11 @@
         }
         .burger-header {
           padding: 24px 0px;
-          .burger-login {
-            margin: 0px 8px 0px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #172938;
-            svg {
-              margin-left: -4px;
-              g {
-                path {
-                  stroke: #FFF;
-                  /* fill: #FFF; */
-                }
-              }
-            }
-          }
         }
         .burger-link-item {
           padding: 20px 0px;
           position: relative;
-          border-bottom: 1px solid #172938;
+          border-bottom: 1px solid #22374A;
           a {
             text-decoration: none;
             color: #FFF;
@@ -327,15 +321,35 @@
             }
           }
         }
+        .login-mobile {
+          margin-top: auto;
+          margin-bottom: 32px;
+          border-radius: 40px;
+          background: var(--Grey, #22374A);
+          a {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            svg {
+              vertical-align: middle;
+              /* margin-bottom: -1px; */
+            }
+          }
+        }
         .follow-us-on-instagram {
-          padding: 0px !important;
-          position: relative;
-          border-bottom: 1px solid transparent !important;
-          justify-content: flex-start;
+          padding: 16px 18px;
+          width: calc(105% + 3px);
+          margin-left: -5%;
+          margin-right: -5%;
+          background: #0F1E2B;
+          display: flex;
           .follow-us-on-insta-link {
             width: 100%;
             display: flex;
             align-items: center;
+            justify-content: center;
           }
           svg {
             margin-right: 8px;
@@ -358,12 +372,11 @@
           }
         }
         .burger-search {
-          margin-top: auto;
-          margin-bottom: 16px;
           padding: 16px 18px;
-          border-radius: 40px;
-          background: #172938;
-          width: 100%;
+          width: calc(105% + 3px);
+          margin-left: -5%;
+          margin-right: -5%;
+          background: #0F1E2B;
           display: flex;
           .link-search-input {
             transition: .3s ease;    
