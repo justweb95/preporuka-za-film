@@ -1,0 +1,121 @@
+.profile-page {
+  display: flex;
+  height: 100svh;
+
+  .sidebar-navigation {
+    flex: 0 0 15%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    
+    max-width: 280px;
+    height: 100%;
+    
+    background-color: #06131E;
+    
+    padding: 24px;
+
+    .sidebar-logo {
+      width: 100%;
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+    }
+    .sidebar-avatar {
+      padding: 24px 0px;
+      border-top: 1px solid #22374A;
+      border-bottom: 1px solid #22374A;
+      
+      width: 100%;
+
+      .avatar-image {
+        margin: 0px auto;
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+        height: auto;
+        border-radius: 50%;
+      }
+
+      .sidebar-username {
+        margin: 24px 0px 4px;
+        color: var(--White, #FFF);
+        text-align: center;
+        font-family: 'Unbounded', sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      .sidebar-my-account {
+        color: rgba(237, 254, 236, 0.80);
+        text-align: center;
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
+    }
+
+    .sidebar-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      height: 100%;
+      list-style: none;
+      padding: 0px;
+
+      .nav-link-button {
+        width: 100%;
+        padding: 13px;
+        background-color: transparent;
+        border: none;
+        text-align: left;
+        transition: .2s ease-in-out;
+        .nav-link-icon {
+          margin-right: 10px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+        .nav-link-text {
+          color: #C4D4E3;
+          font-family: "Red Hat Display", sans-serif;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+        }
+
+        &.active-nav {
+          background-color: #0A1E2E;
+          border-radius: 8px;
+
+          .nav-link-text {
+            font-weight: 700;
+            color: #FFFFFF;
+          }
+
+          .nav-link-icon {
+            filter: invert(41%) sepia(87%) saturate(6247%) hue-rotate(6deg) brightness(94%) contrast(96%);
+            transition: filter 0.3s;
+          }
+        }
+
+        &:nth-of-type(5) {
+          margin-top: auto;
+        }
+
+        &:hover {
+          cursor: pointer;
+          background-color: #0A1E2E;
+          border-radius: 8px;
+
+        }
+      }
+    }
+  }
+}

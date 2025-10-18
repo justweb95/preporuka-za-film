@@ -1,0 +1,111 @@
+.tab-header {
+  margin-bottom: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+
+  .main-heading {
+    color: #FFF;
+    font-family: "Red Hat Display", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .notification-holder {
+    margin-left: auto;
+    display: flex;
+    gap: 16px;
+    width: fit-content;
+
+    .profile-search {
+      background-color: transparent;
+      border: none;
+      svg {
+        display: block;
+        path, circle {
+          transition: .1s ease-in-out;
+        }
+      }
+      &:hover {
+        cursor: pointer;
+        svg {
+          path, circle {
+            stroke: #18BF7C;
+          }
+        }
+      }
+    }
+    .profile-notification {
+      position: relative;
+      
+      background-color: transparent;
+      border: none;
+
+      svg {
+        display: block;
+        path {
+          transition: .1s ease-in-out;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+        svg {
+          path {
+            stroke: #18BF7C;
+          }
+        }
+      }
+
+      &.active-notification {
+        &::before {
+          position: absolute;
+          right: 4px;
+          top: 2px;
+          display: block;
+          height: 8px;
+          width: 8px;
+          content: '';
+          
+          
+          border-radius: 50%;
+          background-color: #18BF7C;
+        }
+      }
+    }
+  }
+
+  .new-recommendations-btn {
+    border: none;
+
+    padding: 13px 24px;
+    border-radius: 40px;
+    border: 2px solid var(--Green, #18BF7C);
+    background: var(--Green, #18BF7C);
+
+    color: var(--White, #FFF);
+    font-family: "Red Hat Display", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    transition: .2s ease-in-out;
+    svg {
+      margin-right: 8px;
+      transition: .2s ease-in-out;
+    }
+    &:hover {
+      cursor: pointer;
+      background-color: transparent;
+      /* color: var(--Green, #18BF7C); */
+      svg {
+        transform: scale(1.2);
+      }
+    }
+  }
+}

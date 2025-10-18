@@ -1,0 +1,44 @@
+@php
+  $navLinks = [
+      ['nav_name' => 'Moje preporuke', 'nav_icon' => 'images/sidebar-icons/my-recomendation-icon.svg', 'tab_id' => 'recommendations'],
+      ['nav_name' => 'Napredna Preporuka', 'nav_icon' => 'images/sidebar-icons/advance-search-icon.svg', 'tab_id' => 'advanced_recommendation'],
+      ['nav_name' => 'Moji omiljeni filmovi', 'nav_icon' => 'images/sidebar-icons/my-favorite-icon.svg', 'tab_id' => 'favorite_movies'],
+      ['nav_name' => 'Već gledano', 'nav_icon' => 'images/sidebar-icons/watched-icon.svg', 'tab_id' => 'already_watched'],
+      ['nav_name' => 'Podešavanja', 'nav_icon' => 'images/sidebar-icons/settings-icon.svg', 'tab_id' => 'settings'],
+      ['nav_name' => 'Odjavi se', 'nav_icon' => 'images/sidebar-icons/sign-out.svg', 'tab_id' => 'logout'],
+  ];
+
+@endphp
+
+<aside class="sidebar-navigation">
+  <div class="sidebar-logo">
+    <img src="@asset('images/partials/preporuka-za-film-logo.svg')" alt="Preporuka za film logo">
+  </div>
+  <div class="sidebar-avatar">
+    <img class="avatar-image" src="@asset('images/avatars/Profile2.svg')" alt="User Avatar">
+
+    <h2 class="sidebar-username">Pavle Pesic</h2>
+    <div class="sidebar-my-account">Moj Nalog</div>
+  </div>
+  <ul class="sidebar-nav-list">
+    @foreach ($navLinks as $link)
+      @include('pages.my-profile.partials.navigation-link', [
+        'nav_name' => $link['nav_name'],
+        'nav_icon' => $link['nav_icon'],
+        'tab_id' => $link['tab_id'],
+      ])
+    @endforeach
+  </ul>
+</aside>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const btn_links = document.querySelectorAll('.nav-link-button');
+  btn_links[0].classList.add('active-nav'); 
+
+  // fetch('<?php echo admin_url("admin-ajax.php"); ?>?action=get_profile_info')
+  // .then(res => res.json())
+  // .then(data => console.log(data));
+
+});
+</script>

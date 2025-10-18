@@ -1,0 +1,1030 @@
+.sm-hero-section {
+  position: relative;
+  padding: 60px 0px;
+  /* background-image: linear-gradient(180deg, #06131E 0%, #06131E 100%); */
+  background-color: lightgray;
+  background-position: 20% 20% !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+
+  .sm-hero-holder {
+    .sm-navigation {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      list-style: none;
+      li, a {
+        text-decoration: none;
+        color: #A6ABAE;
+        text-align: center;
+        font-family: "Red Hat Display";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        svg {
+          vertical-align: middle;
+        }
+      }
+      #movie_name {
+        color: #ffffff;
+        font-weight: 700;
+      }
+    }
+    /* Single Movie Share */
+    .share_on {
+      width: 100%;
+      padding: 8px 0px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      .share-on-text {
+        color: var(--White, #FFF);
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 32px; /* 160% */
+        margin-right: 20px;
+      }
+      a {
+        text-decoration: none;
+        margin-right: 14px;
+        transition: .3s;
+        svg {
+          vertical-align: bottom;
+        }
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.1);
+        }
+      }
+      .share-link-header {
+        /* margin-left: auto; */
+        display: flex;
+        .share_link {
+          text-decoration: none;
+          transition: .3s;
+          padding: 8px;
+          background-color: #22374A;
+          border-radius: 4px;
+          svg {
+            width: 22px;
+            height: 22px;
+            vertical-align: middle;
+          }
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+          }
+          &:last-of-type {
+            margin-right: 0px;
+          }
+        }  
+      }
+    }
+    /* Single Movie Information  */
+    .sm-info {
+      margin: 12px 0px;
+      display: flex;
+      gap: 40px;
+      justify-content: space-between;
+      align-items: stretch;
+      .sm-info-poster {
+        position: relative;
+        flex: 0 0 28%;
+        border-radius: 12px;
+        border: 1px solid var(--Grey, #22374A);
+        max-width: 356px;
+        img {
+          border-radius: 12px;
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+          max-width: 100%;
+        }
+        p {
+          text-align: center;
+          bottom: -20px;
+          width: 100%;
+          position: absolute;
+          color: var(--White, #FFF);
+          text-align: center;
+          font-family: "Red Hat Display";
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+          opacity: 0.6;
+        }
+      }
+      .sm-info-content {
+        padding: 40px;
+        flex: 1 0 50%;
+        border-radius: 12px;
+        background: #152533;
+        .sm-info-content-title-holder {
+          display: flex;
+          justify-content: space-between;
+          .sm-info-content-title {
+            display: inline;
+            color: var(--White, #FFF);
+            font-family: "Red Hat Display";
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+          }
+          .sm-info-imdb-rating-holder {
+            min-width: fit-content;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+            img {
+              vertical-align: middle;
+            }
+            svg {
+              height: 32px;
+              vertical-align: middle;
+            }
+            .preporuka-svg {
+              min-width: 64px;
+            }
+            p {
+              margin: 0px 12px 0px 6px;
+              display: inline-block;
+              vertical-align: middle;
+              color: var(--White, #FFF);
+              text-align: center;
+              font-family: "Red Hat Display";
+              font-size: 20px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: normal;
+            }
+          }
+        }
+        .sm-info-content-info {
+          display: flex;
+          gap: 24px;
+          margin: 24px 0px;
+          span {
+            svg {
+              display: inline;
+              vertical-align: sub;
+              margin-right: 8px;
+            }
+            p {
+              display: inline;;
+              color: var(--White, #FFF);
+              text-align: center;
+              font-family: "Red Hat Display";
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: normal;
+            }
+          }
+          .sm-info-hr {
+            margin: 0px;
+            border-color: var(--Grey, #22374A);
+
+          }
+        }
+
+
+        .sm-info-content-description {
+          width: 100%;
+          margin: 12px 0px 20px;
+          display: inline-block;
+          .sm-info-content-description-image {
+            display: none;
+            max-width: 35%;
+            border-radius: 8px;
+            margin-top: 4px;
+            float: left; /* Floats the image to the left */
+            margin-right: 12px; /* Adds some space between the image and the text */
+            margin-bottom: 6px; /* Adds space below the image for a cleaner layout */
+          }
+          .sm-info-content-description-text {
+            color: var(--Light, #EDFEEC);
+            font-family: "Red Hat Display";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 140%; 
+            line-height: 1.5;
+            text-align: justify;
+          }
+        }
+
+
+
+        /* HR Line  */
+        hr {
+          margin: 16px 0px;
+          border-width: 1px;
+          border-color: var(--Grey, #22374A);;
+        }
+
+
+
+        .sm-info-content-director, .sm-info-content-writers, .sm-info-content-cast {
+          display: flex;
+          h4 {
+            min-width: 65px;
+            margin-right: 8px;
+            color: var(--White, #FFF);
+            font-family: "Red Hat Display";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+          }
+          ul {
+          display: flex;
+          flex-wrap: wrap;
+          list-style: none;
+            li {
+              color: var(--Orange, #F57C36);
+              font-family: "Red Hat Display";
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 600;
+              line-height: normal;
+              svg {
+                vertical-align: middle;
+                margin: 0px 7px 0px 8px;
+              }
+              &:first-of-type {
+                svg {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+
+
+        .sm-info-content-cta {
+          margin: 40px 0px 0px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          button {
+            flex: 0 0 32%;
+            padding: 15px;
+            border-radius: 40px;
+            border: 1px solid #18BF7C;
+            background: #18BF7C;
+            color: var(--White, #FFF);
+            font-family: "Red Hat Display";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            text-decoration: none;
+            transition: .3s ease;
+            svg {
+              vertical-align: middle;
+              margin-right: 10px;
+            }
+            &:hover {
+              cursor: pointer;
+              background: #22374A;
+            }
+          }
+          a {
+            text-align: center;
+            flex: 0 0 32%;
+            border-radius: 40px;
+            background: var(--Grey, #22374A);
+            padding: 15px;
+            border: 1px solid #22374A;
+            color: var(--White, #FFF);
+            font-family: "Red Hat Display";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            text-decoration: none;
+            transition: .3s ease;
+            svg {
+              vertical-align: middle;
+              margin-right: 10px;
+            }
+            &:hover {
+              cursor: pointer;
+              border: 1px solid  var(--Green, #18BF7C);
+              background:  #22374A;
+              color: #FFF;
+            }
+          }
+          .sm-info-cta-affiliate-netflix {
+            position: relative;
+            user-select: none;
+            pointer-events: none;
+            background-color: #22374a5c;
+            color: rgba(255, 255, 255, 0.267);
+            svg {
+              opacity: .4;
+            }
+            /* opacity: .4; */
+            &::after {
+              display: block;
+              width: auto;
+              content: 'Uskoro';
+              position: absolute;
+              right: 5px;
+              top: -12px;
+              background-color: #06131E;
+              color: var(--White, #FFF);
+              font-family: "Red Hat Display";
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 400;
+              border-radius: 16px;
+              padding: 4px 6px;
+            }
+          }
+        }
+      }
+    }
+    @media (max-width: 1024px) {
+      .share_on {
+        margin-top: 12px;
+      }
+      .sm-info {
+        flex-direction: column-reverse;
+        .sm-info-content {
+          .sm-info-content-description {
+            .sm-info-content-description-image {
+              display: block;
+            }
+          }
+        }
+        .sm-info-poster {
+          display: none;
+          max-width: 100%;
+          img {
+            max-height: 600px;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 550px) {
+      .share_on {
+        width: 100%;
+        padding: 8px 0px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        .share-on-text {
+          font-size: 16px;
+        }
+        .share-link-header {
+          display: flex;
+          .share_link {
+            padding: 6px;
+            svg {
+              width: 20px;
+              height: 20px;
+            }
+          }  
+        }
+      }
+      .sm-info {
+        .sm-navigation {
+          li {
+            font-size: 14px;
+            a {
+              font-size: 14px;
+            }
+          }
+        }
+        .sm-info-content {
+          padding: 26px 20px;
+          .sm-info-content-title-holder {
+            .sm-info-content-title {
+              font-size: 24px;
+            }
+            .sm-info-imdb-rating-holder {
+              gap: 6px;
+              p {
+                margin: 0px 6px 0px 0px;
+                font-size: 18px;
+              }
+              img, svg {
+                max-height: 26px;
+              }
+              svg {
+                max-width: 24px;
+              }
+              .star-gold {
+                max-width: 14px;
+              }
+              .preporuka-svg {
+                min-width: 52px;
+              }
+            }
+          }
+
+
+          .sm-info-content-info {
+            margin: 18px 0px;
+            gap: 5px;
+            justify-content: space-between;
+            hr {
+              margin: 0px;
+            }
+          }
+
+          .sm-info-content-description {
+            margin: 0px 0px;
+            display: inline-block;
+            .sm-info-content-description-text  {
+              font-size: 14px;
+            }
+          }
+
+          .sm-info-content-director, .sm-info-content-writers, .sm-info-content-cast {
+            justify-content: flex-start;
+            h4 {
+              min-width: 65px;
+            }
+            ul {
+              li {
+                font-size: 14px;
+              }
+            }
+          }
+
+          .sm-info-content-cta {
+            flex-wrap: wrap;
+            gap: 16px;
+            button, a {
+              font-size: 16px;
+              padding: 11px;
+              flex: 1 0 100%;
+            }
+          }
+
+        }
+      }
+    }
+    .sm-info-donation {
+      display: inline-block;
+      margin-top: 46px;
+      padding: 8px 20px;
+      width: 100%;
+      border-radius: 4px;
+      background: var(--Grey, #22374A);
+      backdrop-filter: blur(40px);
+      color: var(--White, #FFF);
+      text-align: center;
+      font-family: "Red Hat Display";
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      .donation-text {
+        display: inline;
+      }
+      a {
+        margin-left: 8px;
+        svg {
+          vertical-align: sub;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 550px) {
+    padding: 32px 0px;
+    
+    .sm-hero-holder {
+      .sm-loader {
+        height: 150px;
+        width: 150px;
+        font-size: 16px;
+        transform: translate(-50%, -100%);
+      }
+    }
+  }
+}
+
+
+.sm_subhero_wraper {
+  padding: 20px 0px 80px;
+  position: relative;
+  background: var(--Background, #06131E);
+  .comment_form_holder {
+    .comment_form {
+      width: 70%;
+      max-width: 800px;
+      h2 {
+        color: var(--White, #FFF);
+        font-family: "Red Hat Display";
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%; /* 44.8px */
+      }
+      .comment-respond {
+        .comment-form {
+          .logged-in-as {
+            margin: 14px 0px;
+            color: var(--White, #FFF);
+            font-family: "Red Hat Display";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 140%; /* 22.4px */
+            a {
+              color: var(--White, #FFF);
+              font-family: "Red Hat Display";
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 140%; /* 22.4px */
+            }
+          }
+          .comment-form-comment, .comment-form-author, .comment-form-email {
+            margin: 20px 0px;
+            width: 100%;
+            max-width: 100%;
+            textarea, input {
+              max-width: 100%;
+              min-width: 100%;
+              max-height: 300px;
+              padding: 18px 20px;
+              width: 100%;
+              border-radius: 4px;
+              background: #152533;
+              color: #FFF;
+              font-family: "Red Hat Display";
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 140%; /* 22.4px */
+              border: 1px solid #152533;
+              
+
+              &::placeholder {
+                color: #6587A4;
+              }
+              &:focus, &:focus-visible {
+                outline: none !important;
+                border: 1px solid var(--Orange) !important;
+              }
+              &:-webkit-autofill {
+                -webkit-box-shadow: 0 0 0 30px #152533 inset !important;
+                -webkit-text-fill-color: white !important;
+              }
+            }
+            textarea {
+              min-height: 75px;
+            }
+          }
+
+          .comment-form-cookies-consent {
+            display: none;
+          }
+
+          .comment-form-rating {
+            display: block;
+            .stars-container {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              gap: 8px;
+              label {
+                flex: 1 0 15%;
+                padding: 14px 10px;
+                border-radius: 4px;
+                background: #152533;
+                text-align: center;
+                color: var(--White, #FFF);
+                font-family: "Red Hat Display";
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                border-bottom: 2px solid transparent;
+                transition: .3s ease;
+                svg {
+                  vertical-align: middle;
+                  margin-right: 6px;
+                }
+                &:hover {
+                  cursor: pointer;
+                  background: var(--Orange, #F57C36);
+                }    
+              }
+              input {
+                display: none;
+                &:checked + label {
+                  border-bottom: 2px solid var(--Orange, #F57C36);
+                  background: var(--Grey, #22374A);
+                  color: #F57C36;
+                  svg {
+                    circle, path {
+                      stroke: #F57C36 !important;
+                    }
+                    mask {
+                      path {
+                        stroke: #F57C36 !important;
+                      }
+                    }
+                  }
+                }    
+              }
+            }
+          }
+          
+          .input-not-valid{
+            border: 1px solid var(--Red, #FF6161) !important;
+          }
+
+          .form-submit {
+            margin-top: 32px;
+            input {
+              padding: 18px 32px;
+              border-radius: 60px;
+              border: 2px solid var(--Green, #18BF7C);
+              background-color: transparent;
+              color: var(--White, #FFF);
+              font-family: "Red Hat Display";
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: 22px; /* 137.5% */
+              transition: .3s ease;
+              &:hover {
+                cursor: pointer;
+                background-color: #18BF7C;
+              }
+            }
+          }
+        }
+      }
+    }
+    .review_stats {
+      display: block;
+      margin: 48px 0px 32px;
+      width: 70%;
+      max-width: 800px;
+      .review_number {
+        display: inline;
+        color: var(--White, #FFF);
+        font-family: "Red Hat Display";
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+    }
+    .reviews-display {
+      padding: 25px 23px;
+      display: block;
+      margin-bottom: 48px;
+      width: 70%;
+      max-width: 800px;
+      border-radius: 4px;
+      background: #152533;
+      .review-bar {
+        display: flex;
+        align-items: center;
+        margin: 14px 0px;
+        svg {
+          vertical-align: middle;
+          margin-right: 12px;
+        }
+        .review-label {
+          min-width: 125px;
+          color: var(--White, #FFF);
+          font-family: "Red Hat Display";
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+        }
+        .review-progress {
+          flex: 1 0 50%;
+          progress {
+            display: block;
+            width: 100%;
+            appearance: none;
+            border-radius: 8px;
+            height: 4px;
+          }
+          progress::-webkit-progress-bar {
+            background-color: var(--Grey, #22374A);
+            border-radius: 8px;
+          }
+          progress::-webkit-progress-value {
+            background-color: var(--Orange, #F57C36);
+            border-radius: 8px;
+          }
+        }
+        .review-count {
+          display: flex;
+          justify-content: space-between;
+          min-width: 75px;
+          margin-left: 20px;
+          color: #FFF;
+          font-family: "Red Hat Display";
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+        }
+      }
+    }
+  }
+
+  .comments_list {
+    max-width: 1280px !important;
+    .comment_list_holder {
+      margin: 24px 0px;
+      width: 70%;
+      max-width: 800px;
+
+      .comments_separator {
+        max-width: 100%;
+        &:first-of-type {
+          display: none;
+        }
+      }
+      .single_comment {
+        margin: 20px 0px 20px;
+        /* display: flex;
+        flex-wrap: wrap; */
+        .single_comment_header {
+          /* flex: 1 0 100%; */
+          display: flex;
+          gap: 24px;
+          img {
+            max-width: 48px;
+            border-radius: 50%;
+          }
+          .sing_comment_author {
+            align-content: center;
+            color: var(--White, #FFF);
+            font-family: "Red Hat Display";
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            span {
+              color: var(--Light, #EDFEEC);
+              font-family: "Red Hat Display";
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+            }
+          }
+        }
+        .single_comment_stars {
+          margin-top: 24px;
+        }
+        .single_comment_content {
+          margin-top: 20px;
+          color: var(--White, #FFF);
+          font-family: "Red Hat Display";
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 150%; /* 24px */
+          margin-bottom: 24px;
+        }
+      }
+      .no-comment {
+        color: var(--White, #FFF);
+        font-family: "Red Hat Display";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+    }
+
+  }
+  .comment_banner_holder {
+    user-select: none;
+    pointer-events: none;
+    position: absolute;
+    height: calc(100% - 100px);
+    top: 140px;
+    left: 50%;
+    transform: translate(-50%);
+    padding-bottom: 20px;
+    .banner-box {
+      position: sticky;
+      top: 100px;
+      left: calc(100% + 250px);
+      border-radius: 8px;
+      background-color: #42a7ff26;
+      height: 548px;
+      max-width: 300px;
+      width: 25%;
+      p {
+        text-align: center;
+        height: 100%;
+        color: var(--White, #FFF);
+        font-family: "Red Hat Display";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        padding: 20px;
+        width: 100%;
+        margin: 0px;
+        vertical-align: middle;
+        strong {
+          font-size: 24px;
+        }
+        a {
+          color: #FFF;
+          text-decoration: none;
+          font-weight: 700;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1023px) {
+    padding: 0px 0px 40px;
+    .comment_form_holder {
+      .comment_form, .review_stats, .reviews-display {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+    .comments_list {
+      .comment_list_holder {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+    .comment_banner_holder {
+      position: unset;
+      max-width: 90%;
+      height: 200px;
+      margin: 0px auto;
+      transform: unset;
+      /* overflow: clip; */
+      .banner-box {
+        object-fit: cover;  
+        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 550px) {
+    padding: 0px 0px 40px;
+    .comment_form_holder {
+      .comment_form {
+        h2 {
+          font-size: 24px;
+        }
+        .comment-respond {
+          .comment-form {
+            .comment-form-rating {
+              .stars-container {
+                align-items: stretch;
+                label {
+                  font-size: 12px;
+                  padding: 10px 2px;
+                  svg {
+                    margin-right: 0px;
+                    margin-bottom: 6px;
+                    text-align: center;
+                    display: block;
+                    width: 100%;
+                  }
+                }
+              }
+            }
+            .form-submit {
+              input {
+                padding: 11px 32px;
+              }
+            }
+          }
+        }
+      }
+      .review_stats {
+        margin: 32px 0px 20px;
+      }
+      .reviews-display {
+        padding: 8px 14px;
+        margin-bottom: 32px;
+        .review-bar {
+          margin: 6px 0px;
+          .review-label {
+            min-width: 108px;
+            svg {
+              margin-right: 6px;
+            }
+          }
+          .review-progress {
+            flex: 1 0 18%;
+          }
+          .review-count {
+            margin-left: 6px;
+          }
+        }
+      }
+    }
+    .comments_list {
+      .comment_list_holder {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+    .comment_banner_holder {
+      position: unset;
+      max-width: 90%;
+      height: 200px;
+      margin: 0px auto;
+      transform: unset;
+      /* overflow: clip; */
+      .banner-box {
+        object-fit: cover;  
+        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 350px) {
+    .comment_form_holder {
+      .reviews-display {
+        .review-bar {
+          .review-count {
+            min-width: 20px;
+            justify-content: center;
+            p {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.trailer-modal {
+  padding-top: 50px;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  width: 1000px; /* You can adjust this */
+  max-width: 90%; /* Ensures responsiveness */
+  transform: translate(-50%, -30%);
+  border: 1px solid transparent;
+  outline: none;
+  background-color: transparent;
+
+  .modal-content {
+    background-color: transparent;
+    .close {
+        position: absolute;
+        top: -10px;
+        right: 0px;
+        &:hover {
+            cursor: pointer;
+        }
+      }
+
+    iframe {
+      border-radius: 12px;
+      user-select: none;
+      padding: 0px !important;
+      margin: 0px !important;
+      width: 100%; /* Full width */
+      height: 500px;
+      max-height: 80vh; /* Set a max-height to keep it within view */
+      border: none; /* Optional: remove border */
+    }
+  }
+
+  &::backdrop {
+    background: rgba(6, 19, 30, 0.39);
+    backdrop-filter: blur(20px);
+  }
+}

@@ -1,0 +1,101 @@
+/* Variables */
+@import url('./global/variables.css');
+@import url('./global/font.css');
+@import url('./global/animation.css');
+
+
+/* Partials */
+@import url('./layouts/header.css');
+@import url('./layouts/footer.css');
+@import url('./layouts/question-progress.css');
+
+
+/* Pages */
+@import url('./pages/home-page.css');
+@import url('./pages/questionnaire.css');
+@import url('./pages/single-movie.css');
+@import url('./pages/category-page.css');
+@import url('./pages/contact-us.css');
+@import url('./pages/404-page.css');
+@import url('./pages/search-page.css');
+@import url('./pages/blog-page.css');
+@import url('./pages/single-blog-page.css');
+@import url('./pages/default.css');
+@import url('./pages/comming-soon.css');
+
+/* Profile Styles */
+/* Partials */
+@import url('./profile/tab-header.css');
+@import url('./profile/advance-search-banner.css');
+@import url('./profile/recent-recommendations-carousel.css');
+@import url('./profile/profile-section-header.css');
+/* Tabs and Sidebar*/
+@import url('./profile/my-recommendations.css');
+@import url('./profile/navigation-sidebar.css');
+
+
+
+
+.profile-main {
+  width: 100%;
+  max-height: 100svh;
+  overflow-y: scroll;
+  scrollbar-width: thin;                
+  scrollbar-color: #18BF7C #0b1220;  
+  padding: 32px 40px 40px 40px;
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('../images/profile/profile-tab-bg-img.webp');
+  background-color: #06131E;
+
+  /* Chrome, Edge, Safari */
+  &::-webkit-scrollbar {
+    width: 6px;            /* scrollbar thickness */
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; /* invisible track for a clean look */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #18BF7C;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #14a86c; /* slightly darker on hover */
+  }
+}
+
+/* Global style */
+.container {
+  max-width: 1280px;
+  width: 90%;
+  margin: 0px auto;
+}
+
+.container_blog {
+  max-width: 800px;
+  width: 90%;
+  margin: 0px auto;
+}
+
+/* This is for all phaes that have second */
+.category, .blog, .paged {
+  .main {
+    padding: 20px 0px 120px;
+    background-image: url('../images/home/hero-background.webp');
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    @media (max-width: 550px) {
+      padding: 20px 0px 40px;
+    }
+  }  
+}
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */

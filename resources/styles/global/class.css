@@ -1,0 +1,6 @@
+.header-search-active {
+  margin: 0px 16px 0px 0px;
+  padding: 0px 0px 0px 4px;
+  width: 150px;
+  transition: .3s ease;
+}

@@ -1,0 +1,529 @@
+.home-hero {
+  padding: 40px 0px 120px;
+  background-image: url('../images/home/hero-background.webp');
+  background-position: center 70%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  .hero-holder {
+    .hero-sub-title {
+      color: var(--Orange, #EF8D53);
+      text-align: center;
+      font-family: "Red Hat Display", sans-serif;
+      font-size: clamp(14px, 1vw + 8px, 18px);
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      animation: fadeInUp .4s ease-in-out;
+    }
+    h1 {
+      margin: 20px auto 28px;
+      max-width: 70%;
+      color: var(--White, #FFF);
+      text-align: center;
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(32px, 2.3vw + 16px, 48px);
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%;
+      animation: fadeInUp .6s ease-in-out;
+    }
+    .hero-sub-text {
+      width: fit-content;
+      display: block;
+      margin: 0px auto;
+      padding: 5.5px 12px;
+      border-radius: 4px;
+      background: var(--Grey, #22374A);
+      color: var(--Green, #18BF7C);
+      text-align: center;
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(14px, 0.5vw + 10px, 16px);
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.64px;
+      text-transform: uppercase;
+      animation: fadeInUp .8s ease-in-out;
+    }
+    .hero-text {
+      margin: 28px auto 40px;
+      color: var(--Light, #EDFEEC);
+      text-align: center;
+      font-family: "Red Hat Display", sans-serif;
+      font-size: clamp(16px, 0.833vw + 8px, 18px);
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      animation: fadeInUp .8s ease-in-out;
+    }
+    .hero-cta-btn {
+      width: fit-content;
+      display: block;
+      margin: 0px auto;
+      text-decoration: none;
+      color: #FFF;
+      text-align: center;
+      font-family: "Red Hat Display", sans-serif;
+      font-size: clamp(14px, 0.833vw + 8px, 18px);
+      font-style: normal;
+      font-weight: 800;
+      line-height: normal;
+      text-transform: uppercase;
+      padding: 16px 40px;
+      border-radius: 80px;
+      border: 2px solid var(--Green);
+      background: var(--Green, #18BF7C);
+      transition: .3s ease;
+      animation: fadeInUp .9s ease-in-out;
+      &:hover {
+        cursor: pointer;
+        background: transparent;
+        border: 2px solid var(--Green);
+        color: var(--Green);
+      }
+    }
+  }
+  .movie-card-holder {
+    pointer-events: none;
+    user-select: none;
+    margin-inline: auto;
+    margin-top: 80px;
+    position: relative;
+    height: 320px;
+    margin-top: 5rem;
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0),
+      var(--Green) 5%,
+      var(--Orange) 95%,
+      rgba(0, 0, 0, 0)
+    );
+    .movie-single-card {
+      width: 214px;
+      height: 320px;
+      border-radius: 6px;
+      position: absolute;
+      /* left: max(calc(230px * 8), 100%); */
+      transform: translateX(max(calc(220px * 9), 100%));
+      animation-name: scrollLeft;
+      animation-duration: 45s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;      
+      p {
+        position: absolute;
+        bottom: 6px;
+        left: 2px;
+        color: #ffffff80;
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 6px;
+        font-style: normal;
+        font-weight: 200;
+        line-height: normal;
+      }
+      &:nth-of-type(1) {
+        animation-delay: calc(45s / 9 * (9 - 1) * -1);
+      }
+      &:nth-of-type(2) {
+        animation-delay: calc(45s / 9 * (9 - 2) * -1);
+      }
+      &:nth-of-type(3) {
+        animation-delay: calc(45s / 9 * (9 - 3) * -1);
+      }
+      &:nth-of-type(4) {
+        animation-delay: calc(45s / 9 * (9 - 4) * -1);
+      }
+      &:nth-of-type(5) {
+        animation-delay: calc(45s / 9 * (9 - 5) * -1);
+      }
+      &:nth-of-type(6) {
+        animation-delay: calc(45s / 9 * (9 - 6) * -1);
+      }
+      &:nth-of-type(7) {
+        animation-delay: calc(45s / 9 * (9 - 7) * -1);
+      }
+      &:nth-of-type(8) {
+        animation-delay: calc(45s / 9 * (9 - 8) * -1);
+      }
+      &:nth-of-type(9) {
+        animation-delay: calc(45s / 9 * (9 - 9) * -1);
+      }
+      &:nth-of-type(10) {
+        animation-delay: calc(45s / 9 * (9 - 10) * -1);
+      }
+      &:nth-of-type(11) {
+        animation-delay: calc(45s / 9 * (9 - 11) * -1);
+      }
+      &:nth-of-type(12) {
+        animation-delay: calc(45s / 9 * (9 - 12) * -1);
+      }
+    }
+  }
+  @media (max-width: 550px) {
+    padding: 32px 0px 40px;
+    .hero-holder {
+      h1 {
+        margin: 8px 0px 24px;
+        max-width: 100%;
+      }
+      .hero-text {
+        margin: 24px 0px;
+      }
+      .hero-cta-btn {
+        padding: 14px 40px;
+      }
+    }
+    .movie-card-holder {
+      margin-top: 40px;
+      height: 240px;
+      .movie-single-card {
+        /* left: max(calc(160px * 8), 100%); */
+        transform: translateX(max(calc(150px * 9), 100%));
+        width: 160px;
+        height: 240px;
+      }
+    }
+  }
+}
+
+/* Why Us Section On Home */
+.home-why-us {
+  padding: 0px 0px 60px;
+  background-color: var(--Background, #1A2A3A);
+  .why-us-holder {
+    .why-us-sub-heading {
+      color: var(--Orange, #F57C36);
+      text-align: center;
+      font-family: "Red Hat Display";
+      font-size: clamp(16px, 3vw + 1px, 20px);
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; 
+      animation: fadeInUp .7s ease-in-out;
+      animation-timeline: view(500px 0px); 
+    }
+    .why-us-heading {
+      margin: 14px auto 24px;
+      color: var(--White, #FFF);
+      text-align: center;
+      font-family: 'Unbounded';
+      font-size: clamp(24px, 3vw + 4px, 32px);
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 44.8px */
+      animation: fadeInUp .7s ease-in-out;
+      animation-timeline: view(500px 0px); 
+
+    }
+    .why-us-text {
+      max-width: 1100px;
+      margin: 0px auto;
+      color: #FFF;
+      text-align: center;
+      font-family: "Red Hat Display";
+      font-size: clamp(14px, 3vw + 2px, 20px);
+      font-style: normal;
+      font-weight: 500;
+      line-height: 150%;
+      animation: fadeInUp .7s ease-in-out;
+      animation-timeline: view(500px 0px); 
+    }
+    .why-us-card-holder {
+      margin-top: 80px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      .single-why-us-card {
+        flex: 1 0 28%;
+        max-width: 389px;
+        min-width: 325px;
+        .why-us-card-image {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          margin: 0px auto;
+        }
+        .why-us-card-heading {
+          margin: 24px 0px 16px;
+          color: var(--White, #FFF);
+          text-align: center;
+          font-family: 'Unbounded';
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 140%; /* 33.6px */
+        }
+        .why-us-card-text {
+          color: #FFF;
+          text-align: center;
+          font-family: "Red Hat Display";
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 150%;
+        }
+      }
+    }
+  }
+  @media (max-width: 1024px) {
+    .why-us-holder {
+      .why-us-card-holder {
+        gap: 16px;
+        .single-why-us-card {
+          flex: 1 0 45%;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+  @media (max-width: 550px) {
+    padding: 0px 0px 40px;
+    .why-us-holder {
+      .why-us-heading {
+        margin: 12px 0px 16px;
+      }
+      .why-us-card-holder {
+        margin-top: 60px;
+        gap: 40px;
+        .single-why-us-card {
+          min-width: unset;
+          .why-us-card-heading {
+            margin: 24px 0px 16px;
+            font-size: 20px;
+          }
+          .why-us-card-text {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Home Pros Section */
+.home-pros {
+  padding: 60px 0px;
+  background-color: var(--Background, #1A2A3A);
+  .home-pros-holder {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 40px;
+    article {
+      margin: 0px auto;
+      flex: 1 0 48%;
+      min-width: 460px;
+      max-width: 620px;
+      padding: 40px 24px 12px;
+      background: #172938;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      span {
+        padding: 28px 0px;
+        text-align: center;
+        .standard-heading {
+          color: var(--Red, #FF6161);
+          font-family: 'Unbounded';
+          font-size: clamp(20px, 3vw + 1px, 24px);
+          font-style: normal;
+          font-weight: 500;
+          line-height: 140%;
+          animation: fadeInUp .7s ease-in-out;
+          animation-timeline: view(500px 0px);     
+        }
+        .standard-text {
+          max-width: 450px;
+          margin: 16px auto 0px;
+          color: #FFF;
+          font-family: "Red Hat Display";
+          font-size: clamp(14px, 3vw + 2px, 20px);
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          animation: fadeInUp .7s ease-in-out;
+          animation-timeline: view(500px 0px); 
+        }
+        .standard-content-icon {
+          animation: bounceIconHomePage 1.5s ease-in-out;
+          animation-timeline: view(0px);
+          animation-range: contain;
+        }
+        .standard-content-heading {
+          margin: 16px auto 12px;
+          color: var(--White, #FFF);
+          text-align: center;
+          font-family: "Red Hat Display";
+          font-size: clamp(18px, 3vw + 2px, 20px);
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          animation: fadeInUp .7s ease-in-out;
+          animation-timeline: view(500px 0px); 
+        } 
+        .standard-content-text {
+          color: #C2CED8;
+          text-align: center;
+          font-family: "Red Hat Display";
+          font-size: clamp(14px, 2.5vw + 2px, 18px);
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          animation: fadeInUp .7s ease-in-out;
+          animation-timeline: view(500px 0px); 
+    
+        }
+        .our-heading {
+          color: var(--Green, #18BF7C);
+          text-align: center;
+          font-family: 'Unbounded';
+          font-size: clamp(20px, 3vw + 1px, 24px);
+          font-style: normal;
+          font-weight: 500;
+          line-height: 140%; /* 33.6px */
+          animation: fadeInUp .7s ease-in-out;
+          animation-timeline: view(500px 0px); 
+    
+        }
+        .our-text {
+          max-width: 470px;
+          margin: 16px auto 0px;
+          color: #FFF;
+          text-align: center;
+          font-family: "Red Hat Display";
+          font-size: clamp(14px, 3vw + 2px, 20px);
+          font-style: normal;
+          font-weight: 500;
+          line-height: 150%;
+          animation: fadeInUp .7s ease-in-out;
+          animation-timeline: view(500px 0px); 
+    
+        }
+        .our-heading-content {
+          margin: 16px auto 12px;
+          color: var(--White, #FFF);
+          font-family: "Red Hat Display";
+          font-size: clamp(18px, 3vw + 2px, 20px);
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          animation: fadeInUp .7s ease-in-out;
+          animation-timeline: view(500px 0px);     
+        }
+        .our-text-content {
+          color: #C2CED8;
+          font-family: "Red Hat Display";
+          font-size: clamp(14px, 2.5vw + 2px, 18px);
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          animation: fadeInUp .7s ease-in-out;
+          animation-timeline: view(500px 0px); 
+        }
+      }
+      .standard-search-heading, .our-search-heading {
+        padding-top: 0px;
+      }
+      .standard-search-content, .our-search-content {
+        border-top: .6px var(--Background, #1A2A3A) solid;
+      }
+    }
+  }
+  @media (max-width: 1023px) {
+    .home-pros-holder {
+      article {
+        min-width: unset;
+      }
+    }
+  }
+  @media (max-width: 550px) {
+    padding: 40px 0px;
+    .home-pros-holder {
+      gap: 24px;
+      article {
+        padding: 32px 32px 12px 32px;
+        min-width: unset;
+        .standard-search-content {
+          padding: 20px 0px;
+        }
+      }
+    }
+  }
+}
+
+/* Out System */
+.our-system {
+  padding: 60px 0px;
+  background-color: var(--Background, #1A2A3A);
+  .system-holder {
+    .system-heading {
+      color: var(--White, #FFF);
+      text-align: center;
+      font-family: "Red Hat Display";
+      font-size: clamp(16px, 3vw + 1px, 20px);
+      font-style: normal;
+      font-weight: 400;
+      letter-spacing: 0.8px;
+      line-height: 140%;
+      text-transform: uppercase;
+    }
+    .system-card-holder {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .system-card {
+        flex: 1 0 25%;
+        text-align: center;
+        .card-heading {
+          color: var(--White, #FFF);
+          font-family: 'Unbounded';
+          font-size: clamp(24px, 3vw + 1px, 36px);
+          font-style: normal;
+          font-weight: 600;
+          line-height: 140%;
+          strong {
+            font-weight: 600;
+          }
+        }
+        .card-text {
+          color: #FFF;
+          text-align: center;
+          font-family: "Red Hat Display";
+          font-size: clamp(16px, 3vw + 1px, 20px);
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          opacity: .6;
+        }
+      }
+    }
+  }
+  @media (max-width: 1024px) {
+    .system-holder {
+      .system-card-holder {
+        justify-content: space-evenly;
+        gap: 32px 0px;
+        .system-card {
+          flex: 1 0 50%;
+        }
+      }
+    }
+  }
+  @media (max-width: 550px) {
+    padding: 40px 0px;
+    .system-holder {
+      .system-card-holder {
+        justify-content: space-evenly;
+        gap: 32px 0px;
+        .system-card {
+          flex: 1 0 100%;
+        }
+      }
+    }
+  }
+}
