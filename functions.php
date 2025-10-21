@@ -263,11 +263,13 @@ add_action('pre_get_posts', 'custom_query_override');
 function enqueue_profile_main_js() {
     wp_enqueue_script(
         'profile-main',
-        get_template_directory_uri() . '/resources/scripts/profile/profile-main.js', // correct path!
+        get_template_directory_uri() . '/resources/scripts/profile/profile-main.js',
         array(),
         null,
         true
     );
+    wp_script_add_data('profile-main', 'type', 'module'); // <- important
+
 
     wp_localize_script('profile-main', 'ajax_object', array(
         'ajaxurl' => admin_url('admin-ajax.php'),
@@ -275,3 +277,21 @@ function enqueue_profile_main_js() {
     ));
 }
 add_action('wp_enqueue_scripts', 'enqueue_profile_main_js');
+
+
+
+
+add_action('init', function() {
+    // Only for AJAX requests
+    if (isset($_SERVER['HTTP_ORIGIN'])) {
+        header("Access-Control-Allow-Origin: http://localhost:4000");
+        header('Access-Control-Allow-Credentials: true');
+        header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, X-WP-Nonce');
+    }
+
+    // Handle preflight OPTIONS request
+    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+        exit; // Stop here for preflight
+    }
+});

@@ -275,46 +275,60 @@ add_action('wp_ajax_nopriv_google_token_login', 'google_token_login');
 add_action('wp_ajax_google_token_login', 'google_token_login');
 
 function google_token_login() {
-    // Optional security check
-    if ( ! empty($_POST['security']) && ! wp_verify_nonce($_POST['security'], 'google_token_login_nonce') ) {
-        wp_send_json_error(['message' => 'Invalid nonce']);
-    }
-
     $access_token = sanitize_text_field($_POST['access_token'] ?? '');
+    $security     = sanitize_text_field($_POST['security'] ?? '');
+
     if (!$access_token) {
-        wp_send_json_error(['message' => 'Missing token']);
+        wp_send_json_error(['message' => 'No access token provided']);
     }
 
-    $response = wp_remote_get('https://openidconnect.googleapis.com/v1/userinfo', [
-        'headers' => ['Authorization' => 'Bearer ' . $access_token],
-        'timeout' => 15
+    // 1️⃣ Get user info from Google
+    $response = wp_remote_get("https://www.googleapis.com/oauth2/v3/userinfo", [
+        'headers' => [
+            'Authorization' => 'Bearer ' . $access_token
+        ]
     ]);
 
     if (is_wp_error($response)) {
-        wp_send_json_error(['message' => $response->get_error_message()]);
+        wp_send_json_error(['message' => 'Failed to fetch Google user info']);
     }
 
-    $profile = json_decode(wp_remote_retrieve_body($response), true);
-    if (empty($profile['email'])) {
-        wp_send_json_error(['message' => 'Email not returned']);
+    $user_info = json_decode(wp_remote_retrieve_body($response), true);
+
+    if (empty($user_info['email'])) {
+        wp_send_json_error(['message' => 'Google user email not found']);
     }
 
-    $email = sanitize_email($profile['email']);
+    $email = sanitize_email($user_info['email']);
+    $name  = sanitize_text_field($user_info['name'] ?? 'Google User');
+
+    // 2️⃣ Check if user already exists
     $user = get_user_by('email', $email);
 
     if (!$user) {
-        $username = wp_unique_username(sanitize_user(current(explode('@', $email))));
-        $password = wp_generate_password(24, true, true);
-        $user_id = wp_create_user($username, $password, $email);
+        // 3️⃣ Create new WordPress user
+        $password = wp_generate_password(12, true); // random secure password
+        $user_id = wp_create_user($email, $password, $email);
+
         if (is_wp_error($user_id)) {
-            wp_send_json_error(['message' => $user_id->get_error_message()]);
+            wp_send_json_error(['message' => 'Failed to create WordPress user']);
         }
-        $user = get_user_by('id', $user_id);
+
+        // Optional: update display name
+        wp_update_user([
+            'ID' => $user_id,
+            'display_name' => $name
+        ]);
+
+        $user = get_user_by('ID', $user_id);
     }
 
-    update_user_meta($user->ID, 'google_access_token', $access_token);
+    // 4️⃣ Log the user in
     wp_set_current_user($user->ID);
-    wp_set_auth_cookie($user->ID, true);
+    wp_set_auth_cookie($user->ID);
 
-    wp_send_json_success(['redirect' => home_url('/moj-profil/')]);
+    // 5️⃣ Return success with redirect, WITHOUT exposing access token
+    wp_send_json_success([
+        'message'  => 'User logged in successfully',
+    ]);
 }
