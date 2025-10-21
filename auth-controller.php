@@ -269,3 +269,52 @@ function custom_login_handler() {
 
     wp_send_json_success(['redirect' => $redirect_url]);
 }
+
+
+add_action('wp_ajax_nopriv_google_token_login', 'google_token_login');
+add_action('wp_ajax_google_token_login', 'google_token_login');
+
+function google_token_login() {
+    // Optional security check
+    if ( ! empty($_POST['security']) && ! wp_verify_nonce($_POST['security'], 'google_token_login_nonce') ) {
+        wp_send_json_error(['message' => 'Invalid nonce']);
+    }
+
+    $access_token = sanitize_text_field($_POST['access_token'] ?? '');
+    if (!$access_token) {
+        wp_send_json_error(['message' => 'Missing token']);
+    }
+
+    $response = wp_remote_get('https://openidconnect.googleapis.com/v1/userinfo', [
+        'headers' => ['Authorization' => 'Bearer ' . $access_token],
+        'timeout' => 15
+    ]);
+
+    if (is_wp_error($response)) {
+        wp_send_json_error(['message' => $response->get_error_message()]);
+    }
+
+    $profile = json_decode(wp_remote_retrieve_body($response), true);
+    if (empty($profile['email'])) {
+        wp_send_json_error(['message' => 'Email not returned']);
+    }
+
+    $email = sanitize_email($profile['email']);
+    $user = get_user_by('email', $email);
+
+    if (!$user) {
+        $username = wp_unique_username(sanitize_user(current(explode('@', $email))));
+        $password = wp_generate_password(24, true, true);
+        $user_id = wp_create_user($username, $password, $email);
+        if (is_wp_error($user_id)) {
+            wp_send_json_error(['message' => $user_id->get_error_message()]);
+        }
+        $user = get_user_by('id', $user_id);
+    }
+
+    update_user_meta($user->ID, 'google_access_token', $access_token);
+    wp_set_current_user($user->ID);
+    wp_set_auth_cookie($user->ID, true);
+
+    wp_send_json_success(['redirect' => home_url('/moj-profil/')]);
+}

@@ -340,9 +340,9 @@
         }
         .follow-us-on-instagram {
           padding: 16px 18px;
-          width: calc(105% + 3px);
-          margin-left: -5%;
-          margin-right: -5%;
+          width: calc(100% + 36px);
+          margin-left: -18px;
+          margin-right: -18px;
           background: #0F1E2B;
           display: flex;
           .follow-us-on-insta-link {
@@ -373,9 +373,9 @@
         }
         .burger-search {
           padding: 16px 18px;
-          width: calc(105% + 3px);
-          margin-left: -5%;
-          margin-right: -5%;
+          width: calc(100% + 36px);
+          margin-left: -18px;
+          margin-right: -18px;
           background: #0F1E2B;
           display: flex;
           .link-search-input {
@@ -413,10 +413,13 @@
   @media (max-width: 550px) {
     .header-holder {
       padding: 12px 0px;
-      .header-logo {
-        display: block;
-        height: auto;
-        max-width: 188px;
+      .header-logo-holder {
+        min-width: initial;
+        .header-logo {
+          display: block;
+          height: auto;
+          max-width: 188px;
+        }
       }
     }
   }

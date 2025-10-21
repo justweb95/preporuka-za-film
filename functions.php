@@ -255,4 +255,23 @@ add_action( 'phpmailer_init', 'configure_smtp' );
             }
         }
     }
-    add_action('pre_get_posts', 'custom_query_override');
+add_action('pre_get_posts', 'custom_query_override');
+
+
+
+
+function enqueue_profile_main_js() {
+    wp_enqueue_script(
+        'profile-main',
+        get_template_directory_uri() . '/resources/scripts/profile/profile-main.js', // correct path!
+        array(),
+        null,
+        true
+    );
+
+    wp_localize_script('profile-main', 'ajax_object', array(
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        'security' => wp_create_nonce('google_token_login_nonce')
+    ));
+}
+add_action('wp_enqueue_scripts', 'enqueue_profile_main_js');
