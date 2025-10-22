@@ -278,13 +278,30 @@ function enqueue_profile_main_js() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_profile_main_js');
 
+// functions.php
 
+function pzfilm_enqueue_global_js_data() {
+    // Register a dummy global script (or attach to a main theme script)
+    wp_register_script('pzfilm-global', '', [], null, true);
+
+    // Localize the script with data to be available in all JS
+    wp_localize_script('pzfilm-global', 'pzfilm_globals', [
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        'site_url' => get_site_url(),
+        'theme_uri' => get_template_directory_uri(),
+        'current_user_id' => get_current_user_id(),
+        'nonce' => wp_create_nonce('pzfilm_global_nonce'),
+    ]);
+
+    wp_enqueue_script('pzfilm-global');
+}
+add_action('wp_enqueue_scripts', 'pzfilm_enqueue_global_js_data');
 
 
 add_action('init', function() {
     // Only for AJAX requests
     if (isset($_SERVER['HTTP_ORIGIN'])) {
-        header("Access-Control-Allow-Origin: http://localhost:4000");
+        header("Access-Control-Allow-Origin: [http://localhost:4000, https://preporukazafilm.com, https://staging.preporukazafilm.com]");
         header('Access-Control-Allow-Credentials: true');
         header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
         header('Access-Control-Allow-Headers: Content-Type, X-WP-Nonce');
