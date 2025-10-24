@@ -1,5 +1,6 @@
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
+import { getLoggedInUsername } from '@scripts/profile/profile-main.js';
 
 // Toast helper
 function showToast(message, time) {
@@ -58,15 +59,9 @@ function populateList(movieId) {
   toggleFavorite(movieId);
 }
 
-
-function checkLocalSort() {
-  return localStorage.getItem('favorit') !== null;
-}
-
 function getLocalFavorites() {
   return JSON.parse(localStorage.getItem('favorit') || '[]');
 }
-
 
 function colorLikedButton(allMovieIds) {
   document.querySelectorAll('.like-button').forEach(button => button.classList.remove('liked'));
@@ -93,33 +88,6 @@ export function handleCategoryDropdown() {
     categorySVG.style.transform = 'rotate(0deg)';
   }
 }
-
-
-
-
-
-function getLoggedInUserCookie() {
-  const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
-    const [name, value] = cookie.split('=');
-    acc[name] = value;
-    return acc;
-  }, {});
-
-  for (const name in cookies) {
-    if (name.startsWith('wordpress_logged_in_')) return decodeURIComponent(cookies[name]);
-  }
-
-  return null;
-}
-
-function getLoggedInUsername() {
-  const cookie = getLoggedInUserCookie();
-  if (!cookie) return null;
-
-  return cookie.split('|')[0] || null;
-}
-
-
 
 function toggleFavorite(movieId) {
   const username = getLoggedInUsername();

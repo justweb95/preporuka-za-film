@@ -227,10 +227,9 @@
           .watched {
             stroke: var(--Green, #18BF7C);
             fill: var(--Green, #18BF7C);
-            path {
-              stroke: var(--Green, #18BF7C) !important;
-              fill: var(--Green, #18BF7C) !important;
-            }
+              path {
+                stroke: var(--Green, #18BF7C) !important;
+              }
           }
           &:hover {
             .card-menu-btn-tooltip {
@@ -247,8 +246,7 @@
             .watched-button {
               cursor: pointer;
               path {
-                stroke: var(--Green, #18BF7C);
-                fill: var(--Green, #18BF7C);
+                stroke: var(--Green, #18BF7C) !important;
               }
             }
           }

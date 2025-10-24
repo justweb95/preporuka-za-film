@@ -9,6 +9,8 @@ window.addEventListener("load", () => {
 // import Swiffy Slider CSS
 import "swiffy-slider/css"
 
+
+
 console.log('Profile main script loaded');
 
 window.addEventListener('load', () => {
@@ -42,3 +44,51 @@ window.addEventListener('load', () => {
     }
   }
 });
+
+
+// User Profile Controller
+//  1. Is User Logged In
+//  2. Get Logged In Username
+
+export function getLoggedInUserCookie() {
+  const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
+    const [name, value] = cookie.split('=');
+    acc[name] = value;
+    return acc;
+  }, {});
+
+  for (const name in cookies) {
+    if (name.startsWith('wordpress_logged_in_')) return decodeURIComponent(cookies[name]);
+  }
+
+  return null;
+}
+
+export function getLoggedInUsername() {
+  const cookie = getLoggedInUserCookie();
+  if (!cookie) return null;
+
+  return cookie.split('|')[0] || null;
+}
+
+export function getLoggedInUserMetaData() {
+  const username = getLoggedInUsername();
+  if (!username) return null;
+  return fetch(pzfilm_globals.ajaxurl, {
+    method: 'POST',
+    body: new URLSearchParams({
+      action: 'get_profile_metadata',
+      username: username
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        return data.data;
+      } else {
+        console.log(data.data?.message || 'Failed to retrieve user meta');
+      }
+    })
+    .catch(err => console.error(err));
+}
+

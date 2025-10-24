@@ -20,7 +20,7 @@ function get_profile_info_handler() {
 
     // 🧩 Define default meta values
     $default_meta = [
-        'profile_image' => 'resources/images/avatars/Profile1.svg',
+        'profile_image' => 'images/avatars/Profile1.svg',
         'favorite_movies' => json_encode([]),
         'recommendations_history' => json_encode([]),
         'tier' => 'bronze',
@@ -236,8 +236,6 @@ function get_favorite_movies_by_username_handler() {
 }
 
 
-
-
 // Toggle a movie in already_watched meta via username
 add_action('wp_ajax_toggle_watched_movie', 'toggle_watched_movie_by_username_handler');
 add_action('wp_ajax_nopriv_toggle_watched_movie', 'toggle_watched_movie_by_username_handler');
@@ -271,6 +269,7 @@ function toggle_watched_movie_by_username_handler() {
     wp_send_json_success(['already_watched' => array_values($watched)]);
 }
 
+
 // Get already watched movies by username
 add_action('wp_ajax_get_watched_movies_by_username', 'get_watched_movies_by_username_handler');
 add_action('wp_ajax_nopriv_get_watched_movies_by_username', 'get_watched_movies_by_username_handler');
@@ -293,4 +292,77 @@ function get_watched_movies_by_username_handler() {
     $watched = json_decode(get_user_meta($user_id, 'already_watched', true) ?: '[]', true);
 
     wp_send_json_success(['already_watched' => $watched]);
+}
+
+// Toggle a movie in already_watched meta via username
+add_action('wp_ajax_save_movie_recommendation', 'save_movie_recommendation_handler');
+add_action('wp_ajax_nopriv_save_movie_recommendation', 'save_movie_recommendation_handler');
+
+function save_movie_recommendation_handler() {
+    if (!isset($_POST['movie_id'], $_POST['username'])) {
+        wp_send_json_error(['message' => 'Movie ID or username missing'], 400);
+    }
+
+    $movie_id = sanitize_text_field($_POST['movie_id']);
+    $username = sanitize_user($_POST['username']);
+
+    $user = get_user_by('login', $username);
+    if (!$user) {
+        wp_send_json_error(['message' => 'User not found'], 404);
+    }
+
+    $user_id = $user->ID;
+
+    // Get current already watched movies
+    $recommendations_history = json_decode(get_user_meta($user_id, 'recommendations_history', true) ?: '[]', true);
+
+    if (!in_array($movie_id, $recommendations_history)) {
+        $recommendations_history[] = $movie_id; // Add
+    } else {
+        $recommendations_history = array_diff($recommendations_history, [$movie_id]); // Remove
+    }
+
+    update_user_meta($user_id, 'recommendations_history', wp_json_encode(array_values($recommendations_history)));
+
+    wp_send_json_success(['recommendations_history' => array_values($recommendations_history)]);
+}
+
+
+// Toggle a movie in already_watched meta via username
+add_action('wp_ajax_get_profile_metadata', 'get_profile_metadata_handler');
+add_action('wp_ajax_nopriv_get_profile_metadata', 'get_profile_metadata_handler');
+
+function get_profile_metadata_handler() {
+    if (!isset($_POST['username'])) {
+        wp_send_json_error(['message' => 'Username missing'], 400);
+    }
+
+    $username = sanitize_user($_POST['username']);
+    $user = get_user_by('login', $username);
+
+    if (!$user) {
+        wp_send_json_error(['message' => 'User not found'], 404);
+    }
+
+    $user_id = $user->ID;
+
+    // 🧾 Gather all metadata
+    $profile_data = [
+        'id' => $user_id,
+        'name'   => $user->display_name ?: $user->user_login,
+        'email'  => $user->user_email,
+        'avatar' => get_avatar_url($user_id, ['size' => 96]),
+        'role'   => implode(', ', $user->roles),
+        'profile_image' => get_user_meta($user_id, 'profile_image', true),
+        'favorite_movies' => json_decode(get_user_meta($user_id, 'favorite_movies', true), true),
+        'recommendations_history' => json_decode(get_user_meta($user_id, 'recommendations_history', true), true),
+        'tier' => get_user_meta($user_id, 'tier', true),
+        'notifications_enabled' => (bool) get_user_meta($user_id, 'notifications_enabled', true),
+        'notifications_list' => json_decode(get_user_meta($user_id, 'notifications_list', true), true),
+        'already_watched' => json_decode(get_user_meta($user_id, 'already_watched', true), true),
+        'advanced_search_counter' => intval(get_user_meta($user_id, 'advanced_search_counter', true)),
+    ];
+
+    // Return all metadata
+    wp_send_json_success(['message' => 'Profile retrieved successfully', 'user_data' => $profile_data]);
 }

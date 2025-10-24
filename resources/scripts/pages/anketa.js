@@ -10,23 +10,21 @@ import {
   tmdbCallHandler,
   movieTrailer,
  
-
 } from '@scripts/partials/tmdbControler';
 
 import {
   callPerplexity,
   buildPromt
 
-
-
 } from '@scripts/partials/openAiControler'
 
 import { cyrillicFormat, removeDiacritics } from '@scripts/partials/textFormatingControler';
+import { getLoggedInUsername } from '@scripts/profile/profile-main.js';
 
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css'; // Importing CSS for Toastify
 
-// Spanm COunter
+// Spam Counter
 let spamCounter = 0
 let newRecomendationButton = document.getElementById ('new-recomendation');
 let startOverButton = document.getElementById('start-over');
@@ -93,14 +91,21 @@ async function changeQuestionHandler(currentQuestionIndex) {
     if (isOkay) {
       try {
         const tmdbResult = await tmdbCallHandler(recommendation_movie_array);
-
         await poplateResult(tmdbResult);
 
         setTimeout(() => {
-
           currentQuestionIndex = 7;
           changeQuestionHandler(currentQuestionIndex);
         }, 300)
+
+        const username = getLoggedInUsername();
+        if (username) {
+          saveMovieRecommendation(tmdbResult.id, username);
+        }
+        else {
+          showToast('Za čuvanje preporuka, prijavite se ili registrujte nalog!', 4000);
+        }
+
         // You can directly change the question after tmdbResult is populated
         // currentQuestionIndex = 7;
         // changeQuestionHandler(currentQuestionIndex);
@@ -300,7 +305,8 @@ async function poplateResult(resultObject) {
       provider.provider_name === 'Amazon Video' || provider.provider_name === 'Amazon Prime Video'
     );
   } else {
-    console.log("movie_watch_on or buy array does not exist.");
+    // console.log("movie_watch_on or buy array does not exist.");
+    
   }
 
   if (amazonProvider) {
@@ -321,6 +327,27 @@ function durationFromat(time) {
   const hours = Math.floor(time / 60); // Calculate full hours
   const minutes = time % 60; // Calculate remaining minutes
   return `${hours}h ${minutes}min`; // Return formatted string
+}
+
+function saveMovieRecommendation(movie_id, username) {
+  fetch(pzfilm_globals.ajaxurl, {
+    method: 'POST',
+    credentials: 'same-origin',
+    body: new URLSearchParams({
+      action: 'save_movie_recommendation',
+      username: username,
+      movie_id: movie_id
+    })
+  })
+  .then(r => r.json())
+  .then(res => {
+    if (res.success) {
+      showToast('Preporuka je sačuvana!', 2000);
+    } else {
+      console.error(res.data?.message || "Greška prilikom čuvanja preporuke");
+      showToast("Greška prilikom čuvanja preporuke");
+    }
+  });
 }
 
 

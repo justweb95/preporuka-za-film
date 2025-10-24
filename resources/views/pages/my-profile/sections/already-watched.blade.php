@@ -1,6 +1,6 @@
 @php
   use App\Controllers\RecentRecommendationsController;
-  $my_favorites = RecentRecommendationsController::getMyFavoritesMovies(10);
+  $my_favorites = RecentRecommendationsController::getAlreadyWatchedMovies(10);
 @endphp
 
 <section class="recent-recommendations swiffy-slider slider-item-show5 slider-item-show2-sm slider-nav-sm slider-nav-touch slider-nav-autoplay slider-nav-autopause slider-indicators-round slider-indicators-highlight" data-slider-nav-autoplay-interval="4000">

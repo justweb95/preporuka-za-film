@@ -26,7 +26,8 @@
       
         @include('pages.my-profile.partials.advance-search-banner')
         @include('pages.my-profile.sections.recent-recommendations')
-        @include('pages.my-profile.sections.my-favorites')      
+        @include('pages.my-profile.sections.my-favorites')
+        @include('pages.my-profile.sections.already-watched')
       </div>
       
 

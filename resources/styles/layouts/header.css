@@ -201,6 +201,19 @@
           }
         }
       }
+      .my-profile {
+        padding: 0px;
+        max-width: 56px;
+        max-height: 55px;
+        a {
+          display: inline-block;
+          max-height: 55px;
+          #user-avatar {
+            max-width: 100%;
+            height: auto;
+          }
+        }
+      }
     }
     .search-login-list {
       min-width: 380px;
@@ -324,7 +337,7 @@
         .login-mobile {
           margin-top: auto;
           margin-bottom: 32px;
-          border-radius: 40px;
+          border-radius: 20px;
           background: var(--Grey, #22374A);
           a {
             width: 100%;
@@ -335,6 +348,11 @@
             svg {
               vertical-align: middle;
               /* margin-bottom: -1px; */
+            }
+            img {
+              display: inline-block;
+              max-width: 56px;
+              max-height: 55px;
             }
           }
         }
