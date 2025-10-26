@@ -1,6 +1,7 @@
 <article class="advance-search-banner">
   <h2 class="banner-heading">Napredna Pretraga</h2>
   <p class="banner-description">Nova unapređena AI preporuka za film po tvojoj meri</p>
+  <img src="@asset('images/profile/banner-bg-image.webp')" alt="Baner image" class="banner-image" />
   <button class="banner-cta">
     <svg width="43" height="44" viewBox="0 0 43 44" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M21.1322 37.7531C29.8273 37.7531 36.876 30.5189 36.876 21.595C36.876 12.6711 29.8273 5.43684 21.1322 5.43684C12.4372 5.43684 5.38844 12.6711 5.38844 21.595C5.38844 21.6429 5.38865 21.6907 5.38905 21.7386L5.38844 43.187H0.0938972L0.0938852 21.7386C0.0935818 21.6907 0.0938839 21.6429 0.0938839 21.595C0.0938839 9.67002 9.51307 0.00292969 21.1322 0.00292969C32.7514 0.00292969 42.1706 9.67002 42.1706 21.595C42.1706 33.5199 32.7514 43.187 21.1322 43.187C16.3815 43.187 11.9986 41.571 8.47694 38.8453V31.2086C11.3454 35.1794 15.946 37.7531 21.1322 37.7531Z" fill="white"/>

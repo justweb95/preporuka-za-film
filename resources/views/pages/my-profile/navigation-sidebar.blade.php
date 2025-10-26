@@ -30,15 +30,3 @@
     @endforeach
   </ul>
 </aside>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const btn_links = document.querySelectorAll('.nav-link-button');
-  btn_links[0].classList.add('active-nav'); 
-
-  // fetch('<?php echo admin_url("admin-ajax.php"); ?>?action=get_profile_info')
-  // .then(res => res.json())
-  // .then(data => console.log(data));
-
-});
-</script>

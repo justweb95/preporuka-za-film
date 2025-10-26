@@ -1,10 +1,9 @@
 .advance-search-banner {
+  position: relative;
   padding: 35px 35px 35px 35px;
   width: 100%;
   border-radius: 12px;
-  background: 
-    url('../images/profile/banner-bg-image.webp'),
-    linear-gradient(90deg, #02596C 0%, #115071 61.14%, #10364B 100%);
+  background: linear-gradient(90deg, #02596C 0%, #115071 61.14%, #10364B 100%);
   background-position: 80% 100%;
   background-size: contain;
   background-repeat: no-repeat;
@@ -17,7 +16,7 @@
     font-weight: 500;
   }
   .banner-description {
-    margin: 24px 0px 28px;
+    margin: 12px 0px 24px;
     color: #FFF;
     font-family: 'Unbounded', sans-serif;
     font-size: 14px;
@@ -55,5 +54,12 @@
         transform: scale(1.2);
       }
     }
+  }
+  .banner-image {
+    position: absolute;
+    bottom: 0;
+    right: 60px;
+    display: block;
+    max-width: calc(100% - 60px);
   }
 }

@@ -1,10 +1,19 @@
 const navigationSidebarLinks = document.querySelectorAll('.nav-link-button');
 const profileSections = document.querySelectorAll('.tab-content');
 
+
+navigationSidebarLinks[0].classList.add('active-nav');
+ 
+
 navigationSidebarLinks.forEach(link => {
   link.addEventListener('click', () => {  
     const targetId = link.dataset.tab;
-    handleNavigationClick(targetId, link);
+
+    if (targetId !== 'logout') {
+      handleNavigationClick(targetId, link);
+    } else {
+      logOutHandler();
+    }
   });
 });
 
@@ -16,4 +25,21 @@ function handleNavigationClick(id, link) {
   navigationSidebarLinks.forEach(otherLink => {    
     otherLink.classList.toggle('active-nav', otherLink === link);
   });
+}
+
+async function logOutHandler() {
+  const response = await fetch(pzfilm_globals.ajaxurl, {
+    method: 'POST',
+    body: new URLSearchParams({
+      action: 'logout_user' // must match the PHP hook
+    })
+  });
+
+  const data = await response.json();
+  if (data.success) {
+    window.location.href = data.data.redirect_url;
+
+  } else {
+    console.log('Logout failed', data);
+  }
 }

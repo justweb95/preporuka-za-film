@@ -21,7 +21,7 @@
         @include('pages.my-profile.partials.tab-header', [ 
           'tab_heading' => 'Dobrodošao nazad! 👋', 
           'notification' => true, 
-          'new_recommendations' => false
+          'new_recommendations' => true
         ])
       
         @include('pages.my-profile.partials.advance-search-banner')
@@ -32,23 +32,35 @@
       
 
       <div class="tab-content" id="advanced_recommendation" hidden>
-        @include('pages.my-profile.partials.profile-section-header', [
-          'header_title' => 'Poslednje preporuke',
-          'tab_id' => 'recommendations',
-          'link_text' => 'Prikaži sve'    
+        @include('pages.my-profile.partials.tab-header', [ 
+          'tab_heading' => 'Napredna Pretraga', 
+          'notification' => false, 
+          'new_recommendations' => true
         ])
       </div>
       
       <div class="tab-content" id="favorite_movies" hidden>
-        <h1>Moji Omiljeni Filmovi</h1>
+        @include('pages.my-profile.partials.tab-header', [ 
+          'tab_heading' => 'Moji Omiljeni Filmovi', 
+          'notification' => false, 
+          'new_recommendations' => true
+        ])
       </div>
       
       <div class="tab-content" id="already_watched" hidden>
-        <h1>Vec gledano</h1>
+        @include('pages.my-profile.partials.tab-header', [ 
+          'tab_heading' => 'Već Gledani Filmovi', 
+          'notification' => false, 
+          'new_recommendations' => true
+        ])
       </div>
       
       <div class="tab-content" id="settings" hidden>
-        <h1>Podesavanja</h1>
+        @include('pages.my-profile.partials.tab-header', [ 
+          'tab_heading' => 'Korisnička podešavanja', 
+          'notification' => true, 
+          'new_recommendations' => false
+        ])
       </div>      
     </div>
   </section>

@@ -387,3 +387,12 @@ function get_profile_metadata_handler() {
     // Return all metadata
     wp_send_json_success(['message' => 'Profile retrieved successfully', 'user_data' => $profile_data]);
 }
+
+
+add_action('wp_ajax_logout_user', 'logout_user_handler');
+add_action('wp_ajax_nopriv_logout_user', 'logout_user_handler'); // add this!
+
+function logout_user_handler() {
+    wp_logout();
+    wp_send_json_success(['redirect_url' => home_url()]);
+}
