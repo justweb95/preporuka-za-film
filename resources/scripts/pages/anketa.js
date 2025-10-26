@@ -98,7 +98,7 @@ async function changeQuestionHandler(currentQuestionIndex) {
           changeQuestionHandler(currentQuestionIndex);
         }, 300)
 
-        const username = getLoggedInUsername();
+        const username = await getLoggedInUsername();
         if (username) {
           saveMovieRecommendation(tmdbResult.id, username);
         }

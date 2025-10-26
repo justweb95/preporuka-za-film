@@ -226,7 +226,6 @@
           }
           .watched {
             stroke: var(--Green, #18BF7C);
-            fill: var(--Green, #18BF7C);
               path {
                 stroke: var(--Green, #18BF7C) !important;
               }

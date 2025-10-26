@@ -176,6 +176,27 @@ function pzfilm_save_extra_profile_fields($user_id) {
     }
 }
 
+add_action('wp_ajax_get_loggedin_username', 'get_loggedin_username_handler');
+add_action('wp_ajax_nopriv_get_loggedin_username', 'get_loggedin_username_handler');
+
+function get_loggedin_username_handler() {
+    // Check environment
+    $is_production = env('PUBLIC_PRODUCTION', false); // default to false if not set
+
+    if (!$is_production) {
+        wp_send_json_success(['username' => 'paki']);
+    }
+
+    // Normal WordPress login check
+    $user = wp_get_current_user();
+
+    if (!$user || $user->ID === 0) {
+        wp_send_json_success(['username' => 'guest']);
+    }
+
+    wp_send_json_success(['username' => $user->user_login]);
+}
+
 
 // Toggle a movie in favorite_movies meta via username
 add_action('wp_ajax_toggle_favorite_movie', 'toggle_favorite_movie_by_username_handler');
@@ -282,8 +303,8 @@ function get_watched_movies_by_username_handler() {
     $username = sanitize_user($_POST['username']);
     $user = get_user_by('login', $username);
 
-    if (!$user) {
-        wp_send_json_error(['message' => 'User not found'], 404);
+    if (!$user || $user->ID === 0) {
+        wp_send_json_error(['message' => 'User not found or not logged in'], 404);
     }
 
     $user_id = $user->ID;

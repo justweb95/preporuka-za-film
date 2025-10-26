@@ -34,10 +34,10 @@ export function alreadywatched(movieId) {
 
 
 
-function populateList(movieId) {
-  const username = getLoggedInUsername();
+async function populateList(movieId) {
+  const username = await getLoggedInUsername();
 
-  if (!username) {
+  if (username === 'guest') {
     // Guest: show message and update localStorage
     showToast("Za čuvanje omiljenih filmova, prijavite se ili registrujte nalog!", 4000);
     let favorites = getLocalFavorites();
@@ -74,6 +74,7 @@ function colorLikedButton(allMovieIds) {
 
 
 window.handleCategoryDropdown = handleCategoryDropdown;
+
 export function handleCategoryDropdown() {
   const categoryDropdownList = document.querySelector('.category-drop-down-list');
   const categorySVG = document.querySelector('.category-drop-down-holder svg');
@@ -89,8 +90,8 @@ export function handleCategoryDropdown() {
   }
 }
 
-function toggleFavorite(movieId) {
-  const username = getLoggedInUsername();
+async function toggleFavorite(movieId) {
+  const username = await getLoggedInUsername();
 
   fetch(pzfilm_globals.ajaxurl, {
     method: 'POST',
@@ -114,10 +115,11 @@ function toggleFavorite(movieId) {
 }
 
 
-function getFavorites() {
-  const username = getLoggedInUsername();
+async function getFavorites() {
+  const username = await getLoggedInUsername();
+  
 
-  if (!username) {
+  if (username === 'guest') {
     // Guest: use localStorage only
     const favorites = getLocalFavorites();
     colorLikedButton(favorites);
@@ -142,9 +144,9 @@ function getFavorites() {
   });
 }
 
-function toggleWatched(movieId) {
-    const username = getLoggedInUsername();
-    if (!username) {
+async function toggleWatched(movieId) {
+    const username = await getLoggedInUsername();
+    if (username === 'guest') {
         showToast("Za čuvanje odgledanih filmova, prijavite se!");
         return;
     }
@@ -182,16 +184,16 @@ function colorWatchedButton(all_movies_id) {
 }
 
 // Load watched movies on page load
-function getWatched() {
-    const username = getLoggedInUsername();
-    if (!username) return;
+async function getWatched() {
+    const username = await getLoggedInUsername();
+    if (username === 'guest') return;
 
     fetch(pzfilm_globals.ajaxurl, {
         method: 'POST',
         credentials: 'same-origin',
         body: new URLSearchParams({
-            action: 'get_watched_movies_by_username',
-            username: username
+            action: 'get_loggedin_username',
+            // username: username
         })
     })
     .then(r => r.json())
