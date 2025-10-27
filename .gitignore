@@ -1,7 +1,10 @@
 /node_modules
 /vendor
 /public
+/resources/views/layouts/app.blade.php
+
 .env
 .budfiles
+
 npm-debug.log
 yarn-error.log
