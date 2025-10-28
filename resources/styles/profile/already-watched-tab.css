@@ -1,0 +1,123 @@
+.already-watched-tab {
+  /* width: 100%; */
+  padding: 20px 0px;
+  .already-watched-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+
+
+    list-style: none;
+    padding: 20px 0px;
+
+
+    .recent-recommendations-card {
+      position: relative;
+
+
+      .recent-recommendations-card-link {
+        text-decoration: none;
+
+        .recent-recommendations-card-img {
+          display: block;
+          max-width: 100%;
+          height: auto;
+          object-fit: cover;
+          border-radius: 8px;
+        }
+
+        .recent-recommendations-card-title {
+          margin: 16px 0px 4px;
+          color: var(--White, #FFF);
+          font-family: "Red Hat Display", sans-serif;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+        }
+
+        .recent-recommendations-card-year {
+          color: var(--Light, #EDFEEC);
+          font-family: "Red Hat Display", sans-serif;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+        }
+        .recent-recommendations-card-menu-btn-holder {
+          position: absolute;
+          top: 8px;
+          left: 8px;
+          width: calc(100% - 16px);
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 6px;
+
+          .card-menu-btn-our-recomentation, .card-menu-btn-remove {
+            position: relative;
+            background-color: transparent;
+            border: none;
+            &:hover {
+              .card-menu-btn-tooltip {
+                cursor: pointer;
+                opacity: 1;
+              }
+            }
+            .card-menu-btn-tooltip {
+              width: 100px;
+              position: absolute;
+              left: -70px;
+              top: -20px;
+              transition: .2s ease-in-out;
+
+              border-radius: 4px;
+              background: rgba(34, 55, 74, 0.50);
+              backdrop-filter: blur(20px);
+
+              opacity: 0;
+              user-select: none;
+              z-index: 9;
+
+              font-family: "Red Hat Display", sans-serif;
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 300;
+              line-height: normal;
+              color: var(--Light, #EDFEEC);
+            }
+          }
+        }
+      }
+    }
+  }
+  .slider-nav {
+    margin-top: -30px;
+    margin-left: -35px;
+    &::before {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 40px;
+      border: 0.6px solid rgba(237, 254, 236, 0.24);
+      background: rgba(255, 255, 255, 0.30);
+      backdrop-filter: blur(20px);
+    }
+    &::after {
+      margin-left: 6px;
+    }
+  }
+  .slider-nav-next {
+    margin-right: -35px;
+    &::after {
+      margin-left: 11px;
+    }
+  }
+  .no-results-found {
+    font-family: "Red Hat Display", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    color: var(--Light, #EDFEEC);
+  }
+}

@@ -6,8 +6,9 @@
 <section class="recent-recommendations swiffy-slider slider-item-show5 slider-item-show2-sm slider-nav-sm slider-nav-touch slider-nav-autoplay slider-nav-autopause slider-indicators-round slider-indicators-highlight" data-slider-nav-autoplay-interval="4000">
 
   @include('pages.my-profile.partials.profile-section-header', [
-    'header_title' => 'Poslednje preporuke',
-    'tab_id' => 'recommendations',
+    'header_title' => 'Moji Omiljeni Filmovi',
+    'show_more' => true,
+    'tab_id' => 'omiljeni_filmovi',
     'link_text' => 'Prikaži sve'    
   ])
 

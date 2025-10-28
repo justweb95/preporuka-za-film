@@ -4,9 +4,9 @@
 @endphp
 
 <section class="recent-recommendations swiffy-slider slider-item-show5 slider-item-show2-sm slider-nav-sm slider-nav-touch slider-nav-autoplay slider-nav-autopause slider-indicators-round slider-indicators-highlight" data-slider-nav-autoplay-interval="4000">
-
   @include('pages.my-profile.partials.profile-section-header', [
     'header_title' => 'Poslednje preporuke',
+    'show_more' => true,
     'tab_id' => 'recommendations',
     'link_text' => 'Prikaži sve'    
   ])

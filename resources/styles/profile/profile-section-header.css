@@ -1,4 +1,5 @@
 .profile-section-header {
+  margin: 48px 0px 24px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -35,6 +36,104 @@
       cursor: pointer;
       svg {
         transform: translateX(5px);
+      }
+    }
+  }
+
+
+  .select-category-holder {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #113655;
+
+    .header-category-list {
+      display: flex;
+      gap: 4px;
+      list-style: none;
+      
+      .single-category-filter {
+        padding: 14px 24px;
+        color: #FFF;
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        &:hover {
+          cursor: pointer;
+          background-color: #113655;
+        }
+      }
+      .active-category {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        background-color: #113655;
+        border-bottom: 4px solid #F57C36;      
+      }
+    }
+
+
+    .filter-sort-dropdown {
+      position: relative;
+      font-family: "Red Hat Display", sans-serif;
+      color: #FFF;
+      background-color: transparent;
+      cursor: pointer;
+      user-select: none;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+
+      .filter-sort-selected {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 8px 0px;
+        padding: 4px 16px;
+        border-left: 1px solid #113655;
+        border-right: 1px solid #113655;
+        svg {
+          margin-right: 8px;
+        }
+
+      }
+      .filter-sort-options {
+        position: absolute;
+        top: 90%;
+        left: 0;
+        width: 100%;
+        background-color: #06131E;
+        margin-top: 4px;
+        display: none;
+        flex-direction: column;
+        z-index: 10;
+        overflow: hidden;
+        p {
+          padding: 10px 16px;
+          margin: 0;
+          font-weight: 600;
+          font-weight: 700;
+          font-size: 14px;
+          border-bottom: 4px solid transparent;    
+          transition: 0.2s ease;
+        }
+      }
+      &:hover {
+        background-color: #113655;
+      }
+    }
+
+    .filter-sort-open {
+      .filter-sort-options {
+        display: flex;
+        p {
+          &:hover {
+            background-color: #113655;
+            border-bottom: 4px solid #F57C36;    
+          }
+        }
       }
     }
   }

@@ -30,8 +30,11 @@
 @import url('./profile/recent-recommendations-carousel.css');
 @import url('./profile/profile-section-header.css');
 /* Tabs and Sidebar*/
-@import url('./profile/my-recommendations.css');
 @import url('./profile/navigation-sidebar.css');
+@import url('./profile/my-recommendations.css');
+@import url('./profile/my-favorites-tab.css');
+@import url('./profile/already-watched-tab.css');
+@import url('./profile/recent-recommendations-tab.css');
 
 
 

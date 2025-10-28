@@ -18,7 +18,8 @@ domReady(async () => {
     
     '/moj-profil': async () => {
       await import('./profile/profile-main.js');
-      await import('./profile/profile-navigation-controler.js');
+      await import('./profile/profile-navigation-controller.js');
+      await import('./profile/section-header-controller.js');
     },
   };
 

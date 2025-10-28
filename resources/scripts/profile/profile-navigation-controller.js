@@ -2,7 +2,7 @@ const navigationSidebarLinks = document.querySelectorAll('.nav-link-button');
 const profileSections = document.querySelectorAll('.tab-content');
 
 
-navigationSidebarLinks[0].classList.add('active-nav');
+// navigationSidebarLinks[0].classList.add('active-nav');
  
 
 navigationSidebarLinks.forEach(link => {
@@ -11,11 +11,33 @@ navigationSidebarLinks.forEach(link => {
 
     if (targetId !== 'logout') {
       handleNavigationClick(targetId, link);
+
+      const newUrl = `${window.location.pathname}?tab=${targetId}`;
+      history.pushState(null, '', newUrl);
     } else {
       logOutHandler();
     }
   });
 });
+
+function setActiveNavFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const tab = params.get('tab');
+
+  if (tab) {
+    const link = Array.from(navigationSidebarLinks).find(l => l.dataset.tab === tab);
+    if (link) {
+      handleNavigationClick(tab, link);
+      return;
+    }
+  }
+
+  // If no tab in URL, activate first tab by default
+  handleNavigationClick(navigationSidebarLinks[0].dataset.tab, navigationSidebarLinks[0]);
+}
+
+// Call on page load
+setActiveNavFromURL();
 
 function handleNavigationClick(id, link) {
   profileSections.forEach(profile_tab => {

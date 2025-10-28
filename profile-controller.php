@@ -112,6 +112,17 @@ function pzfilm_show_extra_profile_fields($user) {
         </tr>
 
         <tr>
+            <th><label for="recommendations_history">Recommendations History (IDs)</label></th>
+            <td>
+                <textarea name="recommendations_history" id="recommendations_history" rows="3" cols="50"><?php
+                    echo esc_textarea(get_user_meta($user->ID, 'recommendations_history', true));
+                ?></textarea>
+                <p class="description">Unesi JSON niz ID-jeva filmova, npr. ["12","43","78"]</p>
+            </td>
+        </tr>
+
+
+        <tr>
             <th><label for="favorite_movies">Favorite Movies (IDs)</label></th>
             <td>
                 <textarea name="favorite_movies" id="favorite_movies" rows="3" cols="50"><?php
@@ -161,6 +172,7 @@ function pzfilm_save_extra_profile_fields($user_id) {
         'tier',
         'notifications_enabled',
         'advanced_search_counter',
+        'recommendations_history',
         'favorite_movies',
         'already_watched',
         'notifications_list',
