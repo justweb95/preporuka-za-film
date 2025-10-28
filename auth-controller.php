@@ -192,7 +192,13 @@ function custom_lost_password() {
         if (!$user) {
             $errors[] = 'Korisnik ne postoji.';
         } else {
-            retrieve_password($user_login);
+            $result = retrieve_password($user_login);
+
+            if (is_wp_error($result)) {
+                $errors[] = 'Greška: ' . $result->get_error_message();
+            } elseif (!$result) {
+                $errors[] = 'Slanje emaila nije uspelo.';
+            }
         }
     }
 
@@ -202,6 +208,7 @@ function custom_lost_password() {
         wp_send_json(['success' => true, 'message' => 'Proverite svoj email za link za resetovanje lozinke.']);
     }
 }
+
 
 /**
  * Handle User New Password via AJAX

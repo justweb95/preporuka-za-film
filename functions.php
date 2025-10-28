@@ -234,27 +234,34 @@ function modify_category_and_blog_archive( $query ) {
 }
 add_action( 'pre_get_posts', 'modify_category_and_blog_archive' );
 
-add_action( 'phpmailer_init', 'configure_smtp' );
-    function configure_smtp( $phpmailer ) {
-        $phpmailer->isSMTP();
-        $phpmailer->Host       = 'mail.preporukazafilm.com'; // SMTP server
-        $phpmailer->SMTPAuth   = true;
-        $phpmailer->Port       = 465; // SMTP port
-        $phpmailer->Username   = 'info@preporukazafilm.com'; // SMTP username
-        $phpmailer->Password   = 'OZ=O&q%T#&Ov'; // SMTP password
-        $phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Use SSL/TLS
-        $phpmailer->From       = 'info@preporukazafilm.com'; // From email address
-        $phpmailer->FromName   = 'Preporuka Za Film'; // From name
-    }
+add_action('phpmailer_init', 'configure_smtp');
+function configure_smtp($phpmailer) {
+    $phpmailer->isSMTP();
+    $phpmailer->Host       = 'mail.preporukazafilm.com'; // SMTP server
+    $phpmailer->SMTPAuth   = true;
+    $phpmailer->Port       = 465; // SMTP port
+    $phpmailer->Username   = 'info@preporukazafilm.com'; // SMTP username
+    $phpmailer->Password   = 'X2^me}-?z4B-{gqY'; // SMTP password
+    $phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Use SSL/TLS
+    $phpmailer->From       = 'info@preporukazafilm.com'; // From email address
+    $phpmailer->FromName   = 'Preporuka Za Film'; // From name
+
+    // 👇 Debug log
+    $phpmailer->SMTPDebug = 2;
+    $phpmailer->Debugoutput = function($str, $level) {
+        error_log("SMTP Debug: $str");
+    };
+}
 
 
-    function custom_query_override($query) {
-        if (!is_admin() && $query->is_main_query()) {
-            if (is_category(array('vesti', 'recenzije', 'top-liste'))) {
-                $query->set('posts_per_page', 6); // Show 6 posts per page
-            }
+
+function custom_query_override($query) {
+    if (!is_admin() && $query->is_main_query()) {
+        if (is_category(array('vesti', 'recenzije', 'top-liste'))) {
+            $query->set('posts_per_page', 6); // Show 6 posts per page
         }
     }
+}
 add_action('pre_get_posts', 'custom_query_override');
 
 
