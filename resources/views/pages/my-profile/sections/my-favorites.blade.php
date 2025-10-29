@@ -16,14 +16,12 @@
     <ul class="recent-recommendations-list slider-container">
       @foreach ($my_favorites as $movie)
         <li class="recent-recommendations-card">
-          @include('pages.my-profile.partials.single-movie-card', [
+          @include('partials/single-movie-card',[
             'movie_index' => $loop->iteration,
+            'poster_path' => $movie['poster_url'],
             'movie_ID' => $movie['ID'],
-            'movie_poster_url' => $movie['poster_url'],
-            'movie_post_title' => $movie['title'],
-            'movie_year' => $movie['year'],
+            'release_year' => $movie['year'],
             'our_recommendations' => $movie['our_recommendations'],
-            'my_favorites' => $movie['my_favorites'],
           ])
         </li>
       @endforeach

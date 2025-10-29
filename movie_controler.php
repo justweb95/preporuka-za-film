@@ -146,6 +146,7 @@ add_action( 'init', 'create_movie_post_type', 0 );
         }
         
         $genres = sanitize_text_field($genres);
+        $our_recommendations = 'false';
 
         $category_id = wp_create_category($genres);
         $post_data = array(
@@ -187,6 +188,9 @@ add_action( 'init', 'create_movie_post_type', 0 );
             update_post_meta($post_id, 'cast', $cast);
             update_post_meta($post_id, 'writing', $writing);
             update_post_meta($post_id, 'video_trailer', $video_trailer);
+            update_post_meta($post_id, 'our_recommendations', 'false');
+
+            
 
             $post_url = get_permalink($post_id);
 
@@ -228,6 +232,7 @@ add_action( 'init', 'create_movie_post_type', 0 );
         $tagline = get_post_meta($post_id, 'tagline', true);
         $vote_average = get_post_meta($post_id, 'vote_average', true);
         $vote_count = get_post_meta($post_id, 'vote_count', true);
+        $our_recommendations = get_post_meta($post_id, 'our_recommendations', true);
 
         // Display the movie data
         ob_start();
@@ -249,6 +254,7 @@ add_action( 'init', 'create_movie_post_type', 0 );
             <p><strong>Tagline:</strong> <?php echo esc_html($tagline); ?></p>
             <p><strong>Vote Average:</strong> <?php echo esc_html($vote_average); ?></p>
             <p><strong>Vote Count:</strong> <?php echo esc_html($vote_count); ?></p>
+            <p><strong>Our Recommendations</strong> <?php echo esc_html($our_recommendations); ?></p>
         </div>
         <?php
         return ob_get_clean();

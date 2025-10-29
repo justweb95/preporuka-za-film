@@ -15,7 +15,7 @@
     <ul class="recent-recommendations-list">
       @foreach ($recent_recommendations as $movie)
         <li class="recent-recommendations-card">
-          @include('pages.my-profile.partials.single-movie-card', [
+          {{-- @include('pages.my-profile.partials.single-movie-card', [
             'movie_index' => $loop->iteration,
             'movie_ID' => $movie['ID'],
             'movie_poster_url' => $movie['poster_url'],
@@ -23,6 +23,15 @@
             'movie_year' => $movie['year'],
             'our_recommendations' => $movie['our_recommendations'],
             'my_favorites' => $movie['my_favorites'],
+          ]) --}}
+
+          
+          @include('partials/single-movie-card',[
+            'movie_index' => $loop->iteration,
+            'poster_path' => $movie['poster_url'],
+            'movie_ID' => $movie['ID'],
+            'release_year' => $movie['year'],
+            'our_recommendations' => $movie['our_recommendations'],
           ])
         </li>
       @endforeach

@@ -174,6 +174,15 @@ function display_star_rating( $comment_text, $comment ) {
 add_filter( 'comment_text', 'display_star_rating', 10, 2 );
 
 
+add_action('save_post_movie', function($post_id) {
+    if (isset($_POST['our_recommendations'])) {
+        update_post_meta($post_id, 'our_recommendations', 'true');
+    } else {
+        update_post_meta($post_id, 'our_recommendations', 'false');
+    }
+});
+
+
 
 // Custom pagination rewrite rule
 // function custom_movie_pagination_rewrite() {
@@ -237,29 +246,23 @@ function modify_category_and_blog_archive( $query ) {
 }
 add_action( 'pre_get_posts', 'modify_category_and_blog_archive' );
 
-$php_mailer_username = get_my_env_variable('PHP_MAILER_USERNAME');
-$php_mailer_password = get_my_env_variable('PHP_MAILER_PASSWORD');
 
 
-add_action('phpmailer_init', 'configure_smtp');
-    function configure_smtp($phpmailer) {
-        $phpmailer->isSMTP();
-        $phpmailer->Host       = 'mail.preporukazafilm.com'; // SMTP server
-        $phpmailer->SMTPAuth   = true;
-        $phpmailer->Port       = 465; // SMTP port
-        $phpmailer->Username   = $php_mailer_username; // SMTP username
-        $phpmailer->Password   = $php_mailer_password; // SMTP password
-        $phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Use SSL/TLS
-        $phpmailer->From       = 'info@preporukazafilm.com'; // From email address
-        $phpmailer->FromName   = 'Preporuka Za Film'; // From name
 
-        // 👇 Debug log
-        $phpmailer->SMTPDebug = 2;
-        $phpmailer->Debugoutput = function($str, $level) {
-            error_log("SMTP Debug: $str");
-        };
-    }
+add_action('phpmailer_init', function ($phpmailer) {
+    $php_mailer_username = get_my_env_variable('PHP_MAILER_USERNAME');
+    $php_mailer_password = get_my_env_variable('PHP_MAILER_PASSWORD');
 
+    $phpmailer->isSMTP();
+    $phpmailer->Host       = 'mail.preporukazafilm.com'; // SMTP server
+    $phpmailer->SMTPAuth   = true;
+    $phpmailer->Port       = 465; // SMTP port
+    $phpmailer->Username   = $php_mailer_username; // SMTP username
+    $phpmailer->Password   = $php_mailer_password; // SMTP password
+    $phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Use SSL/TLS
+    $phpmailer->From       = 'info@preporukazafilm.com'; // From email address
+    $phpmailer->FromName   = 'Preporuka Za Film'; // From name
+});
 
 
 function custom_query_override($query) {

@@ -32,9 +32,17 @@ function setActiveNavFromURL() {
     }
   }
 
-  // If no tab in URL, activate first tab by default
-  handleNavigationClick(navigationSidebarLinks[0].dataset.tab, navigationSidebarLinks[0]);
+  // If no tab in URL, activate the tab marked in HTML (with hidden removed)
+  const activeTabEl = document.querySelector('.tab-content:not([hidden])');
+  if (activeTabEl) {
+    const defaultTab = activeTabEl.id;
+    const link = Array.from(navigationSidebarLinks).find(l => l.dataset.tab === defaultTab);
+    if (link) {
+      handleNavigationClick(defaultTab, link);
+    }
+  }
 }
+
 
 // Call on page load
 setActiveNavFromURL();

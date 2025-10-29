@@ -46,12 +46,15 @@ public static function getRecentRecommendations($limit = 10)
 
         $release_date = get_post_meta($movie->ID, 'release_date', true);
         $year = $release_date ? date('Y', strtotime($release_date)) : '';
+        $our_recommendations = get_post_meta($movie->ID, 'our_recommendations', true);
+
 
         $recent_movies[] = [
             'ID' => $movie->ID,
             'title' => $movie->post_title,
             'poster_url' => $poster_url,
             'year' => $year,
+            'our_recommendations' => $our_recommendations 
         ];
     }
 
@@ -94,12 +97,15 @@ public static function getMyFavoritesMovies($limit = 10)
 
         $release_date = get_post_meta($movie->ID, 'release_date', true);
         $year = $release_date ? date('Y', strtotime($release_date)) : '';
+        $our_recommendations = get_post_meta($movie->ID, 'our_recommendations', true);
 
         $favorite_movies[] = [
+            'favorite_ids' => $favorite_ids,
             'ID' => $movie->ID,
             'title' => $movie->post_title,
             'poster_url' => $poster_url,
             'year' => $year,
+            'our_recommendations' => $our_recommendations 
         ];
     }
 
@@ -139,12 +145,14 @@ public static function getAlreadyWatchedMovies($limit = 10) {
 
         $release_date = get_post_meta($movie->ID, 'release_date', true);
         $year = $release_date ? date('Y', strtotime($release_date)) : '';
+        $our_recommendations = get_post_meta($movie->ID, 'our_recommendations', true);
 
         $watched_movies[] = [
             'ID' => $movie->ID,
             'title' => $movie->post_title,
             'poster_url' => $poster_url,
             'year' => $year,
+            'our_recommendations' => $our_recommendations 
         ];
     }
 
