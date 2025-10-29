@@ -237,8 +237,8 @@ function modify_category_and_blog_archive( $query ) {
 }
 add_action( 'pre_get_posts', 'modify_category_and_blog_archive' );
 
-$php_mailer_username = get_my_env_variable('DB_HOST');
-$php_mailer_password = get_my_env_variable('API_KEY');
+$php_mailer_username = get_my_env_variable('PHP_MAILER_USERNAME');
+$php_mailer_password = get_my_env_variable('PHP_MAILER_PASSWORD');
 
 
 add_action('phpmailer_init', 'configure_smtp');
