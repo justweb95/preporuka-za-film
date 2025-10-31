@@ -1,5 +1,5 @@
-import { likeButtonHandler } from '../pages/category-page.js';
-window.likeButtonHandler = likeButtonHandler;
+// import { likeButtonHandler } from './single-movie-card';
+// window.likeButtonHandler = likeButtonHandler;
 
 // Desktop
 const search_input_filed = document.getElementById('movie-search');

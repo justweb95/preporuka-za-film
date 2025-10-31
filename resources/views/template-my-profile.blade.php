@@ -76,6 +76,8 @@
         'notification' => true, 
         'new_recommendations' => false
       ])
+
+      @include('pages.my-profile.sections.user-settings-tab')
     </div>
 
   </div>

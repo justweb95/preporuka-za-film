@@ -36,6 +36,7 @@
 @import url('./profile/my-favorites-tab.css');
 @import url('./profile/already-watched-tab.css');
 @import url('./profile/recent-recommendations-tab.css');
+@import url('./profile/user-settings-tab.css');
 
 
 
@@ -53,6 +54,15 @@
   background-image: url('../images/profile/profile-tab-bg-img.webp');
   background-color: #06131E;
 
+  .my-profile-home-tab {
+    .recent-recommendations {
+      &:nth-of-type(2), &:nth-of-type(3){
+        .profile-section-header {
+          margin: 0px 0px 12px;
+        }
+      }
+    }
+  }
   /* Chrome, Edge, Safari */
   &::-webkit-scrollbar {
     width: 6px;            /* scrollbar thickness */

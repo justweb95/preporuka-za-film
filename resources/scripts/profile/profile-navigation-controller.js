@@ -52,8 +52,14 @@ function handleNavigationClick(id, link) {
     profile_tab.hidden = profile_tab.id !== id;
   });
 
+  
+
   navigationSidebarLinks.forEach(otherLink => {    
-    otherLink.classList.toggle('active-nav', otherLink === link);
+      otherLink.classList.remove('active-nav');
+      
+      if(link.dataset.tab === otherLink.dataset.sidebarId) {
+        otherLink.classList.add('active-nav');
+      }
   });
 }
 
