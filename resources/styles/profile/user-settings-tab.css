@@ -95,8 +95,14 @@
     }
 
     .user-settings-options-tab {
-      background-color: #172938;
       flex: 1 0 60%;
+      
+      padding: 48px;
+
+      background-color: #172938;
+      
+      border-radius: 12px;
+
     }
     .user-settings-options-pop-up {
       position: fixed;
@@ -141,6 +147,101 @@
           font-weight: 500;
           line-height: normal;
           text-align: center;
+        }
+        .btn-holder {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          .confirm-btn {
+            border: none;
+            border-radius: 80px;
+            flex: 1 0 47%;
+            padding: 9px;
+            background-color: #18BF7C;
+            color: var(--White, #fff);
+            font-family: "Red Hat Display", sans-serif;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            transition: .2s ease-in-out;
+            &:hover {
+              cursor: pointer;
+              background-color: #00d25e;
+            }
+          }
+          .cancel-btn {
+            border: none;
+            border-radius: 80px;
+            flex: 1 0 47%;
+            padding: 9px;
+            background-color: #FF6161;
+            color: var(--White, #fff);
+            font-family: "Red Hat Display", sans-serif;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            transition: .2s ease-in-out;
+            &:hover {
+              cursor: pointer;
+              background-color: #ff3c3c;
+            }
+          }
+        }
+      }
+      .change-user-picture {
+        border-radius: 8px;
+        padding: 24px;
+        background-color: #22374A;
+        .change-user-picture-title {
+          color: var(--White, #fff);
+          font-family: "Red Hat Display", sans-serif;
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          text-align: center;
+        }
+        .change-user-picture-content {
+          margin: 48px 0px;
+          max-width: 850px;
+          display: flex;
+          justify-content: center;
+          gap: 16px;
+          flex-wrap: wrap;
+          .male-avatar, .female-avatar {
+            flex: 1 0 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            .avatar-icon {
+              padding: 4px;
+              display: block;
+              max-width: 100%;
+              height: auto;
+            }
+            .active-avatar {
+              position: relative;
+              border-radius: 50%;
+              border: 3px solid #18BF7C;
+              &::after {
+                padding: 0px 0px 0px 3.5px;
+                position: absolute;
+                z-index: 9999999;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: block;
+                width: 20px;
+                height: 20px;
+                content: "✔";
+                border-radius: 50%;
+                background-color: #18BF7C;
+                color: #fff;
+              }
+            }
+          }
         }
         .btn-holder {
           display: flex;

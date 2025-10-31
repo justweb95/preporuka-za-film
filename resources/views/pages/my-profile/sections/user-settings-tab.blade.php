@@ -63,27 +63,19 @@
     </ul>    
 
     <article class="user-settings-options-tab" data-id="uredi_profil">
-      <h2>Uredi profil</h2>
+      @include('pages.my-profile.partials.update-profile-info');
     </article>
 
     <article class="user-settings-options-tab" data-id="promeni_lozinku" hidden>
-      <h2>Promeni Lozinku</h2>
+      @include('pages.my-profile.partials.update-profile-password');
     </article>
 
-    <article class="user-settings-options-pop-up" data-id="promeni_sliku">
-      <h2>Promeni Sliku</h2>
-    </article>
+    <article class="user-settings-options-pop-up" style="display: none">
+      {{-- Remove Profile is little bit smaller popup so its in component --}}
+      @include('pages.my-profile.partials.remove-profile-pop-up-content', ['hidden' => false]);
 
-    <article class="user-settings-options-pop-up" data-id="obrisi_profil">
-      <div class="remove-profile">
-        <h2 class="remove-profile-title">Želiš da obrišeš ovaj nalog?</h2>
-        <p class="remove-profile-content">Da li ste sigurni da želite da obrišete svoj nalog?</p>
-        <p class="remove-profile-note">Ova akcija je konačna!</p>
-        <div class="btn-holder">
-          <button class="confirm-btn">Potvrdi</button>
-          <button class="cancel-btn">Odustani</button>
-        </div>
-      </div>
+      {{-- Change Profile is little bit bigget popup so its in component --}}
+      @include('pages.my-profile.partials.change-avatar-pop-up-content', ['hidden' => true]);
     </article>
   </div>
 </section>
