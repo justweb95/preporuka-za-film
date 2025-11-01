@@ -33,7 +33,7 @@ async function updateUserAvatar(avatarSrc) {
     if (data.success) {
       // Optionally update the avatar in the DOM
       const avatarElements = document.querySelectorAll('.avatar-image');
-      const avatarPath = pzfilm_globals.theme_uri + '/' + data.data.avatar; // Adjust path
+      const avatarPath = pzfilm_globals.theme_uri + '/public' + data.data.avatar; // Adjust path
 
       console.log(avatarPath);
       
