@@ -21,6 +21,7 @@ domReady(async () => {
       await import('./profile/profile-main.js');
       await import('./profile/profile-navigation-controller.js');
       await import('./profile/section-header-controller.js');
+      await import('./profile/user-settings.js');
     },
 
     '/category': async () => {

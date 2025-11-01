@@ -22,9 +22,12 @@
         padding: 16px;
         background-color: #172938;
         border-radius: 8px;
+        
+        transition: .2s ease-in-out;
 
         .user-settings-options-nav-link-icon {
-
+          pointer-events: none;
+          user-select: none;
         }
         .user-settings-options-nav-link-text {
           color: var(--White, #C4D4E3);
@@ -33,6 +36,8 @@
           font-style: normal;
           font-weight: 400;
           line-height: normal;
+          pointer-events: none;
+          user-select: none;
         }
         .switch {
           margin-left: auto;
@@ -73,13 +78,27 @@
         }
 
         input:checked + .slider {
-          background-color: #18bf7c;
+          background-color: #18bf7c
         }
 
         input:checked + .slider::before {
           transform: translateX(26px);
         }
+        &:hover {
+          cursor: pointer;
+          background: linear-gradient(
+            to right,
+            #172938 0%,      /* start: deep blue-green */
+            #18bf7c20 45%,   /* mid fade – very transparent green */
+            #18bf7c4b 60%,   /* slightly stronger tint */
+            #18bf7c6e 75%,   /* more visible green tone */
+            #18bf7c9a 90%,   /* near full green */
+            #18bf7c 100%     /* end: solid bright green */
+          );
 
+
+
+        }
       }
       .active-options-link {
         .user-settings-options-nav-link-icon {
@@ -97,12 +116,302 @@
     .user-settings-options-tab {
       flex: 1 0 60%;
       
-      padding: 48px;
+      padding: 32px;
 
       background-color: #172938;
-      
+    
       border-radius: 12px;
 
+      .user-info-holder {
+        width: 100%;
+        display: flex;
+        gap: 32px;
+        flex-direction: column;
+        .user-avatar-update {
+          display: flex;
+          align-items: center;
+          gap: 32px;
+          .change-user-avatar {
+            padding: 13px 32px;
+            background-color: #22374A;
+            border: none;
+            border-radius: 80px;
+            border: 2px solid #22374A;
+
+            color: #18BF7C;
+            font-family: "Red Hat Display", sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: normal;
+
+            transition: .2s ease;
+            &:hover {
+              border: 2px solid #18BF7C;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .user-general-update {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          padding: 32px 0px;
+          border-top: 1px  solid #22374A;
+          border-bottom: 1px  solid #22374A;
+          .user-requests-loader {
+            padding: 0px 8px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            .loader-label {
+              margin-bottom: 12px;
+              font-family: "Red Hat Display", sans-serif;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;      
+              color: #fff;
+            }
+            .unlimited {
+              width: calc(100% - 125px);
+              .unlimited-fill {
+                display: block;
+                width: 100%;
+
+                height: 8px;
+                border-radius: 6px;
+                background-color: #FFD700; /* Classic Gold */
+                box-shadow: 0 0 8px #FFD70080, 0 0 16px #FFD70040; /* subtle glow */
+                border-radius: 6px;
+                transition: width 0.3s ease, box-shadow 0.3s ease;
+              }
+            }
+            .unlimited-p {
+              min-width: 70px;
+              font-family: "Red Hat Display", sans-serif;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;      
+              color: #FFD700;      
+              text-shadow: 
+                0 0 4px #FFD70080,
+                0 0 8px #FFD70050,
+                0 0 12px #FFD70030;                  
+            }
+            .loader-bg {
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              width: calc(100% - 100px);
+              height: 8px;
+              border-radius: 6px;
+              background-color: #F57C36;
+              box-shadow: 0 0 1px #F57C36, 0 0 5px #F57C36;
+              border-radius: 6px;
+              transition: width 0.3s ease, box-shadow 0.3s ease;        
+              .loader-fill {
+                display: block;
+                height: 8px;
+                background-color: #18BF7C;
+                box-shadow: 0 0 3px #18BF7C, 0 0 12px #18BF7C;
+                border-radius: 6px;
+                transition: width 0.3s ease, box-shadow 0.3s ease;  
+              }  
+            }
+            .loader-p {
+              min-width: 70px;
+              font-family: "Red Hat Display", sans-serif;
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;      
+              color: #18BF7C;      
+              text-shadow: 
+                0 0 4px #18BF7C80,
+                0 0 8px #18BF7C50,
+                0 0 12px #18BF7C30;
+              span {
+                font-weight: bold;                
+              }                  
+            }
+            .request-more-btn {
+              margin-left: auto;
+              padding: 4px 32px;
+              background-color: #22374A;
+              border: none;
+              border-radius: 80px;
+              border: 2px solid #22374A;
+
+              color: #18BF7C;
+              font-family: "Red Hat Display", sans-serif;
+              font-size: 16px;
+              font-weight: 700;
+              line-height: normal;
+
+              transition: .2s ease;
+              &:hover {
+                border: 2px solid #18BF7C;
+                cursor: pointer;
+              }
+            }
+          }
+          .user-general-name, .user-general-email, .user-general-bio {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px;
+            label {
+              min-width: 70px;
+              font-family: "Red Hat Display", sans-serif;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;      
+              color: #C4D4E3; 
+            }
+            input {
+              width: 100%;
+              border: none;
+              padding: 20px 40px 20px 20px;
+              background-color: #06131e7a;
+              border-radius: 20px;
+              font-family: "Red Hat Display", sans-serif;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: normal;      
+              color: #fff; 
+              border: 1px solid transparent !important;
+              &::placeholder {
+                color: #6587A4;
+              }
+              &:focus, &:focus-visible {
+                outline: none !important;
+                border: 1px solid var(--Orange) !important;
+              }
+              &:-webkit-autofill {
+                -webkit-box-shadow: 0 0 0 30px #152533 inset !important;
+                -webkit-text-fill-color: white !important;
+              }
+            } 
+            svg {
+              position: absolute;
+              right: 16px;
+              top: 18px;
+              transition: .2s ease-in-out;
+              /* &:hover {
+                cursor: pointer;
+                path {
+                  stroke: #18bf7c;
+                }
+              } */
+            }
+          }
+          .user-general-password {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px;
+            label {
+              min-width: 125px;
+              font-family: "Red Hat Display", sans-serif;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;      
+              color: #C4D4E3; 
+            }
+            input {
+              width: 100%;
+              border: none;
+              padding: 20px 40px 20px 20px;
+              background-color: #06131e7a;
+              border-radius: 20px;
+              font-family: "Red Hat Display", sans-serif;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: normal;      
+              color: #fff; 
+              border: 1px solid transparent !important;
+              &::placeholder {
+                color: #6587A4;
+              }
+              &:focus, &:focus-visible {
+                outline: none !important;
+                border: 1px solid var(--Orange) !important;
+              }
+              &:-webkit-autofill {
+                -webkit-box-shadow: 0 0 0 30px #152533 inset !important;
+                -webkit-text-fill-color: white !important;
+              }
+            } 
+            svg {
+              position: absolute;
+              right: 16px;
+              top: 24px;
+              transition: .2s ease-in-out;
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+          #password-feedback, #user-update-feedback {
+            font-family: "Red Hat Display", sans-serif;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;      
+            color: #FF6161; 
+          }
+        }
+        .user-btn-holder {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 24px;
+          .cancel-update, .update-user-info {
+            background-color: transparent;
+            flex: 1 0 45%;
+            padding: 13px;
+            font-family: "Red Hat Display", sans-serif;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;      
+            color: #fff; 
+            transition: .2s ease-in-out;
+          }
+          .cancel-update {
+            border: none;
+            border-radius: 80px;
+            border: 2px solid #EF8D53;
+            &:hover {
+              cursor: pointer;
+              background-color: #EF8D53;
+            }
+          }
+          .update-user-info {
+            border: none;
+            border-radius: 80px;
+            border: 2px solid #18BF7C;
+            &:hover {
+              cursor: pointer;
+              background-color: #18BF7C;
+            }
+          }
+        }
+      }
     }
     .user-settings-options-pop-up {
       position: fixed;
@@ -216,10 +525,13 @@
             justify-content: center;
             gap: 12px;
             .avatar-icon {
-              padding: 4px;
+              padding: 2px;
               display: block;
               max-width: 100%;
               height: auto;
+            }
+            .avatar-wrapper {
+              border: 3px solid transparent;
             }
             .active-avatar {
               position: relative;

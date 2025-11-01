@@ -63,18 +63,17 @@ function handleNavigationClick(id, link) {
   });
 }
 
-async function logOutHandler() {
+export async function logOutHandler() {
   const response = await fetch(pzfilm_globals.ajaxurl, {
     method: 'POST',
     body: new URLSearchParams({
-      action: 'logout_user' // must match the PHP hook
+      action: 'logout_user'
     })
   });
 
   const data = await response.json();
   if (data.success) {
     window.location.href = data.data.redirect_url;
-
   } else {
     console.log('Logout failed', data);
   }

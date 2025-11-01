@@ -24,12 +24,12 @@
 @endphp
 
 
- <div class="change-user-picture" data-id="promeni_sliku" {{ $hidden ? 'hidden' : '' }}>
+ <div class="change-user-picture" data-popup="promeni_sliku" {{ $hidden ? 'hidden' : '' }}>
   <h2 class="change-user-picture-title">Želiš da promeniš svoj avatar?</h2>
   <div class="change-user-picture-content">
     <div class="male-avatar">
       @foreach($male_avatars as $avatar)
-        <span class="avatar-wrapper {{ $current_user_img_src === $avatar ? 'active-avatar' : '' }}">
+        <span data-avatar-src="{{$avatar}}" class="avatar-wrapper {{ $current_user_img_src === $avatar ? 'active-avatar' : '' }}">
           <img class="avatar-icon" src="@asset($avatar)" alt="User Avatar">
         </span>
       @endforeach
@@ -37,7 +37,7 @@
 
     <div class="female-avatar">
       @foreach($female_avatars as $avatar)
-        <span class="avatar-wrapper {{ $current_user_img_src === $avatar ? 'active-avatar' : '' }}">
+        <span data-avatar-src="{{$avatar}}" class="avatar-wrapper {{ $current_user_img_src === $avatar ? 'active-avatar' : '' }}">
           <img class="avatar-icon" src="@asset($avatar)" alt="User Avatar">
         </span>
       @endforeach

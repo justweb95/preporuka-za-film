@@ -314,6 +314,14 @@ function pzfilm_enqueue_global_js_data() {
 }
 add_action('wp_enqueue_scripts', 'pzfilm_enqueue_global_js_data');
 
+wp_localize_script('pzfilm-global', 'pzfilm_globals', [
+    'ajaxurl' => admin_url('admin-ajax.php'),
+    'site_url' => get_site_url(),
+    'theme_uri' => get_template_directory_uri(),
+    'current_user_id' => get_current_user_id(),
+    'delete_nonce' => wp_create_nonce('user_delete_action'), // dedicated
+]);
+
 
 add_action('init', function() {
     // Only for AJAX requests

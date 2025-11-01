@@ -107,7 +107,7 @@ function pzfilm_show_extra_profile_fields($user) {
             <td>
                 <input type="number" name="advanced_search_counter" id="advanced_search_counter"
                        value="<?php echo esc_attr(get_user_meta($user->ID, 'advanced_search_counter', true)); ?>" 
-                       min="0" />
+                       min="0" max="100" />
             </td>
         </tr>
 
@@ -310,8 +310,8 @@ add_action('wp_ajax_nopriv_get_watched_movies_by_username', 'get_watched_movies_
 function get_watched_movies_by_username_handler() {
     if (!isset($_POST['username'])) {
         wp_send_json_error(['message' => 'Username missing'], 400);
-    }
 
+    }
     $username = sanitize_user($_POST['username']);
     $user = get_user_by('login', $username);
 
@@ -401,10 +401,162 @@ function get_profile_metadata_handler() {
 }
 
 
+add_action('wp_ajax_ajax_change_password', 'ajax_change_password_handler');
+
+function ajax_change_password_handler() {
+    if (! isset($_POST['change_pass_nonce']) || ! wp_verify_nonce($_POST['change_pass_nonce'], 'change_pass_action')) {
+        wp_send_json_error(['message' => 'Neuspešna verifikacija.']);
+    }
+
+    $user_id = get_current_user_id();
+    $current_user = wp_get_current_user();
+
+    $old_pass = $_POST['old_password'] ?? '';
+    $new_pass = $_POST['new_password'] ?? '';
+    $repeat_pass = $_POST['repeat_new_password'] ?? '';
+
+    if (empty($old_pass) || empty($new_pass) || empty($repeat_pass)) {
+        wp_send_json_error(['message' => 'Sva polja su obavezna.']);
+    }
+
+    if (! wp_check_password($old_pass, $current_user->user_pass, $user_id)) {
+        wp_send_json_error(['message' => 'Trenutna lozinka nije tačna.']);
+    }
+
+    if ($new_pass !== $repeat_pass) {
+        wp_send_json_error(['message' => 'Nova lozinka i ponovljena lozinka se ne poklapaju.']);
+    }
+
+    wp_set_password($new_pass, $user_id);
+    wp_send_json_success(['message' => 'Lozinka uspešno promenjena.']);
+}
+
+// Handle user info update via AJAX
+add_action('wp_ajax_ajax_update_user_info', 'ajax_update_user_info_handler');
+
+function ajax_update_user_info_handler() {
+    // Security check
+    if (! isset($_POST['user_update_nonce']) || ! wp_verify_nonce($_POST['user_update_nonce'], 'user_update_action')) {
+        wp_send_json_error(['message' => 'Neuspešna verifikacija.']);
+    }
+
+    $user_id = get_current_user_id();
+    if (!$user_id) {
+        wp_send_json_error(['message' => 'Niste prijavljeni.']);
+    }
+
+    $updates = [];
+
+    // Sanitize and prepare fields
+    if (isset($_POST['name'])) {
+        $updates['display_name'] = sanitize_text_field($_POST['name']);
+        $updates['user_nicename'] = sanitize_title($_POST['name']);
+    }
+
+    if (isset($_POST['email'])) {
+        $email = sanitize_email($_POST['email']);
+        if (!is_email($email)) {
+            wp_send_json_error(['message' => 'Nevažeća email adresa.']);
+        }
+        $updates['user_email'] = $email;
+    }
+
+    if (isset($_POST['bio'])) {
+        update_user_meta($user_id, 'description', sanitize_textarea_field($_POST['bio']));
+    }
+
+    if (!empty($updates)) {
+        $user_update = wp_update_user(array_merge(['ID' => $user_id], $updates));
+        if (is_wp_error($user_update)) {
+            wp_send_json_error(['message' => 'Došlo je do greške pri ažuriranju korisnika.']);
+        }
+    }
+
+    wp_send_json_success(['message' => 'Korisnički podaci uspešno ažurirani!']);
+}
+
+
+add_action('wp_ajax_update_user_avatar', 'ajax_update_user_avatar_handler');
+
+function ajax_update_user_avatar_handler() {
+    // Use the global nonce for verification
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'pzfilm_global_nonce')) {
+        wp_send_json_error(['message' => 'Neuspešna verifikacija.']);
+    }
+
+    $user_id = get_current_user_id();
+    if (!$user_id) {
+        wp_send_json_error(['message' => 'Niste prijavljeni.']);
+    }
+
+    if (!isset($_POST['avatarSrc']) || empty($_POST['avatarSrc'])) {
+        wp_send_json_error(['message' => 'Avatar izvor nije prosleđen.']);
+    }
+
+    $avatar_src = sanitize_text_field($_POST['avatarSrc']);
+    update_user_meta($user_id, 'profile_image', $avatar_src);
+
+    wp_send_json_success(['message' => 'Avatar je uspešno ažuriran!', 'avatar' => $avatar_src]);
+}
+
+
+add_action('wp_ajax_update_user_notifications', 'update_user_notifications');
+function update_user_notifications() {
+    // Optional: verify nonce if used
+    // check_ajax_referer('user_settings_nonce', 'nonce');
+
+    $user_id = get_current_user_id();
+    if (!$user_id) {
+        wp_send_json_error(['message' => 'Neautorizovan pristup.']);
+    }
+
+    $enabled = sanitize_text_field($_POST['notifications_enabled'] ?? '0');
+
+    update_user_meta($user_id, 'notifications_enabled', $enabled);
+
+    wp_send_json_success(['message' => 'Podešavanje obaveštenja ažurirano.']);
+}
+
+
+
+
 add_action('wp_ajax_logout_user', 'logout_user_handler');
-add_action('wp_ajax_nopriv_logout_user', 'logout_user_handler'); // add this!
+add_action('wp_ajax_nopriv_logout_user', 'logout_user_handler');
 
 function logout_user_handler() {
     wp_logout();
     wp_send_json_success(['redirect_url' => home_url()]);
 }
+
+
+
+add_action('wp_ajax_delete_user_account', 'ajax_delete_user_account_handler');
+
+function ajax_delete_user_account_handler() {
+    if (wp_verify_nonce($_POST['nonce'], 'user_delete_action')) {
+        wp_send_json_error(['message' => 'Neuspešna verifikacija.']);
+    }
+
+
+    $user_id = get_current_user_id();
+    if (!$user_id) {
+        wp_send_json_error(['message' => 'Niste prijavljeni.']);
+    }
+
+    global $wpdb;
+    $wpdb->delete($wpdb->usermeta, ['user_id' => $user_id]);
+
+    require_once(ABSPATH . 'wp-admin/includes/user.php');
+    $deleted = wp_delete_user($user_id);
+
+    if ($deleted) {
+        wp_send_json_success([
+            'message' => 'Nalog je uspešno obrisan.',
+            'redirect_url' => home_url('/') // This will send the site’s homepage URL
+        ]);
+    } else {
+        wp_send_json_error(['message' => 'Došlo je do greške prilikom brisanja naloga.']);
+    }
+
+}
+

@@ -9,7 +9,7 @@
   ];
 
   $current_user = wp_get_current_user();
-  $current_user_name = $current_user->user_login; 
+  $current_user_name = $current_user->display_name; 
   $current_user_img_src = get_user_meta($current_user->ID, 'profile_image', true); 
 @endphp
 
@@ -18,8 +18,11 @@
     <img src="@asset('images/partials/preporuka-za-film-logo.svg')" alt="Preporuka za film logo">
   </a>
   <div class="sidebar-avatar">
-    <img class="avatar-image" src="@asset($current_user_img_src)" alt="User Avatar">
-
+    @if($current_user_img_src)
+      <img class="avatar-image" src="@asset($current_user_img_src)" alt="User Avatar">
+    @else
+      <img class="avatar-image" src="@asset('images/avatars/Profile12.svg')" alt="User Avatar">
+    @endif
     <h2 class="sidebar-username">{{$current_user_name}}</h2>
     <div class="sidebar-my-account">Moj Nalog</div>
   </div>
