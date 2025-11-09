@@ -27,6 +27,7 @@ function get_profile_info_handler() {
         'notifications_enabled' => '1',
         'notifications_list' => json_encode(['Profile successfully verified']),
         'already_watched' => json_encode([]),
+        'display_already_watched' => '0',
         'advanced_search_counter' => '0',
     ];
 
@@ -49,6 +50,7 @@ function get_profile_info_handler() {
         'recommendations_history' => json_decode(get_user_meta($user_id, 'recommendations_history', true), true),
         'tier' => get_user_meta($user_id, 'tier', true),
         'notifications_enabled' => (bool) get_user_meta($user_id, 'notifications_enabled', true),
+        'display_already_watched' => (bool) get_user_meta($user_id, 'notifications_enabled', true),
         'notifications_list' => json_decode(get_user_meta($user_id, 'notifications_list', true), true),
         'already_watched' => json_decode(get_user_meta($user_id, 'already_watched', true), true),
         'advanced_search_counter' => intval(get_user_meta($user_id, 'advanced_search_counter', true)),
@@ -398,6 +400,7 @@ function get_profile_metadata_handler() {
         'notifications_enabled' => (bool) get_user_meta($user_id, 'notifications_enabled', true),
         'notifications_list' => json_decode(get_user_meta($user_id, 'notifications_list', true), true),
         'already_watched' => json_decode(get_user_meta($user_id, 'already_watched', true), true),
+        'display_already_watched' => json_decode(get_user_meta($user_id, 'already_watched', true), true),
         'advanced_search_counter' => intval(get_user_meta($user_id, 'advanced_search_counter', true)),
     ];
 
@@ -522,6 +525,77 @@ function update_user_notifications() {
     wp_send_json_success(['message' => 'Podešavanje obaveštenja ažurirano.']);
 }
 
+add_action('wp_ajax_update_user_already_watched', 'update_user_already_watched');
+
+function update_user_already_watched() {
+    // Optional: verify nonce if used
+    // check_ajax_referer('user_settings_nonce', 'nonce');
+
+    $user_id = get_current_user_id();
+    if (!$user_id) {
+        wp_send_json_error(['message' => 'Neautorizovan pristup.']);
+    }
+
+    $enabled = sanitize_text_field($_POST['display_already_watched'] ?? '0');
+
+    update_user_meta($user_id, 'display_already_watched', $enabled);
+
+    wp_send_json_success([
+        'message' => 'Podešavanje "Već gledano" je ažurirano.',
+        'display_already_watched' => $enabled
+    ]);
+}
+
+
+add_action('wp_ajax_fetch_movie_suggestions', 'fetch_movie_suggestions');
+add_action('wp_ajax_nopriv_fetch_movie_suggestions', 'fetch_movie_suggestions');
+
+function fetch_movie_suggestions() {
+    global $wpdb;
+
+    $query = sanitize_text_field($_POST['movie_name'] ?? '');
+    if (!$query) wp_send_json_success(['suggestions' => []]);
+
+    // Custom WP_Query with post_title LIKE search
+    $args = [
+        'post_type'      => 'movie',
+        'post_status'    => 'publish',
+        'posts_per_page' => 5,
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+    ];
+
+    // Filter WHERE clause to search only in post_title
+    add_filter('posts_where', function($where, $wp_query) use ($query) {
+        global $wpdb;
+        $where .= $wpdb->prepare(" AND $wpdb->posts.post_title LIKE %s", '%' . $wpdb->esc_like($query) . '%');
+        return $where;
+    }, 10, 2);
+
+    $movies_query = new WP_Query($args);
+    remove_filter('posts_where', '__return_empty_string'); // remove filter after query
+
+    $movies = [];
+
+    if ($movies_query->have_posts()) {
+        while ($movies_query->have_posts()) {
+            $movies_query->the_post();
+            $movies[] = [
+                'id'           => get_the_ID(),
+                'title'        => get_the_title(),
+                'release_year' => get_post_meta(get_the_ID(), 'release_date', true) 
+                                    ? substr(get_post_meta(get_the_ID(), 'release_date', true), 0, 4) 
+                                    : '',
+                'poster'       => get_post_meta(get_the_ID(), 'poster_path', true) 
+                                    ? esc_url(get_post_meta(get_the_ID(), 'poster_path', true)) 
+                                    : '',
+            ];
+        }
+        wp_reset_postdata();
+    }
+
+    wp_send_json_success(['suggestions' => $movies]);
+}
 
 
 

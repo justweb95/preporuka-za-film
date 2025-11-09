@@ -10,7 +10,7 @@
     <h2 class="advance-question-content">Unesi filmove koje već voliš — kako bismo našli slične</h2>
     <h3 class="advance-question-marker">Slični filmovi koje voliš</h3>
   </header>
-  <form class="advance-question-answers" id="advance-question-movie-similar">
+  <form class="advance-question-answers question-similar" id="advance-question-movie-similar">
     <label for="similar_films">
       <input type="text"
              id="similar_films"
