@@ -45,6 +45,8 @@
         'notification' => false, 
         'new_recommendations' => true
       ])
+
+      @include('pages.my-profile.sections.advance-recommendation')
     </div>
 
     {{-- Omiljeni Filmovi --}}

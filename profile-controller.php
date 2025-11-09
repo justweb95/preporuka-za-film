@@ -346,8 +346,12 @@ function save_movie_recommendation_handler() {
 
     $user_id = $user->ID;
 
+    $current_user_requests_left = get_user_meta($user_id, 'advanced_search_counter', true); 
+    $new_ammount_of_request = $current_user_requests_left - 1;
+
     // Get current already watched movies
     $recommendations_history = json_decode(get_user_meta($user_id, 'recommendations_history', true) ?: '[]', true);
+
 
     if (!in_array($movie_id, $recommendations_history)) {
         $recommendations_history[] = $movie_id; // Add
@@ -356,6 +360,7 @@ function save_movie_recommendation_handler() {
     }
 
     update_user_meta($user_id, 'recommendations_history', wp_json_encode(array_values($recommendations_history)));
+    update_user_meta($user_id, 'advanced_search_counter', $new_ammount_of_request );
 
     wp_send_json_success(['recommendations_history' => array_values($recommendations_history)]);
 }

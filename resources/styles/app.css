@@ -30,6 +30,7 @@
 @import url('./profile/advance-search-banner.css');
 @import url('./profile/recent-recommendations-carousel.css');
 @import url('./profile/profile-section-header.css');
+
 /* Tabs and Sidebar*/
 @import url('./profile/navigation-sidebar.css');
 @import url('./profile/my-recommendations.css');
@@ -37,6 +38,7 @@
 @import url('./profile/already-watched-tab.css');
 @import url('./profile/recent-recommendations-tab.css');
 @import url('./profile/user-settings-tab.css');
+@import url('./profile/advance-recommendation.css');
 
 
 
