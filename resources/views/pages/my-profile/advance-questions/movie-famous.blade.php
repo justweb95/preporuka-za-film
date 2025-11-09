@@ -26,8 +26,8 @@
       Preferiram nepoznate talente
     </label>
 
-    <label for="nije_bitno">
-      <input type="checkbox" id="nije_bitno" name="famous" value="nije_bitno">
+    <label for="nije_bitno_famous">
+      <input type="checkbox" id="nije_bitno_famous" name="famous" value="nije_bitno">
       Nije bitno
     </label>
   </form>

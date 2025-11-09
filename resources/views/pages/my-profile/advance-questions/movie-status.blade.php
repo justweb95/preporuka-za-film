@@ -26,8 +26,8 @@
       Manje poznati dragulj
     </label>
 
-    <label for="nije_bitno">
-      <input type="checkbox" id="nije_bitno" name="status" value="nije_bitno">
+    <label for="nije_bitno_status">
+      <input type="checkbox" id="nije_bitno_status" name="status" value="nije_bitno">
       Nije bitno
     </label>
   </form>

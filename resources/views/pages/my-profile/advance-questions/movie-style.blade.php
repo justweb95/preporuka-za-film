@@ -26,8 +26,8 @@
       Eksperimentalni / nezavisni
     </label>
 
-    <label for="nije_bitno">
-      <input type="checkbox" id="nije_bitno" name="style" value="nije_bitno">
+    <label for="nije_bitno_style">
+      <input type="checkbox" id="nije_bitno_style" name="style" value="nije_bitno">
       Nije bitno
     </label>
   </form>

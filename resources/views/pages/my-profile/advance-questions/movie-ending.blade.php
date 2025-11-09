@@ -31,8 +31,8 @@
       Bez završetka / eksperimentalno
     </label>
 
-    <label for="nije_bitno">
-      <input type="checkbox" id="nije_bitno" name="ending" value="nije_bitno">
+    <label for="nije_bitno_ending">
+      <input type="checkbox" id="nije_bitno_ending" name="ending" value="nije_bitno">
       Nije bitno
     </label>
   </form>

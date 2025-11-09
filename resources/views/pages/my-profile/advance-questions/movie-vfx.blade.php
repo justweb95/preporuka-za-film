@@ -16,8 +16,8 @@
       Da, volim visoke VFX i raskošan stil
     </label>
 
-    <label for="umereno">
-      <input type="checkbox" id="umereno" name="vfx" value="umereno">
+    <label for="umereno_vfx">
+      <input type="checkbox" id="umereno_vfx" name="umereno_vfx" value="umereno">
       Samo umereno / balansirano
     </label>
 
@@ -26,8 +26,8 @@
       Ne, više volim jednostavan / minimalistički stil
     </label>
 
-    <label for="nije_bitno">
-      <input type="checkbox" id="nije_bitno" name="vfx" value="nije_bitno">
+    <label for="nije_bitno_vfx">
+      <input type="checkbox" id="nije_bitno_vfx" name="vfx" value="nije_bitno">
       Nije bitno
     </label>
   </form>

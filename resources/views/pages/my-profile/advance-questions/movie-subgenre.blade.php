@@ -41,9 +41,9 @@
       Superheroj
     </label>
 
-    <label for="misterija">
-      <input type="checkbox" id="misterija" name="subgenre" value="misterija">
-      Misterija / Detektivski
+    <label for="detektivski">
+      <input type="checkbox" id="detektivski" name="subgenre" value="detektivski">
+      Detektivski
     </label>
 
     <label for="komedija_drama">
@@ -61,19 +61,10 @@
       Fantazija / Sci-fi tema
     </label>
 
-    <label for="dokumentarni">
-      <input type="checkbox" id="dokumentarni" name="subgenre" value="dokumentarni">
-      Dokumentarni
-    </label>
-
-    <label for="animirani">
-      <input type="checkbox" id="animirani" name="subgenre" value="animirani">
-      Animirani
-    </label>
-
-    <label for="nije_bitno">
-      <input type="checkbox" id="nije_bitno" name="subgenre" value="nije_bitno">
+    <label for="nije_bitno_subgenre">
+      <input type="checkbox" id="nije_bitno_subgenre" name="subgenre" value="nije_bitno">
       Nije bitno
     </label>
   </form>
+
 </article>

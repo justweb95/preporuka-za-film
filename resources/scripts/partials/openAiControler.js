@@ -140,4 +140,36 @@ async function callPerplexity(prompt) {
   return data;
 }
 
-export { buildPromt, callPerplexity }
+async function callPerplexityAdvance(prompt) {
+  const options = {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${PERPLEXITY_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      // change model if not working correct
+      model: "sonar",
+      messages: [
+        { role: "system", content: "You are a helpful movie recommendation expert, skilled at understanding user preferences and using the TMDB API." },
+        { role: "user", content: prompt } 
+      ],
+      max_tokens: 400, // more room for 5 movies
+      temperature: 0.2, // more deterministic output
+      top_p: 0.9
+
+      // search_domain_filter: ['https://www.themoviedb.org/'],
+    })
+  };
+
+
+  let data = fetch('https://api.perplexity.ai/chat/completions', options)
+    .then(response => response.json())
+    .then(response => {      
+      return response
+    })
+    .catch(err => console.error(err));
+
+  return data;
+}
+export { buildPromt, callPerplexity, callPerplexityAdvance }

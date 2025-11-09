@@ -143,10 +143,19 @@ function toggleSelectedMovie(id) {
 
 function renderSelectedMovies() {
   selectedMoviesContainer.innerHTML = '';
+
+  // Create an array to store movie names + years for hidden input
+  const hiddenMovieData = [];
+
   for (const [id, movie] of Object.entries(selectedMovies)) {
     const div = document.createElement('div');
     div.classList.add('selected-movie');
     div.dataset.movieId = id;
+    div.dataset.movieName = movie.title;
+    div.dataset.movieYear = movie.release_year;
+
+    // Add movie info to hidden data array
+    hiddenMovieData.push(`${movie.title} (${movie.release_year || 'N/A'})`);
 
     // Movie poster
     const img = document.createElement('img');
@@ -172,8 +181,14 @@ function renderSelectedMovies() {
 
     selectedMoviesContainer.appendChild(div);
   }
+
+  // Update hidden input with names + years
+  selectedHiddenInput.value = hiddenMovieData.join(', ');
 }
 
+// Call this whenever movies are added/removed
 function updateHiddenInput() {
-  selectedHiddenInput.value = Object.keys(selectedMovies).join(',');
+  const hiddenMovieData = Object.values(selectedMovies)
+    .map(movie => `${movie.title} (${movie.release_year || 'N/A'})`);
+  selectedHiddenInput.value = hiddenMovieData.join(', ');
 }

@@ -46,8 +46,8 @@
       Epski / grandiozan
     </label>
 
-    <label for="nije_bitno">
-      <input type="checkbox" id="nije_bitno" name="tone" value="nije_bitno">
+    <label for="nije_bitno_tone">
+      <input type="checkbox" id="nije_bitno_tone" name="tone" value="nije_bitno">
       Nije bitno
     </label>
   </form>

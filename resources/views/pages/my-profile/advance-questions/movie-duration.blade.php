@@ -31,8 +31,8 @@
       Mini-film / kratki film (&lt;60 min)
     </label>
 
-    <label for="nije_bitno">
-      <input type="checkbox" id="nije_bitno" name="duration" value="nije_bitno">
+    <label for="nije_bitno_duration">
+      <input type="checkbox" id="nije_bitno_duration" name="duration" value="nije_bitno">
       Nije bitno
     </label>
   </form>

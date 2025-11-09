@@ -36,8 +36,8 @@
       Napetost / strah
     </label>
 
-    <label for="nije_bitno">
-      <input type="checkbox" id="nije_bitno" name="emotion" value="nije_bitno">
+    <label for="nije_bitno_emotion">
+      <input type="checkbox" id="nije_bitno_emotion" name="emotion" value="nije_bitno">
       Nije bitno
     </label>
   </form>

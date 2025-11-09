@@ -1,3 +1,27 @@
+@php
+$current_user = wp_get_current_user();
+$user_id = $current_user->ID;
+
+$already_watched_ids = json_decode(get_user_meta($user_id, 'already_watched', true), true);
+if (!is_array($already_watched_ids)) {
+    $already_watched_ids = [];
+}
+
+$movies_arr = [];
+
+foreach ($already_watched_ids as $movie_post_id) {
+    $movie_post_id = intval($movie_post_id);
+    if ($movie_post_id > 0 && get_post_status($movie_post_id)) {
+        $title = get_the_title($movie_post_id); // get post title as movie name
+        $release_date = get_post_meta($movie_post_id, 'release_date', true);
+        $year = $release_date ? date('Y', strtotime($release_date)) : 'N/A';
+        $movies_arr[] = $title . ' (' . $year . ')';
+    }
+}
+
+$already_watched_str = implode(', ', $movies_arr);
+@endphp
+
 <article class="advance-question-holder" data-question-limit-id={{'question-limit-id'}} @if($hidden_question) hidden @endif>
   <header class="advance-question-header">
     <svg class="advance-question-icon" width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -19,9 +43,8 @@
              autocomplete="off" />
       <small>Počni da kucaš, izaberite iz predloga.</small>
     </label>
-    <div id="similar_films_suggestions" class="suggestions-list">
-      <!-- Predlozi će se pojaviti ovde via JS -->
-    </div>
+    <div id="similar_films_suggestions" class="suggestions-list"></div>
     <input type="hidden" name="similar_films_selected" id="similar_films_selected" value="" />
+    <input type="hidden" name="do_not_recommend_movies" id="do_not_recommend_movies" value="{{ $already_watched_str }}" />
   </form>
 </article>

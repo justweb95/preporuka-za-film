@@ -26,8 +26,8 @@
       Zahtevna, nelinearna priča
     </label>
 
-    <label for="nije_bitno">
-      <input type="checkbox" id="nije_bitno" name="complexity" value="nije_bitno">
+    <label for="nije_bitno_complexity">
+      <input type="checkbox" id="nije_bitno_complexity" name="complexity" value="nije_bitno">
       Nije bitno
     </label>
   </form>

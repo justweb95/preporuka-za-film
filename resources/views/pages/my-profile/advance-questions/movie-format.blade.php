@@ -11,8 +11,8 @@
     <h3 class="advance-question-marker">Animacija ili igrani film</h3>
   </header>
   <form class="advance-question-answers" id="advance-question-movie-format">
-    <label for="animirani">
-      <input type="checkbox" id="animirani" name="format" value="animirani">
+    <label for="animirani-format">
+      <input type="checkbox" id="animirani-format" name="format" value="animirani">
       Animirani
     </label>
 
@@ -26,8 +26,8 @@
       Hibridni / kombinovani
     </label>
 
-    <label for="nije_bitno">
-      <input type="checkbox" id="nije_bitno" name="format" value="nije_bitno">
+    <label for="nije_bitno_format">
+      <input type="checkbox" id="nije_bitno_format" name="format" value="nije_bitno">
       Nije bitno
     </label>
   </form>

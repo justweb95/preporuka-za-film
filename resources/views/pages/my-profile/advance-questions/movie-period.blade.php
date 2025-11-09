@@ -16,8 +16,8 @@
       Savremeno (današnji svet)
     </label>
 
-    <label for="istorijski">
-      <input type="checkbox" id="istorijski" name="period" value="istorijski">
+    <label for="istorijski_period">
+      <input type="checkbox" id="istorijski_period" name="period" value="istorijski">
       Istorijski period / prošlost
     </label>
 
@@ -26,8 +26,8 @@
       Budućnost / Sci-Fi
     </label>
 
-    <label for="fantazija">
-      <input type="checkbox" id="fantazija" name="period" value="fantazija">
+    <label for="mitologija">
+      <input type="checkbox" id="mitologija" name="period" value="mitologija">
       Fantazija / mitologija
     </label>
 
@@ -36,8 +36,8 @@
       Postapokaliptično / distopijsko okruženje
     </label>
 
-    <label for="nije_bitno">
-      <input type="checkbox" id="nije_bitno" name="period" value="nije_bitno">
+    <label for="nije_bitno_period">
+      <input type="checkbox" id="nije_bitno_period" name="period" value="nije_bitno">
       Nije bitno
     </label>
   </form>

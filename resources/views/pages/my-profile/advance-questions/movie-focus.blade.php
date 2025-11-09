@@ -31,8 +31,8 @@
       Vizuelni stil / estetika
     </label>
 
-    <label for="nije_bitno">
-      <input type="checkbox" id="nije_bitno" name="focus" value="nije_bitno">
+    <label for="nije_bitno_focus">
+      <input type="checkbox" id="nije_bitno_focus" name="focus" value="nije_bitno">
       Nije bitno
     </label>
   </form>
