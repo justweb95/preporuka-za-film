@@ -18,7 +18,8 @@ import {
 
 } from '@scripts/partials/openAiControler'
 
-import { cyrillicFormat, removeDiacritics } from '@scripts/partials/textFormatingControler';
+import { poplateResult } from '@scripts/helpers/recommendation-results-helper';
+
 import { getLoggedInUsername } from '@scripts/profile/profile-main.js';
 
 import Toastify from 'toastify-js';
@@ -59,9 +60,9 @@ async function changeQuestionHandler(currentQuestionIndex) {
   handleProgressCheckbox(currentQuestionIndex);
 
 
-  allQuestionsCompontents.forEach((singleQuestion) => {
-    singleQuestion.style.setProperty('display', 'none', 'important');
-  });   
+  // allQuestionsCompontents.forEach((singleQuestion) => {
+  //   singleQuestion.style.setProperty('display', 'none', 'important');
+  // });   
 
   allQuestionsCompontents[currentQuestionIndex].style.setProperty('display', 'block');
 
@@ -225,6 +226,7 @@ function stopVideo() {
 
 function disableBackButton() {
   const backButton = document.querySelector('.back-btn');
+  if(!backButton) return;
   backButton.style.pointerEvents = 'none';
   backButton.style.opacity = '0.6';
   backButton.disabled = true;
@@ -252,81 +254,6 @@ function inputValue() {
   })
   
   return input_value;
-}
-
-async function poplateResult(resultObject) {
-  let tmdbData = await resultObject
-
-  let poster_holder = document.querySelector('#result-poster');
-  let poster_holder_mobile = document.querySelector('#result-description-poster');
-  let result_content_title = document.querySelector('#result-content-title');
-  let result_description_text = document.querySelector('#result-description-text');
-  let imdb_rating = document.querySelector('#imdb-rating');
-  let result_genres_text = document.querySelector('#result-genres-text');
-  let result_year_text = document.querySelector('#result-year-text');
-  let result_cta_read_more = document.querySelector('.result-cta-read-more');
-  let result_cta_trailer = document.querySelector('.result-cta-trailer');
-  let movie_duration = document.querySelector('#result-duration-text');
-  let youtube_player = document.querySelector('#youtube-player');
-
-  let affiliate_amazon = document.querySelector('.affiliate-amazon');
-
-
-  poster_holder.setAttribute('src', `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`)
-  poster_holder_mobile.setAttribute('src', `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`)
-  
-  // result_content_title.textContent = tmdbData.original_title;
-  result_content_title.textContent = cyrillicFormat(tmdbData.title);
-  imdb_rating.textContent = parseFloat(tmdbData.vote_average.toFixed(1));
-
-  result_description_text.textContent = cyrillicFormat(tmdbData.overview.substring(0, 300));
-
-  result_genres_text.textContent = cyrillicFormat(tmdbData.genres);
-  movie_duration.textContent = durationFromat(tmdbData.runtime);
-  result_year_text.textContent = tmdbData.release_date.split('-')[0];
-
-
-  // Set the href attribute to the result_cta_read_more element
-  const fullUrl = tmdbData.url;
-  result_cta_read_more.setAttribute('href', fullUrl);
-
-
-  if (tmdbData.video_trailer && tmdbData.video_trailer.key) {
-    youtube_player.setAttribute('src', `https://www.youtube.com/embed/${tmdbData.video_trailer.key}`);
-  } else {
-    result_cta_trailer.setAttribute('aria-disabled', 'true');
-    result_cta_trailer.disabled = true;
-  }
-
-  let amazonProvider;
-
-  if (tmdbData.movie_watch_on && Array.isArray(tmdbData.movie_watch_on.buy)) {
-    amazonProvider = tmdbData.movie_watch_on.buy.find(provider => 
-      provider.provider_name === 'Amazon Video' || provider.provider_name === 'Amazon Prime Video'
-    );
-  } else {
-    // console.log("movie_watch_on or buy array does not exist.");
-    
-  }
-
-  if (amazonProvider) {
-    affiliate_amazon.setAttribute('href', `https://www.amazon.com/gp/video/primesignup?tag=preporukazafi-20`);
-    affiliate_amazon.removeAttribute('aria-disabled');
-    affiliate_amazon.style.opacity = '1';
-    affiliate_amazon.style.pointerEvents = 'auto';
-    affiliate_amazon.disabled = false;
-  } else {
-    affiliate_amazon.setAttribute('aria-disabled', 'true');
-    affiliate_amazon.style.opacity = '.6';
-    affiliate_amazon.style.pointerEvents = 'none';
-    affiliate_amazon.disabled = true;
-  }
-}
-
-function durationFromat(time) {
-  const hours = Math.floor(time / 60); // Calculate full hours
-  const minutes = time % 60; // Calculate remaining minutes
-  return `${hours}h ${minutes}min`; // Return formatted string
 }
 
 function saveMovieRecommendation(movie_id, username) {

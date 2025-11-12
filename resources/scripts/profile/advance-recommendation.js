@@ -1,6 +1,9 @@
 // Helpers
 import './advance-reommendation-helper.js';
 import { callPerplexityAdvance } from '../partials/openAiControler.js';
+import { parseAiJson } from '@scripts/partials/textFormatingControler.js';
+import { tmdbCallHandler, tmdbAllMoviesHandler } from '../partials/tmdbControler.js'
+import { poplateResult, populateMultipleResults } from '@scripts/helpers/recommendation-results-helper.js';
 
 // Advance Search Prompt
 const submitAdvanceRecommendation = document.getElementById('start_recommendation');
@@ -18,17 +21,25 @@ submitAdvanceRecommendation.addEventListener('click', async () => {
 
   const advancePrompot = generateAdvancePrompt();
   const openAiAdvanceResponse = await callPerplexityAdvance(advancePrompot);
-  
-  if (openAiAdvanceResponse) {
-    advanceRecommendationResultContent.hidden = false;
-    advanceRecommendationResultLoading.hidden = true;
-  }
 
-
-  // Send `finalPrompt` to your backend or ChatGPT API
   console.log('openAiAdvanceResponse');
-  console.log(advancePrompot);
+  console.log(openAiAdvanceResponse);
+  // console.log(parseAiJson(openAiAdvanceResponse));
+  // const tmdbResult = await tmdbCallHandler(JSON.parse(openAiAdvanceResponse.choices[0].message.content));
+  const tmdbResult = await tmdbAllMoviesHandler(parseAiJson(openAiAdvanceResponse.choices[0].message.content));
+
+  console.log('tmdbResult');
+  console.log(tmdbResult);
   
+
+  const populateionDone = await populateMultipleResults(tmdbResult);
+  if (populateionDone) {
+    
+    setTimeout(() => {
+      advanceRecommendationResultContent.hidden = false;
+      advanceRecommendationResultLoading.hidden = true;
+    }, 500)
+  }  
 });
 
 
@@ -100,17 +111,16 @@ function generateAdvancePrompt() {
   const finalPrompt = `
     You are the best movie recommendation engine in the world. Strictly follow these rules:
 
-    1. ALWAYS RETURN EXACTLY 5 MOVIES IN A JSON ARRAY.
+    1. ALWAYS RETURN EXACTLY 3 MOVIES IN A JSON ARRAY.
     2. Format: [
         {"movie_title": "[Full Movie Title]", "movie_year": "[Release Year]"},
         {"movie_title": "[Full Movie Title]", "movie_year": "[Release Year]"}
       ]
     3. NEVER add explanations, comments, or markdown.
     4. Prioritize movies based on this hierarchy:
-      a) Matches 4+ user criteria exactly
+      a) Matches ALL user criteria exactly
       b) High TMDB popularity (>=6)
-      c) IMDb rating >=6.0
-      d) Recent release year
+      c) IMDb rating >= 5.6
     5. If needed, include movies matching 3 criteria but with strong secondary indicators.
 
     User Criteria Analysis (Advanced):
@@ -128,13 +138,11 @@ function generateAdvancePrompt() {
     [
       {"movie_title": "Full Movie Title", "movie_year": "Release Year"},
       {"movie_title": "Full Movie Title", "movie_year": "Release Year"},
-      {"movie_title": "Full Movie Title", "movie_year": "Release Year"},
-      {"movie_title": "Full Movie Title", "movie_year": "Release Year"},
       {"movie_title": "Full Movie Title", "movie_year": "Release Year"}
     ]
 
     STRICT RULES:
-    - Only 5 entries
+    - Only 3 entries
     - Valid JSON array
     - No markdown formatting
     - No null or empty values

@@ -40,6 +40,7 @@
   <div class="advance-recommendation-result" hidden>
     @include('pages/questions/loader')
     @include('pages/questions/results');
+    @include('pages/questions/video-popup', ['video_url' => ''])
   </div>
   
 </section>

@@ -1,42 +1,21 @@
 import { cyrillicFormat } from '@scripts/partials/textFormatingControler';
 
-async function tmdbCallHandler(movieParams) {
+async function tmdbCallHandler(movieParams, is_single = false) {
+  // If `is_single` is true, movieParams is a single movie object
+  // If false, movieParams is an array of multiple movie objects
 
-  let rendom_movie = Math.floor(Math.random() * 5);
-  // console.log('rendom_movie');
-  // console.log(rendom_movie);
+  let movieToUse;
 
-  // console.log('Ime Filma');
-  // console.log(movieParams[rendom_movie].movie_title);
+  if (is_single) {
+    movieToUse = movieParams; // movieParams is already a single object
+  } else {
+    // Randomly pick one movie from the array
+    const randomIndex = Math.floor(Math.random() * movieParams.length);
+    movieToUse = movieParams[randomIndex];
+  }
 
-  // console.log('Kada je film izasao');
-  // console.log(movieParams[rendom_movie].movie_year);
-  
-  // Keywords
-  // let key_words = [];
-  // key_words = key_words.join('|');
+  const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movieToUse.movie_title)}&year=${movieToUse.movie_year}&language=sr-Latn&with_runtime.gte=40`;
 
-  // //Genres 
-  // let with_genres = movieParams[2];
-  // with_genres = with_genres.join('%2C');
-
-  // // Adult movie
-  // let include_adult = movieParams[4];
-
-  // // How Old Movie
-  // let current_date = new Date(); // Get the current date
-  // let releaseYear = parseInt(movieParams[3]); // Convert to an integer
-  // let url_current_date = formatDate(current_date);
-
-  // // Subtract years and create past date
-  // let past_date = new Date(current_date.getFullYear() - releaseYear, current_date.getMonth(), current_date.getDate());
-  // let url_past_date = formatDate(past_date);
-
-
-  // const url = `https://api.themoviedb.org/3/discover/movie?include_adult=${include_adult}&with_genres=${with_genres}&primary_release_date.lte=${url_current_date}&primary_release_date.gte=${url_past_date}&include_video=true&language=sr-Latn&page=1&sort_by=popularity.desc&with_keywords=${key_words}&with_origin_country=US%7CSRB%7CES%7CCA%7CMX%7CGB%7CDE%7CFR%7CBR'`;
-  const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movieParams[rendom_movie].movie_title)}&year=${movieParams[rendom_movie].movie_year}&language=sr-Latn&with_runtime.gte=40`;
-
-  
   const options = {
     method: 'GET',
     headers: {
@@ -44,44 +23,86 @@ async function tmdbCallHandler(movieParams) {
       Authorization: `Bearer ${TMDB_API_KEY}`
     }
   };
-  
-  return fetch(url, options)
-    .then(res => res.json())
-    .then( async json => {
-      let movie_result = json.results[0];      
-      const movie_id = movie_result.id;
 
-      let single_movie_result = await tmdbSingleMovieHandler(movie_id);
-      let single_movie_trailer = await movieTrailer(movie_id);
-      let single_movie_watch_on = await movieWatchOn(movie_id);
-      let single_movie_credits = await movieCredits(movie_id);
-      
-      single_movie_result.video_trailer = single_movie_trailer.results[0];
-      single_movie_result.movie_watch_on = single_movie_watch_on.results['US'];
+  try {
+    const res = await fetch(url, options);
+    const json = await res.json();
 
-      single_movie_result.single_movie_cast = single_movie_credits.cast.slice(0, 5);
-      single_movie_result.single_movie_director = single_movie_credits.crew.filter(member => member.department === 'Directing');
-      single_movie_result.single_movie_writer = single_movie_credits.crew.filter(member => member.department === 'Writing');
+    const movie_result = json.results[0];
+    if (!movie_result) {
+      throw new Error('Movie not found on TMDB');
+    }
 
-      single_movie_result.genres = cyrillicFormat(single_movie_result.genres[0].name.replace(/^"|"$/g, ''));
+    const movie_id = movie_result.id;
 
-      single_movie_result.title = cyrillicFormat(single_movie_result.title);
-      single_movie_result.overview = single_movie_result.overview ? cyrillicFormat(single_movie_result.overview) : "Opis filma trenutno nije dostupan";
+    let single_movie_result = await tmdbSingleMovieHandler(movie_id);
+    let single_movie_trailer = await movieTrailer(movie_id);
+    let single_movie_watch_on = await movieWatchOn(movie_id);
+    let single_movie_credits = await movieCredits(movie_id);
 
-      // console.log('single_movie_result');
-      // console.log(single_movie_result);
+    single_movie_result.video_trailer = single_movie_trailer.results[0] || null;
+    single_movie_result.movie_watch_on = single_movie_watch_on.results['US'] || { buy: [] };
 
-      // Call Create movie Post function
-      let response = await createMoviePost(single_movie_result);
+    single_movie_result.single_movie_cast = single_movie_credits.cast?.slice(0, 5) || [];
+    single_movie_result.single_movie_director = single_movie_credits.crew?.filter(m => m.department === 'Directing') || [];
+    single_movie_result.single_movie_writer = single_movie_credits.crew?.filter(m => m.department === 'Writing') || [];
 
-      single_movie_result.url = response.data.post_url;
-      
-      return single_movie_result;
-    })
-    .catch(err => {
-      console.error(err);
-      throw err;
-    });
+    single_movie_result.genres = single_movie_result.genres?.[0]?.name
+      ? cyrillicFormat(single_movie_result.genres[0].name.replace(/^"|"$/g, ''))
+      : 'Nepoznato';
+
+    single_movie_result.title = cyrillicFormat(single_movie_result.title || 'Naslov nedostupan');
+    single_movie_result.overview = single_movie_result.overview
+      ? cyrillicFormat(single_movie_result.overview)
+      : 'Opis filma trenutno nije dostupan';
+
+    const response = await createMoviePost(single_movie_result);
+    single_movie_result.url = response?.data?.post_url || '#';
+
+    return single_movie_result;
+
+  } catch (err) {
+    console.error('tmdbCallHandler error:', err);
+    return {
+      title: movieToUse.movie_title || 'Naslov nedostupan',
+      overview: 'Opis filma trenutno nije dostupan',
+      url: '#',
+      video_trailer: null,
+      movie_watch_on: { buy: [] },
+      genres: 'Nepoznato',
+      single_movie_cast: [],
+      single_movie_director: [],
+      single_movie_writer: []
+    };
+  }
+}
+
+
+// Map all movies in the array
+async function tmdbAllMoviesHandler(movieParams) {
+  try {
+    // Map all movies to promises
+    const promises = movieParams.map((movie) => tmdbCallHandler(movie, true));
+
+    // Wait for all TMDB calls to finish
+    const movieResponse = await Promise.all(promises);
+
+    return movieResponse;
+
+  } catch (error) {
+    console.error('Error fetching all movies:', error);
+    return movieParams.map(movie => ({
+      title: movie.movie_title || 'Naslov nedostupan',
+      overview: 'Opis filma trenutno nije dostupan',
+      url: '#',
+      video_trailer: null,
+      movie_watch_on: { buy: [] },
+      genres: 'Nepoznato',
+      single_movie_cast: [],
+      single_movie_director: [],
+      single_movie_writer: []
+    }));
+  }
 }
 
 async function tmdbSingleMovieHandler(movie_id) {
@@ -164,4 +185,4 @@ const createMoviePost = async (movie_data) => {
   }
 };
 
-export { tmdbCallHandler, tmdbSingleMovieHandler, movieWatchOn, movieTrailer }
+export { tmdbCallHandler, tmdbAllMoviesHandler, tmdbSingleMovieHandler, movieWatchOn, movieTrailer }
