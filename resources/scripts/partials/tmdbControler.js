@@ -13,7 +13,6 @@ async function tmdbCallHandler(movieParams, is_single = false) {
     const randomIndex = Math.floor(Math.random() * movieParams.length);
     movieToUse = movieParams[randomIndex];
   }
-
   const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movieToUse.movie_title)}&year=${movieToUse.movie_year}&language=sr-Latn&with_runtime.gte=40`;
 
   const options = {
@@ -90,8 +89,9 @@ async function tmdbAllMoviesHandler(movieParams) {
     return movieResponse;
 
   } catch (error) {
-    console.error('Error fetching all movies:', error);
+    console.log('Error fetching all movies:', error);
     return movieParams.map(movie => ({
+      id: 0,
       title: movie.movie_title || 'Naslov nedostupan',
       overview: 'Opis filma trenutno nije dostupan',
       url: '#',

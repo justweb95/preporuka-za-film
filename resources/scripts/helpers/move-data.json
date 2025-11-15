@@ -1,0 +1,1382 @@
+[
+    {
+        "adult": false,
+        "backdrop_path": "/kBSSbN1sOiJtXjAGVZXxHJR9Kox.jpg",
+        "belongs_to_collection": {
+            "id": 531330,
+            "name": "Топ Ган колекција",
+            "poster_path": "/wtpIx0Gsra1IGHH8af5kNK90Xy8.jpg",
+            "backdrop_path": "/9MGm0XT04ob99MyGQfMT7I8y3UE.jpg"
+        },
+        "budget": 170000000,
+        "genres": "Akcioni",
+        "homepage": "https://taramountfilm.com/film/top-gan-maverik/",
+        "id": 361743,
+        "imdb_id": "tt1745960",
+        "origin_country": [
+            "US"
+        ],
+        "original_language": "en",
+        "original_title": "Top Gun: Maverick",
+        "overview": "Neuhvatljivi kapetan Maverik nas ponovo vodi u visine, u vožnji koja će nas ostaviti bez daha i pojačati adrenalin!",
+        "popularity": 16.0891,
+        "poster_path": "/jzXaBJSlp9zW3qVBsfewPwxsXdW.jpg",
+        "production_companies": [
+            {
+                "id": 82819,
+                "logo_path": "/gXfFl9pRPaoaq14jybEn1pHeldr.png",
+                "name": "Skydance Media",
+                "origin_country": "US"
+            },
+            {
+                "id": 10288,
+                "logo_path": "/Aszf09kIVXR6cwG9lwjZIawbYVS.png",
+                "name": "Don Simpson/Jerry Bruckheimer Films",
+                "origin_country": "US"
+            },
+            {
+                "id": 4,
+                "logo_path": "/jay6WcMgagAklUt7i9Euwj1pzTF.png",
+                "name": "Paramount Pictures",
+                "origin_country": "US"
+            }
+        ],
+        "production_countries": [
+            {
+                "iso_3166_1": "US",
+                "name": "United States of America"
+            }
+        ],
+        "release_date": "2022-05-21",
+        "revenue": 1488732821,
+        "runtime": 131,
+        "spoken_languages": [
+            {
+                "english_name": "English",
+                "iso_639_1": "en",
+                "name": "English"
+            }
+        ],
+        "status": "Released",
+        "tagline": "",
+        "title": "Top Gan - Maverik",
+        "video": false,
+        "vote_average": 8.166,
+        "vote_count": 10325,
+        "video_trailer": {
+            "iso_639_1": "en",
+            "iso_3166_1": "US",
+            "name": "That’s our Bob.",
+            "key": "g0Uyqj0vS-8",
+            "site": "YouTube",
+            "size": 1080,
+            "type": "Clip",
+            "official": true,
+            "published_at": "2025-05-02T23:07:01.000Z",
+            "id": "68198f8aa54e3aed23d2c4e2"
+        },
+        "movie_watch_on": {
+            "link": "https://www.themoviedb.org/movie/361743-top-gun-maverick/watch?locale=US",
+            "flatrate": [
+                {
+                    "logo_path": "/h5DcR0J2EESLitnhR8xLG1QymTE.jpg",
+                    "provider_id": 531,
+                    "provider_name": "Paramount Plus",
+                    "display_priority": 18
+                },
+                {
+                    "logo_path": "/hExO4PtimLIYn3kBOrzsejNv7cT.jpg",
+                    "provider_id": 582,
+                    "provider_name": "Paramount+ Amazon Channel",
+                    "display_priority": 24
+                },
+                {
+                    "logo_path": "/ywIoxSjoYJGUIbR6BfxUiCHdPi3.jpg",
+                    "provider_id": 633,
+                    "provider_name": "Paramount+ Roku Premium Channel",
+                    "display_priority": 28
+                }
+            ],
+            "buy": [
+                {
+                    "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+                    "provider_id": 10,
+                    "provider_name": "Amazon Video",
+                    "display_priority": 6
+                },
+                {
+                    "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
+                    "provider_id": 2,
+                    "provider_name": "Apple TV",
+                    "display_priority": 7
+                },
+                {
+                    "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
+                    "provider_id": 3,
+                    "provider_name": "Google Play Movies",
+                    "display_priority": 16
+                },
+                {
+                    "logo_path": "/pTnn5JwWr4p3pG8H6VrpiQo7Vs0.jpg",
+                    "provider_id": 192,
+                    "provider_name": "YouTube",
+                    "display_priority": 17
+                },
+                {
+                    "logo_path": "/19fkcOz0xeUgCVW8tO85uOYnYK9.jpg",
+                    "provider_id": 7,
+                    "provider_name": "Fandango At Home",
+                    "display_priority": 37
+                }
+            ],
+            "rent": [
+                {
+                    "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+                    "provider_id": 10,
+                    "provider_name": "Amazon Video",
+                    "display_priority": 6
+                },
+                {
+                    "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
+                    "provider_id": 2,
+                    "provider_name": "Apple TV",
+                    "display_priority": 7
+                },
+                {
+                    "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
+                    "provider_id": 3,
+                    "provider_name": "Google Play Movies",
+                    "display_priority": 16
+                },
+                {
+                    "logo_path": "/pTnn5JwWr4p3pG8H6VrpiQo7Vs0.jpg",
+                    "provider_id": 192,
+                    "provider_name": "YouTube",
+                    "display_priority": 17
+                },
+                {
+                    "logo_path": "/19fkcOz0xeUgCVW8tO85uOYnYK9.jpg",
+                    "provider_id": 7,
+                    "provider_name": "Fandango At Home",
+                    "display_priority": 37
+                },
+                {
+                    "logo_path": "/aAb9CUHjFe9Y3O57qnrJH0KOF1B.jpg",
+                    "provider_id": 486,
+                    "provider_name": "Spectrum On Demand",
+                    "display_priority": 123
+                },
+                {
+                    "logo_path": "/vLZKlXUNDcZR7ilvfY9Wr9k80FZ.jpg",
+                    "provider_id": 538,
+                    "provider_name": "Plex",
+                    "display_priority": 129
+                }
+            ]
+        },
+        "single_movie_cast": [
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 500,
+                "known_for_department": "Acting",
+                "name": "Tom Cruise",
+                "original_name": "Tom Cruise",
+                "popularity": 8.631,
+                "profile_path": "/3mShHjSQR7NXOVbdTu5rT2Qd0MN.jpg",
+                "cast_id": 165,
+                "character": "Capt. Pete 'Maverick' Mitchell",
+                "credit_id": "62a180ad4f9a9900a4cf58f7",
+                "order": 0
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 5576,
+                "known_for_department": "Acting",
+                "name": "Val Kilmer",
+                "original_name": "Val Kilmer",
+                "popularity": 1.813,
+                "profile_path": "/sWH9jTD0bC5gWhhceUlzfNiNup0.jpg",
+                "cast_id": 6,
+                "character": "Adm. Tom 'Iceman' Kazansky",
+                "credit_id": "5925e17c9251413b4a01401f",
+                "order": 1
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 996701,
+                "known_for_department": "Acting",
+                "name": "Miles Teller",
+                "original_name": "Miles Teller",
+                "popularity": 3.8264,
+                "profile_path": "/cg3LW0xX6RKr8dmescxq1bepcb5.jpg",
+                "cast_id": 12,
+                "character": "Lt. Bradley 'Rooster' Bradshaw",
+                "credit_id": "5b3bf2b992514102e2002a1d",
+                "order": 2
+            },
+            {
+                "adult": false,
+                "gender": 1,
+                "id": 6161,
+                "known_for_department": "Acting",
+                "name": "Jennifer Connelly",
+                "original_name": "Jennifer Connelly",
+                "popularity": 5.3192,
+                "profile_path": "/xawknXaXQBtUEATM3Qx2PV3SeZv.jpg",
+                "cast_id": 13,
+                "character": "Penny Benjamin",
+                "credit_id": "5b524c4e9251411f84000faa",
+                "order": 3
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 1241330,
+                "known_for_department": "Acting",
+                "name": "Bashir Salahuddin",
+                "original_name": "Bashir Salahuddin",
+                "popularity": 0.7606,
+                "profile_path": "/ZL5MRzjd6kWkvQXqh5mgPY1CKP.jpg",
+                "cast_id": 19,
+                "character": "Wo-1. Bernie 'Hondo' Coleman",
+                "credit_id": "5b7e508ac3a368340900c426",
+                "order": 4
+            }
+        ],
+        "single_movie_director": [
+            {
+                "adult": false,
+                "gender": 0,
+                "id": 2163748,
+                "known_for_department": "Directing",
+                "name": "Andrew Stahl",
+                "original_name": "Andrew Stahl",
+                "popularity": 0.6827,
+                "profile_path": null,
+                "credit_id": "62b540b9b77d4b008c98ed4b",
+                "department": "Directing",
+                "job": "Second Assistant Director"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 1789908,
+                "known_for_department": "Directing",
+                "name": "Robert E. Kay",
+                "original_name": "Robert E. Kay",
+                "popularity": 0.0713,
+                "profile_path": null,
+                "credit_id": "62b540c2a34911008b7a4a2b",
+                "department": "Directing",
+                "job": "Second Assistant Director"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 1155667,
+                "known_for_department": "Directing",
+                "name": "Scott Robertson",
+                "original_name": "Scott Robertson",
+                "popularity": 1.1032,
+                "profile_path": "/y1XxRpnphVRdRxmyRSOsla1l3Rc.jpg",
+                "credit_id": "62b540ac30f79c00626e224b",
+                "department": "Directing",
+                "job": "First Assistant Director"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 1435662,
+                "known_for_department": "Directing",
+                "name": "Bryan Sundstrom",
+                "original_name": "Bryan Sundstrom",
+                "popularity": 0.0648,
+                "profile_path": null,
+                "credit_id": "62b55afbb77d4b008c98fd6a",
+                "department": "Directing",
+                "job": "Script Supervisor"
+            },
+            {
+                "adult": false,
+                "gender": 0,
+                "id": 2142710,
+                "known_for_department": "Directing",
+                "name": "Spencer Taylor",
+                "original_name": "Spencer Taylor",
+                "popularity": 0.3544,
+                "profile_path": null,
+                "credit_id": "62b55bdb88b148009220182a",
+                "department": "Directing",
+                "job": "Second Second Assistant Director"
+            },
+            {
+                "adult": false,
+                "gender": 1,
+                "id": 1425931,
+                "known_for_department": "Directing",
+                "name": "Rebecca Boyle",
+                "original_name": "Rebecca Boyle",
+                "popularity": 0.084,
+                "profile_path": null,
+                "credit_id": "62b55adee7c09704215c16b4",
+                "department": "Directing",
+                "job": "Script Supervisor"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 238673,
+                "known_for_department": "Directing",
+                "name": "Eric Schwab",
+                "original_name": "Eric Schwab",
+                "popularity": 0.1598,
+                "profile_path": null,
+                "credit_id": "62b57edc1b722c0468995e43",
+                "department": "Directing",
+                "job": "Second Unit Director"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 86270,
+                "known_for_department": "Directing",
+                "name": "Joseph Kosinski",
+                "original_name": "Joseph Kosinski",
+                "popularity": 1.6205,
+                "profile_path": "/oWLUXWY0j8TYzwnf2wETYWO181S.jpg",
+                "credit_id": "5925e0fac3a36877fd011ca8",
+                "department": "Directing",
+                "job": "Director"
+            }
+        ],
+        "single_movie_writer": [
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 1279644,
+                "known_for_department": "Writing",
+                "name": "Eric Warren Singer",
+                "original_name": "Eric Warren Singer",
+                "popularity": 0.3558,
+                "profile_path": "/b5ygQ7u1RBZQaNN88W2ZiTBiKNV.jpg",
+                "credit_id": "60a10ba180729800584b0ef8",
+                "department": "Writing",
+                "job": "Screenplay"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 15244,
+                "known_for_department": "Writing",
+                "name": "Ehren Kruger",
+                "original_name": "Ehren Kruger",
+                "popularity": 1.1921,
+                "profile_path": "/jGwR9TRGhV9Fpw8cQrSN5FGQd9W.jpg",
+                "credit_id": "60a10b950f3655005743efeb",
+                "department": "Writing",
+                "job": "Screenplay"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 9033,
+                "known_for_department": "Writing",
+                "name": "Christopher McQuarrie",
+                "original_name": "Christopher McQuarrie",
+                "popularity": 0.9631,
+                "profile_path": "/xVbQBRpqzKkllUAvjJbgnAmTwaZ.jpg",
+                "credit_id": "60a10bab8390180029f0f57b",
+                "department": "Writing",
+                "job": "Screenplay"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 78428,
+                "known_for_department": "Writing",
+                "name": "Justin Marks",
+                "original_name": "Justin Marks",
+                "popularity": 0.334,
+                "profile_path": "/dwUvMbNyljjafUzANkFWE64BNCu.jpg",
+                "credit_id": "60a10bd1807298006fddfdd8",
+                "department": "Writing",
+                "job": "Story"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 225633,
+                "known_for_department": "Writing",
+                "name": "Peter Craig",
+                "original_name": "Peter Craig",
+                "popularity": 1.5511,
+                "profile_path": "/5r0nnz5JJ8bIiUfcK2TaasmJm3h.jpg",
+                "credit_id": "625f51717fcab300a6abb2c8",
+                "department": "Writing",
+                "job": "Story"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 11080,
+                "known_for_department": "Writing",
+                "name": "Jim Cash",
+                "original_name": "Jim Cash",
+                "popularity": 0.5295,
+                "profile_path": null,
+                "credit_id": "5925e1a8c3a368783e0144eb",
+                "department": "Writing",
+                "job": "Characters"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 11081,
+                "known_for_department": "Writing",
+                "name": "Jack Epps Jr.",
+                "original_name": "Jack Epps Jr.",
+                "popularity": 0.2647,
+                "profile_path": "/gHOLWfXR46DkrA0m4R3bW9ky6DL.jpg",
+                "credit_id": "5925e1b89251413b8a013b83",
+                "department": "Writing",
+                "job": "Characters"
+            }
+        ],
+        "url": "http://localhost/preporuka-za-film/index.php/single-movie/top-gan-maverik/"
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/yF1eOkaYvwiORauRCPWznV9xVvi.jpg",
+        "belongs_to_collection": null,
+        "budget": 220000000,
+        "genres": "Akcioni",
+        "homepage": "",
+        "id": 298618,
+        "imdb_id": "tt0439572",
+        "origin_country": [
+            "US"
+        ],
+        "original_language": "en",
+        "original_title": "The Flash",
+        "overview": "Kada njegov pokušaj da spase svoju porodicu nenamerno promeni budućnost, Beri Alen postaje zarobljen u stvarnosti u kojoj se vratio general Zod i nema superheroja kojima bi se mogao obratiti. Da bi spasio svet u kome se nalazi i vratio se u budućnost koju poznaje, Barijeva jedina nada je da se utrkuje za svoj život. Ali da li će konačna žrtva biti dovoljna za resetovanje univerzuma?",
+        "popularity": 10.7625,
+        "poster_path": "/rktDFPbfHfUbArZ6OOOKsXcv0Bm.jpg",
+        "production_companies": [
+            {
+                "id": 174,
+                "logo_path": "/ingPVoHnINIrFR7WHmYux1f5pES.png",
+                "name": "Warner Bros. Pictures",
+                "origin_country": "US"
+            },
+            {
+                "id": 152809,
+                "logo_path": "/bdtAEMJpIaVW78c78POabARpotx.png",
+                "name": "Double Dream",
+                "origin_country": "US"
+            },
+            {
+                "id": 170335,
+                "logo_path": null,
+                "name": "The Disco Factory",
+                "origin_country": "US"
+            },
+            {
+                "id": 128064,
+                "logo_path": "/13F3Jf7EFAcREU0xzZqJnVnyGXu.png",
+                "name": "DC Films",
+                "origin_country": "US"
+            }
+        ],
+        "production_countries": [
+            {
+                "iso_3166_1": "US",
+                "name": "United States of America"
+            }
+        ],
+        "release_date": "2023-06-13",
+        "revenue": 271333313,
+        "runtime": 144,
+        "spoken_languages": [
+            {
+                "english_name": "English",
+                "iso_639_1": "en",
+                "name": "English"
+            },
+            {
+                "english_name": "Spanish",
+                "iso_639_1": "es",
+                "name": "Español"
+            },
+            {
+                "english_name": "Russian",
+                "iso_639_1": "ru",
+                "name": "Pусский"
+            }
+        ],
+        "status": "Released",
+        "tagline": "",
+        "title": "Fleš",
+        "video": false,
+        "vote_average": 6.62,
+        "vote_count": 4750,
+        "video_trailer": {
+            "iso_639_1": "en",
+            "iso_3166_1": "US",
+            "name": "Fighting Dark Flash Behind The Scenes",
+            "key": "8YV2hzjGjJw",
+            "site": "YouTube",
+            "size": 1080,
+            "type": "Behind the Scenes",
+            "official": true,
+            "published_at": "2023-08-29T16:00:05.000Z",
+            "id": "64ee1d405258ae012ca6d2ed"
+        },
+        "movie_watch_on": {
+            "link": "https://www.themoviedb.org/movie/298618-the-flash/watch?locale=US",
+            "flatrate": [
+                {
+                    "logo_path": "/jbe4gVSfRlbPTdESXhEKpornsfu.jpg",
+                    "provider_id": 1899,
+                    "provider_name": "HBO Max",
+                    "display_priority": 11
+                },
+                {
+                    "logo_path": "/5AkEgpCNaBP3Fbwd2m1GdQIk0vv.jpg",
+                    "provider_id": 1825,
+                    "provider_name": "HBO Max Amazon Channel",
+                    "display_priority": 12
+                },
+                {
+                    "logo_path": "/ohcwolMl8E743CkS8MnhmJKOlRj.jpg",
+                    "provider_id": 289,
+                    "provider_name": "Cinemax Amazon Channel",
+                    "display_priority": 72
+                },
+                {
+                    "logo_path": "/zXCdY4pczONheFCU9GkrMbGI1o5.jpg",
+                    "provider_id": 2061,
+                    "provider_name": "Cinemax Apple TV Channel",
+                    "display_priority": 198
+                }
+            ],
+            "buy": [
+                {
+                    "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+                    "provider_id": 10,
+                    "provider_name": "Amazon Video",
+                    "display_priority": 6
+                },
+                {
+                    "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
+                    "provider_id": 2,
+                    "provider_name": "Apple TV",
+                    "display_priority": 7
+                },
+                {
+                    "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
+                    "provider_id": 3,
+                    "provider_name": "Google Play Movies",
+                    "display_priority": 16
+                },
+                {
+                    "logo_path": "/pTnn5JwWr4p3pG8H6VrpiQo7Vs0.jpg",
+                    "provider_id": 192,
+                    "provider_name": "YouTube",
+                    "display_priority": 17
+                },
+                {
+                    "logo_path": "/19fkcOz0xeUgCVW8tO85uOYnYK9.jpg",
+                    "provider_id": 7,
+                    "provider_name": "Fandango At Home",
+                    "display_priority": 37
+                }
+            ],
+            "rent": [
+                {
+                    "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+                    "provider_id": 10,
+                    "provider_name": "Amazon Video",
+                    "display_priority": 6
+                },
+                {
+                    "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
+                    "provider_id": 2,
+                    "provider_name": "Apple TV",
+                    "display_priority": 7
+                },
+                {
+                    "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
+                    "provider_id": 3,
+                    "provider_name": "Google Play Movies",
+                    "display_priority": 16
+                },
+                {
+                    "logo_path": "/pTnn5JwWr4p3pG8H6VrpiQo7Vs0.jpg",
+                    "provider_id": 192,
+                    "provider_name": "YouTube",
+                    "display_priority": 17
+                },
+                {
+                    "logo_path": "/19fkcOz0xeUgCVW8tO85uOYnYK9.jpg",
+                    "provider_id": 7,
+                    "provider_name": "Fandango At Home",
+                    "display_priority": 37
+                },
+                {
+                    "logo_path": "/aAb9CUHjFe9Y3O57qnrJH0KOF1B.jpg",
+                    "provider_id": 486,
+                    "provider_name": "Spectrum On Demand",
+                    "display_priority": 123
+                },
+                {
+                    "logo_path": "/vLZKlXUNDcZR7ilvfY9Wr9k80FZ.jpg",
+                    "provider_id": 538,
+                    "provider_name": "Plex",
+                    "display_priority": 129
+                }
+            ]
+        },
+        "single_movie_cast": [
+            {
+                "adult": false,
+                "gender": 3,
+                "id": 132157,
+                "known_for_department": "Acting",
+                "name": "Ezra Miller",
+                "original_name": "Ezra Miller",
+                "popularity": 1.2916,
+                "profile_path": "/6wmTpbYpmhthaxzM5ss3377F9IV.jpg",
+                "cast_id": 0,
+                "character": "Barry Allen / The Flash",
+                "credit_id": "5447bf27c3a3686e910022ec",
+                "order": 0
+            },
+            {
+                "adult": false,
+                "gender": 1,
+                "id": 2542319,
+                "known_for_department": "Acting",
+                "name": "Sasha Calle",
+                "original_name": "Sasha Calle",
+                "popularity": 1.5212,
+                "profile_path": "/yLZY25AQOC2xKzsWqteyJTcWPK3.jpg",
+                "cast_id": 58,
+                "character": "Kara Zor-El / Supergirl",
+                "credit_id": "60300ad620ecaf003f149b47",
+                "order": 1
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 2232,
+                "known_for_department": "Acting",
+                "name": "Michael Keaton",
+                "original_name": "Michael Keaton",
+                "popularity": 2.3292,
+                "profile_path": "/baeHNv3qrVsnApuKbZXiJOhqMnw.jpg",
+                "cast_id": 49,
+                "character": "Bruce Wayne / Batman",
+                "credit_id": "5ef10418283ed900368eb76d",
+                "order": 2
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 335,
+                "known_for_department": "Acting",
+                "name": "Michael Shannon",
+                "original_name": "Michael Shannon",
+                "popularity": 3.4468,
+                "profile_path": "/6mMczfjM8CiS1WuBOgo5Xom1TcR.jpg",
+                "cast_id": 82,
+                "character": "General Zod",
+                "credit_id": "61c3399737b3a900c3459731",
+                "order": 3
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 17402,
+                "known_for_department": "Acting",
+                "name": "Ron Livingston",
+                "original_name": "Ron Livingston",
+                "popularity": 1.4379,
+                "profile_path": "/pr5CjWnkaf5WKTIYh8wtNufjmyb.jpg",
+                "cast_id": 66,
+                "character": "Henry Allen",
+                "credit_id": "605ba914a2d2e9002ae2deec",
+                "order": 4
+            }
+        ],
+        "single_movie_director": [
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 1113116,
+                "known_for_department": "Directing",
+                "name": "Andy Muschietti",
+                "original_name": "Andy Muschietti",
+                "popularity": 1.341,
+                "profile_path": "/4ndnP2NNavhfGtJqihD4FVDsYMY.jpg",
+                "credit_id": "5d1bad0555b0c031756ab9bf",
+                "department": "Directing",
+                "job": "Director"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 2624625,
+                "known_for_department": "Directing",
+                "name": "Tom Edmondson",
+                "original_name": "Tom Edmondson",
+                "popularity": 0.1539,
+                "profile_path": null,
+                "credit_id": "68123aae43349920090025d9",
+                "department": "Directing",
+                "job": "Second Unit First Assistant Director"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 1444239,
+                "known_for_department": "Crew",
+                "name": "Robert Alonzo",
+                "original_name": "Robert Alonzo",
+                "popularity": 0.3285,
+                "profile_path": "/7OoQpZ0wdwo8G2zrzNiHhbdfalW.jpg",
+                "credit_id": "681244e0886b4558f405535b",
+                "department": "Directing",
+                "job": "Second Unit Director"
+            }
+        ],
+        "single_movie_writer": [
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 52935,
+                "known_for_department": "Writing",
+                "name": "John Francis Daley",
+                "original_name": "John Francis Daley",
+                "popularity": 1.3005,
+                "profile_path": "/pzsVm4w2Z6gDn2zVoQ0aUNHlr6D.jpg",
+                "credit_id": "61c378402ac49900191c8933",
+                "department": "Writing",
+                "job": "Screenstory"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 1236679,
+                "known_for_department": "Writing",
+                "name": "Jonathan Goldstein",
+                "original_name": "Jonathan Goldstein",
+                "popularity": 0.4125,
+                "profile_path": "/5KVyvhBILaZsddFYSpruD0u5F3M.jpg",
+                "credit_id": "61c3784e0102c9001d1e32e1",
+                "department": "Writing",
+                "job": "Screenstory"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 1718424,
+                "known_for_department": "Writing",
+                "name": "Harry Lampert",
+                "original_name": "Harry Lampert",
+                "popularity": 0.0882,
+                "profile_path": null,
+                "credit_id": "5844b6d0c3a368478d00f65d",
+                "department": "Writing",
+                "job": "Characters"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 1368162,
+                "known_for_department": "Writing",
+                "name": "Gardner Fox",
+                "original_name": "Gardner Fox",
+                "popularity": 0.2278,
+                "profile_path": "/uaMj71gVjjJHpqBEomTKmDkeYQR.jpg",
+                "credit_id": "5844b6fcc3a368478d00f67e",
+                "department": "Writing",
+                "job": "Characters"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 20007,
+                "known_for_department": "Writing",
+                "name": "Jerry Siegel",
+                "original_name": "Jerry Siegel",
+                "popularity": 0.4088,
+                "profile_path": "/tpkgpm3pHrkSNewoDasKz6Chpg4.jpg",
+                "credit_id": "65e2abc5e942be0187ea05e8",
+                "department": "Writing",
+                "job": "Characters"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 20008,
+                "known_for_department": "Writing",
+                "name": "Joe Shuster",
+                "original_name": "Joe Shuster",
+                "popularity": 0.5689,
+                "profile_path": "/bb2RpPm1GZy45dxndVdlxNx7AvU.jpg",
+                "credit_id": "65e2abdb498ef90187ecd38b",
+                "department": "Writing",
+                "job": "Characters"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 2137200,
+                "known_for_department": "Crew",
+                "name": "Robert Kanigher",
+                "original_name": "Robert Kanigher",
+                "popularity": 0.1992,
+                "profile_path": "/6jmF1hZXhwMTf1C1Pb2HSEwTkWI.jpg",
+                "credit_id": "648cd8f42f8d0900e384c87c",
+                "department": "Writing",
+                "job": "Characters"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 1738711,
+                "known_for_department": "Writing",
+                "name": "Carmine Infantino",
+                "original_name": "Carmine Infantino",
+                "popularity": 0.1314,
+                "profile_path": "/rd7rptOdCetoLkITsPWyyxhHwEF.jpg",
+                "credit_id": "648cd8fac3c891012d5cf497",
+                "department": "Writing",
+                "job": "Characters"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 74569,
+                "known_for_department": "Production",
+                "name": "Joby Harold",
+                "original_name": "Joby Harold",
+                "popularity": 0.499,
+                "profile_path": "/q3jMKt9f93fZwJHVQoov0hFAFwJ.jpg",
+                "credit_id": "648cdb51559d2200ad81853f",
+                "department": "Writing",
+                "job": "Screenstory"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 3794,
+                "known_for_department": "Writing",
+                "name": "Bob Kane",
+                "original_name": "Bob Kane",
+                "popularity": 0.7801,
+                "profile_path": "/vuXwrlqaUydA4t5SFVdQkK9KsZL.jpg",
+                "credit_id": "648fc82345765d013be9e631",
+                "department": "Writing",
+                "job": "Characters"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 198034,
+                "known_for_department": "Writing",
+                "name": "Bill Finger",
+                "original_name": "Bill Finger",
+                "popularity": 0.7642,
+                "profile_path": "/50vkgn1QGaakfXzetnHUDaOnOyt.jpg",
+                "credit_id": "648fc829559d2200ad830632",
+                "department": "Writing",
+                "job": "Characters"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 1236448,
+                "known_for_department": "Writing",
+                "name": "William Moulton Marston",
+                "original_name": "William Moulton Marston",
+                "popularity": 0.481,
+                "profile_path": "/o5wbY2yg6RDAC9VXoQKGpN2YeBP.jpg",
+                "credit_id": "648fc830263462014e58cbb9",
+                "department": "Writing",
+                "job": "Characters"
+            },
+            {
+                "adult": false,
+                "gender": 1,
+                "id": 1448221,
+                "known_for_department": "Writing",
+                "name": "Christina Hodson",
+                "original_name": "Christina Hodson",
+                "popularity": 1.527,
+                "profile_path": "/2Y4wDj55n9UOEaaSwDPu9Nso0qH.jpg",
+                "credit_id": "5d1bad184dc34a000f9fe928",
+                "department": "Writing",
+                "job": "Screenplay"
+            }
+        ],
+        "url": "http://localhost/preporuka-za-film/index.php/single-movie/fles/"
+    },
+    {
+        "adult": false,
+        "backdrop_path": "/4XM8DUTQb3lhLemJC51Jx4a2EuA.jpg",
+        "belongs_to_collection": {
+            "id": 9485,
+            "name": "The Fast and the Furious Collection",
+            "poster_path": "/zOCnMPoUxgJK1RFPfN4PcnT16gr.jpg",
+            "backdrop_path": "/z5A5W3WYJc3UVEWljSGwdjDgQ0j.jpg"
+        },
+        "budget": 340000000,
+        "genres": "Akcioni",
+        "homepage": "",
+        "id": 385687,
+        "imdb_id": "tt5433140",
+        "origin_country": [
+            "US"
+        ],
+        "original_language": "en",
+        "original_title": "Fast X",
+        "overview": "Tokom mnogih misija i uprkos nemogućim izgledima, Dom Toreto i njegova porodica su nadmudrili, iznervirali i nadmašili svakog neprijatelja na svom putu. Sada se suočavaju sa najsmrtonosnijim protivnikom sa kojim su se ikada suočili: zastrašujućom pretnjom koja se pojavljuje iz senki prošlosti koja je podstaknuta krvnom osvetom i koja je odlučna da razbije ovu porodicu i uništi sve – i sve – koje Dom voli, zauvek .",
+        "popularity": 15.4585,
+        "poster_path": "/fiVW06jE7z9YnO4trhaMEdclSiC.jpg",
+        "production_companies": [
+            {
+                "id": 33,
+                "logo_path": "/8lvHyhjr8oUKOOy2dKXoALWKdp0.png",
+                "name": "Universal Pictures",
+                "origin_country": "US"
+            },
+            {
+                "id": 333,
+                "logo_path": "/5xUJfzPZ8jWJUDzYtIeuPO4qPIa.png",
+                "name": "Original Film",
+                "origin_country": "US"
+            },
+            {
+                "id": 1225,
+                "logo_path": "/rIxhJMR7oK8b2fMakmTfRLY2TZv.png",
+                "name": "One Race",
+                "origin_country": "US"
+            },
+            {
+                "id": 34530,
+                "logo_path": null,
+                "name": "Perfect Storm Entertainment",
+                "origin_country": "US"
+            }
+        ],
+        "production_countries": [
+            {
+                "iso_3166_1": "US",
+                "name": "United States of America"
+            }
+        ],
+        "release_date": "2023-05-17",
+        "revenue": 704709660,
+        "runtime": 142,
+        "spoken_languages": [
+            {
+                "english_name": "Spanish",
+                "iso_639_1": "es",
+                "name": "Español"
+            },
+            {
+                "english_name": "English",
+                "iso_639_1": "en",
+                "name": "English"
+            }
+        ],
+        "status": "Released",
+        "tagline": "",
+        "title": "Paklene ulice 10",
+        "video": false,
+        "vote_average": 7.017,
+        "vote_count": 6098,
+        "video_trailer": {
+            "iso_639_1": "en",
+            "iso_3166_1": "US",
+            "name": "Reyes Gets Away with the God's Eye",
+            "key": "t_lOMC5AWzA",
+            "site": "YouTube",
+            "size": 2160,
+            "type": "Clip",
+            "official": true,
+            "published_at": "2024-11-13T14:01:02.000Z",
+            "id": "673580547dfa9751886e138a"
+        },
+        "movie_watch_on": {
+            "link": "https://www.themoviedb.org/movie/385687-fast-x/watch?locale=US",
+            "buy": [
+                {
+                    "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+                    "provider_id": 10,
+                    "provider_name": "Amazon Video",
+                    "display_priority": 6
+                },
+                {
+                    "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
+                    "provider_id": 2,
+                    "provider_name": "Apple TV",
+                    "display_priority": 7
+                },
+                {
+                    "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
+                    "provider_id": 3,
+                    "provider_name": "Google Play Movies",
+                    "display_priority": 16
+                },
+                {
+                    "logo_path": "/pTnn5JwWr4p3pG8H6VrpiQo7Vs0.jpg",
+                    "provider_id": 192,
+                    "provider_name": "YouTube",
+                    "display_priority": 17
+                },
+                {
+                    "logo_path": "/19fkcOz0xeUgCVW8tO85uOYnYK9.jpg",
+                    "provider_id": 7,
+                    "provider_name": "Fandango At Home",
+                    "display_priority": 37
+                }
+            ],
+            "rent": [
+                {
+                    "logo_path": "/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+                    "provider_id": 10,
+                    "provider_name": "Amazon Video",
+                    "display_priority": 6
+                },
+                {
+                    "logo_path": "/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
+                    "provider_id": 2,
+                    "provider_name": "Apple TV",
+                    "display_priority": 7
+                },
+                {
+                    "logo_path": "/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
+                    "provider_id": 3,
+                    "provider_name": "Google Play Movies",
+                    "display_priority": 16
+                },
+                {
+                    "logo_path": "/pTnn5JwWr4p3pG8H6VrpiQo7Vs0.jpg",
+                    "provider_id": 192,
+                    "provider_name": "YouTube",
+                    "display_priority": 17
+                },
+                {
+                    "logo_path": "/19fkcOz0xeUgCVW8tO85uOYnYK9.jpg",
+                    "provider_id": 7,
+                    "provider_name": "Fandango At Home",
+                    "display_priority": 37
+                },
+                {
+                    "logo_path": "/aAb9CUHjFe9Y3O57qnrJH0KOF1B.jpg",
+                    "provider_id": 486,
+                    "provider_name": "Spectrum On Demand",
+                    "display_priority": 123
+                }
+            ],
+            "flatrate": [
+                {
+                    "logo_path": "/1C5EVCWyQD798CE1DFfcm6oAbxP.jpg",
+                    "provider_id": 1855,
+                    "provider_name": "Starz Apple TV Channel",
+                    "display_priority": 21
+                }
+            ]
+        },
+        "single_movie_cast": [
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 12835,
+                "known_for_department": "Acting",
+                "name": "Vin Diesel",
+                "original_name": "Vin Diesel",
+                "popularity": 14.0297,
+                "profile_path": "/nZdVry7lnUkE24PnXakok9okvL4.jpg",
+                "cast_id": 0,
+                "character": "Dominic Toretto",
+                "credit_id": "56d8c1e0c3a3681e3601fdc6",
+                "order": 0
+            },
+            {
+                "adult": false,
+                "gender": 1,
+                "id": 17647,
+                "known_for_department": "Acting",
+                "name": "Michelle Rodriguez",
+                "original_name": "Michelle Rodriguez",
+                "popularity": 2.1717,
+                "profile_path": "/wVcbrae4eRqGMFZz8Eh52Dl1biP.jpg",
+                "cast_id": 33,
+                "character": "Letty Ortiz",
+                "credit_id": "6107f6a1ee43e80027c7bea1",
+                "order": 1
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 8169,
+                "known_for_department": "Acting",
+                "name": "Tyrese Gibson",
+                "original_name": "Tyrese Gibson",
+                "popularity": 1.731,
+                "profile_path": "/jxoy4fbXNKFQtBdK73cLXEz3ufS.jpg",
+                "cast_id": 35,
+                "character": "Roman Pearce",
+                "credit_id": "6107f6d61c635b003010d62b",
+                "order": 2
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 8171,
+                "known_for_department": "Acting",
+                "name": "Ludacris",
+                "original_name": "Ludacris",
+                "popularity": 1.8149,
+                "profile_path": "/erkJijujhe48vhJ8iCEtVpNEeVn.jpg",
+                "cast_id": 36,
+                "character": "Tej Parker",
+                "credit_id": "6107f6ec8d22fc004713585b",
+                "order": 3
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 56446,
+                "known_for_department": "Acting",
+                "name": "John Cena",
+                "original_name": "John Cena",
+                "popularity": 2.7401,
+                "profile_path": "/rgB2eIOt7WyQjdgJCOuESdDlrjg.jpg",
+                "cast_id": 70,
+                "character": "Jakob Toretto",
+                "credit_id": "62991471a44d095275e980c1",
+                "order": 4
+            }
+        ],
+        "single_movie_director": [
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 18865,
+                "known_for_department": "Directing",
+                "name": "Louis Leterrier",
+                "original_name": "Louis Leterrier",
+                "popularity": 0.9762,
+                "profile_path": "/bpqqRRyCLeoAup2OAv1Dtm5C8Tn.jpg",
+                "credit_id": "62700baac56d2d6f7690125e",
+                "department": "Directing",
+                "job": "Director"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 228881,
+                "known_for_department": "Crew",
+                "name": "Olivier Schneider",
+                "original_name": "Olivier Schneider",
+                "popularity": 0.3952,
+                "profile_path": "/i4pmJRPM1Qghf3t2oM9ZbhnKWn5.jpg",
+                "credit_id": "646bbca57b7b4d0138b0352e",
+                "department": "Directing",
+                "job": "Second Unit Director"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 1711214,
+                "known_for_department": "Directing",
+                "name": "Vincent Lascoumes",
+                "original_name": "Vincent Lascoumes",
+                "popularity": 0.2732,
+                "profile_path": null,
+                "credit_id": "646bbcd02bcf67011bf47ff4",
+                "department": "Directing",
+                "job": "First Assistant Director"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 17649,
+                "known_for_department": "Camera",
+                "name": "Alexander Witt",
+                "original_name": "Alexander Witt",
+                "popularity": 1.1294,
+                "profile_path": "/xkkrzUdjQl1GiL5muIiUKREu9IG.jpg",
+                "credit_id": "646c11d9a5046e0189429c3c",
+                "department": "Directing",
+                "job": "Second Unit Director"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 112682,
+                "known_for_department": "Crew",
+                "name": "Spiro Razatos",
+                "original_name": "Spiro Razatos",
+                "popularity": 0.4069,
+                "profile_path": "/tkJnvTnKa0t5HLi7dTKcXDrooFU.jpg",
+                "credit_id": "6468550833a376013b3dc202",
+                "department": "Directing",
+                "job": "Second Unit Director"
+            },
+            {
+                "adult": false,
+                "gender": 1,
+                "id": 1427849,
+                "known_for_department": "Directing",
+                "name": "Zoe Morgan",
+                "original_name": "Zoe Morgan",
+                "popularity": 0.1726,
+                "profile_path": null,
+                "credit_id": "6482ffbebf31f250570575da",
+                "department": "Directing",
+                "job": "Script Supervisor"
+            },
+            {
+                "adult": false,
+                "gender": 1,
+                "id": 2477289,
+                "known_for_department": "Production",
+                "name": "Samantha Arnold",
+                "original_name": "Samantha Arnold",
+                "popularity": 0.4101,
+                "profile_path": null,
+                "credit_id": "648363b5e375c0011c7f45e4",
+                "department": "Directing",
+                "job": "Second Assistant Director"
+            },
+            {
+                "adult": false,
+                "gender": 0,
+                "id": 4104520,
+                "known_for_department": "Directing",
+                "name": "Nick White",
+                "original_name": "Nick White",
+                "popularity": 0.0828,
+                "profile_path": null,
+                "credit_id": "648363fabf31f2505880d480",
+                "department": "Directing",
+                "job": "Third Assistant Director"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 3480232,
+                "known_for_department": "Directing",
+                "name": "Kyle Williams",
+                "original_name": "Kyle Williams",
+                "popularity": 0.048,
+                "profile_path": null,
+                "credit_id": "64836415e2726000e8c01bea",
+                "department": "Directing",
+                "job": "Third Assistant Director"
+            },
+            {
+                "adult": false,
+                "gender": 0,
+                "id": 3114050,
+                "known_for_department": "Directing",
+                "name": "Luís Sérgio",
+                "original_name": "Luís Sérgio",
+                "popularity": 0.0632,
+                "profile_path": null,
+                "credit_id": "64836435bf31f25054b52c4f",
+                "department": "Directing",
+                "job": "Third Assistant Director"
+            }
+        ],
+        "single_movie_writer": [
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 8162,
+                "known_for_department": "Writing",
+                "name": "Gary Scott Thompson",
+                "original_name": "Gary Scott Thompson",
+                "popularity": 0.6542,
+                "profile_path": "/e2dMfqFvRsOXgWZ1VToYLmos17y.jpg",
+                "credit_id": "584340739251416764001ee7",
+                "department": "Writing",
+                "job": "Characters"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 58189,
+                "known_for_department": "Directing",
+                "name": "Justin Lin",
+                "original_name": "Justin Lin",
+                "popularity": 0.9227,
+                "profile_path": "/w0ryazdt8iS3GBrjXfv0FIwvUGY.jpg",
+                "credit_id": "63fbc89484f249007beffed5",
+                "department": "Writing",
+                "job": "Screenplay"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 937234,
+                "known_for_department": "Writing",
+                "name": "Dan Mazeau",
+                "original_name": "Dan Mazeau",
+                "popularity": 0.7876,
+                "profile_path": "/z2wwWk5dqMEvSMIEBR6eOQSov1S.jpg",
+                "credit_id": "63fbc89c0c125500da1e524a",
+                "department": "Writing",
+                "job": "Screenplay"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 937234,
+                "known_for_department": "Writing",
+                "name": "Dan Mazeau",
+                "original_name": "Dan Mazeau",
+                "popularity": 0.7876,
+                "profile_path": "/z2wwWk5dqMEvSMIEBR6eOQSov1S.jpg",
+                "credit_id": "646abd8c2bcf670172b1fe60",
+                "department": "Writing",
+                "job": "Story"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 58189,
+                "known_for_department": "Directing",
+                "name": "Justin Lin",
+                "original_name": "Justin Lin",
+                "popularity": 0.9227,
+                "profile_path": "/w0ryazdt8iS3GBrjXfv0FIwvUGY.jpg",
+                "credit_id": "646abd9333a376013b3ea59e",
+                "department": "Writing",
+                "job": "Story"
+            },
+            {
+                "adult": false,
+                "gender": 2,
+                "id": 1014026,
+                "known_for_department": "Writing",
+                "name": "Zach Dean",
+                "original_name": "Zach Dean",
+                "popularity": 0.4447,
+                "profile_path": "/ywOX5ln14DqH2IafGvCYGspexIL.jpg",
+                "credit_id": "646abd992bcf6700e3bb54b8",
+                "department": "Writing",
+                "job": "Story"
+            }
+        ],
+        "url": "http://localhost/preporuka-za-film/index.php/single-movie/paklene-ulice-10/"
+    }
+]

@@ -21,7 +21,7 @@ if (expand_question_list && advance_questions.length) {
   });
 }
 
-// Already watched movies note
+// === Already watched movies note ===
 const already_watched_switch = document.getElementById('already_watched_toggler');
 const already_watched_note_on = document.getElementById('note_on');
 const already_watched_note_off = document.getElementById('note_off');
@@ -34,16 +34,40 @@ already_watched_switch.addEventListener('change', (e) => {
   updateDisplayAlreadyWatched(isChecked ? '1' : '0');
 });
 
-
 async function updateDisplayAlreadyWatched(display) {
-  const response = await fetch(pzfilm_globals.ajaxurl, {
+  await fetch(pzfilm_globals.ajaxurl, {
     method: 'POST',
     credentials: 'include',
     body: new URLSearchParams({
       action: 'update_user_already_watched',
       display_already_watched: display
     })
-  })
+  });
+}
+
+
+// === Already recommended movies note ===
+const already_recommended_switch = document.getElementById('already_recommended_toggler');
+const already_recommended_note_on = document.getElementById('note_rec_on');
+const already_recommended_note_off = document.getElementById('note_rec_off');
+
+already_recommended_switch.addEventListener('change', (e) => {
+  const isChecked = e.target.checked;
+  already_recommended_note_on.hidden = !isChecked;
+  already_recommended_note_off.hidden = isChecked;
+
+  updateDisplayAlreadyRecommended(isChecked ? '1' : '0');
+});
+
+async function updateDisplayAlreadyRecommended(display) {
+  await fetch(pzfilm_globals.ajaxurl, {
+    method: 'POST',
+    credentials: 'include',
+    body: new URLSearchParams({
+      action: 'update_user_already_recommended',
+      display_already_recommended: display
+    })
+  });
 }
 
 

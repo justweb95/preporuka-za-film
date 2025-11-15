@@ -5,6 +5,13 @@
   a {
     text-decoration: none;
   }
+  &:has(img.image-error) {
+    height: 338px;
+  }
+  .image-error {
+    min-height: 338px;
+    object-fit: cover;
+  }
   .movie-card-poster {
     user-select: none;
     display: block;

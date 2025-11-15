@@ -9,10 +9,6 @@ window.addEventListener("load", () => {
 // import Swiffy Slider CSS
 import "swiffy-slider/css"
 
-
-
-console.log('Profile main script loaded');
-
 window.addEventListener('load', () => {
   if (window.location.hash) {
     const hash = new URLSearchParams(window.location.hash.slice(1));
@@ -45,25 +41,6 @@ window.addEventListener('load', () => {
   }
 });
 
-
-// User Profile Controller
-//  1. Is User Logged In
-//  2. Get Logged In Username
-
-// export function getLoggedInUserCookie() {
-//   const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
-//     const [name, value] = cookie.split('=');
-//     acc[name] = value;
-//     return acc;
-//   }, {});
-
-//   for (const name in cookies) {
-//     if (name.startsWith('wordpress_logged_in_')) return decodeURIComponent(cookies[name]);
-//   }
-
-//   return null;
-// }
-
 export async function getLoggedInUsername() {
   const response = await fetch(pzfilm_globals.ajaxurl, {
     method: 'POST',
@@ -76,7 +53,6 @@ export async function getLoggedInUsername() {
   const user_data = await response.json();
   return user_data.data.username;
 }
-
 
 export async function getLoggedInUserMetaData() {
   const username = await getLoggedInUsername();

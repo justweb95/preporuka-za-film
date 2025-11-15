@@ -73,7 +73,7 @@ function parseAiJson(aiText) {
     // If object, wrap in array for consistency
     return [parsed];
   } catch (err) {
-    console.error('Error parsing AI JSON:', err, aiText);
+    // console.error('Error parsing AI JSON:', err, aiText);
     return []; // fallback to empty array
   }
 }

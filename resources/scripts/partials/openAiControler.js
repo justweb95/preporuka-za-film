@@ -8,52 +8,6 @@
 
 
 function buildPromt(movieData) {
-  
-  // let prompt = `
-  //   You are a movie recommendation expert. 
-    
-  //   I will provide you with answers to six questions about my movie preferences. 
-    
-  //   Your task is to recommend FIVE movies that best fit my criteria.
-    
-  //   *** You MUST return ONLY an Array of JSON objects ***
-  //   [
-  //    {"movie_title": "[Full Movie Title]", "movie_year": "[Release Year]"},
-  //    {"movie_title": "[Full Movie Title]", "movie_year": "[Release Year]"}
-  //   ]
-
-  //   Do not include any additional text, explanations, or notes!!!
-
-  //   By "best fit," I mean a movie that matches at least 4 of my criteria perfectly, and the rest closely. I prefer a popular, well-reviewed movie.
-    
-  //   TMDB popularity 6+ (allow 5+ if matching 5 criteria)
-
-  //   Use Natural Language Processing (NLP) to analyze and interpret the user's intent, extracting elements like genre, mood, and context-specific keywords from the answers provided.
-
-  //   Utilize content-based filtering (based on movie characteristics) and consider collaborative filtering (if possible) to find relevant suggestions.
-
-  //   Rules:
-  //   All Five Movie need to fit this preferences close as posible
-  //   RETURN EACH TIME FIVES MOVIES
-  //   EACH TIME RETURN FIVES MOVIES
-
-  //   1. I want my movie to be: ${movieData[0]},  
-  //   2. I watch this movie with: ${movieData[1]},
-  //   3. The movie must be based on the category/categories: ${movieData[2]}, 
-  //   4. I want the movie to be release in: ${movieData[3]},
-  //   5. I want age restriction to be: ${movieData[4]},
-  //   6. Additional category for the movie I am interested in: ${movieData[5]}**
-
-  //   *** You MUST return ONLY an Array of JSON objects ***
-  //   *** You MUST return ONLY an Array of JSON objects ***
-  //   RETURN EACH TIME FIVES MOVIES
-  //   EACH TIME RETURN FIVES MOVIES
-  //   [
-  //    {"movie_title": "[Full Movie Title]", "movie_year": "[Release Year]"},
-  //    {"movie_title": "[Full Movie Title]", "movie_year": "[Release Year]"}
-  //   ]
-  // `  
-  // return prompt
     let prompt = ` 
       You are a best movie recommendation engine. Strictly follow these rules:
 
@@ -154,8 +108,8 @@ async function callPerplexityAdvance(prompt) {
         { role: "system", content: "You are a helpful movie recommendation expert, skilled at understanding user preferences and using the TMDB API." },
         { role: "user", content: prompt } 
       ],
-      max_tokens: 400, // more room for 5 movies
-      temperature: 0.2, // more deterministic output
+      max_tokens: 700, // more room for 5 movies
+      temperature: 0.4, // more deterministic output
       top_p: 0.9
 
       // search_domain_filter: ['https://www.themoviedb.org/'],

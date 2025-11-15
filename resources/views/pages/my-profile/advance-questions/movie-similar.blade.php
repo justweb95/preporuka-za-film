@@ -2,25 +2,60 @@
 $current_user = wp_get_current_user();
 $user_id = $current_user->ID;
 
+// Already watched movies
 $already_watched_ids = json_decode(get_user_meta($user_id, 'already_watched', true), true);
 if (!is_array($already_watched_ids)) {
     $already_watched_ids = [];
 }
 
-$movies_arr = [];
+$watched_movies_arr = [];
 
 foreach ($already_watched_ids as $movie_post_id) {
     $movie_post_id = intval($movie_post_id);
     if ($movie_post_id > 0 && get_post_status($movie_post_id)) {
-        $title = get_the_title($movie_post_id); // get post title as movie name
+        $title = get_the_title($movie_post_id);
         $release_date = get_post_meta($movie_post_id, 'release_date', true);
         $year = $release_date ? date('Y', strtotime($release_date)) : 'N/A';
-        $movies_arr[] = $title . ' (' . $year . ')';
+        $watched_movies_arr[] = $title . ' (' . $year . ')';
     }
 }
 
-$already_watched_str = implode(', ', $movies_arr);
+$already_watched_str = implode(', ', $watched_movies_arr);
+
+
+$already_recommended_ids = json_decode(get_user_meta($user_id, 'recommendations_history', true), true);
+if (!is_array($already_recommended_ids)) {
+    $already_recommended_ids = [];
+}
+
+$recommended_movies_arr = [];
+
+$already_recommended_ids = array_map('intval', $already_recommended_ids);
+$posts = get_posts([
+    'post_type' => 'movie',
+    'meta_query' => [
+        [
+            'key' => 'movie_id',
+            'value' => $already_recommended_ids,
+            'compare' => 'IN',
+        ]
+    ],
+    'posts_per_page' => -1,
+    'orderby' => 'post__in',
+    'suppress_filters' => false,
+]);
+
+foreach ($posts as $movie) {
+    $title = $movie->post_title;
+    $release_date = get_post_meta($movie->ID, 'release_date', true);
+    $year = $release_date ? date('Y', strtotime($release_date)) : 'N/A';
+    $recommended_movies_arr[] = $title . ' (' . $year . ')';
+}
+
+
+$already_recommended_str = implode(', ', $recommended_movies_arr);
 @endphp
+
 
 <article class="advance-question-holder" data-question-limit-id={{'question-limit-id'}} @if($hidden_question) hidden @endif>
   <header class="advance-question-header">
@@ -45,6 +80,7 @@ $already_watched_str = implode(', ', $movies_arr);
     </label>
     <div id="similar_films_suggestions" class="suggestions-list"></div>
     <input type="hidden" name="similar_films_selected" id="similar_films_selected" value="" />
-    <input type="hidden" name="do_not_recommend_movies" id="do_not_recommend_movies" value="{{ $already_watched_str }}" />
+    <input type="hidden" name="do_not_recommend_watched" id="do_not_recommend_watched" value="{{ $already_watched_str }}" />
+    <input type="hidden" name="do_not_recommend_recommended" id="do_not_recommend_recommended" value="{{ $already_recommended_str ?? '' }}" />
   </form>
 </article>

@@ -256,7 +256,7 @@ function inputValue() {
   return input_value;
 }
 
-function saveMovieRecommendation(movie_id, username) {
+export function saveMovieRecommendation(movie_id, username) {
   fetch(pzfilm_globals.ajaxurl, {
     method: 'POST',
     credentials: 'same-origin',

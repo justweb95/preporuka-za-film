@@ -28,6 +28,7 @@ function get_profile_info_handler() {
         'notifications_list' => json_encode(['Profile successfully verified']),
         'already_watched' => json_encode([]),
         'display_already_watched' => '0',
+        'display_already_recommended' => '0',
         'advanced_search_counter' => '0',
     ];
 
@@ -50,7 +51,8 @@ function get_profile_info_handler() {
         'recommendations_history' => json_decode(get_user_meta($user_id, 'recommendations_history', true), true),
         'tier' => get_user_meta($user_id, 'tier', true),
         'notifications_enabled' => (bool) get_user_meta($user_id, 'notifications_enabled', true),
-        'display_already_watched' => (bool) get_user_meta($user_id, 'notifications_enabled', true),
+        'display_already_watched' => (bool) get_user_meta($user_id, 'display_already_watched', true),
+        'display_already_recommended' => (bool) get_user_meta($user_id, 'display_already_recommended', true),
         'notifications_list' => json_decode(get_user_meta($user_id, 'notifications_list', true), true),
         'already_watched' => json_decode(get_user_meta($user_id, 'already_watched', true), true),
         'advanced_search_counter' => intval(get_user_meta($user_id, 'advanced_search_counter', true)),
@@ -401,6 +403,7 @@ function get_profile_metadata_handler() {
         'notifications_list' => json_decode(get_user_meta($user_id, 'notifications_list', true), true),
         'already_watched' => json_decode(get_user_meta($user_id, 'already_watched', true), true),
         'display_already_watched' => json_decode(get_user_meta($user_id, 'already_watched', true), true),
+        'display_already_recommended' => json_decode(get_user_meta($user_id, 'already_watched', true), true),
         'advanced_search_counter' => intval(get_user_meta($user_id, 'advanced_search_counter', true)),
     ];
 
@@ -543,6 +546,27 @@ function update_user_already_watched() {
     wp_send_json_success([
         'message' => 'Podešavanje "Već gledano" je ažurirano.',
         'display_already_watched' => $enabled
+    ]);
+}
+
+add_action('wp_ajax_update_user_already_recommended', 'update_user_already_recommended');
+
+function update_user_already_recommended() {
+    // Optional: verify nonce if used
+    // check_ajax_referer('user_settings_nonce', 'nonce');
+
+    $user_id = get_current_user_id();
+    if (!$user_id) {
+        wp_send_json_error(['message' => 'Neautorizovan pristup.']);
+    }
+
+    $enabled = sanitize_text_field($_POST['display_already_recommended'] ?? '0');
+
+    update_user_meta($user_id, 'display_already_recommended', $enabled);
+
+    wp_send_json_success([
+        'message' => 'Podešavanje "Već preporučeno" je ažurirano.',
+        'display_already_recommended' => $enabled
     ]);
 }
 

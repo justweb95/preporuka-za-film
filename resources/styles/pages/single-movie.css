@@ -73,6 +73,7 @@
             margin-right: 10px;
           }
           &:hover {
+            transform: scale(1);
             cursor: pointer;
             background: #22374A;
           }
