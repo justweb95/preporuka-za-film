@@ -10,6 +10,9 @@
   // prepend the theme's public folder path
   $theme_public_url = get_template_directory_uri() . '/public/';
   $profile_image_url = $theme_public_url . $profile_image;
+
+ // Ako je user ulogovan, klase nema, ako nije, dodeljujemo disabled-link
+  $disabledClass = ($user_id > 0) ? 'disabled-link' : '';
 ?>
 
 
@@ -21,7 +24,58 @@
     <nav class="main-nav-desktop">
       <ul class="nav-link">
         {{-- <li class="link-item"><a href="{{ home_url() }}/">Početna</a></li> --}}
-        <li class="link-item"><a href="{{ home_url() }}/anketa">Anketa</a></li>
+        <li class="link-item">
+          <a href="#">Preporuke</a>
+          <svg class="category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1L6.49999 6L12 1ZM6.49999 6L1 1L6.49999 6Z" fill="#EDFEEC"/>
+            <path d="M12 1L6.49999 6L1 1" stroke="#18BF7C" stroke-width="2"/>
+          </svg>          
+          <ul class="link-drop-down">
+              <!-- Brza preporuka je uvek aktivna -->
+              <li class="drop-down-item">
+                  <a href="{{ url('/anketa') }}">
+                      Brza preporuka
+                      <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+                          <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+                      </svg>
+                  </a>
+              </li>
+
+
+              <li class="drop-down-item">
+                  <a class="{{ $disabledClass }}" href="{{ url('/moj-profil/?tab=napredna_pretraga') }}">
+                      Napredna preporuka
+                      <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+                          <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+                      </svg>
+                  </a>
+              </li>
+
+              <li class="drop-down-item">
+                  <a class="{{ $disabledClass }}" href="{{ url('/moj-profil/?tab=napredna_pretraga') }}">
+                      Hot or Not
+                      <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+                          <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+                      </svg>
+                  </a>
+              </li>
+
+              <li class="drop-down-item">
+                  <a class="{{ $disabledClass }}" href="{{ url('/moj-profil/?tab=napredna_pretraga') }}">
+                      Točak sreće
+                      <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+                          <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+                      </svg>
+                  </a>
+              </li>
+          </ul>
+
+
+        </li>
         <li class="link-item">
           <a href="#">Kategorije</a>
           <svg class="category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">

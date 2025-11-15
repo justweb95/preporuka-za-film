@@ -69,6 +69,32 @@
             width: 100%;
             max-width: 100%;
             flex: 1 0 51%;
+            .disabled-link {
+              pointer-events: none;
+              color: rgba(255,255,255,0.5);
+              cursor: default;
+              text-decoration: none;
+              position: relative;
+              svg {
+                opacity: 0.5;
+              }
+              &::before {
+                display: block;
+                width: auto;
+                content: 'Prijavi se';
+                position: absolute;
+                left: 5px;
+                top: -5px;
+                background-color: #06131E;
+                color: #EF8D53;
+                font-family: "Red Hat Display";
+                font-size: 10px;
+                font-style: normal;
+                font-weight: 300;
+                border-radius: 16px;
+                padding: 4px 6px;
+              }
+            }
             a {
               position: relative;
               display: flex;

@@ -74,8 +74,8 @@ export function populateMultipleResults(resultsArray) {
   let container = document.querySelector('#results');
   if (!container) {
     container = document.createElement('article');
-    container.id = 'results';
-    container.className = 'question-holder container qa';
+    container.id = 'results-advance';
+    container.className = 'question-holder';
     document.body.appendChild(container);
   }
   container.innerHTML = '';

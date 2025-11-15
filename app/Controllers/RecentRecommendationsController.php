@@ -5,7 +5,7 @@ namespace App\Controllers;
 class RecentRecommendationsController
 {
 
-public static function getRecentRecommendations($limit = 10)
+public static function getRecentRecommendations($limit = 50)
 {
     $user_id = get_current_user_id();
     if (!$user_id) {
@@ -61,7 +61,7 @@ public static function getRecentRecommendations($limit = 10)
     return $recent_movies;
 }
 
-public static function getMyFavoritesMovies($limit = 10)
+public static function getMyFavoritesMovies($limit = 50)
 {
     $user_id = get_current_user_id();
 
@@ -112,7 +112,7 @@ public static function getMyFavoritesMovies($limit = 10)
     return $favorite_movies;
 }
 
-public static function getAlreadyWatchedMovies($limit = 10) {
+public static function getAlreadyWatchedMovies($limit = 50) {
     $user_id = get_current_user_id();
     if (!$user_id) {
         return [];

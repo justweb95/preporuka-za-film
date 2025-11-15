@@ -21,7 +21,7 @@
     @if($current_user_img_src)
       <img class="avatar-image" src="@asset($current_user_img_src)" alt="User Avatar">
     @else
-      <img class="avatar-image" src="@asset('images/avatars/Profile12.svg')" alt="User Avatar">
+      <img class="avatar-image" src="@asset('images/avatars/Profile1.svg')" alt="User Avatar">
     @endif
     <h2 class="sidebar-username">{{$current_user_name}}</h2>
     <div class="sidebar-my-account">Moj Nalog</div>

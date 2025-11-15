@@ -17,6 +17,12 @@ let advanceRecommendationResultContent = document.getElementById('results');
 submitAdvanceRecommendation.addEventListener('click', async () => newAdvanceRecomendationHandler());
 
 async function newAdvanceRecomendationHandler () {
+  const loadingArticle = document.getElementById('loading');
+
+  if (loadingArticle) {
+    loadingArticle.style.setProperty('display', 'block', 'important');
+  }
+  
   advanceRecommendationQuestionHolder.hidden = true;
   advanceRecommendationResultContent.hidden = true;
   
@@ -31,21 +37,21 @@ async function newAdvanceRecomendationHandler () {
 
   const username = await getLoggedInUsername();
   if (username) {
-    tmdbResult.forEach(async (movie_result) => {
-      if(movie_result.id) {
-        await saveMovieRecommendation(movie_result.id, username);
-      }
-    });
+    const movie_ids = tmdbResult.map(m => m.id).filter(Boolean);
+    await saveMovieRecommendation(movie_ids, username);
   }
+
+
   
   const populateionDone = await populateMultipleResults(tmdbResult);
   if (populateionDone) {
     
     setTimeout(() => {
-        const loadingArticle = document.getElementById('loading');
-  if (loadingArticle) {
-    loadingArticle.style.setProperty('display', 'none', 'important');
-  }
+      const loadingArticle = document.getElementById('loading');
+
+      if (loadingArticle) {
+        loadingArticle.style.setProperty('display', 'none', 'important');
+      }
 
       advanceRecommendationResultContent.hidden = false;
       advanceRecommendationResultLoading.hidden = true;

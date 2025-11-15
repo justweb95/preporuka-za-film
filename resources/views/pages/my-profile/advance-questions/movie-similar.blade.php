@@ -22,7 +22,6 @@ foreach ($already_watched_ids as $movie_post_id) {
 
 $already_watched_str = implode(', ', $watched_movies_arr);
 
-
 $already_recommended_ids = json_decode(get_user_meta($user_id, 'recommendations_history', true), true);
 if (!is_array($already_recommended_ids)) {
     $already_recommended_ids = [];
@@ -30,28 +29,31 @@ if (!is_array($already_recommended_ids)) {
 
 $recommended_movies_arr = [];
 
-$already_recommended_ids = array_map('intval', $already_recommended_ids);
-$posts = get_posts([
-    'post_type' => 'movie',
-    'meta_query' => [
-        [
-            'key' => 'movie_id',
-            'value' => $already_recommended_ids,
-            'compare' => 'IN',
-        ]
-    ],
-    'posts_per_page' => -1,
-    'orderby' => 'post__in',
-    'suppress_filters' => false,
-]);
+// Only query if there are recommended IDs
+if (!empty($already_recommended_ids)) {
+    $already_recommended_ids = array_map('intval', $already_recommended_ids);
+    
+    $posts = get_posts([
+        'post_type' => 'movie',
+        'meta_query' => [
+            [
+                'key' => 'movie_id',
+                'value' => $already_recommended_ids,
+                'compare' => 'IN',
+            ]
+        ],
+        'posts_per_page' => 50, // Limit to 50 instead of -1 (all)
+        'orderby' => 'post__in',
+        'suppress_filters' => false,
+    ]);
 
-foreach ($posts as $movie) {
-    $title = $movie->post_title;
-    $release_date = get_post_meta($movie->ID, 'release_date', true);
-    $year = $release_date ? date('Y', strtotime($release_date)) : 'N/A';
-    $recommended_movies_arr[] = $title . ' (' . $year . ')';
+    foreach ($posts as $movie) {
+        $title = $movie->post_title;
+        $release_date = get_post_meta($movie->ID, 'release_date', true);
+        $year = $release_date ? date('Y', strtotime($release_date)) : 'N/A';
+        $recommended_movies_arr[] = $title . ' (' . $year . ')';
+    }
 }
-
 
 $already_recommended_str = implode(', ', $recommended_movies_arr);
 @endphp

@@ -331,16 +331,15 @@ function get_watched_movies_by_username_handler() {
     wp_send_json_success(['already_watched' => $watched]);
 }
 
-// Toggle a movie in already_watched meta via username
 add_action('wp_ajax_save_movie_recommendation', 'save_movie_recommendation_handler');
 add_action('wp_ajax_nopriv_save_movie_recommendation', 'save_movie_recommendation_handler');
 
 function save_movie_recommendation_handler() {
-    if (!isset($_POST['movie_id'], $_POST['username'])) {
-        wp_send_json_error(['message' => 'Movie ID or username missing'], 400);
+    if (!isset($_POST['movie_ids'], $_POST['username'])) {
+        wp_send_json_error(['message' => 'Movie IDs or username missing'], 400);
     }
 
-    $movie_id = sanitize_text_field($_POST['movie_id']);
+    $movie_ids = array_map('sanitize_text_field', $_POST['movie_ids']);
     $username = sanitize_user($_POST['username']);
 
     $user = get_user_by('login', $username);
@@ -350,24 +349,26 @@ function save_movie_recommendation_handler() {
 
     $user_id = $user->ID;
 
-    $current_user_requests_left = get_user_meta($user_id, 'advanced_search_counter', true); 
-    $new_ammount_of_request = $current_user_requests_left - 1;
+    $existing = json_decode(get_user_meta($user_id, 'recommendations_history', true) ?: '[]', true);
 
-    // Get current already watched movies
-    $recommendations_history = json_decode(get_user_meta($user_id, 'recommendations_history', true) ?: '[]', true);
+    // Merge new movies on top
+    $recommendations = array_values(array_unique(array_merge($movie_ids, $existing)));
 
+    update_user_meta($user_id, 'recommendations_history', wp_json_encode($recommendations));
 
-    if (!in_array($movie_id, $recommendations_history)) {
-        $recommendations_history[] = $movie_id; // Add
-    } else {
-        $recommendations_history = array_diff($recommendations_history, [$movie_id]); // Remove
-    }
-
-    update_user_meta($user_id, 'recommendations_history', wp_json_encode(array_values($recommendations_history)));
-    update_user_meta($user_id, 'advanced_search_counter', $new_ammount_of_request );
-
-    wp_send_json_success(['recommendations_history' => array_values($recommendations_history)]);
+    wp_send_json_success([
+        'message' => 'Movies added to recommendations',
+        'recommendations' => $recommendations
+    ]);
 }
+
+
+
+
+
+
+
+
 
 
 // Toggle a movie in already_watched meta via username

@@ -60,11 +60,21 @@ async function changeQuestionHandler(currentQuestionIndex) {
   handleProgressCheckbox(currentQuestionIndex);
 
 
-  // allQuestionsCompontents.forEach((singleQuestion) => {
-  //   singleQuestion.style.setProperty('display', 'none', 'important');
-  // });   
+// Filter out those whose parent has 'advance-recommendation-result'
+const filteredQuestions = Array.from(allQuestionsCompontents).filter(q => 
+  !q.closest('.advance-recommendation-result')
+);
 
-  allQuestionsCompontents[currentQuestionIndex].style.setProperty('display', 'block');
+// Hide only the filtered ones
+filteredQuestions.forEach(singleQuestion => {
+  singleQuestion.style.setProperty('display', 'none', 'important');
+});
+
+// Show the current question
+if (allQuestionsCompontents[currentQuestionIndex]) {
+  allQuestionsCompontents[currentQuestionIndex].style.setProperty('display', 'block', 'important');
+}
+
 
   if(currentQuestionIndex === 0) {
     // spamCounter = 0
@@ -101,8 +111,10 @@ async function changeQuestionHandler(currentQuestionIndex) {
 
         const username = await getLoggedInUsername();
         if (username) {
-          saveMovieRecommendation(tmdbResult.id, username);
+          // Wrap single ID in an array
+          saveMovieRecommendation([tmdbResult.id], username);
         }
+
         else {
           showToast('Za čuvanje preporuka, prijavite se ili registrujte nalog!', 4000);
         }
@@ -256,25 +268,27 @@ function inputValue() {
   return input_value;
 }
 
-export function saveMovieRecommendation(movie_id, username) {
-  fetch(pzfilm_globals.ajaxurl, {
+export async function saveMovieRecommendation(movie_ids, username) {
+  const formData = new URLSearchParams();
+  formData.append('action', 'save_movie_recommendation');
+  formData.append('username', username);
+
+  movie_ids.forEach(id => formData.append('movie_ids[]', id)); // ✅ send as array
+
+  const response = await fetch(pzfilm_globals.ajaxurl, {
     method: 'POST',
     credentials: 'same-origin',
-    body: new URLSearchParams({
-      action: 'save_movie_recommendation',
-      username: username,
-      movie_id: movie_id
-    })
-  })
-  .then(r => r.json())
-  .then(res => {
-    if (res.success) {
-      showToast('Preporuka je sačuvana!', 2000);
-    } else {
-      console.error(res.data?.message || "Greška prilikom čuvanja preporuke");
-      showToast("Greška prilikom čuvanja preporuke");
-    }
+    body: formData
   });
+
+  const res = await response.json();
+  if (res.success) {
+    showToast('Preporuka je sačuvana!', 2000);
+    console.log('Saved movies:', res.data.recommendations);
+  } else {
+    console.error(res.data?.message || 'Greška prilikom čuvanja preporuke');
+    showToast('Greška prilikom čuvanja preporuke');
+  }
 }
 
 

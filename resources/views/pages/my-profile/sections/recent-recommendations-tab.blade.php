@@ -1,6 +1,6 @@
 @php
   use App\Controllers\RecentRecommendationsController;
-  $recent_recommendations = RecentRecommendationsController::getRecentRecommendations(30);
+  $recent_recommendations = RecentRecommendationsController::getRecentRecommendations(50);
 @endphp
 
 <section class="recent-recommendations-tab">

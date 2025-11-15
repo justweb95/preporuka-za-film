@@ -10,7 +10,7 @@
     @if($current_user_img_src)
       <img class="avatar-image" src="@asset($current_user_img_src)" alt="User Avatar">
     @else
-      <img class="avatar-image" src="@asset('images/avatars/Profile12.svg')" alt="User Avatar">
+      <img class="avatar-image" src="@asset('images/avatars/Profile1.svg')" alt="User Avatar">
     @endif
     <button class="change-user-avatar">Promeni avatar</button>
   </div>
