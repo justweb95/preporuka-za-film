@@ -1,4 +1,7 @@
 <?php
+use App\Controllers\NotificationManager;
+
+
 // auth-controller.php
 if (!defined('ABSPATH')) exit;
 
@@ -34,11 +37,33 @@ function manual_activation_checkbox($user) {
 add_action('personal_options_update', 'save_manual_activation');
 add_action('edit_user_profile_update', 'save_manual_activation');
 
+
 function save_manual_activation($user_id) {
     if (!current_user_can('edit_user', $user_id)) return;
 
+    // New value from admin form
     $is_verified = isset($_POST['is_verified']) ? 1 : 0;
+
+    // Old value from database
+    $old_verified = get_user_meta($user_id, 'is_verified', true);
+
+    // Save new state
     update_user_meta($user_id, 'is_verified', $is_verified);
+
+    // ✅ Send notification ONLY when changing from 0 → 1
+    if ($old_verified != 1 && $is_verified == 1) {
+        // Instantiate the controller
+        $notificationManager = new NotificationManager($user_id);
+
+        $notificationManager->addNotification(
+            $user_id,
+            'notification',
+            'Dobrodošli!',
+            'Vaš profil je uspešno aktiviran.',
+            'bell',
+            7
+        );
+    }
 }
 
 /**
@@ -72,6 +97,20 @@ add_action('init', function() {
         if ($saved_key && $saved_key === $verify_key) {
             update_user_meta($user_id, 'is_verified', 1);
             delete_user_meta($user_id, 'verify_key');
+
+            if (class_exists(NotificationManager::class)) {
+                // Instantiate the controller with user_id
+                $notificationManager = new NotificationManager($user_id);
+
+                $notificationManager->addNotification(
+                    $user_id,
+                    'notification',
+                    'Dobrodošli!',
+                    'Vaš profil je uspešno aktiviran.',
+                    'bell',
+                    7
+                );
+            }
 
             // Optional: redirect to login with a message
             wp_redirect(add_query_arg('activated', '1', wp_login_url()));

@@ -1,6 +1,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use App\Controllers\NotificationManager;
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
@@ -335,5 +336,35 @@ add_action('init', function() {
     // Handle preflight OPTIONS request
     if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
         exit; // Stop here for preflight
+    }
+});
+
+
+/**
+ * Create a notification when a new blog post is published
+ */
+add_action('publish_post', function($post_id) {
+    $post = get_post($post_id);
+
+    if ($post && $post->post_type === 'post') {
+        $title   = 'Novi blog post!';
+        $message = 'Pogledajte naš najnoviji blog post: ' . get_the_title($post_id);
+        $icon    = 'star';
+        $type    = 'marketing';
+        $expires = 7; // expires in 7 days
+        $link    = get_permalink($post_id); // link to the post
+
+        if (class_exists(NotificationManager::class)) {
+            $notificationManager = new NotificationManager(null); // broadcast
+            $notificationManager->addNotification(
+                null,       // user_id = null → all users
+                $type,
+                $title,
+                $message,
+                $icon,
+                $expires,
+                $link       // pass the post URL
+            );
+        }
     }
 });

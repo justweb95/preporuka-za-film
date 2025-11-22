@@ -3,24 +3,25 @@
 namespace App\Controllers;
 class NotificationManager {
 
-    private $user_id;
+  private $user_id;
 
-    public function __construct($user_id) {
-        $this->user_id = $user_id;
+  public function __construct($user_id) {
+    $this->user_id = $user_id;
+  }
+  
+  public function getNotifications($user_id = null) {
+    global $wpdb;
+
+    // Use current logged-in user if not passed
+    $user_id = $user_id ?? get_current_user_id();
+
+    if (!$user_id) {
+        return json_encode(['error' => 'Korisnik nije ulogovan']);
     }
-    public function getNotifications($user_id = null) {
-        global $wpdb;
-
-        // Use current logged-in user if not passed
-        $user_id = $user_id ?? get_current_user_id();
-
-        if (!$user_id) {
-            return json_encode(['error' => 'Korisnik nije ulogovan']);
-        }
 
     $table = $wpdb->prefix . 'user_notifications';
 
-      // Fetch all notifications for user + broadcast
+    // Fetch all notifications for user + broadcast
     $query = $wpdb->prepare(
       "SELECT id, user_id, type, link, title, message, icon, is_seen, created_at, expires_at
       FROM $table
@@ -70,35 +71,36 @@ class NotificationManager {
 
 
   public function addNotification($user_id = null, $type, $title, $message, $icon = null, $expires_in_days = 7) {
-      global $wpdb;
+    global $wpdb;
 
-      $table = $wpdb->prefix . 'user_notifications';
+    $table = $wpdb->prefix . 'user_notifications';
 
-      $expires_at = $expires_in_days ? date('Y-m-d H:i:s', strtotime("+$expires_in_days days")) : null;
+    $expires_at = $expires_in_days ? date('Y-m-d H:i:s', strtotime("+$expires_in_days days")) : null;
 
-      $wpdb->insert(
-          $table,
-          [
-              'user_id' => $user_id,
-              'type' => $type,
-              'title' => $title,
-              'message' => $message,
-              'icon' => $icon,
-              'is_seen' => 0,
-              'expires_at' => $expires_at,
-              'created_at' => current_time('mysql'),
-          ],
-          [
-              '%d',      // user_id
-              '%s',      // type
-              '%s',      // title
-              '%s',      // message
-              '%s',      // icon
-              '%d',      // is_seen
-              '%s',      // expires_at
-              '%s',      // created_at
-          ]
-      );
+    $user_id_format = is_null($user_id) ? null : '%d';
+
+    $wpdb->insert(
+      $table,
+      [
+        'user_id'   => NULL,
+        'type'      => $type,
+        'title'     => $title,
+        'message'   => $message,
+        'icon'      => $icon,
+        'is_seen'   => 0,
+        'expires_at'=> $expires_at,
+        'created_at'=> current_time('mysql'),
+      ],
+      [
+        $user_id_format,
+        '%s',
+        '%s',
+        '%s',
+        '%s',
+        '%d',
+        '%s',
+        '%s',
+      ]
+    );
   }
-
 }

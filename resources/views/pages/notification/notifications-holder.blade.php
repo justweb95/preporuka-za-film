@@ -10,7 +10,8 @@
 <div class="notification-overlay" id="notification_overlay">
   <section class="notification-list-holder">
     <h2 class="notification-main-title">Notifikacije</h2>
-    <p class="notification-note">Notifikacije neće biti napadne  pojavljivaće se povremeno kada bude nešto važno.</p>
+    <p class="notification-note">Notifikacije neće biti napadne pojavljivaće se povremeno kada bude nešto važno.</p>
+    <p class="notification-note notification-note-red">Sve notifikacije će biti automatski obrisane nakon 7 dana.</p>
     <ul class="notification-list">
       @if (empty($notifications))
         <li><p class="no-notification-note">Nema notifikacija za prikaz.</p></li>

@@ -21,6 +21,8 @@
             'poster_path' => $movie['poster_url'],
             'movie_ID' => $movie['ID'],
             'release_year' => $movie['year'],
+            'vote_average' => $movie['vote_average'],
+            'genres' => $movie['genres'],
             'our_recommendations' => $movie['our_recommendations'],
           ])
         </li>

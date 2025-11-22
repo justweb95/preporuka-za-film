@@ -1,76 +1,103 @@
-// ======== FILTER & SORT SETUP ========
+// ======== MOVIE FILTER & SORT SYSTEM PER TAB ========
 
-// Select dropdowns and category filters
-const dropdowns = document.querySelectorAll('.filter-sort-dropdown');
-const header_category_filter = document.querySelectorAll('.single-category-filter');
-const moviesContainer = document.querySelector('.movies-container');
+function initMovieFilterSort(tabClass, containerClass) {
+  const tab = document.querySelector(`.${tabClass}`);
+  if (!tab) return; // skip if tab doesn't exist
 
-// ------- DROPDOWN LOGIC -------
-dropdowns.forEach(dropdown => {
-  const selected = dropdown.querySelector('.filter-sort-selected');
-  const options = dropdown.querySelectorAll('.filter-sort-options p');
+  const moviesContainer = tab.querySelector(`.${containerClass}`);
+  if (!moviesContainer) return;
 
-  // Toggle dropdown open/close
-  selected.addEventListener('click', e => {
-    dropdown.classList.toggle('filter-sort-open');
-  });
+  const categoryFilters = tab.querySelectorAll('.single-category-filter');
+  const sortDropdown = tab.querySelector('.filter-sort-dropdown');
+  const sortSelected = sortDropdown?.querySelector('.filter-sort-selected p');
+  const sortOptions = sortDropdown?.querySelectorAll('.filter-sort-options p');
 
-  // Select an option
-  options.forEach(option => {
-    option.addEventListener('click', () => {
-      selected.querySelector('p').textContent = option.textContent;
-      dropdown.classList.remove('filter-sort-open');
+  let currentCategory = 'all';
+  let currentSort = 'sort_year';
 
-      // Run sorting function
-      const sortBy = option.dataset.value; // 'sort_year' or 'sort_rating'
-      sortMovies(sortBy);
+  // ================= CATEGORY FILTER =================
+  categoryFilters.forEach(filterBtn => {
+    filterBtn.addEventListener('click', () => {
+      currentCategory = filterBtn.dataset.categoryType;
+
+      categoryFilters.forEach(f => f.classList.remove('active-category'));
+      filterBtn.classList.add('active-category');
+
+      filterAndSortMovies();
     });
   });
 
-  // Close dropdown if click outside
-  document.addEventListener('click', e => {
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove('filter-sort-open');
+  // ================= SORT DROPDOWN =================
+  if (sortDropdown) {
+    // Toggle dropdown open/close
+    sortDropdown.querySelector('.filter-sort-selected').addEventListener('click', () => {
+      sortDropdown.classList.toggle('filter-sort-open');
+    });
+
+    // Select a sort option
+    sortOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        currentSort = option.dataset.value;
+        sortSelected.textContent = option.textContent;
+        sortDropdown.classList.remove('filter-sort-open');
+
+        filterAndSortMovies();
+      });
+    });
+
+    // Close dropdown if click outside
+    document.addEventListener('click', e => {
+      if (!sortDropdown.contains(e.target)) {
+        sortDropdown.classList.remove('filter-sort-open');
+      }
+    });
+  }
+
+  // ================= FILTER + SORT FUNCTION =================
+  function filterAndSortMovies() {
+    const allLis = Array.from(moviesContainer.querySelectorAll('li'));
+
+    // --- FILTER ---
+    const visibleLis = allLis.filter(li => {
+      const movie = li.querySelector('.movie-card');
+      if (!movie) return false;
+      if (currentCategory === 'all') return true;
+      return movie.dataset.category === currentCategory;
+    });
+
+    allLis.forEach(li => li.style.display = 'none');
+    visibleLis.forEach(li => li.style.display = 'block');
+
+    // --- SORT ---
+    visibleLis.sort((a, b) => {
+      const movieA = a.querySelector('.movie-card');
+      const movieB = b.querySelector('.movie-card');
+
+      let aVal = 0, bVal = 0;
+      if (currentSort === 'sort_year') {
+        aVal = parseInt(movieA.dataset.year) || 0;
+        bVal = parseInt(movieB.dataset.year) || 0;
+      } else if (currentSort === 'sort_rating') {
+        aVal = parseFloat(movieA.dataset.rating) || 0;
+        bVal = parseFloat(movieB.dataset.rating) || 0;
+      }
+
+      return bVal - aVal;
+    });
+
+    visibleLis.forEach(li => moviesContainer.appendChild(li));
+
+    // Optional: refresh Swiffy Slider if used inside this tab
+    if (window.swiffySlider && typeof window.swiffySlider.refresh === 'function') {
+      window.swiffySlider.refresh();
     }
-  });
-});
+  }
 
-// ------- CATEGORY FILTER LOGIC -------
-header_category_filter.forEach(filter_btn => {
-  filter_btn.addEventListener('click', () => {
-    handleFilterChange(filter_btn);
-  });
-});
-
-function handleFilterChange(filter_value) {
-  const category = filter_value.dataset.categoryType;
-
-  // Update active button style
-  header_category_filter.forEach(filter => filter.classList.remove('active-category'));
-  filter_value.classList.add('active-category');
-
-  // Filter movies
-  const movies = document.querySelectorAll('.movie-card');
-  movies.forEach(movie => {
-    if (category === 'all' || movie.dataset.category === category) {
-      movie.style.display = 'flex'; // show
-    } else {
-      movie.style.display = 'none'; // hide
-    }
-  });
+  // Initialize with default filter & sort
+  filterAndSortMovies();
 }
 
-// ------- SORT FUNCTION -------
-function sortMovies(sortBy) {
-  const movies = Array.from(document.querySelectorAll('.movie-card'))
-    .filter(movie => movie.style.display !== 'none'); // sort only visible cards
-
-  movies.sort((a, b) => {
-    const aVal = sortBy === 'sort_year' ? parseInt(a.dataset.year) : parseFloat(a.dataset.rating);
-    const bVal = sortBy === 'sort_year' ? parseInt(b.dataset.year) : parseFloat(b.dataset.rating);
-    return bVal - aVal; // descending order
-  });
-
-  // Re-append sorted movies to container
-  movies.forEach(movie => moviesContainer.appendChild(movie));
-}
+// ================= INITIALIZE FOR ALL TABS =================
+initMovieFilterSort('recent-recommendations-tab', 'recent-recommendations-list');
+initMovieFilterSort('my-favorites-tab', 'my-favorites-list');
+initMovieFilterSort('already-watched-tab', 'already-watched-list');

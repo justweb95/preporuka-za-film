@@ -1,12 +1,16 @@
-<article id="slide{{ $movie_index }}" class="single-movie-card">
+<article 
+  id="slide{{ $movie_index }}" 
+  class="single-movie-card movie-card"
+  data-category="{{ $genres }}" 
+  data-year="{{ $release_year }}" 
+  data-rating="{{ $vote_average }}">
+  
   <a href="{{ get_permalink($movie_ID) }}">
-<img 
-  src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/' . $poster_path }}"
-  alt="{{ get_the_title(($movie_ID)) }} Poster"
-  class="movie-card-poster"
-  onerror="this.onerror=null; this.src='{{ asset('images/blog/default-blog.webp') }}'; this.classList.add('image-error');">
-
-
+    <img 
+      src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/' . $poster_path }}"
+      alt="{{ get_the_title(($movie_ID)) }} Poster"
+      class="movie-card-poster"
+      onerror="this.onerror=null; this.src='{{ asset('images/blog/default-blog.webp') }}'; this.classList.add('image-error');">
     <h2>{{ get_the_title($movie_ID) }}</h2>
   </a>
   <p>Godina: {{ $release_year }}</p>

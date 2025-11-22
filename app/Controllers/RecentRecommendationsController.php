@@ -48,12 +48,16 @@ public static function getRecentRecommendations($limit = 50)
         $year = $release_date ? date('Y', strtotime($release_date)) : '';
         $our_recommendations = get_post_meta($movie->ID, 'our_recommendations', true);
 
+        $rating = get_post_meta($movie->ID, 'vote_average', true);
+        $genres = get_post_meta($movie->ID, 'genres', true);
 
         $recent_movies[] = [
             'ID' => $movie->ID,
             'title' => $movie->post_title,
             'poster_url' => $poster_url,
             'year' => $year,
+            'vote_average' => $rating,
+            'genres' => $genres,
             'our_recommendations' => $our_recommendations 
         ];
     }
@@ -99,12 +103,17 @@ public static function getMyFavoritesMovies($limit = 50)
         $year = $release_date ? date('Y', strtotime($release_date)) : '';
         $our_recommendations = get_post_meta($movie->ID, 'our_recommendations', true);
 
+        $rating = get_post_meta($movie->ID, 'vote_average', true);
+        $genres = get_post_meta($movie->ID, 'genres', true);
+
         $favorite_movies[] = [
             'favorite_ids' => $favorite_ids,
             'ID' => $movie->ID,
             'title' => $movie->post_title,
             'poster_url' => $poster_url,
             'year' => $year,
+            'vote_average' => $rating,
+            'genres' => $genres,
             'our_recommendations' => $our_recommendations 
         ];
     }
@@ -147,11 +156,16 @@ public static function getAlreadyWatchedMovies($limit = 50) {
         $year = $release_date ? date('Y', strtotime($release_date)) : '';
         $our_recommendations = get_post_meta($movie->ID, 'our_recommendations', true);
 
+        $rating = get_post_meta($movie->ID, 'vote_average', true);
+        $genres = get_post_meta($movie->ID, 'genres', true);
+
         $watched_movies[] = [
             'ID' => $movie->ID,
             'title' => $movie->post_title,
             'poster_url' => $poster_url,
             'year' => $year,
+            'vote_average' => $rating,
+            'genres' => $genres,
             'our_recommendations' => $our_recommendations 
         ];
     }

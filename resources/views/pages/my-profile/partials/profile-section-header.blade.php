@@ -12,11 +12,12 @@
     <div class="select-category-holder">
       <ul class="header-category-list">
         <li class="single-category-filter active-category" data-category-type="all">Sve</li>
-        <li class="single-category-filter" data-category-type="action">Akcija</li>
-        <li class="single-category-filter" data-category-type="drama">Drama</li>
-        <li class="single-category-filter" data-category-type="comedy">Komedija</li>
-        <li class="single-category-filter" data-category-type="triler">Triler</li>
-        <li class="single-category-filter" data-category-type="horror">Horor</li>
+        <li class="single-category-filter" data-category-type="Akcioni">Akcija</li>
+        <li class="single-category-filter" data-category-type="Avanturistički">Avanturistički</li>
+        <li class="single-category-filter" data-category-type="Drama">Drama</li>
+        <li class="single-category-filter" data-category-type="Komedija">Komedija</li>
+        <li class="single-category-filter" data-category-type="Triler">Triler</li>
+        <li class="single-category-filter" data-category-type="Horor">Horor</li>
       </ul>
       
       <div class="filter-sort filter-sort-dropdown">
