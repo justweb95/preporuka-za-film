@@ -23,6 +23,7 @@ domReady(async () => {
       await import('./profile/section-header-controller.js');
       await import('./profile/user-settings.js');
       await import('./profile/advance-recommendation.js');
+      await import('./profile/notification.js');
     },
 
     '/category': async () => {

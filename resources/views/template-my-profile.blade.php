@@ -3,15 +3,17 @@
 --}}
 
 @extends('layouts.app')
-
 @section('content')
 
 @php
   $active_tab = request()->query('tab', 'profil_home');
 @endphp
 
-@include('pages.my-profile.navigation-sidebar')
+{{-- Notification Holder --}}
+@include('pages.notification.notifications-holder')
+{{-- Notification Holder --}}
 
+@include('pages.my-profile.navigation-sidebar')
 <section class="profile-main">
   <div class="profile-container">      
 
@@ -81,8 +83,6 @@
 
       @include('pages.my-profile.sections.user-settings-tab')
     </div>
-
   </div>
 </section>
-
 @endsection

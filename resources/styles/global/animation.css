@@ -332,3 +332,13 @@
     opacity: 0;
   }
 }
+
+
+@keyframes notificationSlideIn {
+  from {
+    transform: translateX(110%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

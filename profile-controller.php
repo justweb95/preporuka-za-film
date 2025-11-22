@@ -632,8 +632,6 @@ function logout_user_handler() {
     wp_send_json_success(['redirect_url' => home_url()]);
 }
 
-
-
 add_action('wp_ajax_delete_user_account', 'ajax_delete_user_account_handler');
 
 function ajax_delete_user_account_handler() {
@@ -664,3 +662,36 @@ function ajax_delete_user_account_handler() {
 
 }
 
+
+// Notifications: Mark as seen
+// For logged-in users
+add_action('wp_ajax_mark_notifications_seen', 'mark_notifications_seen');
+
+function mark_notifications_seen() {
+    if (!is_user_logged_in()) {
+        wp_send_json_error(['message' => 'Korisnik nije ulogovan']);
+    }
+
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $table = $wpdb->prefix . 'user_notifications';
+
+    $notification_id = isset($_POST['notification_id']) ? intval($_POST['notification_id']) : null;
+    if (!$notification_id) {
+        wp_send_json_error(['message' => 'ID notifikacije nije prosleđen']);
+    }
+
+    // Update the notification, allowing NULL user_id (broadcast)
+    $wpdb->query(
+        $wpdb->prepare(
+            "UPDATE $table
+             SET is_seen = 1
+             WHERE id = %d
+               AND (user_id = %d OR user_id IS NULL)",
+            $notification_id,
+            $user_id
+        )
+    );
+
+    wp_send_json_success(['message' => 'Notifikacija obeležena kao pročitana']);
+}
