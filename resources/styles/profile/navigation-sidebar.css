@@ -8,7 +8,7 @@
     flex-direction: column;
     gap: 24px;
     
-    max-width: 280px;
+    max-width: 285px;
     min-width: 245px;
     height: 100%;
     
@@ -118,5 +118,32 @@
         }
       }
     }
+  }
+  @media (max-width: 1279px) {
+    height: auto;
+    flex-wrap: wrap;
+    .sidebar-navigation {
+      position: absolute;
+      z-index: 9;
+      transform: translateX(-510%);
+      transition: transform 0.2s ease-in;
+      &::before {
+        position: absolute;
+        top: 0px;
+        left: 285px;
+        display: block;
+        content: '';
+        width: calc(100svw - 285px);
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: -1;
+      }
+    }
+    .mobile-nav-open {
+      transform: translateX(0);
+    }
+  }
+  @media (max-width: 600px) {
   }
 }

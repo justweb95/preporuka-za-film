@@ -6,7 +6,7 @@
 <section class="already-watched-tab">
 
   @include('pages.my-profile.partials.profile-section-header', [
-    'header_title' => 'Poslednje preporuke',
+    'header_title' => 'Već gledano',
     'show_more' => false,
     'tab_id' => 'recommendations',
     'link_text' => 'Prikaži sve'    

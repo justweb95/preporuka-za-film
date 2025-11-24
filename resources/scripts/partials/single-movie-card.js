@@ -104,6 +104,8 @@ async function toggleFavorite(movieId) {
 async function getFavorites() {
   const username = await getLoggedInUsername();
   
+  console.log('Username: '+ username);
+  
 
   if (username === 'guest') {
     // Guest: use localStorage only

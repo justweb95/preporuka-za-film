@@ -34,6 +34,7 @@
 @import url('./profile/profile-section-header.css');
 
 /* Tabs and Sidebar*/
+@import url('./profile/mobile-navigation.css');
 @import url('./profile/navigation-sidebar.css');
 @import url('./profile/my-recommendations.css');
 @import url('./profile/my-favorites-tab.css');
@@ -84,6 +85,12 @@
 
   &::-webkit-scrollbar-thumb:hover {
     background-color: #14a86c; /* slightly darker on hover */
+  }
+
+  @media (max-width: 1279px) {
+    max-height: unset;
+    padding: 20px;
+    overflow: clip;
   }
 }
 

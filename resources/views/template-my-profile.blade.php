@@ -13,6 +13,11 @@
 @include('pages.notification.notifications-holder')
 {{-- Notification Holder --}}
 
+{{-- Mobile Navigation --}}
+@include('pages.my-profile.mobile-navigation')
+{{-- Mobile Navigation --}}
+
+{{-- Sidebar Navigation --}}
 @include('pages.my-profile.navigation-sidebar')
 <section class="profile-main">
   <div class="profile-container">      
@@ -22,7 +27,7 @@
       @include('pages.my-profile.partials.tab-header', [ 
         'tab_heading' => 'Dobrodošao nazad! 👋', 
         'notification' => true, 
-        'new_recommendations' => true
+        'new_recommendations' => false
       ])
       @include('pages.my-profile.partials.advance-search-banner')
       @include('pages.my-profile.sections.recent-recommendations')

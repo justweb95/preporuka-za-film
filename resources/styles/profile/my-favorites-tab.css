@@ -121,4 +121,10 @@
     line-height: normal;
     color: var(--Light, #EDFEEC);
   }
+  @media (max-width: 600px) {
+    .my-favorites-list {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+    }
+  }
 }

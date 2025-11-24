@@ -114,4 +114,13 @@
       }
     }
   }
+  @media (max-width: 600px) {
+    min-width: 140px;
+    h2 {
+      font-size: 16px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
 }

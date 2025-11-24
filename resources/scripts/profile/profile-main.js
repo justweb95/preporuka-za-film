@@ -3,7 +3,10 @@ import { swiffyslider } from 'swiffy-slider'
 window.swiffyslider = swiffyslider;
 
 window.addEventListener("load", () => {
-    window.swiffyslider.init();
+  // Only init slider if screen width >= 1279px
+  if (window.innerWidth >= 1279) {
+      window.swiffyslider.init();
+  }
 });
 
 // import Swiffy Slider CSS

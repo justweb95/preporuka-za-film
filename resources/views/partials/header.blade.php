@@ -12,7 +12,7 @@
   $profile_image_url = $theme_public_url . $profile_image;
 
  // Ako je user ulogovan, klase nema, ako nije, dodeljujemo disabled-link
-  $disabledClass = ($user_id > 0) ? 'disabled-link' : '';
+  $disabledClass = ($user_id > 0) ? '' : 'disabled-link';
 ?>
 
 

@@ -239,6 +239,21 @@ export function populateMultipleResults(resultsArray) {
     descriptionWrapper.className = 'result-content-description';
     
     const descriptionText = document.createElement('p');
+
+    // MOBILE POSTER (you forgot this)
+    const mobilePosterHolder = document.createElement('span');
+    mobilePosterHolder.className = 'result-description-poster-holder';
+
+    const mobilePoster = document.createElement('img');
+    mobilePoster.id = 'result-description-poster';
+    mobilePoster.alt = tmdbData.title || 'Poster';
+    mobilePoster.src = tmdbData.poster_path
+      ? `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`
+      : 'https://via.placeholder.com/300x450?text=No+Poster';
+
+    mobilePosterHolder.appendChild(mobilePoster);
+    descriptionWrapper.appendChild(mobilePosterHolder);
+
     descriptionText.className = 'result-content-description-text';
     descriptionText.textContent = tmdbData.overview
       ? tmdbData.overview.substring(0, 300) + (tmdbData.overview.length > 300 ? '...' : '')
@@ -363,9 +378,10 @@ export function populateMultipleResults(resultsArray) {
 
   // Inicijalizuj Swiffy Slider nakon što je DOM ažuriran
   setTimeout(() => {
-    if (window.swiffyslider) {
-      window.swiffyslider.init();
-    }
+      if (window.swiffyslider && !window.__swiffyInitialized && window.innerWidth >= 1279) {
+          window.swiffyslider.init();
+          window.__swiffyInitialized = true; // mark as initialized
+      }
   }, 100);
 
   return true;

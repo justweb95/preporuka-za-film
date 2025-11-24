@@ -120,4 +120,10 @@
     line-height: normal;
     color: var(--Light, #EDFEEC);
   }
+  @media (max-width: 600px) {
+    .recent-recommendations-list {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+    }
+  }
 }

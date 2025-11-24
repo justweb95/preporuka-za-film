@@ -1,9 +1,5 @@
 const navigationSidebarLinks = document.querySelectorAll('.nav-link-button');
-const profileSections = document.querySelectorAll('.tab-content');
-
-
-// navigationSidebarLinks[0].classList.add('active-nav');
- 
+const profileSections = document.querySelectorAll('.tab-content'); 
 
 navigationSidebarLinks.forEach(link => {
   link.addEventListener('click', () => {  
@@ -44,24 +40,42 @@ function setActiveNavFromURL() {
 }
 
 
-// Call on page load
-setActiveNavFromURL();
-
 function handleNavigationClick(id, link) {
   profileSections.forEach(profile_tab => {
     profile_tab.hidden = profile_tab.id !== id;
   });
-
   
-
   navigationSidebarLinks.forEach(otherLink => {    
-      otherLink.classList.remove('active-nav');
-      
-      if(link.dataset.tab === otherLink.dataset.sidebarId) {
-        otherLink.classList.add('active-nav');
-      }
+    otherLink.classList.remove('active-nav');
+    
+    if(link.dataset.tab === otherLink.dataset.sidebarId) {
+      otherLink.classList.add('active-nav');
+    }
   });
 }
+
+// Call on page load
+setActiveNavFromURL();
+
+
+const mobileNavButton = document.getElementById('mobile_navigation_btn');
+const mobileNav = document.querySelector('.sidebar-navigation');
+
+if (mobileNavButton) {
+  mobileNavButton.addEventListener('click', () => {
+    mobileNav.classList.toggle('mobile-nav-open');
+
+    if (mobileNav.classList.contains('mobile-nav-open')) {
+      document.body.style.overflow = 'hidden';   // disable scroll
+    } else {
+      document.body.style.overflow = '';         // restore scroll
+    }
+  });
+}
+
+
+
+
 
 export async function logOutHandler() {
   const response = await fetch(pzfilm_globals.ajaxurl, {

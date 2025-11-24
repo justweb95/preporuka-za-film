@@ -1,0 +1,27 @@
+.mobile-navigation-header {  
+  display: none;
+  width: 100%;
+  padding: 20px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #06131E;
+
+  .mobile-navigation-toggle {
+    position: relative;
+    z-index: 10;
+    background-color: transparent;
+    border: none;
+  }
+  @media (max-width:1279px) {
+    display: flex;
+  }
+  @media (max-width: 600px) {
+    .sidebar-logo {
+      max-width: 187px;
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}
+

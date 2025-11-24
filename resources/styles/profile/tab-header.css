@@ -108,4 +108,13 @@
       }
     }
   }
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+    .main-heading {
+      font-size: 22px;
+    }
+    .new-recommendations-btn {
+      flex: 0 0 100%;
+    }
+  }
 }

@@ -251,8 +251,8 @@ add_action( 'pre_get_posts', 'modify_category_and_blog_archive' );
 
 
 add_action('phpmailer_init', function ($phpmailer) {
-    $php_mailer_username = get_my_env_variable('PHP_MAILER_USERNAME');
-    $php_mailer_password = get_my_env_variable('PHP_MAILER_PASSWORD');
+    $php_mailer_username = env('PHP_MAILER_USERNAME');
+    $php_mailer_password = env('PHP_MAILER_PASSWORD');
 
     $phpmailer->isSMTP();
     $phpmailer->Host       = 'mail.preporukazafilm.com'; // SMTP server

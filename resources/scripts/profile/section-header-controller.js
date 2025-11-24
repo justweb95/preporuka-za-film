@@ -88,8 +88,8 @@ function initMovieFilterSort(tabClass, containerClass) {
     visibleLis.forEach(li => moviesContainer.appendChild(li));
 
     // Optional: refresh Swiffy Slider if used inside this tab
-    if (window.swiffySlider && typeof window.swiffySlider.refresh === 'function') {
-      window.swiffySlider.refresh();
+    if (window.innerWidth >= 1279 && window.swiffySlider && typeof window.swiffySlider.refresh === 'function') {
+        window.swiffySlider.refresh();
     }
   }
 
