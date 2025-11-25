@@ -151,6 +151,46 @@
       user-select: none;
     }
   }
+  @media (max-width: 600px) {
+    .notification-list-holder {
+      width: 75%;
+      padding: 20% 12px 12px 12px;
+      .notification-main-title {
+        font-size: 24px;
+      }
+      .notification-note {
+        font-size: 10px;
+        margin: 14px 0px 6px;
+      }
+      .notification-note-red {
+        margin: 0px 0px 12px;
+      }
+      .notification-list {
+        li {
+          .notification-card {
+            margin: 6px 0px;
+            .notification-icon-holder {
+              min-width: 24px;
+            }
+            .notification-content {
+              .notification-title {
+                font-size: 14px;
+              }
+              .notification-message {
+                font-size: 11px;
+                margin: 4px 0px 2px;
+              }
+            }
+            .notification-link {
+              svg {
+                width: 18px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .notification-overlay-active {

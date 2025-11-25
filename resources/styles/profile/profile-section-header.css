@@ -139,10 +139,24 @@
     }
   }
   @media (max-width: 600px) {
-    overflow-x: scroll;
     margin: 38px 0px 20px;
     h3 {
       font-size: 18px;
+    }
+    .header-category-list {
+      flex: 1 0 70%;
+      overflow-x: scroll;
+      align-items: center;
+      .single-category-filter {
+        padding: 8px 12px !important;
+      }
+    }
+    .filter-sort {
+      flex: 1 0 25%;
+      .filter-sort-selected {
+        padding: 4px !important;
+        font-size: 14px !important;
+      }
     }
     .section-header-link-button {
       span {

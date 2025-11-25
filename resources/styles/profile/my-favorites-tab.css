@@ -6,15 +6,11 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 24px;
 
-
-
     list-style: none;
     padding: 20px 0px;
 
-
     .recent-recommendations-card {
       position: relative;
-
 
       .recent-recommendations-card-link {
         text-decoration: none;
@@ -121,8 +117,33 @@
     line-height: normal;
     color: var(--Light, #EDFEEC);
   }
+  .search-not-found-box {
+    max-width: 90%;
+    min-width: 300px;
+    padding: 24px 8px;
+    border-radius: 8px;
+    border: 1px solid #E3EAEC;
+    background: var(--GreyTransparent, #ffffff18);
+    svg {
+      display: block;
+      width: fit-content;
+      margin: 0px auto;
+    }
+    h2 {
+      margin-top: 24px;
+      text-align: center;
+      color: var(--White, #FFF);
+      font-family: 'Unbounded', sans-serif;
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 145%; /* 29px */
+    }
+  }
+
   @media (max-width: 600px) {
     .my-favorites-list {
+      min-height: 500px;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 16px;
     }

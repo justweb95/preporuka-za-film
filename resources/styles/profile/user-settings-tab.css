@@ -419,12 +419,14 @@
       left: 0px;
       width: 100%;
       height: 100%;
+      z-index: 10;
       background-color: #17293846;
       backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
       justify-content: center;
       .remove-profile {
+        max-width: 90%;
         border-radius: 8px;
         padding: 24px;
         background-color: #22374A;
@@ -502,6 +504,7 @@
         border-radius: 8px;
         padding: 24px;
         background-color: #22374A;
+        max-width: 90%;
         .change-user-picture-title {
           color: var(--White, #fff);
           font-family: "Red Hat Display", sans-serif;
@@ -592,6 +595,115 @@
             &:hover {
               cursor: pointer;
               background-color: #ff3c3c;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 600px) {
+    .user-settings-container {
+      flex-wrap: wrap;
+      .user-settings-options-nav {
+        gap: 8px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        flex: 1 0 100%;
+        max-width: 100%;
+        .user-settings-options-nav-link {
+          gap: 6px;
+          flex: 1 0 48%;
+          padding: 8px 10px;
+          .switch {
+            width: 40px;
+            height: 20px;
+            .round {
+              &::before {
+                width: 15px;
+                height: 15px;
+                left: 4px;
+                bottom: 3px;
+              }
+            }
+          }
+        }
+      }
+      .user-settings-options-tab {
+        padding: 20px;
+        .user-info-holder {
+          gap: 16px;
+          .user-avatar-update {
+            gap: 16px;
+            .avatar-image {
+              max-width: 85px;
+            }
+            .change-user-avatar {
+              flex: 1 0 40%;
+              font-size: 14px;
+              padding: 10px;
+            }
+          }
+          .user-general-update {
+            gap: 12px;
+            padding: 16px 0px;
+            .user-requests-loader {
+              gap: 4px;
+              .loader-label {
+                order: 1;
+              }
+              .unlimited {
+                order: 3;
+                flex: 1 0 100%;
+              }
+              .unlimited-p {
+                order: 2;
+              }
+            }
+            .user-update-feedback {
+              font-size: 14px;
+            }
+            .user-general-name, .user-general-email, .user-general-bio, .user-general-password {
+              /* flex-wrap: wrap; */
+              gap: 8px;
+              label {
+                /* flex: 1 0 100%; */
+                min-width: 85px;
+                font-size: 14px;
+              }
+              input {
+                padding: 14px 20px;
+                font-size: 14px;
+              }
+              svg{
+                display: none;
+                top: 15px;
+              }
+            }
+            .user-btn-holder {
+              margin-top: 8px;
+              flex-wrap: wrap;
+              gap: 8px;
+              .cancel-update, .update-user-info {
+                flex: 1 0 100%;
+                width: 100%;
+                border-width: 1px;
+                font-size: 14px;
+                padding: 10px;
+              }
+            }
+          }
+        }
+      }
+      .user-settings-options-pop-up {
+        .change-user-picture {
+          .change-user-picture-content {
+            margin: 32px 0px;
+            .male-avatar, .female-avatar {
+              flex-wrap: wrap;
+              span {
+                max-width: 55px;
+                min-width: 55px;
+              }
             }
           }
         }

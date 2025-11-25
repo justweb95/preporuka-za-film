@@ -121,6 +121,7 @@
   }
   @media (max-width: 1279px) {
     height: auto;
+    min-height: 100svh;
     flex-wrap: wrap;
     .sidebar-navigation {
       position: absolute;
@@ -143,7 +144,5 @@
     .mobile-nav-open {
       transform: translateX(0);
     }
-  }
-  @media (max-width: 600px) {
   }
 }

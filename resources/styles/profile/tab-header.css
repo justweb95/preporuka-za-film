@@ -1,3 +1,11 @@
+#moje_preporuke, #omiljeni_filmovi, #vec_gledani {
+  .profile-section-header {
+    @media (max-width: 600px) {
+      margin: 0px 0px 16px;
+    }
+  }  
+}
+
 .tab-header {
   margin-bottom: 24px;
   width: 100%;
