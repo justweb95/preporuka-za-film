@@ -120,9 +120,11 @@
     line-height: normal;
     color: var(--Light, #EDFEEC);
   }
+  .my-favorites-list:has(article.search-not-found-box) {
+    display: flex;
+    justify-content: center;
+  }
   .search-not-found-box {
-    max-width: 90%;
-    min-width: 300px;
     padding: 24px 8px;
     border-radius: 8px;
     border: 1px solid #E3EAEC;

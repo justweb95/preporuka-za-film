@@ -9,11 +9,10 @@ document.querySelectorAll('.avatar-wrapper').forEach(wrapper => {
 
     // Add active to clicked
     wrapper.classList.add('active-avatar');
-
-    console.log('Selected avatar:', wrapper.dataset.avatarSrc);
     global_avatar_path = wrapper.dataset.avatarSrc;
   });
 });
+
 
 async function updateUserAvatar(avatarSrc) {
   const formData = new FormData();
@@ -32,11 +31,8 @@ async function updateUserAvatar(avatarSrc) {
     const data = await response.json();
     if (data.success) {
       // Optionally update the avatar in the DOM
-      const avatarElements = document.querySelectorAll('.avatar-image');
-      const avatarPath = pzfilm_globals.theme_uri + '/public' + data.data.avatar; // Adjust path
-
-      console.log(avatarPath);
-      
+      const avatarElements = document.querySelectorAll('img.avatar-image'); 
+      const avatarPath = pzfilm_globals.theme_uri + '/public/' + data.data.avatar; // Adjust path
 
       avatarElements.forEach(el => {
           el.src = avatarPath;

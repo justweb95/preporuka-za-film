@@ -1,5 +1,5 @@
 <?php
-
+use App\Controllers\RecentRecommendationsController;
 // Only load this if WordPress is loaded
 if (!defined('ABSPATH')) exit;
 
@@ -694,4 +694,134 @@ function mark_notifications_seen() {
     );
 
     wp_send_json_success(['message' => 'Notifikacija obeležena kao pročitana']);
+}
+
+
+
+
+add_action('wp_ajax_load_favorites_tab', 'load_favorites_tab');
+add_action('wp_ajax_nopriv_load_favorites_tab', 'load_favorites_tab');
+
+function load_favorites_tab() {
+    try {
+        // Get favorites directly
+        if (class_exists('\App\Controllers\RecentRecommendationsController')) {
+            $favorites = \App\Controllers\RecentRecommendationsController::getMyFavoritesMovies(20);
+        } else {
+            $favorites = [];
+        }
+
+        if (empty($favorites)) {
+            echo '<li class="no-results-found">Trenutno nema favorita.</li>';
+        } else {
+            foreach ($favorites as $index => $movie) {
+                // Make variables available to the template
+                $movie_index = $index + 1;
+                $poster_path = $movie['poster_url'] ?? '';
+                $movie_ID = $movie['ID'] ?? 0;
+                $release_year = $movie['year'] ?? '';
+                $vote_average = $movie['vote_average'] ?? '';
+                $genres = $movie['genres'] ?? [];
+                $our_recommendations = $movie['our_recommendations'] ?? false;
+
+                $template_file = get_stylesheet_directory() . '/app/Template/single-card-template.php';
+
+                if (file_exists($template_file)) {
+                    include $template_file; // This will render one card
+                } else {
+                    echo '<li class="no-results-found">Template file missing.</li>';
+                }
+
+            }
+        }
+
+    } catch (Throwable $e) {
+        error_log('load_favorites_tab error: ' . $e->getMessage());
+        echo '<li class="no-results-found">Došlo je do greške prilikom učitavanja.</li>';
+    }
+
+    wp_die();
+}
+
+
+add_action('wp_ajax_load_recent_recommendations_tab', 'load_recent_recommendations_tab');
+add_action('wp_ajax_nopriv_load_recent_recommendations_tab', 'load_recent_recommendations_tab');
+
+function load_recent_recommendations_tab() {
+    try {
+        if (class_exists('\App\Controllers\RecentRecommendationsController')) {
+            $movies = \App\Controllers\RecentRecommendationsController::getRecentRecommendations(20);
+        } else {
+            $movies = [];
+        }
+
+        if (empty($movies)) {
+            echo '<li class="no-results-found">Trenutno nema preporuka.</li>';
+        } else {
+            foreach ($movies as $index => $movie) {
+                $movie_index = $index + 1;
+                $poster_path = $movie['poster_url'] ?? '';
+                $movie_ID = $movie['ID'] ?? 0;
+                $release_year = $movie['year'] ?? '';
+                $vote_average = $movie['vote_average'] ?? '';
+                $genres = $movie['genres'] ?? [];
+                $our_recommendations = $movie['our_recommendations'] ?? false;
+
+                $template_file = get_stylesheet_directory() . '/app/Template/single-card-template.php';
+                if (file_exists($template_file)) {
+                    include $template_file;
+                } else {
+                    echo '<li class="no-results-found">Template file missing.</li>';
+                }
+            }
+        }
+
+    } catch (Throwable $e) {
+        error_log('load_recent_recommendations_tab error: ' . $e->getMessage());
+        echo '<li class="no-results-found">Došlo je do greške prilikom učitavanja.</li>';
+    }
+
+    wp_die();
+}
+
+
+add_action('wp_ajax_load_already_watched_tab', 'load_already_watched_tab');
+add_action('wp_ajax_nopriv_load_already_watched_tab', 'load_already_watched_tab');
+
+function load_already_watched_tab() {
+    try {
+        if (class_exists('\App\Controllers\RecentRecommendationsController')) {
+            $movies = \App\Controllers\RecentRecommendationsController::getAlreadyWatchedMovies(20);
+        } else {
+            $movies = [];
+        }
+        echo '<li class="no-results-found">Trenutno nema gledanih filmova.</li>';
+
+        if (empty($movies)) {
+            echo '<li class="no-results-found">Trenutno nema gledanih filmova.</li>';
+        } else {
+            foreach ($movies as $index => $movie) {
+                $movie_index = $index + 1;
+                $poster_path = $movie['poster_url'] ?? '';
+                $movie_ID = $movie['ID'] ?? 0;
+                $release_year = $movie['year'] ?? '';
+                $vote_average = $movie['vote_average'] ?? '';
+                $genres = $movie['genres'] ?? [];
+                $our_recommendations = $movie['our_recommendations'] ?? false;
+
+                $template_file = get_stylesheet_directory() . '/app/Template/single-card-template.php';
+                if (file_exists($template_file)) {
+                    include $template_file;
+                } else {
+                    echo '<li class="no-results-found">Template file missing.</li>';
+                }
+            }
+        }
+
+    } catch (Throwable $e) {
+        error_log('load_already_watched_tab error: ' . $e->getMessage());
+        echo '<li class="no-results-found">Došlo je do greške prilikom učitavanja.</li>';
+    }
+
+    wp_die();
 }

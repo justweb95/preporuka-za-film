@@ -120,6 +120,10 @@
     line-height: normal;
     color: var(--Light, #EDFEEC);
   }
+  .already-watched-list:has(article.search-not-found-box) {
+    display: flex;
+    justify-content: center;
+  }
   .search-not-found-box {
     max-width: 90%;
     min-width: 300px;

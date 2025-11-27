@@ -131,10 +131,10 @@
       &::before {
         position: absolute;
         top: 0px;
-        left: 285px;
+        left: 240px;
         display: block;
         content: '';
-        width: calc(100svw - 285px);
+        width: calc(100svw - 240px);
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
         backdrop-filter: blur(4px);
@@ -143,6 +143,21 @@
     }
     .mobile-nav-open {
       transform: translateX(0);
+    }
+  }
+  @media (max-width: 600px) {
+
+    .sidebar-navigation {
+      min-width: 240px;
+      .sidebar-logo {
+        max-width: 187px;
+        img {
+          max-width: 100%;
+        }
+      }
+    }
+    .mobile-nav-open {
+
     }
   }
 }

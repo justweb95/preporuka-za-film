@@ -1,4 +1,4 @@
-function initMovieFilterSort(tabClass, containerClass) {
+export function initMovieFilterSort(tabClass, containerClass) {
   const tab = document.querySelector(`.${tabClass}`);
   if (!tab) return; // skip if tab doesn't exist
 

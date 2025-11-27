@@ -1,3 +1,6 @@
+import { getFavorites, getWatched } from "@scripts/partials/single-movie-card";
+import { initMovieFilterSort } from "@scripts/profile/section-header-controller.js";
+
 const navigationSidebarLinks = document.querySelectorAll('.nav-link-button');
 const profileSections = document.querySelectorAll('.tab-content'); 
 
@@ -40,19 +43,101 @@ function setActiveNavFromURL() {
 }
 
 
-function handleNavigationClick(id, link) {
+async function handleNavigationClick(id, link) {
+  // Show/hide tabs
   profileSections.forEach(profile_tab => {
     profile_tab.hidden = profile_tab.id !== id;
   });
-  
+
+  // Update active sidebar link
   navigationSidebarLinks.forEach(otherLink => {    
     otherLink.classList.remove('active-nav');
-    
-    if(link.dataset.tab === otherLink.dataset.sidebarId) {
+    if (link.dataset.tab === otherLink.dataset.sidebarId) {
       otherLink.classList.add('active-nav');
     }
   });
+  
+  switch (id) {
+    case 'omiljeni_filmovi':
+      await loadFavoritesTab();
+      await getFavorites();
+      await getWatched();
+      initMovieFilterSort('my-favorites-tab', 'my-favorites-list');
+      break;
+
+    case 'moje_preporuke': // example id
+      await loadRecentRecommendationsTab();
+      await getFavorites();
+      await getWatched();
+      initMovieFilterSort('recent-recommendations-tab', 'recent-recommendations-list');
+      break;
+
+    case 'vec_gledani': // example id
+      await loadAlreadyWatchedTab();
+      await getFavorites();
+      await getWatched();
+      initMovieFilterSort('already-watched-tab', 'already-watched-list');
+
+      break;
+
+    default:
+      console.warn('Unknown tab id:', id);
+  }
 }
+
+
+
+async function loadFavoritesTab() {
+  const res = await fetch(pzfilm_globals.ajaxurl, {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ action: "load_favorites_tab" })
+  });
+
+  if (!res.ok) return console.error('AJAX failed', res.status);
+
+  const html = await res.text();
+  const container = document.querySelector(".my-favorites-list"); // the tab container
+  if (container) container.innerHTML = html;
+
+  // Optional: initialize JS behaviors (like sliders) if needed
+}
+
+
+async function loadRecentRecommendationsTab() {
+  const res = await fetch(pzfilm_globals.ajaxurl, {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ action: "load_recent_recommendations_tab" })
+  });
+
+  if (!res.ok) return console.error('AJAX failed', res.status);
+
+  const html = await res.text();
+  const container = document.querySelector(".recent-recommendations-list");
+  if (container) container.innerHTML = html;
+}
+
+async function loadAlreadyWatchedTab() {
+  const res = await fetch(pzfilm_globals.ajaxurl, {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ action: "load_already_watched_tab" })
+  });
+
+  if (!res.ok) return console.error('AJAX failed', res.status);
+
+  const html = await res.text();
+  const container = document.querySelector(".already-watched-list");
+  if (container) container.innerHTML = html;
+}
+
+
+
+
 
 // Call on page load
 setActiveNavFromURL();
@@ -61,20 +146,28 @@ setActiveNavFromURL();
 const mobileNavButton = document.getElementById('mobile_navigation_btn');
 const mobileNav = document.querySelector('.sidebar-navigation');
 
+if(mobileNav) {
+  mobileNav.addEventListener('click', (e) => {
+
+    if(e.target.classList.contains('sidebar-navigation')) {
+      mobileNav.classList.remove('mobile-nav-open');
+      document.body.style.overflow = '';
+      console.log(e.target.classList.contains('mobile-nav-open'));
+    }
+  }); 
+}
+
 if (mobileNavButton) {
   mobileNavButton.addEventListener('click', () => {
     mobileNav.classList.toggle('mobile-nav-open');
 
     if (mobileNav.classList.contains('mobile-nav-open')) {
-      document.body.style.overflow = 'hidden';   // disable scroll
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = '';         // restore scroll
+      document.body.style.overflow = '';
     }
   });
 }
-
-
-
 
 
 export async function logOutHandler() {

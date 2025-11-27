@@ -144,6 +144,7 @@
       font-size: 18px;
     }
     .header-category-list {
+      padding-bottom: 6px;
       flex: 1 0 70%;
       overflow-x: scroll;
       align-items: center;

@@ -101,11 +101,8 @@ async function toggleFavorite(movieId) {
 }
 
 
-async function getFavorites() {
+export async function getFavorites() {
   const username = await getLoggedInUsername();
-  
-  console.log('Username: '+ username);
-  
 
   if (username === 'guest') {
     // Guest: use localStorage only
@@ -172,7 +169,7 @@ function colorWatchedButton(all_movies_id) {
 }
 
 // Load watched movies on page load
-async function getWatched() {
+export async function getWatched() {
     const username = await getLoggedInUsername();
     if (username === 'guest') return;
 
