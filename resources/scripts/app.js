@@ -30,6 +30,10 @@ domReady(async () => {
       await import('./partials/single-movie-card.js');
     },
 
+    '/hot-or-not': async () => {
+      await import('./pages/hot-or-not.js');
+    },
+
   };
 
   // Load scripts based on the current path
