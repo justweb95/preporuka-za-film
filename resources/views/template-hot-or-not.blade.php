@@ -9,6 +9,8 @@
   {{-- @include('pages.hot-or-not.hot-or-not-home') --}}
   {{-- Add Custom Movie --}}
   {{-- @include('pages.hot-or-not.hot-or-not-add-custom') --}}
+  {{-- Hot or Not Game --}}
+  @include('pages.hot-or-not.hot-or-not-game')
 
 
 
@@ -23,5 +25,5 @@
 
 
   {{-- Hot Or Not Pop UP --}}
-  @include('pages.hot-or-not.hot-or-not-pop-up')
+  {{-- @include('pages.hot-or-not.hot-or-not-pop-up') --}}
 @endsection

@@ -14,14 +14,14 @@
   <button class="hot-or-not-pop-up-close-btn">
     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" fill="#22374A" fill-opacity="0.5"/>
-      <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="#18BF7C"/>
+      <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="#22374A"/>
       <path d="M17 17L31 31M31 17L17 31" stroke="white" stroke-width="2"/>
     </svg>
   </button>
   <div class="hon-pop-up-container">
-    <h2>Dodaj željeni film</h2>
+    <h2 class="hon-pop-up-title">Dodaj željeni film</h2>
     <div class="hon-pop-up-search-box">
-      <input class="hon-pop-up-search-input" type="text">
+      <input class="hon-pop-up-search-input" placeholder="Pretraži željeni film..." type="text">
       <svg class="hon-pop-up-search-input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0882 16.7415C13.5044 17.9727 11.5143 18.7058 9.3529 18.7058C4.18744 18.7058 0 14.5184 0 9.3529C0 4.18744 4.18744 0 9.3529 0C14.5184 0 18.7058 4.18744 18.7058 9.3529C18.7058 11.5143 17.9727 13.5044 16.7415 15.0882L20 18.3466L18.3466 20L15.0882 16.7415ZM16.3676 9.3529C16.3676 13.227 13.227 16.3676 9.3529 16.3676C5.4788 16.3676 2.33823 13.227 2.33823 9.3529C2.33823 5.4788 5.4788 2.33823 9.3529 2.33823C13.227 2.33823 16.3676 5.4788 16.3676 9.3529Z" fill="#EDFEEC"/>
       </svg>
@@ -58,7 +58,7 @@
       </div>
       <ul class="search-results-content">
         @foreach ($my_recent_recommendations as $movie)
-          <li>
+          <li class="search-results-content-card">
             @include('partials/single-movie-card',[
               'movie_index' => $loop->iteration,
               'poster_path' => $movie['poster_url'],
@@ -67,9 +67,9 @@
               'single_movie_control' => false,
               'our_recommendations' => $movie['our_recommendations'],
             ])
-            <button>
+            <button class="search-results-add-movie">
               <svg class="add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#22374A" fill-opacity="0.5"/>
+                <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#06131E" fill-opacity="0.8"/>
                 <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#22374A"/>
                 <path d="M30 40L30 20" stroke="#EDFEEC" stroke-width="2"/>
                 <path d="M20 30L40 30" stroke="#EDFEEC" stroke-width="2"/>
