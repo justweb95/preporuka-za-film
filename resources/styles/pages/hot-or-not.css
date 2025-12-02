@@ -427,11 +427,109 @@
 .hot-or-not-section {
   .hot-or-not-container {
     .custom-movie-card-heading {
-
+      border-radius: 8px;
+      padding: 16px;
+      background-color: var(--Grey, #22374A);
+      border-bottom: 2px solid #EF8D53;
+      h3 {
+        font-family: 'Red Hat Display';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 150%;
+        text-align: center;
+        color: #FFFFFF;
+      }
+    }    
+    .hot-or-not-progress-bar {
+      margin: 48px 0px;
+      width: 100%;
+      .hot-or-not-progress-bar-svg {
+        max-width: 100%;
+      }
     }
   }
+
+  .hot-or-not-progress-bar {
+    .hot-or-not-progress-bar-svg {
+
+      .progress-checkbox {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+  
+      .progress-text {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+  
+      .progress-label-box {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+  
+      .show-checkbox {
+        opacity: 1 !important;
+      }
+  
+      .show-number {
+        opacity: 1 !important; 
+      }
+  
+      .show-label-box {
+        opacity: 1 !important;
+      }
+  
+      .step-circle-border-orange {
+        stroke: #FF8B47 !important;
+      }
+  
+      .step-circle-fill-green {
+        fill: #18BF7C !important;
+        stroke: #18BF7C !important;
+      }
+  
+      .step-path-fill-green {
+        stroke: #18BF7C !important;
+      }
+  
+      .progress-circle {
+        fill: #06131E;
+      }
+    }
+  }
+
+
   .hot-or-not-game-holder {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .hon-first-option-card, .hon-second-option-card {
+      .movie-card {
+        text-align: center;
+      }
+      .choose-movie-btn {
+        margin: 32px 0px 0px;
+        width: 100%;
+        border: none;
+        padding: 10px 18px 11px;
+        background: #18BF7C;
+        border: 1px solid #18BF7C;
+        border-radius: 40px;
+        font-family: 'Red Hat Display';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 26px;
+        text-align: center;
+        color: #FFFFFF;
+        transition: .2s ease;
+        &:hover {
+          background-color: transparent;
+          cursor: pointer;
+        }
+      }
+    }
     .hon-option-devider {
       padding: 15px;
       display: block;
@@ -452,66 +550,4 @@
       }
     }
   }
-}
-
-
-
-
-
-.hot-or-not-progress-bar {
-  
-  .hot-or-not-progress-bar-svg {
-
-  }
-}
-
-
-
-
-
-
-/* Progress Bar Styles */
-.progress-checkbox {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.progress-text {
-  opacity: 0; /* Hide all text by default */
-  transition: opacity 0.3s ease;
-}
-
-.progress-label-box {
-  opacity: 0; /* Hide all label boxes by default */
-  transition: opacity 0.3s ease;
-}
-
-.show-checkbox {
-  opacity: 1 !important;
-}
-
-.show-number {
-  opacity: 1 !important; /* Only show text with this class */
-}
-
-.show-label-box {
-  opacity: 1 !important; /* Show label box */
-}
-
-.step-circle-border-orange {
-  stroke: #FF8B47 !important;
-}
-
-.step-circle-fill-green {
-  fill: #18BF7C !important;
-  stroke: #18BF7C !important;
-}
-
-.step-path-fill-green {
-  stroke: #18BF7C !important;
-}
-
-/* Make sure all circles are visible by default */
-.progress-circle {
-  fill: #06131E; /* Dark background to make stroke visible */
 }

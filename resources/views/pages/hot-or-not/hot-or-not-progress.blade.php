@@ -18,20 +18,20 @@
     <!-- Step 2 -->
     <rect class="progress-circle step-2-circle" x="195" y="10" width="22" height="22" rx="11" stroke="#314C65" stroke-width="2"/>
     <path class="progress-checkbox step-2-checkbox" d="M202 19L205.63 22.2L211.5 16.2" stroke="white" stroke-width="2.4"/>
-    <rect class="progress-label-box step-2-label-box" x="195" y="10" width="120" height="20" rx="10" fill="#06131E" stroke="#314C65" stroke-width="2"/>
-    <text class="progress-text step-2-text" x="255" y="24" text-anchor="middle" fill="white" font-size="12" font-family="Arial">Runda 2 od 5</text>
+    <rect class="progress-label-box step-2-label-box" x="145" y="10" width="120" height="20" rx="10" fill="#06131E" stroke="#314C65" stroke-width="2"/>
+    <text class="progress-text step-2-text" x="205" y="24" text-anchor="middle" fill="white" font-size="12" font-family="Arial">Runda 2 od 5</text>
 
     <!-- Step 3 -->
     <rect class="progress-circle step-3-circle" x="390" y="10" width="22" height="22" rx="11" stroke="#314C65" stroke-width="2"/>
     <path class="progress-checkbox step-3-checkbox" d="M397 19L400.63 22.2L406.5 16.2" stroke="white" stroke-width="2.4"/>
-    <rect class="progress-label-box step-3-label-box" x="390" y="10" width="120" height="20" rx="10" fill="#06131E" stroke="#314C65" stroke-width="2"/>
-    <text class="progress-text step-3-text" x="450" y="24" text-anchor="middle" fill="white" font-size="12" font-family="Arial">Runda 3 od 5</text>
+    <rect class="progress-label-box step-3-label-box" x="340" y="10" width="120" height="20" rx="10" fill="#06131E" stroke="#314C65" stroke-width="2"/>
+    <text class="progress-text step-3-text" x="400" y="24" text-anchor="middle" fill="white" font-size="12" font-family="Arial">Runda 3 od 5</text>
 
     <!-- Step 4 -->
     <rect class="progress-circle step-4-circle" x="585" y="10" width="22" height="22" rx="11" stroke="#314C65" stroke-width="2"/>
     <path class="progress-checkbox step-4-checkbox" d="M592 19L595.63 22.2L601.5 16.2" stroke="white" stroke-width="2.4"/>
-    <rect class="progress-label-box step-4-label-box" x="585" y="10" width="120" height="20" rx="10" fill="#06131E" stroke="#314C65" stroke-width="2"/>
-    <text class="progress-text step-4-text" x="645" y="24" text-anchor="middle" fill="white" font-size="12" font-family="Arial">Runda 4 od 5</text>
+    <rect class="progress-label-box step-4-label-box" x="535" y="10" width="120" height="20" rx="10" fill="#06131E" stroke="#314C65" stroke-width="2"/>
+    <text class="progress-text step-4-text" x="595" y="24" text-anchor="middle" fill="white" font-size="12" font-family="Arial">Runda 4 od 5</text>
 
     <!-- Step 5 (no label) -->
     <rect class="progress-circle step-5-circle" x="770" y="10" width="22" height="22" rx="11" stroke="#314C65" stroke-width="2"/>

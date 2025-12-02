@@ -10,7 +10,9 @@
   {{-- Add Custom Movie --}}
   {{-- @include('pages.hot-or-not.hot-or-not-add-custom') --}}
   {{-- Hot or Not Game --}}
-  @include('pages.hot-or-not.hot-or-not-game')
+  {{-- @include('pages.hot-or-not.hot-or-not-game') --}}
+  {{-- Result Game --}}
+  @include('partials.game-result-component')
 
 
 

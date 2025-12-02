@@ -1,0 +1,448 @@
+.hot-or-not-holder {
+  .game-result-holder#game-results {
+    margin: 0px auto;
+    width: 90%;
+    max-width: 800px;
+    .game-result-header {
+      text-align: center;
+      padding: 11px 20px;
+      background: var(--Grey, #22374A);
+      border-bottom: 2px solid transparent;
+      color: var(--White, #FFF);
+      font-family: "Red Hat Display";
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      border-bottom: 1px solid var(--Orange);
+    }
+    .game-result-data-holder {
+      margin-top: 56px;
+      display: flex;
+      gap: 48px;
+      .game-result-poster-holder {
+        align-self: stretch;
+        border-radius: 8px;
+        overflow: hidden;
+        max-width: 316px;
+        flex: 0 0 36%;
+        img {
+          object-fit: cover;
+          display: block;
+          height: 100%;
+          width: 100%;
+        }
+      }
+      .game-result-content-holder {
+        flex: 1 0 55%;
+        .result-content-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .result-content-title {
+            display: inline;
+            color: var(--White, #FFF);
+            font-family: "Red Hat Display";
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+          }
+          .result-imdb-rating-holder {
+            min-width: fit-content;
+            img {
+              vertical-align: middle;
+            }
+            svg {
+              height: 42px;
+              vertical-align: middle;
+            }
+            p {
+              margin: 0px 12px 0px 6px;
+              display: inline-block;
+              vertical-align: middle;
+              color: var(--White, #FFF);
+              text-align: center;
+              font-family: "Red Hat Display";
+              font-size: 20px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: normal;
+            }
+          }
+        }
+        .result-content-info {
+          display: flex;
+          gap: 24px;
+          margin: 24px 0px;
+          span {
+            svg {
+              display: inline;
+              vertical-align: sub;
+              margin-right: 8px;
+            }
+            p {
+              display: inline;;
+              color: var(--White, #FFF);
+              text-align: center;
+              font-family: "Red Hat Display";
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: normal;
+            }
+          }
+          hr {
+            border-color: var(--Grey, #22374A);;
+          }
+        }
+        .result-content-description {
+          display: flex;
+          gap: 20px;
+          .result-description-poster-holder {
+            display: none;
+            border-radius: 8px;
+            overflow: hidden;
+            align-self: stretch;
+            max-width: 35%;
+            flex: 0 0 35%;
+            img {
+              object-fit: cover;
+              display: block;
+              height: 100%;
+              width: 100%;
+            }
+          }
+          .result-content-description-text {
+            width: 100%;
+            color: var(--Light, #EDFEEC);
+            font-family: "Red Hat Display";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 140%; /* 22.4px */
+          }
+        }
+        .result-content-cta {
+          margin: 46px 0px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          text-align: center;
+          a, button {
+            flex: 0 0 49%;
+            padding: 15px;
+            border-radius: 40px;
+            border: 1px solid transparent;
+            background: #152533;
+            color: var(--White, #FFF);
+            font-family: "Red Hat Display";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            text-decoration: none;
+            transition: .3s ease;
+            svg {
+              vertical-align: middle;
+              margin-right: 10px;
+            }
+            &:hover {
+              cursor: pointer;
+              border: 1px solid var(--Green, #18BF7C);
+              background: var(--Background, #06131E);
+            }
+          }
+        }
+        .result-content-affiliate {
+          text-align: center;
+          .affiliate-netflix {
+            position: relative;
+            user-select: none;
+            pointer-events: none;
+            background-color: #22374a5c;
+            color: rgba(255, 255, 255, 0.267);
+            svg {
+              opacity: .4;
+            }
+            /* opacity: .4; */
+            &::after {
+              display: block;
+              width: auto;
+              content: 'Uskoro';
+              position: absolute;
+              right: 5px;
+              top: -12px;
+              background-color: #06131E;
+              color: var(--White, #FFF);
+              font-family: "Red Hat Display";
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 400;
+              border-radius: 16px;
+              padding: 4px 6px;
+            }
+          }
+          a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 15px 20px;
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            background: #152533;
+            color: var(--White, #FFF);
+            text-align: center;
+            font-family: "Red Hat Display";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            transition: .3s ease;
+            svg {
+              vertical-align: middle;
+              margin-right: 10px;
+            }
+            &:first-of-type {
+              margin: 0px 0px 20px;
+            }
+            &:hover {
+              cursor: pointer;
+              border: 1px solid var(--Green, #18BF7C);
+              background: var(--Background, #06131E);
+            }
+          }
+        }
+      }
+    } 
+    .movie-btn {
+      margin: 56px 0px 45px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      .new-recomendation {
+        /* display: inline; */
+        flex: 1 0 48%;
+        padding: 15px 20px;
+        border-radius: 40px;
+        border: 1px solid var(--Green, #18BF7C);
+        background: var(--Background, #06131E);
+        color: var(--White, #FFF);
+        text-align: center;
+        font-family: "Red Hat Display";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        transition: .3s ease;
+        .new-recomendation-icon {
+          transition: .5s ease;
+          vertical-align: middle;
+          margin-right: 10px;
+          margin-bottom: 3px;
+
+        }
+        &:hover {
+          cursor: pointer;
+          background: var(--Green, #18BF7C);
+          .new-recomendation-icon {
+            transform: rotateZ(360deg);
+          }
+        }
+      } 
+      .start-over {
+        text-decoration: none;
+        display: none;
+        padding: 15px 20px;
+        flex: 1 0 48%;
+        border-radius: 40px;
+        border: 1px solid var(--Orange, #EF8D53);
+        background: var(--Background, #06131E);
+        color: var(--White, #FFF);
+        text-align: center;
+        font-family: "Red Hat Display";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        transition: .3s ease;
+        .new-recomendation-icon {
+          transition: .5s ease;
+          vertical-align: middle;
+          margin-right: 10px;
+          margin-bottom: 3px;
+        }
+        &:hover {
+          cursor: pointer;
+          background: var(--Orange, #EF8D53);
+          .new-recomendation-icon {
+            transform: rotateZ(360deg);
+          }
+        }
+      }  
+    }
+
+    .game-result-donation {
+      display: inline-block;
+      margin-bottom: 46px;
+      padding: 8px 20px;
+      width: 100%;
+      border-radius: 4px;
+      background: var(--Grey, #22374A);
+      backdrop-filter: blur(40px);
+      color: var(--White, #FFF);
+      text-align: center;
+      font-family: "Red Hat Display";
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      .donation-text {
+        display: inline;
+      }
+      a {
+        margin-left: 8px;
+        svg {
+          vertical-align: sub;
+        }
+      }
+    }
+    
+    
+    @media (max-width: 768px) {
+      .game-result-data-holder {
+        .game-result-poster-holder {
+          display: none;
+
+        }
+        .game-result-content-holder {
+          .result-content-description {
+            .result-description-poster-holder {
+              display: block;
+            }
+          }
+        }
+      }
+      .movie-btn {
+        flex-wrap: wrap;
+        .new-recomendation {
+          flex: 1 0 100%;
+        }
+      }
+    }
+
+    @media (max-width: 550px) {
+      padding: 12px 0px 48px;
+      min-height: calc(100svh - 64px);
+      height: auto;
+
+      .game-result-data-holder {
+        gap: 32px;
+        margin-top: 22px;
+        .game-result-content-holder {
+          .game-result-content-header {
+            .result-content-title {
+              font-size: 24px;
+            }
+            .result-imdb-rating-holder {
+              svg {
+                height: 32px;
+              }
+            }
+          }
+          .result-content-info {
+            justify-content: space-between;
+            gap: 12px;
+            span {
+              p {
+                font-size: 14px;
+              }
+            }
+          }
+          .result-content-cta {
+            margin: 32px 0px;
+            a, button {
+              font-size: 16px;
+              padding: 11px;
+              svg {
+                max-width: 20px;
+                max-height: 20px;
+              }
+            }
+          }
+          .result-content-affiliate {
+            a {
+              padding: 11px;
+              font-size: 16px;
+            }
+            .affiliate-amazon {
+              margin: 0px 0px 16px !important;
+            }
+          }
+        }
+      }
+      .movie-btn {
+        margin: 32px 0px 18px;
+        .new-recomendation, .start-over {
+          font-size: 16px;
+          padding: 11px;
+          svg {
+            max-width: 18px;
+            max-height: 18px;
+          }
+        }  
+      }
+      .game-result-donation {
+        margin-bottom: 0px;
+        a {
+          display: block;
+          margin-top: 12px;
+        }
+      }
+      
+    }
+  }
+
+
+  .trailer-modal {
+    padding-top: 50px;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    width: 1000px; /* You can adjust this */
+    max-width: 90%; /* Ensures responsiveness */
+    transform: translate(-50%, -30%);
+    border: 1px solid transparent;
+    outline: none;
+    background-color: transparent;
+
+    .modal-content {
+      background-color: transparent;
+      .close {
+        position: absolute;
+        top: -10px;
+        right: 0px;
+        &:hover {
+            cursor: pointer;
+        }
+      }
+
+      iframe {
+        border-radius: 12px;
+        user-select: none;
+        padding: 0px !important;
+        margin: 0px !important;
+        width: 100%;
+        height: 500px;
+        max-height: 80vh; 
+        border: none;
+      }
+    }
+
+    &::backdrop {
+      background: rgba(6, 19, 30, 0.39);
+      backdrop-filter: blur(20px);
+    }
+  }
+}
