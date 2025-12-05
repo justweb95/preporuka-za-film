@@ -1,4 +1,9 @@
 .hot-or-not-holder {
+  /* Game Resiulst holder */
+  .results-and-banner-holder {
+    display: flex;
+    gap: 20px;
+  }
   .game-result-holder#game-results {
     margin: 0px auto;
     width: 90%;

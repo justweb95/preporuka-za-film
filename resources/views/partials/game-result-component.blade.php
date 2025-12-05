@@ -1,4 +1,8 @@
 <section class="hot-or-not-holder hot-or-not-section">
+  <div class="results-and-banner-holder container">
+  {{-- Baner placeholder --}}
+  @include('placements/vertical-600-300')
+
   <article class="game-result-holder" id="game-results">  
     {{-- Results --}}
     <h1 class="game-result-header">Preporuka za tebe</h1>   
@@ -9,7 +13,7 @@
       </span>
       
       {{-- Content --}}
-      <span class="game-result-content-holder" id="game-result-poster-holder">
+      <span class="game-result-content-holder" id="game-result-content-holder">
         {{-- Header --}}
         <div class="result-content-header">
           <h2 class="result-content-title" id="result-content-title">Parazit</h2>
@@ -135,4 +139,8 @@
       </a>
     </span>
   </article>
+
+  {{-- Baner placeholder --}}
+  @include('placements/vertical-600-300')
+  </div>
 </section>
