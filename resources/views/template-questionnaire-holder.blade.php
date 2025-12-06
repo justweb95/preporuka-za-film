@@ -6,22 +6,31 @@
 @section('content')
   {{-- This will be holder question --}}
   <section class="questionnaire-holder">
-    {{-- Progress Bar --}}
-    @include('pages/questions/progress-component')
-    
-    {{-- Questions --}}
-    @include('pages/questions/first-question')
-    @include('pages/questions/second-question')
-    @include('pages/questions/third-question')
-    @include('pages/questions/fourth-question')
-    @include('pages/questions/fifth-question')
-    @include('pages/questions/six-question')
-    @include('pages/questions/loader')
-    @include('pages/questions/results')
 
-    @include('pages/questions/video-popup', ['video_url' => ''])
-
+    <div class="questionnaire-holder-container container">
+      @include('placements/vertical-600-300')
+  
+      <div class="questionnaire-holder-content">
+        {{-- Progress Bar --}}
+        @include('pages/questions/progress-component')
+        
+        {{-- Questions --}}
+        @include('pages/questions/first-question')
+        @include('pages/questions/second-question')
+        @include('pages/questions/third-question')
+        @include('pages/questions/fourth-question')
+        @include('pages/questions/fifth-question')
+        @include('pages/questions/six-question')
+        @include('pages/questions/loader')
+        @include('pages/questions/results')
+  
+        {{-- Trailer pop up component --}}      
+        @include('pages/questions/video-popup', ['video_url' => ''])
+      </div>
+  
+      @include('placements/vertical-600-300')
+    </div>
     {{-- Banner --}}
-    @include('pages.single-blog.single-blog-banner')    
+    {{-- @include('pages.single-blog.single-blog-banner')     --}}
   </section>
 @endsection

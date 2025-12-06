@@ -1,4 +1,4 @@
-<section class="hot-or-not-holder hot-or-not-add-custom-section">
+<section class="hot-or-not-holder hot-or-not-add-custom-section" id="hon_add_custom" hidden>
   <div class="hot-or-not-container hot-or-not-add-custom-container">
     <h2 class="hot-or-not-subheading">Ne znaš šta da gledaš večeras?</h2>
     <h1 class="hot-or-not-heading">Igraj - Hoot Or Not - eliminaciju!</h1>

@@ -362,12 +362,90 @@ function save_movie_recommendation_handler() {
     ]);
 }
 
+add_action('wp_ajax_get_five_movies', 'get_five_movies_handler');
+add_action('wp_ajax_nopriv_get_five_movies', 'get_five_movies_handler');
 
+function get_five_movies_handler() {
+    // Get current logged-in user
+    $user = wp_get_current_user();
 
+    if (!$user || 0 === $user->ID) {
+        wp_send_json_error(['message' => 'User not logged in'], 401);
+    }
 
+    $user_id = $user->ID;
 
+    // Get user meta
+    $favorite_movies = json_decode(get_user_meta($user_id, 'favorite_movies', true), true) ?: [];
+    $already_watched = json_decode(get_user_meta($user_id, 'already_watched', true), true) ?: [];
 
+    $movies = [];
+    $exclude_ids = [];
 
+    // --- 1 random favorite movie ---
+    if (!empty($favorite_movies)) {
+        $fav_id = $favorite_movies[array_rand($favorite_movies)];
+        $fav_post = get_post($fav_id);
+        if ($fav_post) {
+            $movies[] = [
+                'id'     => $fav_post->ID,
+                'title'  => $fav_post->post_title,
+                'link'   => get_permalink($fav_post->ID),
+                'poster' => get_the_post_thumbnail_url($fav_post->ID, 'medium') ?: 'https://via.placeholder.com/300x450?text=No+Image',
+            ];
+            $exclude_ids[] = $fav_post->ID;
+        }
+    }
+
+    // --- 1 random already watched movie ---
+    if (!empty($already_watched)) {
+        $watched_id = $already_watched[array_rand($already_watched)];
+        // Avoid duplication
+        if (!in_array($watched_id, $exclude_ids)) {
+            $watched_post = get_post($watched_id);
+            if ($watched_post) {
+                $movies[] = [
+                    'id'     => $watched_post->ID,
+                    'title'  => $watched_post->post_title,
+                    'link'   => get_permalink($watched_post->ID),
+                    'poster' => get_the_post_thumbnail_url($watched_post->ID, 'medium') ?: 'https://via.placeholder.com/300x450?text=No+Image',
+                ];
+                $exclude_ids[] = $watched_post->ID;
+            }
+        }
+    }
+
+    // --- 3 random movies from DB excluding previous ---
+    $args = [
+        'post_type'      => 'movie',
+        'post_status'    => 'publish',
+        'posts_per_page' => 3,
+        'orderby'        => 'rand',
+        'post__not_in'   => $exclude_ids,
+        'meta_query'     => [
+            [
+                'key'     => 'vote_average',
+                'value'   => [6.5, 9],
+                'type'    => 'NUMERIC',
+                'compare' => 'BETWEEN',
+            ]
+        ]
+    ];
+
+    $query = new WP_Query($args);
+    if ($query->have_posts()) {
+        foreach ($query->posts as $post) {
+            $movies[] = [
+                'id'     => $post->ID,
+                'title'  => $post->post_title,
+                'link'   => get_permalink($post->ID),
+                'poster' => get_the_post_thumbnail_url($post->ID, 'medium') ?: 'https://via.placeholder.com/300x450?text=No+Image',
+            ];
+        }
+    }
+
+    wp_send_json_success(['movies' => $movies]);
+}
 
 
 

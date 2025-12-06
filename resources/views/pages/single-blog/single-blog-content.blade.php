@@ -14,8 +14,11 @@
 @endphp
 
 <section class="single_blog_content">
-  <div class="single_blog_content_holder container_blog">
-    
+  <div class="single_blog_content_holder container">
+
+  @include('placements/vertical-600-300')
+
+  <div class="single-blog-main-content-holder">
     <article class="single_blog_content_header">
       <h4 class="sb_author">{{ $author_name }}</h4>
       <h5 class="line-devider">-</h5>
@@ -76,8 +79,11 @@
         </a> --}}
       </div>
     </article>
+  </div>
 
-    {{-- Reklame Baneri --}}
-    @include('pages.single-blog.single-blog-banner')    
+  {{-- Reklame Baneri --}}
+  @include('placements/vertical-600-300')
+
+    {{-- @include('pages.single-blog.single-blog-banner')     --}}
   </div>
 </section>

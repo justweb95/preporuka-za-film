@@ -1,4 +1,4 @@
-<section class="hot-or-not-holder hot-or-not-home-section">
+<section class="hot-or-not-holder hot-or-not-home-section" id="hot_or_not_home">
   <div class="hot-or-not-container hot-or-not-home-container">
     <h2 class="hot-or-not-subheading">Ne znaš šta da gledaš večeras?</h2>
     <h1 class="hot-or-not-heading">Igraj - Hoot Or Not - eliminaciju!</h1>
@@ -12,7 +12,7 @@
         </svg>
         <h3 class="card-heading">Iznenadi me</h3>
         <p class="card-description">Naš AI bira set od 5 filmova na osnovu tvojih preferencija.</p>
-        <button class="suprise-start-btn">Pokreni igru</button>
+        <button class="suprise-start-btn start-game-btn" data-is-custom="false">Pokreni igru</button>
       </article>
       <article class="add-movie-card">
         <svg class="svg-icon" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,7 +25,7 @@
         </svg>
         <h3 class="card-heading">Dodaj filmove</h3>
         <p class="card-description">Ubaci do 5 filmova koje već imaš na umu, pa odluči eliminacijom.</p>
-        <button class="add-movie-start-btn">Pokreni igru</button>
+        <button class="add-movie-start-btn start-game-btn" data-is-custom="true">Pokreni igru</button>
       </article>
     </div>    
   </div>

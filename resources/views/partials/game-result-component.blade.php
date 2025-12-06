@@ -1,4 +1,4 @@
-<section class="hot-or-not-holder hot-or-not-section">
+<section class="hot-or-not-holder hot-or-not-section" hidden>
   <div class="results-and-banner-holder container">
   {{-- Baner placeholder --}}
   @include('placements/vertical-600-300')

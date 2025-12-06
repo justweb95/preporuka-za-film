@@ -3,7 +3,8 @@ import {
   handleProgressNumber,
   handleProgressCheckbox,
   removeProgressBar,
-  removeadvertisementBanner
+  removeadvertisementBanner,
+  addAdvertisementBanner
 
 } from '@scripts/partials/question-progress';
 import { 
@@ -103,10 +104,11 @@ if (allQuestionsCompontents[currentQuestionIndex]) {
       try {
         const tmdbResult = await tmdbCallHandler(recommendation_movie_array);
         await poplateResult(tmdbResult);
-
+        
         setTimeout(() => {
           currentQuestionIndex = 7;
           changeQuestionHandler(currentQuestionIndex);
+          addAdvertisementBanner();
         }, 300)
 
         const username = await getLoggedInUsername();

@@ -2,8 +2,7 @@
     
 @endphp
 
-
-<section class="hot-or-not-holder hot-or-not-section">
+<section class="hot-or-not-holder hot-or-not-section" id="hon_game" hidden>
   <div class="hot-or-not-container">
     <div class="custom-movie-card-heading">
       <h3>U svakoj rundi eliminacije biraj film koji ti se više dopada. On ostaje, drugi ispada. 

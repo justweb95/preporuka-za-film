@@ -10,7 +10,7 @@
   // var_dump($my_already_watched);
 @endphp
 
-<section class="hot-or-not-pop-up">
+<section class="hot-or-not-pop-up" id="hon_pop_up" hidden>
   <button class="hot-or-not-pop-up-close-btn">
     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" fill="#22374A" fill-opacity="0.5"/>

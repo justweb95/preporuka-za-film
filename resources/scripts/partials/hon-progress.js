@@ -75,9 +75,16 @@ function removeProgressBar() {
 }
 
 function removeadvertisementBanner() {
-    const advertisementBanner = document.querySelector('.single_blog_banner_holder');
+    const advertisementBanner = document.querySelectorAll('.add-banner-card');
     if (advertisementBanner) {
-        advertisementBanner.style.display = 'none';
+        advertisementBanner.forEach(banner => banner.style.display = 'none')
+    }
+}
+
+function addAdvertisementBanner() {
+    const advertisementBanner = document.querySelectorAll('.add-banner-card');
+    if (advertisementBanner) {
+        advertisementBanner.forEach(banner => banner.style.display = 'block')
     }
 }
 
@@ -87,4 +94,4 @@ collectProgressItems();
 handleProgressNumber(3);
 handleProgressCheckbox(3);
 
-export { collectProgressItems, handleProgressNumber, handleProgressCheckbox, removeProgressBar, removeadvertisementBanner };
+export { collectProgressItems, handleProgressNumber, handleProgressCheckbox, removeProgressBar, removeadvertisementBanner, addAdvertisementBanner };
