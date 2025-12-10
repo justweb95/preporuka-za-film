@@ -88,10 +88,5 @@ function addAdvertisementBanner() {
     }
 }
 
-collectProgressItems();
-
-// Example usage - set5 to step 2 (third step)
-handleProgressNumber(3);
-handleProgressCheckbox(3);
 
 export { collectProgressItems, handleProgressNumber, handleProgressCheckbox, removeProgressBar, removeadvertisementBanner, addAdvertisementBanner };

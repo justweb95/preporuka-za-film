@@ -33,6 +33,7 @@ domReady(async () => {
     '/hot-or-not': async () => {
       await import('./pages/hot-or-not.js');
       await import('./partials/hon-progress.js');
+      await import('./partials/hon-custom-add.js');
     },
 
   };

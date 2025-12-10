@@ -2,7 +2,8 @@
   id="slide{{ $movie_index }}" 
   class="single-movie-card movie-card"
   data-category="{{ $genres }}" 
-  data-year="{{ $release_year }}" 
+  data-year="{{ $release_year }}"
+  data-movie-id="{{ $movie_ID }}"
   data-rating="{{ $vote_average }}">
   
   <a href="{{ get_permalink($movie_ID) }}">

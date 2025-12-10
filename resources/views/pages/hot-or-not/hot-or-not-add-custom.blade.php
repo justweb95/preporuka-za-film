@@ -9,14 +9,14 @@
         <h3>Ubaci svoje favorite u igru</h3>  
       </div>  
       <ul class="custom-movie-card-list">
-        <li class="custom-movie-card movie-added">
-          <button class="custom-movie-btn" data-tooltip="Izbaci film">
-            <img class="movie-card-img" src="@asset('images/home/movie-2.webp')" alt="Movie added card">
-            <svg class="remove-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <li class="custom-movie-card empty-card">
+          <button class="custom-movie-btn" data-tooltip="Dodaj film">
+            <svg class="add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#22374A" fill-opacity="0.5"/>
               <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#22374A"/>
+              <path d="M30 40L30 20" stroke="#EDFEEC" stroke-width="2"/>
               <path d="M20 30L40 30" stroke="#EDFEEC" stroke-width="2"/>
-            </svg>            
+            </svg>
           </button>
         </li>
         <li class="custom-movie-card empty-card">

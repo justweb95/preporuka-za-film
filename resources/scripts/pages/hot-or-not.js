@@ -1,3 +1,10 @@
+import {
+  collectProgressItems,
+  handleProgressNumber,
+  handleProgressCheckbox
+} from '../partials/hon-progress.js'
+
+
 console.log('Hot or Not page script loaded');
 
 // Hot or Not Variables
@@ -39,26 +46,49 @@ async function startGameHandler(isCustom) {
     if(!movies_response) return;
 
     button_loader.textContent = 'Pokreni igru'
+
+    collectProgressItems();
+    handleProgressNumber(0);
+    handleProgressCheckbox(0);
     honStepHandler(4);
-    
-
-
-
-
-
   }
   else {
     honStepHandler(2);
-  
-  
   }
+}
 
 
+// Chose Movie Function
+const game_round_index = 0;
+const next_step_button = document.querySelectorAll('.choose-movie-btn');
+
+
+if(next_step_button) {
+  console.log(next_step_button[0].dataset.movieId);
+  next_step_button.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      gameRoundHandler(game_round_index, e.currentTarget.dataset.movieId)
+    })
+  });
+  
+}
+
+function gameRoundHandler(round_index, movie_id) {
+  
+  console.log('Movie id bellow:');
+  console.log(movie_id);
+  
+
+  
+  handleProgressNumber(round_index);
+  handleProgressCheckbox(round_index);
 
 
 
 }
 
+
+// Backend Related Function
 async function getFiveMoviesForGame() {  
   const response = await fetch(pzfilm_globals.ajaxurl, {
     method: "POST",
@@ -72,11 +102,4 @@ async function getFiveMoviesForGame() {
   return data;
 }
 
-
-
-
-
-
-
-
-
+export { honStepHandler };
