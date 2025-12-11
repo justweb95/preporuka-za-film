@@ -14,30 +14,14 @@
     
     {{-- Hot or Not Game  --}}
     <div class="hot-or-not-game-holder">
-      <article class="hon-first-option-card">
-        @include('partials/single-movie-card',[
-          'movie_index' => 0,
-          'poster_path' => '/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg',
-          'movie_ID' => 554,
-          'release_year' => '2024',
-          'single_movie_control' => false,
-          'our_recommendations' => true,
-        ])    
-        <button class="choose-movie-btn" data-movie-id='554'>Izaberi ovaj film</button>
+      <article class="hon-option-card hon-first-option-card left not-populated" data-position="left">  
+        {{-- <button class="choose-movie-btn" data-movie-id='554'>Izaberi ovaj film</button> --}}
       </article>
       <div class="hon-option-devider">
         <h3 class="devider-text">VS</h3>
       </div>
-      <article class="hon-second-option-card">
-        @include('partials/single-movie-card',[
-          'movie_index' => 0,
-          'poster_path' => '/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg',
-          'movie_ID' => 554,
-          'release_year' => '2024',
-          'single_movie_control' => false,
-          'our_recommendations' => true,
-        ])
-        <button class="choose-movie-btn" data-movie-id='554'>Izaberi ovaj film</button>
+      <article class="hon-option-card hon-second-option-card right not-populated" data-position="right">
+        {{-- <button class="choose-movie-btn" data-movie-id='554'>Izaberi ovaj film</button> --}}
       </article>
     </div>
   </div>

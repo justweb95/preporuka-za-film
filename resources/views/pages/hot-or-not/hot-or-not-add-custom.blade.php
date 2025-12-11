@@ -60,7 +60,7 @@
           </button>
         </li>
       </ul>
-      <button class="start-game-btn">Pokreni igru</button>
+      <button data-is-custom="start_game" class="start-game-btn">Pokreni igru</button>
     </div>   
   </div>
 </section>

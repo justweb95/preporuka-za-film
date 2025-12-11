@@ -20,8 +20,6 @@ if(customMovieCards.length) {
   })
 }
 
-
-
 const searchResultsAddMovie = document.querySelectorAll('.search-results-add-movie');
 searchResultsAddMovie.forEach(btn => btn.addEventListener('click', (e) => {
 
@@ -38,10 +36,6 @@ searchResultsAddMovie.forEach(btn => btn.addEventListener('click', (e) => {
     populateMovieHandler(name, movieID, year, img)
   } 
 }))
-
-
-
-
 
 function populateMovieHandler(movie_name, movie_id, movie_year, movie_poster) {
   // Find the first empty card
@@ -261,4 +255,4 @@ function renderSearchedMovieCard(suggestions) {
 const closePopupBtn = document.querySelector('.hot-or-not-pop-up-close-btn');
 closePopupBtn.addEventListener('click', () => honStepHandler(2));
 
-export { populateMovieHandler };
+export { populateMovieHandler, removeMovieFromCard };

@@ -528,6 +528,11 @@
     justify-content: space-between;
     align-items: center;
     .hon-first-option-card, .hon-second-option-card {
+      .single-movie-card {
+        .movie-card-poster {
+          max-height: 338px;
+        }
+      }
       .movie-card {
         text-align: center;
       }
@@ -574,4 +579,25 @@
       }
     }
   }
+}
+
+
+
+/* ANIMATIONS */
+@keyframes slideLeftFade {
+  0% { transform: translateX(0) rotate(0); opacity: 1; }
+  100% { transform: translateX(-180px) rotate(-12deg); opacity: 0; }
+}
+
+@keyframes slideRightFade {
+  0% { transform: translateX(0) rotate(0); opacity: 1; }
+  100% { transform: translateX(180px) rotate(12deg); opacity: 0; }
+}
+
+.hon-card-animate-left {
+  animation: slideLeftFade 0.45s ease forwards;
+}
+
+.hon-card-animate-right {
+  animation: slideRightFade 0.45s ease forwards;
 }

@@ -11,8 +11,8 @@
   @include('pages.hot-or-not.hot-or-not-add-custom')
   {{-- Hot or Not Game --}}
   @include('pages.hot-or-not.hot-or-not-game')
-  {{-- Result Game --}}
-  @include('partials.game-result-component')
   {{-- Hot Or Not Pop UP --}}
   @include('pages.hot-or-not.hot-or-not-pop-up')
+  {{-- Result Game --}}
+  @include('partials.game-result-component')
 @endsection
