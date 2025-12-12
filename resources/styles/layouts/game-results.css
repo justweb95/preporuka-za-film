@@ -8,6 +8,10 @@
     margin: 0px auto;
     width: 90%;
     max-width: 800px;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    filter: blur(10px);
+    animation: display_final_result 0.7s forwards cubic-bezier(0.4, 0, 0.2, 1);
     .game-result-header {
       text-align: center;
       padding: 11px 20px;

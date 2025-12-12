@@ -1,4 +1,7 @@
+import confetti from 'canvas-confetti';
 import { poplateResult } from '@scripts/helpers/recommendation-results-helper.js';
+import { showToast } from "@scripts/helpers/toastify-helper";
+
 import {
   collectProgressItems,
   handleProgressNumber,
@@ -9,7 +12,7 @@ import {
 // Hot or Not Variables
 let step_index = 1;
 let five_movie_array = [];
-let currentIndex = 2; // Start from 2 because first two movies are displayed
+let currentIndex = 2;
 let leftMovie = null;
 let rightMovie = null;
 
@@ -21,6 +24,16 @@ const steps_id = [
   'game_results',
 ]
 
+const backButtons = document.querySelectorAll('.back-button'); // note the dot
+if (backButtons.length > 0) {
+  backButtons.forEach(button => {
+    button.addEventListener('click', () => stepBackHandler(step_index));
+  });
+}
+
+function stepBackHandler(current_step) {
+  honStepHandler(1);
+}
 
 
 // Making array of elements from array of steps id
@@ -37,7 +50,15 @@ const start_game_btns = document.querySelectorAll('.start-game-btn');
 
 start_game_btns.forEach(btn => btn.addEventListener('click', (event) => {
   if (event.currentTarget.dataset.isCustom === "start_game") {
+
     five_movie_array = collectFiveCustomAddedMovie();
+    const fiveMovieAdded = five_movie_array.every(movie => movie.id && movie.id.trim() !== '');
+
+    if (!fiveMovieAdded) {
+      showToast('Još filmova nedostaje dodajte svih 5!')
+      return;
+    }
+    
     startGameWithMovies(five_movie_array);
     collectProgressItems();
     handleProgressNumber(0);
@@ -91,8 +112,22 @@ function startGameWithMovies(movies) {
   rightMovie = movies[1];
   currentIndex = 2;
 
+  const leftSlot = document.querySelector('.hon-option-card.left');
+  const rightSlot = document.querySelector('.hon-option-card.right');
+
+  // Add initial slide-in classes
+  leftSlot.classList.add('initial-slide-left');
+  rightSlot.classList.add('initial-slide-right');
+
   renderMovies(leftMovie, rightMovie);
+
+  // Remove initial animation classes after they finish
+  setTimeout(() => {
+    leftSlot.classList.remove('initial-slide-left');
+    rightSlot.classList.remove('initial-slide-right');
+  }, 500); // match animation duration
 }
+
 
 // Render movies in two slots
 function renderMovies(left, right) {
@@ -119,65 +154,79 @@ function createMovieCardHTML(movie) {
   `;
 }
 
-// Pick a movie
 function pickMovie(side) {
-  if (currentIndex >= five_movie_array.length) {
+  const leftSlot = document.querySelector('.hon-option-card.left');
+  const rightSlot = document.querySelector('.hon-option-card.right');
+
+  const chosenSlot = side === 'left' ? leftSlot : rightSlot;
+  const otherSlot = side === 'left' ? rightSlot : leftSlot;
+
+  // Animate chosen and unchosen cards
+  otherSlot.classList.add('shrink-fade');
+  chosenSlot.classList.add('chosen-scale');
+
+
+    // Check if last movie
+  if (currentIndex >= 5) {
     const lastPicked = side === "left" ? leftMovie : rightMovie;
-    gameEnd(lastPicked);
+    gameEnd(lastPicked); // no animation for last step
     return;
   }
 
-  const nextMovie = five_movie_array[currentIndex];
-  currentIndex++;
+  setTimeout(() => {
+    // Reset classes
+    chosenSlot.classList.remove('chosen-scale');
+    otherSlot.classList.remove('shrink-fade');
 
-  if (side === "left") {
-    // Picked left, only update right
-    rightMovie = nextMovie;
-    updateSlot('.hon-option-card.right', rightMovie);
-  } else {
-    // Picked right, only update left
-    leftMovie = nextMovie;
-    updateSlot('.hon-option-card.left', leftMovie);
-  }
+    const nextMovie = five_movie_array[currentIndex];
+    currentIndex++;
 
-  // Update progress
-  collectProgressItems();
-  handleProgressNumber(currentIndex - 2);
-  handleProgressCheckbox(currentIndex - 2);
+    if (side === "left") {
+      rightMovie = nextMovie;
+      updateSlotWithAnimation('.hon-option-card.right', rightMovie, 'right');
+    } else {
+      leftMovie = nextMovie;
+      updateSlotWithAnimation('.hon-option-card.left', leftMovie, 'left');
+    }
+
+    // Update progress
+    collectProgressItems();
+    handleProgressNumber(currentIndex - 2);
+    handleProgressCheckbox(currentIndex - 2);
+
+  }, 350); // match CSS transition duration
+}
+
+
+// Animate new movie slide-in when updating a slot
+function updateSlotWithAnimation(slotSelector, movie, side) {
+  const slot = document.querySelector(slotSelector);
+
+  // Add slide-in animation class before setting innerHTML
+  const slideClass = side === 'left' ? 'slide-in-left' : 'slide-in-right';
+  slot.classList.add(slideClass);
+
+  // Set content
+  slot.innerHTML = createMovieCardHTML(movie);
+
+  // Remove slide-in class after animation
+  setTimeout(() => {
+    slot.classList.remove(slideClass);
+  }, 350);
+
+  // Add click event
+  slot.querySelector('.choose-movie-btn').addEventListener('click', () => pickMovie(side));
 }
 
 async function gameEnd(resultObject) {
-  // Fetch full movie data from your DB
-  const response = await fetch(pzfilm_globals.ajaxurl, {
-    method: 'POST',
-    body: new URLSearchParams({
-      action: 'get_movie_for_result',
-      movie_id: resultObject.id
-    }),
-    credentials: 'same-origin'
-  });
-  
-  const data = await response.json();
-  if (!data.success) {
-    console.error('Movie data not found:', data);
-    return;
-  }
-  
-  const isPopulated = await poplateResult(data.data);
+  const chosenMovie = await getMovieForGame(resultObject.id);
+  const isPopulated = await poplateResult(chosenMovie);
+
   if(isPopulated) {
+    confetti({particleCount: 100,  spread: 70,  origin: { x: 0.7, y: 0.5 }});
+    confetti({particleCount: 100,  spread: 70,  origin: { x: 0.3, y: 0.6 }});
     honStepHandler(5);
   }
-}
-
-
-
-function updateSlot(slotSelector, movie) {
-  const slot = document.querySelector(slotSelector);
-  slot.innerHTML = createMovieCardHTML(movie);
-  // Add click event to the new button
-  slot.querySelector('.choose-movie-btn').addEventListener('click', () => {
-    pickMovie(slotSelector.includes('left') ? 'left' : 'right');
-  });
 }
 
 // Backend Related Function
@@ -192,6 +241,26 @@ async function getFiveMoviesForGame() {
 
   const data = await response.json();
   return data;
+}
+
+async function getMovieForGame(movie_id) {
+  const response = await fetch(pzfilm_globals.ajaxurl, {
+    method: 'POST',
+    body: new URLSearchParams({
+      action: 'get_movie_for_result',
+      movie_id: movie_id
+    }),
+    credentials: 'same-origin'
+  });
+  
+  const data = await response.json();
+
+  if (!data.success) {
+    console.error('Movie data not found:', data);
+    return;
+  }
+
+  return data.data
 }
 
 export { honStepHandler };

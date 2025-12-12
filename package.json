@@ -24,6 +24,7 @@
     "@roots/sage": "6.20.0"
   },
   "dependencies": {
+    "canvas-confetti": "^1.9.4",
     "openai": "^4.85.1",
     "swiffy-slider": "^1.6.0",
     "toastify-js": "^1.12.0"

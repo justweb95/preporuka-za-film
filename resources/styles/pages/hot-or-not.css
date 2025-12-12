@@ -1,10 +1,12 @@
 .hot-or-not-holder {
+  overflow: clip;
   padding: 48px 0px 220px;
   background-image: url('../images/partials/footer-background.webp');
   background-position: center 60%;
   background-size: cover;
   background-repeat: no-repeat;
   .hot-or-not-container {
+    position: relative;
     margin: 0px auto;
     max-width: 800px;
     .hot-or-not-subheading {
@@ -250,8 +252,42 @@
         }
       }
     } 
-  }  
+  }
+  
+  .back-button {
+    position: absolute;
+    left: -80px;
+    border: none;
+    background-color: transparent;
+    padding: 8px 10px 4px;
+    background: #22374A;
+    border-radius: 12px;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 10px #EF8D53;
+      &::after {
+        opacity: 1;
+      }
+    } 
+    &::after {
+      content: "Vrati se na početak";
+      position: absolute;
+      top: -50%;
+      left: -50%; /* adjust distance from button */
+      transform: translateY(-50%);
+      background: #333;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      white-space: nowrap;
+      pointer-events: none; /* makes it non-interactive */
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+  }
 }
+
 
 .hot-or-not-pop-up {
   padding: 8% 0px;
@@ -528,6 +564,7 @@
     justify-content: space-between;
     align-items: center;
     .hon-first-option-card, .hon-second-option-card {
+      width: 202px;
       .single-movie-card {
         .movie-card-poster {
           max-height: 338px;
@@ -579,25 +616,4 @@
       }
     }
   }
-}
-
-
-
-/* ANIMATIONS */
-@keyframes slideLeftFade {
-  0% { transform: translateX(0) rotate(0); opacity: 1; }
-  100% { transform: translateX(-180px) rotate(-12deg); opacity: 0; }
-}
-
-@keyframes slideRightFade {
-  0% { transform: translateX(0) rotate(0); opacity: 1; }
-  100% { transform: translateX(180px) rotate(12deg); opacity: 0; }
-}
-
-.hon-card-animate-left {
-  animation: slideLeftFade 0.45s ease forwards;
-}
-
-.hon-card-animate-right {
-  animation: slideRightFade 0.45s ease forwards;
 }

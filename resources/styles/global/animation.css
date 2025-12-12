@@ -342,3 +342,106 @@
     transform: translateX(0);
   }
 }
+
+
+
+/* Hot or Not Animation related classes */
+/* Shrink and fade out for unchosen card */
+.shrink-fade {
+  transform: scale(0.5);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+/* Slight scale-up for chosen card */
+.chosen-scale {
+  animation: pop-scale 0.35s ease forwards;
+}
+
+/* Slide-in animations */
+.slide-in-left {
+  transform: translateX(-100%);
+  opacity: 0;
+  animation: slideInLeft 0.35s forwards;
+}
+
+.slide-in-right {
+  transform: translateX(100%);
+  opacity: 0;
+  animation: slideInRight 0.35s forwards;
+}
+
+/* Initial slide-in for first render */
+.initial-slide-left {
+  transform: translateX(-150%);
+  opacity: 0;
+  animation: initialSlideLeft 0.5s forwards ease-out;
+}
+
+.initial-slide-right {
+  transform: translateX(150%);
+  opacity: 0;
+  animation: initialSlideRight 0.5s forwards ease-out;
+}
+
+
+/* Hot or not animation */
+
+@keyframes pop-scale {
+  0% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes initialSlideLeft {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes initialSlideRight {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+@keyframes display_final_result {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    filter: blur(10px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.05); /* slight overshoot for pop */
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1); /* settle */
+    filter: blur(0);
+  }
+}
