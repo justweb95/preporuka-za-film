@@ -26,6 +26,8 @@
 @import url('./pages/questionnaire.css');
 @import url('./layouts/questionnaire-results.css');
 @import url('./pages/hot-or-not.css');
+@import url('./pages/wheel-of-fortune.css');
+@import url('./layouts/wof-add-movie.css');
 @import url('./layouts/game-results.css');
 
 /* Profile Styles */
@@ -34,6 +36,8 @@
 @import url('./profile/advance-search-banner.css');
 @import url('./profile/recent-recommendations-carousel.css');
 @import url('./profile/profile-section-header.css');
+
+
 /* Banners*/
 @import url('./placements/vertical.css');
 

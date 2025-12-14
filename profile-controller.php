@@ -213,6 +213,37 @@ function get_loggedin_username_handler() {
     wp_send_json_success(['username' => $user->user_login]);
 }
 
+add_action('wp_ajax_get_loggedin_user_info', 'get_loggedin_user_info_handler');
+add_action('wp_ajax_nopriv_get_loggedin_user_info', 'get_loggedin_user_info_handler');
+
+
+function get_loggedin_user_info_handler() {
+    // Check environment
+    $is_production = env('PUBLIC_PRODUCTION', false);
+
+    if (!$is_production) {
+        wp_send_json_success([
+            'username' => 'paki',
+            'email'    => 'paki@example.com'
+        ]);
+    }
+
+    // Get current user
+    $user = wp_get_current_user();
+
+    if (!$user || $user->ID === 0) {
+        wp_send_json_success([
+            'username' => 'guest',
+            'email'    => ''
+        ]);
+    }
+
+    wp_send_json_success([
+        'username' => $user->user_login,
+        'email'    => $user->user_email
+    ]);
+}
+
 
 // Toggle a movie in favorite_movies meta via username
 add_action('wp_ajax_toggle_favorite_movie', 'toggle_favorite_movie_by_username_handler');

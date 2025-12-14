@@ -36,6 +36,9 @@ domReady(async () => {
       await import('./partials/hon-custom-add.js');
     },
 
+    '/wheel-of-fortune': async () => {
+      await import('./pages/wheel-of-fortune.js');
+    },
   };
 
   // Load scripts based on the current path

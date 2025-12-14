@@ -87,7 +87,7 @@ require_once get_template_directory() . '/profile-controller.php';
 function add_star_rating_field() {
     echo '<p class="comment-form-rating">
     <span class="stars-container">
-        <input required type="radio" name="rating" id="rating-5" value="5">
+        <input type="radio" name="rating" id="rating-5" value="5">
         <label for="rating-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
             <circle cx="10.2998" cy="10" r="9.3" stroke="white" stroke-width="1.4"/>
@@ -101,7 +101,7 @@ function add_star_rating_field() {
             Odličan
         </label>
         
-        <input required type="radio" name="rating" id="rating-4" value="4">
+        <input type="radio" name="rating" id="rating-4" value="4">
         <label for="rating-4">
             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="10.8994" cy="10" r="9.3" stroke="#EDFEEC" stroke-width="1.4"/>
@@ -112,7 +112,7 @@ function add_star_rating_field() {
             Vrlo Dobar
         </label>
         
-        <input required type="radio" name="rating" id="rating-3" value="3">
+        <input type="radio" name="rating" id="rating-3" value="3">
         <label for="rating-3">
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
                 <circle cx="10.5" cy="10" r="9.3" stroke="#EDFEEC" stroke-width="1.4"/>
@@ -123,7 +123,7 @@ function add_star_rating_field() {
             Prosek
         </label>
         
-        <input required type="radio" name="rating" id="rating-2" value="2">
+        <input type="radio" name="rating" id="rating-2" value="2">
         <label for="rating-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
                 <circle cx="10.5996" cy="10" r="9.3" stroke="#EDFEEC" stroke-width="1.4"/>
@@ -134,7 +134,7 @@ function add_star_rating_field() {
             Loš
         </label>
         
-        <input required type="radio" name="rating" id="rating-1" value="1">
+        <input type="radio" name="rating" id="rating-1" value="1">
         <label for="rating-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
                 <circle cx="10.7012" cy="10" r="9.3" stroke="#EDFEEC" stroke-width="1.4"/>

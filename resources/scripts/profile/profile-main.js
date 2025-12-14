@@ -57,6 +57,24 @@ export async function getLoggedInUsername() {
   return user_data.data.username;
 }
 
+
+export async function getLoggedInUserInfo() {
+  const response = await fetch(pzfilm_globals.ajaxurl, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({
+      action: 'get_loggedin_user_info',
+    }),
+  });
+
+  const result = await response.json();
+  return result.data;
+}
+
+
 export async function getLoggedInUserMetaData() {
   const username = await getLoggedInUsername();
 

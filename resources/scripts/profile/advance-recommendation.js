@@ -33,7 +33,6 @@ async function newAdvanceRecomendationHandler () {
   const openAiAdvanceResponse = await callPerplexityAdvance(advancePrompot);
 
   const tmdbResult = await tmdbAllMoviesHandler(parseAiJson(openAiAdvanceResponse.choices[0].message.content));
-  console.log(tmdbResult);
 
   const username = await getLoggedInUsername();
   if (username) {

@@ -592,6 +592,9 @@
       }
       .comment-respond {
         .comment-form {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
           .logged-in-as {
             margin: 14px 0px;
             color: var(--White, #FFF);
@@ -608,9 +611,13 @@
               font-weight: 400;
               line-height: 140%; /* 22.4px */
             }
+            .required-field-message {
+              display: none;
+            }
           }
           .comment-form-comment, .comment-form-author, .comment-form-email {
-            margin: 20px 0px;
+            order: 1;
+            margin: 0px 0px;
             width: 100%;
             max-width: 100%;
             textarea, input {
@@ -652,6 +659,7 @@
           }
 
           .comment-form-rating {
+            order: 2;
             display: block;
             .stars-container {
               display: flex;
@@ -707,6 +715,7 @@
           }
 
           .form-submit {
+            order: 3;
             margin-top: 32px;
             input {
               padding: 18px 32px;

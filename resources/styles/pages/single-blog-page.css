@@ -418,6 +418,9 @@
             font-weight: 400;
             line-height: 140%; /* 22.4px */
           }
+          .required-field-message {
+            display: none;
+          }
         }
         .comment-form-comment, .comment-form-author, .comment-form-email {
           margin: 20px 0px;
