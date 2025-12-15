@@ -27,23 +27,28 @@
       </svg>
     </div>
     <ul class="wof-wheel-imgs-holder">
-      <li class="wof-slice">
-        <img src="@asset('images/home/movie-1.webp')" alt="">
+      <li class="wof-slice" data-wheel-movie-id="1" data-wheel-movie-name="movie-1" data-wheel-movie-year="2020">
+        INdex 1
       </li>
-      <li class="wof-slice">
-        <img src="@asset('images/home/movie-2.webp')" alt="">
+      <li class="wof-slice" data-wheel-movie-id="2" data-wheel-movie-name="movie-2" data-wheel-movie-year="2021">
+        INdex 2
+        {{-- <img src="@asset('images/home/movie-2.web')" alt="INdex 2"> --}}
       </li>
-      <li class="wof-slice">
-        <img src="@asset('images/home/movie-3.webp')" alt="">
+      <li class="wof-slice" data-wheel-movie-id="3" data-wheel-movie-name="movie-3" data-wheel-movie-year="2022">
+        INdex 3
+        {{-- <img src="@asset('images/home/movie-3.web')" alt="INdex 3"> --}}
       </li>
-      <li class="wof-slice">
-        <img src="@asset('images/home/movie-4.webp')" alt="">
+      <li class="wof-slice" data-wheel-movie-id="4" data-wheel-movie-name="movie-4" data-wheel-movie-year="2023">
+        INdex 4
+        {{-- <img src="@asset('images/home/movie-4.web')" alt="INdex 4"> --}}
       </li>
-      <li class="wof-slice">
-        <img src="@asset('images/home/movie-5.webp')" alt="">
+      <li class="wof-slice" data-wheel-movie-id="5" data-wheel-movie-name="movie-5" data-wheel-movie-year="2024">
+        INdex 5
+        {{-- <img src="@asset('images/home/movie-5.web')" alt="INdex 5"> --}}
       </li>
-      <li class="wof-slice">
-        <img src="@asset('images/home/movie-6.webp')" alt="">
+      <li class="wof-slice" data-wheel-movie-id="6" data-wheel-movie-name="movie-6" data-wheel-movie-year="2025">
+        INdex 6
+        {{-- <img src="@asset('images/home/movie-6.web')" alt="INdex 6"> --}}
       </li>
     </ul>
 

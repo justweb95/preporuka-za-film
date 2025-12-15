@@ -6,6 +6,9 @@
   background-size: cover;
   background-repeat: no-repeat;
 
+
+  color: white;
+
   .wheel-of-fortune-container {
     position: relative;
     margin: 0px auto;
@@ -270,6 +273,203 @@
     }
   }
 }
+
+
+
+.wheel-of-fortune-pop-up {
+  padding: 8% 0px;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  min-height: 100svh;
+  top: 0px;
+  left: 0px;
+  z-index: 20;
+  background-color: #22374A80;
+  backdrop-filter: blur(20px);
+  .wof-pop-up-close-btn {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    svg {
+      border-radius: 50%;
+      rect {
+        transition: .2s ease;
+      }
+    }
+    &:hover {
+      cursor: pointer;
+      svg {
+        box-shadow: 0 0 10px #18BF7C;
+        rect {
+          stroke: #18BF7C;
+        }
+      }
+    }
+  }
+  .wheel-of-fortune-container {
+    margin: 0px auto;
+    width: 95%;
+    max-width: 1080px;
+    .wof-pop-up-title {
+      font-family: 'Unbounded';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 140%;
+      text-align: center;
+      color: #FFFFFF;
+    }
+    .wof-pop-up-search-box {
+      position: relative;
+      max-width: 480px;
+      padding: 18px 45px 18px 24px;
+      margin: 48px auto;
+      background: #06131E;
+      border: 1px solid #00D5DC;
+      box-shadow: 0 0 0 4px rgba(0, 213, 220, 0.15);
+      border-radius: 80px;
+      transition: .2s ease;
+
+      &:hover,
+      &:focus-within {
+        box-shadow: 0 0 20px 8px rgba(0, 213, 220, 0.25);
+      }
+
+      .wof-pop-up-search-input {
+        border: none;
+        background-color: transparent;
+        width: 100%;
+        font-family: 'Red Hat Display';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 24px;
+        color: #FFF;
+
+        &::placeholder {
+          color: #4E6D87;
+        }
+        &:focus,
+        &:active,
+        &:hover {
+          outline: none;
+          border: none;
+          box-shadow: none;
+          background-color: transparent;
+        }
+
+        &:focus-visible {
+          outline: none;
+          box-shadow: none;
+        }
+
+        /* Prevent autofill from changing colors */
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+          -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+          -webkit-text-fill-color: #FFF !important;
+          background-color: transparent !important;
+          transition: background-color 5000s ease-in-out 0s !important;
+        }
+      }
+      .wof-pop-up-search-input-icon {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        translate: 0% -50%;
+      }
+    }
+    .wof-pop-up-search-results {
+      .search-results-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .search-results-filter {
+          font-family: 'Red Hat Display';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 26px;
+          color: #FFFFFF;
+        }
+        .search-results-filter-control {
+          .filter-control-back, .filter-control-next {
+            border: none;
+            background-color: transparent;
+            margin-right: 12px;
+            svg {
+              pointer-events: none;
+              user-select: none;
+              border-radius: 50%;
+              transition: .2s ease;
+            }
+            &:hover {
+              cursor: pointer;
+              svg {
+                box-shadow: 0 0 5px #18BF7C;
+                rect {
+                  stroke: #18BF7C;
+                }
+              }
+            }
+          }
+          .filter-control-next {
+            margin-right: 0px;
+          }
+        }
+      } 
+      .search-results-content {
+        margin-top: 24px;
+        display: none;
+        justify-content: space-between;
+        gap: 8px;
+        list-style: none;
+        .search-results-content-card {
+          position: relative;
+          max-width: 190px;
+          .search-results-add-movie {
+            border: none;
+            background-color: transparent;
+            position: absolute;
+            top: calc(50% - 60px);
+            left: 50%;
+            translate: -50% -50%;
+            .add-movie-icon {
+              border-radius: 50%;
+              cursor: pointer;
+              transition: .2s ease;
+              rect {
+                transition: .2s ease;
+              }
+              &:hover {
+                box-shadow: 0 0 10px #18BF7C;
+                rect {
+                  stroke: #18BF7C;
+                }
+              }
+            } 
+          }
+        }
+      }
+      .show-filter-results {
+        display: flex;
+      }
+      .no-suggestions {
+        padding: 8px 12px;
+        font-size: 16px;
+        color: #FFD54F;
+        font-family: 'Unbounded', sans-serif;
+      }
+    }
+  }
+}
+
+
 
 
 /* 
