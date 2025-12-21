@@ -12,5 +12,5 @@
   @include('pages.wheel-of-fortune.wheel-of-fortune-pop-up')
   
   {{-- Game Result --}}
-  {{-- @include('partials.game-result-component') --}}
+  @include('partials.game-result-component')
 @endsection

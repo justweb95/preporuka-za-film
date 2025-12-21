@@ -113,11 +113,11 @@
       }
     }
   }
-  .hon-pop-up-container {
+  .wof-pop-up-container {
     margin: 0px auto;
     width: 95%;
     max-width: 1080px;
-    .hon-pop-up-title {
+    .wof-pop-up-title {
       font-family: 'Unbounded';
       font-style: normal;
       font-weight: 400;
@@ -126,7 +126,7 @@
       text-align: center;
       color: #FFFFFF;
     }
-    .hon-pop-up-search-box {
+    .wof-pop-up-search-box {
       position: relative;
       max-width: 480px;
       padding: 18px 45px 18px 24px;
@@ -142,7 +142,7 @@
         box-shadow: 0 0 20px 8px rgba(0, 213, 220, 0.25);
       }
 
-      .hon-pop-up-search-input {
+      .wof-pop-up-search-input {
         border: none;
         background-color: transparent;
         width: 100%;
@@ -181,19 +181,19 @@
           transition: background-color 5000s ease-in-out 0s !important;
         }
       }
-      .hon-pop-up-search-input-icon {
+      .wof-pop-up-search-input-icon {
         position: absolute;
         right: 20px;
         top: 50%;
         translate: 0% -50%;
       }
     }
-    .hon-pop-up-search-results {
-      .search-results-header {
+    .wof-pop-up-search-results {
+      .wof-search-results-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .search-results-filter {
+        .wof-search-results-filter {
           font-family: 'Red Hat Display';
           font-style: normal;
           font-weight: 700;
@@ -202,8 +202,8 @@
           color: #FFFFFF;
 
         }
-        .search-results-filter-control {
-          .filter-control-back, .filter-control-next {
+        .wof-search-results-filter-control {
+          .wof-filter-control-back, .wof-filter-control-next {
             border: none;
             background-color: transparent;
             margin-right: 12px;
@@ -223,28 +223,28 @@
               }
             }
           }
-          .filter-control-next {
+          .wof-filter-control-next {
             margin-right: 0px;
           }
         }
       } 
-      .search-results-content {
+      .wof-search-results-content {
         margin-top: 24px;
         display: none;
         justify-content: space-between;
         gap: 8px;
         list-style: none;
-        .search-results-content-card {
+        .wof-search-results-content-card {
           position: relative;
           max-width: 190px;
-          .search-results-add-movie {
+          .wof-search-results-add-movie {
             border: none;
             background-color: transparent;
             position: absolute;
             top: calc(50% - 60px);
             left: 50%;
             translate: -50% -50%;
-            .add-movie-icon {
+            .wof-add-movie-icon {
               border-radius: 50%;
               cursor: pointer;
               transition: .2s ease;
@@ -385,11 +385,11 @@
       }
     }
     .wof-pop-up-search-results {
-      .search-results-header {
+      .wof-search-results-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .search-results-filter {
+        .wof-search-results-filter {
           font-family: 'Red Hat Display';
           font-style: normal;
           font-weight: 700;
@@ -397,8 +397,8 @@
           line-height: 26px;
           color: #FFFFFF;
         }
-        .search-results-filter-control {
-          .filter-control-back, .filter-control-next {
+        .wof-search-results-filter-control {
+          .wof-filter-control-back, .wof-filter-control-next {
             border: none;
             background-color: transparent;
             margin-right: 12px;
@@ -418,28 +418,28 @@
               }
             }
           }
-          .filter-control-next {
+          .wof-filter-control-next {
             margin-right: 0px;
           }
         }
       } 
-      .search-results-content {
+      .wof-search-results-content {
         margin-top: 24px;
         display: none;
         justify-content: space-between;
         gap: 8px;
         list-style: none;
-        .search-results-content-card {
+        .wof-search-results-content-card {
           position: relative;
           max-width: 190px;
-          .search-results-add-movie {
+          .wof-search-results-add-movie {
             border: none;
             background-color: transparent;
             position: absolute;
             top: calc(50% - 60px);
             left: 50%;
             translate: -50% -50%;
-            .add-movie-icon {
+            .wof-add-movie-icon {
               border-radius: 50%;
               cursor: pointer;
               transition: .2s ease;

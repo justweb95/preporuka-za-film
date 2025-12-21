@@ -6,7 +6,7 @@
   $my_already_watched = RecentRecommendationsController::getAlreadyWatchedMovies(5);
 @endphp
 
-<section class="wheel-of-fortune-pop-up" hidden>
+<section class="wheel-of-fortune-pop-up" id="wheel_of_fortune_pop_up" hidden>
   <button class="wof-pop-up-close-btn">
     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" fill="#22374A" fill-o2pacity="0.5"/>
@@ -27,10 +27,10 @@
       </svg>
     </div>
     <div class="wof-pop-up-search-results">
-      <div class="search-results-header">
-        <h3 class="search-results-filter">Poslednje preporuke</h3>
-        <div class="search-results-filter-control">
-          <button class="filter-control-back" data-is-forward="false">
+      <div class="wof-search-results-header">
+        <h3 class="wof-search-results-filter">Poslednje preporuke</h3>
+        <div class="wof-search-results-filter-control">
+          <button class="wof-filter-control-back" data-is-forward="false">
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <foreignObject x="-40" y="-40" width="120" height="120">
               </foreignObject><g data-figma-bg-blur-radius="40">
@@ -42,7 +42,7 @@
               </clipPath></defs>
             </svg>
           </button>
-          <button class="filter-control-next" data-is-forward="true">
+          <button class="wof-filter-control-next" data-is-forward="true">
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <foreignObject x="-40" y="-40" width="120" height="120">
               </foreignObject><g data-figma-bg-blur-radius="40">
@@ -56,9 +56,9 @@
           </button>
         </div>
       </div>
-      <ul id="recent-recommendations-list" class="search-results-content">
+      <ul id="recent-recommendations-list" class="wof-search-results-content">
         @foreach ($my_recent_recommendations as $movie)
-          <li class="search-results-content-card">
+          <li class="wof-search-results-content-card">
             @include('partials/single-movie-card',[
               'movie_index' => $loop->iteration,
               'poster_path' => $movie['poster_url'],
@@ -67,8 +67,8 @@
               'single_movie_control' => false,
               'our_recommendations' => $movie['our_recommendations'],
             ])
-            <button class="search-results-add-movie">
-              <svg class="add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button class="wof-search-results-add-movie">
+              <svg class="wof-add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#06131E" fill-opacity="0.8"/>
                 <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#22374A"/>
                 <path d="M30 40L30 20" stroke="#EDFEEC" stroke-width="2"/>
@@ -78,9 +78,9 @@
           </li>            
         @endforeach
       </ul>
-      <ul id="my-favorites-list" class="search-results-content">
+      <ul id="my-favorites-list" class="wof-search-results-content">
         @foreach ($my_favorites as $movie)
-          <li class="search-results-content-card">
+          <li class="wof-search-results-content-card">
             @include('partials/single-movie-card',[
               'movie_index' => $loop->iteration,
               'poster_path' => $movie['poster_url'],
@@ -89,8 +89,8 @@
               'single_movie_control' => false,
               'our_recommendations' => $movie['our_recommendations'],
             ])
-            <button class="search-results-add-movie">
-              <svg class="add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button class="wof-search-results-add-movie">
+              <svg class="wof-add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#06131E" fill-opacity="0.8"/>
                 <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#22374A"/>
                 <path d="M30 40L30 20" stroke="#EDFEEC" stroke-width="2"/>
@@ -100,9 +100,9 @@
           </li>            
         @endforeach
       </ul>
-      <ul id="already-watched-list" class="search-results-content">
+      <ul id="already-watched-list" class="wof-search-results-content">
         @foreach ($my_already_watched as $movie)
-          <li class="search-results-content-card">
+          <li class="wof-search-results-content-card">
             @include('partials/single-movie-card',[
               'movie_index' => $loop->iteration,
               'poster_path' => $movie['poster_url'],
@@ -111,8 +111,8 @@
               'single_movie_control' => false,
               'our_recommendations' => $movie['our_recommendations'],
             ])
-            <button class="search-results-add-movie">
-              <svg class="add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button class="wof-search-results-add-movie">
+              <svg class="wof-add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#06131E" fill-opacity="0.8"/>
                 <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#22374A"/>
                 <path d="M30 40L30 20" stroke="#EDFEEC" stroke-width="2"/>
@@ -122,7 +122,7 @@
           </li>            
         @endforeach
       </ul>
-      <ul id="custom-search-list" class="search-results-content"></ul>
+      <ul id="wof-custom-search-list" class="wof-search-results-content"></ul>
     </div>
   </div>
 </section>

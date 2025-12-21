@@ -4,6 +4,7 @@ let allTextItems;
 let allPathItems;
 let allLabelBoxItems;
 
+
 function collectProgressItems() {
     allCircleItems = document.querySelectorAll('.progress-circle');
     allCheckboxItems = document.querySelectorAll('.progress-checkbox');
@@ -87,6 +88,5 @@ function addAdvertisementBanner() {
         advertisementBanner.forEach(banner => banner.style.display = 'block')
     }
 }
-
 
 export { collectProgressItems, handleProgressNumber, handleProgressCheckbox, removeProgressBar, removeadvertisementBanner, addAdvertisementBanner };

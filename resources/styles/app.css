@@ -1,3 +1,6 @@
+/* Helper Class */
+@import url('./global/class.css');
+
 /* Variables */
 @import url('./global/variables.css');
 @import url('./global/font.css');
@@ -54,81 +57,6 @@
 
 
 
-
-.profile-main {
-  width: 100%;
-  max-height: 100svh;
-  overflow-y: scroll;
-  scrollbar-width: thin;                
-  scrollbar-color: #18BF7C #0b1220;  
-  padding: 32px 40px 40px 40px;
-  background-position: top;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url('../images/profile/profile-tab-bg-img.webp');
-  background-color: #06131E;
-
-  .my-profile-home-tab {
-    .recent-recommendations {
-      &:nth-of-type(2), &:nth-of-type(3){
-        .profile-section-header {
-          margin: 0px 0px 12px;
-        }
-      }
-    }
-  }
-  /* Chrome, Edge, Safari */
-  &::-webkit-scrollbar {
-    width: 6px;            /* scrollbar thickness */
-    height: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent; /* invisible track for a clean look */
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #18BF7C;
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: #14a86c; /* slightly darker on hover */
-  }
-
-  @media (max-width: 1279px) {
-    max-height: unset;
-    padding: 20px;
-    overflow: clip;
-  }
-}
-
-/* Global style */
-.container {
-  max-width: 1280px;
-  width: 95%;
-  margin: 0px auto;
-}
-
-.container_blog {
-  max-width: 800px;
-  width: 90%;
-  margin: 0px auto;
-}
-
-/* This is for all phaes that have second */
-.category, .blog, .paged {
-  .main {
-    padding: 20px 0px 120px;
-    background-image: url('../images/home/hero-background.webp');
-    background-position: center top;
-    background-size: cover;
-    background-repeat: no-repeat;
-    @media (max-width: 550px) {
-      padding: 20px 0px 40px;
-    }
-  }  
-}
 
 /* @tailwind base;
 @tailwind components;

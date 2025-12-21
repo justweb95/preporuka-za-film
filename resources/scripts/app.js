@@ -38,6 +38,7 @@ domReady(async () => {
 
     '/wheel-of-fortune': async () => {
       await import('./pages/wheel-of-fortune.js');
+      await import('./partials/wof-custom-add.js');
     },
   };
 

@@ -27,28 +27,17 @@
       </svg>
     </div>
     <ul class="wof-wheel-imgs-holder">
-      <li class="wof-slice" data-wheel-movie-id="1" data-wheel-movie-name="movie-1" data-wheel-movie-year="2020">
-        INdex 1
+      <li class="wof-slice empty-slice" data-wheel-movie-id="1" data-wheel-movie-name="movie-1" data-wheel-movie-year="2020">
       </li>
-      <li class="wof-slice" data-wheel-movie-id="2" data-wheel-movie-name="movie-2" data-wheel-movie-year="2021">
-        INdex 2
-        {{-- <img src="@asset('images/home/movie-2.web')" alt="INdex 2"> --}}
+      <li class="wof-slice empty-slice" data-wheel-movie-id="2" data-wheel-movie-name="movie-2" data-wheel-movie-year="2021">
       </li>
-      <li class="wof-slice" data-wheel-movie-id="3" data-wheel-movie-name="movie-3" data-wheel-movie-year="2022">
-        INdex 3
-        {{-- <img src="@asset('images/home/movie-3.web')" alt="INdex 3"> --}}
+      <li class="wof-slice empty-slice" data-wheel-movie-id="3" data-wheel-movie-name="movie-3" data-wheel-movie-year="2022">
       </li>
-      <li class="wof-slice" data-wheel-movie-id="4" data-wheel-movie-name="movie-4" data-wheel-movie-year="2023">
-        INdex 4
-        {{-- <img src="@asset('images/home/movie-4.web')" alt="INdex 4"> --}}
+      <li class="wof-slice empty-slice" data-wheel-movie-id="4" data-wheel-movie-name="movie-4" data-wheel-movie-year="2023">
       </li>
-      <li class="wof-slice" data-wheel-movie-id="5" data-wheel-movie-name="movie-5" data-wheel-movie-year="2024">
-        INdex 5
-        {{-- <img src="@asset('images/home/movie-5.web')" alt="INdex 5"> --}}
+      <li class="wof-slice empty-slice" data-wheel-movie-id="5" data-wheel-movie-name="movie-5" data-wheel-movie-year="2024">
       </li>
-      <li class="wof-slice" data-wheel-movie-id="6" data-wheel-movie-name="movie-6" data-wheel-movie-year="2025">
-        INdex 6
-        {{-- <img src="@asset('images/home/movie-6.web')" alt="INdex 6"> --}}
+      <li class="wof-slice empty-slice" data-wheel-movie-id="6" data-wheel-movie-name="movie-6" data-wheel-movie-year="2025">
       </li>
     </ul>
 
@@ -57,18 +46,18 @@
 
   <div class="wof-movie-cards">
     <ul class="wof-movie-card-list">
-      <li class="wof-movie-card wof-movie-card--empty">
-        <button class="wof-movie-btn wof-movie-btn--add" data-tooltip="Izbaci Film">
-          <img class="wof-movie-card-img" src="@asset('images/home/movie-1.webp')" alt="">
-          <svg class="wof-remove-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <li class="wof-movie-card empty-card">
+        <button class="wof-movie-btn" data-tooltip="Izbaci Film">
+          <svg class="wof-add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#22374A" fill-opacity="0.5"/>
             <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#22374A"/>
+            <path d="M30 40L30 20" stroke="#EDFEEC" stroke-width="2"/>
             <path d="M20 30L40 30" stroke="#EDFEEC" stroke-width="2"/>
           </svg>
         </button>
       </li>      
-      <li class="wof-movie-card wof-movie-card--empty">
-        <button class="wof-movie-btn wof-movie-btn--add" data-tooltip="Dodaj film">
+      <li class="wof-movie-card empty-card">
+        <button class="wof-movie-btn" data-tooltip="Dodaj film">
           <span class="wof-movie-btn__icon">
             <svg class="wof-add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#22374A" fill-opacity="0.5"/>
@@ -79,8 +68,8 @@
           </span>
         </button>
       </li>
-      <li class="wof-movie-card wof-movie-card--empty">
-        <button class="wof-movie-btn wof-movie-btn--add" data-tooltip="Dodaj film">
+      <li class="wof-movie-card empty-card">
+        <button class="wof-movie-btn" data-tooltip="Dodaj film">
           <span class="wof-movie-btn__icon">
             <svg class="wof-add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#22374A" fill-opacity="0.5"/>
@@ -91,8 +80,8 @@
           </span>
         </button>
       </li>
-      <li class="wof-movie-card wof-movie-card--empty">
-        <button class="wof-movie-btn wof-movie-btn--add" data-tooltip="Dodaj film">
+      <li class="wof-movie-card empty-card">
+        <button class="wof-movie-btn" data-tooltip="Dodaj film">
           <span class="wof-movie-btn__icon">
             <svg class="wof-add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#22374A" fill-opacity="0.5"/>
@@ -103,8 +92,8 @@
           </span>
         </button>
       </li>
-      <li class="wof-movie-card wof-movie-card--empty">
-        <button class="wof-movie-btn wof-movie-btn--add" data-tooltip="Dodaj film">
+      <li class="wof-movie-card empty-card">
+        <button class="wof-movie-btn" data-tooltip="Dodaj film">
           <span class="wof-movie-btn__icon">
             <svg class="wof-add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#22374A" fill-opacity="0.5"/>
@@ -115,8 +104,8 @@
           </span>
         </button>
       </li>
-      <li class="wof-movie-card wof-movie-card--empty">
-        <button class="wof-movie-btn wof-movie-btn--add" data-tooltip="Dodaj film">
+      <li class="wof-movie-card empty-card">
+        <button class="wof-movie-btn" data-tooltip="Dodaj film">
           <span class="wof-movie-btn__icon">
             <svg class="wof-add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#22374A" fill-opacity="0.5"/>

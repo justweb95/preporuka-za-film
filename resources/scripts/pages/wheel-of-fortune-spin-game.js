@@ -1,9 +1,14 @@
+import { showToast } from "@scripts/helpers/toastify-helper";
+
 function wheelOfFortune(selector) {
   const node = document.querySelector(selector);
-  if (!node) return;
+  if (!node) return null;
 
-  const spin = node.parentElement.querySelector('.wof-start-game');
+  const spinBtn = node.parentElement.querySelector('.wof-start-game');
   const wheel = node;
+
+  const elementToHide = document.querySelector('.wof-movie-cards');
+  const mover = wheel.closest('.wof-wheel-mover') || wheel.parentElement;
 
   let animation;
   let previousEndDegree = 0;
@@ -18,86 +23,100 @@ function wheelOfFortune(selector) {
     { index: 6, from: 255, to: 345 }
   ];
 
-  // zeroAngle = 360 - finalAngle + pointerAngle
-  const POINTER_ANGLE = 90; // pointer points UP
+  const POINTER_ANGLE = 90;
 
-  const calculateZeroAngle = finalAngle => {
-    let zeroAngle = 360 - finalAngle + POINTER_ANGLE;
-    return ((zeroAngle % 360) + 360) % 360;
-  };
-
-  // inverse of calculateZeroAngle
-  const calculateFinalAngleFromZero = zeroAngle => {
+  const calculateFinalAngleFromZero = (zeroAngle) => {
     let angle = 360 + POINTER_ANGLE - zeroAngle;
     return ((angle % 360) + 360) % 360;
   };
 
-  spin.addEventListener('click', () => {
-    if (animation) animation.cancel();
-
-    const FULL_SPINS = 5;
-
-    // 1️⃣ Pick winning slice index (1–6)
+  function pickWinner() {
     const sliceCount = 6;
     const winningSlice = Math.floor(Math.random() * sliceCount) + 1;
 
-    // 2️⃣ Find ALL ranges for that slice and calculate CENTER
     const ranges = rangeAngles.filter(r => r.index === winningSlice);
 
     let centerZeroAngle;
     if (ranges.length === 2) {
-      // wrap-around slice (Film 1)
-      centerZeroAngle =
-        ((ranges[0].from + (ranges[1].to + 360)) / 2) % 360;
+      centerZeroAngle = ((ranges[0].from + (ranges[1].to + 360)) / 2) % 360;
     } else {
       centerZeroAngle = (ranges[0].from + ranges[0].to) / 2;
     }
 
-    // 3️⃣ Convert zeroAngle → final wheel rotation
-    const targetFinalAngle =
-      calculateFinalAngleFromZero(centerZeroAngle);
+    const targetFinalAngle = calculateFinalAngleFromZero(centerZeroAngle);
 
-    // 4️⃣ Add full spins + continuity
+    return { winningSlice, targetFinalAngle };
+  }
+
+  async function spinOnce() {
+    const hasEmptySlice = wheel.querySelector('.wof-slice.empty-slice') !== null;
+    if (hasEmptySlice) {
+      showToast('Dodaj svih 6 filmova da pokreneš točak!', 4000);
+      return null;
+    }
+
+    spinBtn.style.display = 'none';
+
+    if (animation) animation.cancel();
+
+    // pre animations
+    const preAnims = [];
+
+    if (elementToHide) {
+      elementToHide.style.pointerEvents = 'none';
+      elementToHide.style.userSelect = 'none';
+
+      const hideAnim = elementToHide.animate(
+        [{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(0.52)' }],
+        { duration: 700, easing: 'ease-in-out', fill: 'forwards' }
+      );
+      preAnims.push(hideAnim.finished.catch(() => {}));
+    }
+
+    if (mover) {
+      const rect = mover.getBoundingClientRect();
+      const dx = window.innerWidth / 2 - (rect.left + rect.width / 2);
+
+      const moveAnim = mover.animate(
+        [{ transform: 'translateX(0px)' }, { transform: `translateX(${dx}px)` }],
+        { duration: 1000, easing: 'ease-in-out', fill: 'forwards' }
+      );
+      preAnims.push(moveAnim.finished.catch(() => {}));
+    }
+
+    await Promise.all(preAnims);
+
+    const FULL_SPINS = 5;
+    const { winningSlice, targetFinalAngle } = pickWinner();
+
     const currentTurns = Math.floor(previousEndDegree / 360);
     const nextTurns = currentTurns + FULL_SPINS + 1;
 
-    const newEndDegree =
-      nextTurns * 360 +
-      targetFinalAngle;
+    const newEndDegree = nextTurns * 360 + targetFinalAngle;
 
-
-    // 5️⃣ Animate
     animation = wheel.animate(
       [
         { transform: `rotate(${previousEndDegree}deg)` },
         { transform: `rotate(${newEndDegree}deg)` }
       ],
       {
-        duration: 5000,
-        easing: 'cubic-bezier(0.3, -0.2, 0.25, 0.95)', // last 0.5s slow creep
+        duration: 6000,
+        easing: 'cubic-bezier(0.25, -0.2, 0.1, 1)',
         fill: 'forwards'
       }
     );
 
-
     previousEndDegree = newEndDegree;
 
-    // 6️⃣ Resolve winner (guaranteed center)
-    animation.onfinish = () => {
-      const finalAngle = ((newEndDegree % 360) + 360) % 360;
-      const zeroAngle = calculateZeroAngle(finalAngle);
+    await animation.finished.catch(() => {});
 
-      console.log('🎯 ZERO ANGLE:', zeroAngle);
-      console.log('🎯 WINNING SLICE:', winningSlice);
+    const slices = wheel.querySelectorAll('.wof-slice');
+    const winnerEl = slices[winningSlice - 1];
 
-      const slices = wheel.querySelectorAll('.wof-slice');
-      const winnerEl = slices[winningSlice - 1];
+    return winnerEl;
+  }
 
-      console.log('ID:', winnerEl.dataset.wheelMovieId);
-      console.log('NAME:', winnerEl.dataset.wheelMovieName);
-      console.log('YEAR:', winnerEl.dataset.wheelMovieYear);
-    };
-  });
+  return { spin: spinOnce };
 }
 
 export { wheelOfFortune };
