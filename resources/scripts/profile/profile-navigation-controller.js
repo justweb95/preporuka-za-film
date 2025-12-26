@@ -1,4 +1,3 @@
-import { getFavorites, getWatched } from "@scripts/partials/single-movie-card";
 import { initMovieFilterSort } from "@scripts/profile/section-header-controller.js";
 import { enableUserProfile } from './profile-main.js';
 
@@ -66,9 +65,6 @@ async function handleNavigationClick(id, link) {
     switch (id) {
       case 'omiljeni_filmovi':
         await loadFavoritesTab();
-        await getFavorites();
-        await getWatched();
-
         await new Promise(resolve => setTimeout(resolve, 100));
         
         initMovieFilterSort('my-favorites-tab', 'my-favorites-list');
@@ -76,9 +72,6 @@ async function handleNavigationClick(id, link) {
 
       case 'moje_preporuke':
         await loadRecentRecommendationsTab();
-        await getFavorites();
-        await getWatched();
-        
         await new Promise(resolve => setTimeout(resolve, 100));
         
         initMovieFilterSort('recent-recommendations-tab', 'recent-recommendations-list');
@@ -86,9 +79,6 @@ async function handleNavigationClick(id, link) {
 
       case 'vec_gledani':
         await loadAlreadyWatchedTab();
-        await getFavorites();
-        await getWatched();
-        
         await new Promise(resolve => setTimeout(resolve, 100));
         
         initMovieFilterSort('already-watched-tab', 'already-watched-list');

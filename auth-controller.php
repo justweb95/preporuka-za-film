@@ -403,17 +403,16 @@ function google_token_login() {
 
         $user = get_user_by('ID', $user_id);
         
-        // 🎉 ADD WELCOME NOTIFICATION FOR NEW USER
         $notificationManager = new NotificationManager($user_id);
         $notificationManager->addNotification(
-            $user_id,                           // Specific user
-            'success',                          // Type
-            'Dobrodošli na Preporuka za Film!', // Title
-            'Vaš nalog je uspešno kreiran. Počnite sa traženjem savršenog filma!', // Message
-            '/moj-profil',                      // Link
-            '🎬',                               // Icon (emoji or SVG class)
-            7                                  // Expires in 7 days
+            $user_id,
+            'notification',
+            'Dobrodošli!',
+            'Vaš profil je uspešno aktiviran.',
+            'bell',
+            7
         );
+
     }
 
     // Log the user in
@@ -425,8 +424,7 @@ function google_token_login() {
     // Return success
     wp_send_json_success([
         'message'     => 'User logged in successfully',
-        'redirect'    => home_url('/moj-profil'),
-        'is_new_user' => $is_new_user, // 🔥 Let frontend know
+        'is_new_user' => $is_new_user,
         'user'        => [
             'id'    => $user->ID,
             'name'  => $user->display_name,

@@ -28,21 +28,27 @@
         </button>
       <?php endif; ?>
 
-      <button class="movie-card-btn-already-watched">
-        <svg onclick="alreadywatched(<?php echo $movie_ID; ?>)" data-watched-id="<?php echo $movie_ID; ?>" class="watched-button" width="24" height="24" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6.83082 2H15.5117C16.1075 2 16.6392 2.01836 17.1158 2.08252C19.655 2.36669 20.3425 3.55834 20.3425 6.82168V12.615C20.3425 15.8784 19.655 17.07 17.1158 17.3542C16.6392 17.4183 16.1167 17.4367 15.5117 17.4367H6.83082C6.23499 17.4367 5.70332 17.4183 5.22666 17.3542C2.68749 17.07 2 15.8784 2 12.615V6.82168C2 3.55834 2.68749 2.36669 5.22666 2.08252C5.70332 2.01836 6.23499 2 6.83082 2Z" fill="#06131E" stroke="#EDFEEC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M6 20H15.1667" stroke="#EDFEEC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M8 10L10.5 12.5L15 8" stroke="#EDFEEC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="movie-card-menu-btn-tooltip">Dodaj u vec gledane</span>
-      </button>
+    <button class="movie-card-btn-already-watched">
+      <svg onclick="alreadywatched(<?php echo $movie_ID; ?>)" 
+          data-watched-id="<?php echo $movie_ID; ?>" 
+          class="watched-button <?php echo $is_watched ? 'watched' : ''; ?>" 
+          width="24" height="24" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6.83082 2H15.5117C16.1075 2 16.6392 2.01836 17.1158 2.08252C19.655 2.36669 20.3425 3.55834 20.3425 6.82168V12.615C20.3425 15.8784 19.655 17.07 17.1158 17.3542C16.6392 17.4183 16.1167 17.4367 15.5117 17.4367H6.83082C6.23499 17.4367 5.70332 17.4183 5.22666 17.3542C2.68749 17.07 2 15.8784 2 12.615V6.82168C2 3.55834 2.68749 2.36669 5.22666 2.08252C5.70332 2.01836 6.23499 2 6.83082 2Z" fill="#06131E" stroke="#EDFEEC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 20H15.1667" stroke="#EDFEEC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 10L10.5 12.5L15 8" stroke="#EDFEEC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="movie-card-menu-btn-tooltip">Dodaj u vec gledane</span>
+    </button>
 
-      <button class="movie-card-btn-favorites">
-        <svg onclick="likeButtonHandler(<?php echo $movie_ID; ?>)" data-favorites-id="<?php echo $movie_ID; ?>" class="like-button" width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M11.3725 2.85593C11.5111 3.06761 11.747 3.19517 12 3.19517C12.253 3.19517 12.489 3.06761 12.6275 2.85592C13.6562 1.28437 15.1845 0.727064 16.789 0.750709C20.0209 0.798338 23.25 3.50673 23.25 7.33386C23.25 11.2953 20.7388 14.7747 17.9448 17.3208C16.5604 18.5824 15.139 19.5844 13.9963 20.2679C13.4246 20.6098 12.9308 20.8672 12.5535 21.0363C12.3642 21.1211 12.2131 21.1797 12.102 21.2156C12.0533 21.2313 12.02 21.2401 12 21.2449C11.98 21.2401 11.9467 21.2313 11.898 21.2156C11.7869 21.1797 11.6358 21.1211 11.4466 21.0363C11.0693 20.8672 10.5754 20.6098 10.0038 20.2679C8.86105 19.5844 7.4396 18.5824 6.05517 17.3208C3.26118 14.7747 0.75 11.2953 0.75 7.33386C0.75 3.49765 3.98649 0.750792 7.2 0.750792C8.79265 0.750792 10.3484 1.29143 11.3725 2.85593Z" fill="#06131E" stroke="#EDFEEC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="movie-card-menu-btn-tooltip">Dodaj u omiljene</span>
-      </button>
+    <button class="movie-card-btn-favorites">
+      <svg onclick="likeButtonHandler(<?php echo $movie_ID; ?>)" 
+          data-favorites-id="<?php echo $movie_ID; ?>" 
+          class="like-button <?php echo $is_favorite ? 'liked' : ''; ?>" 
+          width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.3725 2.85593C11.5111 3.06761 11.747 3.19517 12 3.19517C12.253 3.19517 12.489 3.06761 12.6275 2.85592C13.6562 1.28437 15.1845 0.727064 16.789 0.750709C20.0209 0.798338 23.25 3.50673 23.25 7.33386C23.25 11.2953 20.7388 14.7747 17.9448 17.3208C16.5604 18.5824 15.139 19.5844 13.9963 20.2679C13.4246 20.6098 12.9308 20.8672 12.5535 21.0363C12.3642 21.1211 12.2131 21.1797 12.102 21.2156C12.0533 21.2313 12.02 21.2401 12 21.2449C11.98 21.2401 11.9467 21.2313 11.898 21.2156C11.7869 21.1797 11.6358 21.1211 11.4466 21.0363C11.0693 20.8672 10.5754 20.6098 10.0038 20.2679C8.86105 19.5844 7.4396 18.5824 6.05517 17.3208C3.26118 14.7747 0.75 11.2953 0.75 7.33386C0.75 3.49765 3.98649 0.750792 7.2 0.750792C8.79265 0.750792 10.3484 1.29143 11.3725 2.85593Z" fill="#06131E" stroke="#EDFEEC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="movie-card-menu-btn-tooltip">Dodaj u omiljene</span>
+    </button>
     </div>
   </article>
 </li>

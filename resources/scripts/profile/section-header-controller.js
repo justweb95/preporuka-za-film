@@ -1,163 +1,136 @@
 export function initMovieFilterSort(tabClass, containerClass) {
-  // Wait for DOM to be fully ready
-  const initialize = () => {
-    console.log(`🎬 Initializing filter/sort for tab: ${tabClass}, container: ${containerClass}`);
-    
-    const tab = document.querySelector(`.${tabClass}`);
-    if (!tab) {
-      console.warn(`❌ Tab not found: .${tabClass}`);
-      return;
-    }
-    console.log(`✅ Tab found:`, tab);
+  const tab = document.querySelector(`.${tabClass}`);
+  if (!tab) return;
 
-    const moviesContainer = tab.querySelector(`.${containerClass}`);
-    if (!moviesContainer) {
-      console.warn(`❌ Container not found: .${containerClass}`);
-      return;
-    }
-    console.log(`✅ Container found:`, moviesContainer);
+  const moviesContainer = tab.querySelector(`.${containerClass}`);
+  if (!moviesContainer) return;
 
-    const categoryFilters = tab.querySelectorAll('.single-category-filter');
-    const sortDropdown = tab.querySelector('.filter-sort-dropdown');
-    const sortSelected = sortDropdown?.querySelector('.filter-sort-selected p');
-    const sortOptions = sortDropdown?.querySelectorAll('.filter-sort-options p');
+  const categoryFilters = tab.querySelectorAll('.single-category-filter');
+  const sortDropdown = tab.querySelector('.filter-sort-dropdown');
+  const sortSelected = sortDropdown?.querySelector('.filter-sort-selected p');
+  const sortOptions = sortDropdown?.querySelectorAll('.filter-sort-options p');
 
-    console.log(`📊 Found ${categoryFilters.length} category filters`);
-    console.log(`📊 Found ${sortOptions?.length || 0} sort options`);
+  let currentCategory = 'all';
+  let currentSort = 'sort_year';
+  let isInitialLoad = true; // Track first load
+  
+  // Cache all movie elements once
+  const allMovies = Array.from(moviesContainer.querySelectorAll('li')).map(li => ({
+    element: li,
+    movie: li.querySelector('.movie-card'),
+    year: parseInt(li.querySelector('.movie-card')?.dataset.year) || 0,
+    rating: parseFloat(li.querySelector('.movie-card')?.dataset.rating) || 0,
+    category: li.querySelector('.movie-card')?.dataset.category || ''
+  }));
 
-    let currentCategory = 'all';
-    let currentSort = 'sort_year';
+  // ================= CATEGORY FILTER =================
+  categoryFilters.forEach(filterBtn => {
+    filterBtn.addEventListener('click', () => {
+      const newCategory = filterBtn.dataset.categoryType;
+      
+      // If clicking "all" and already on "all", do nothing
+      if (newCategory === 'all' && currentCategory === 'all') return;
+      
+      currentCategory = newCategory;
+      
+      categoryFilters.forEach(f => f.classList.remove('active-category'));
+      filterBtn.classList.add('active-category');
 
-    // ================= CATEGORY FILTER =================
-    categoryFilters.forEach(filterBtn => {
-      filterBtn.addEventListener('click', () => {
-        currentCategory = filterBtn.dataset.categoryType;
-        console.log(`🏷️ Category changed to: ${currentCategory}`);
+      filterAndSortMovies();
+    });
+  });
 
-        categoryFilters.forEach(f => f.classList.remove('active-category'));
-        filterBtn.classList.add('active-category');
+  // ================= SORT DROPDOWN =================
+  if (sortDropdown && sortOptions?.length > 0) {
+    const selectedElement = sortDropdown.querySelector('.filter-sort-selected');
 
-        filterAndSortMovies();
+    selectedElement?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sortDropdown.classList.toggle('filter-sort-open');
+    });
+
+    sortOptions.forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        const newSort = option.dataset.value;
+        
+        if (newSort && newSort !== currentSort) {
+          currentSort = newSort;
+          if (sortSelected) {
+            sortSelected.textContent = option.textContent;
+          }
+          filterAndSortMovies();
+        }
+
+        sortDropdown.classList.remove('filter-sort-open');
       });
     });
 
-    // ================= SORT DROPDOWN =================
-    if (sortDropdown && sortOptions && sortOptions.length > 0) {
-      const selectedElement = sortDropdown.querySelector('.filter-sort-selected');
-      console.log(`✅ Sort dropdown initialized`);
-
-      if (selectedElement) {
-        selectedElement.addEventListener('click', (e) => {
-          e.stopPropagation();
-          sortDropdown.classList.toggle('filter-sort-open');
-          console.log(`🔽 Dropdown toggled:`, sortDropdown.classList.contains('filter-sort-open') ? 'OPEN' : 'CLOSED');
-        });
+    document.addEventListener('click', (e) => {
+      if (!sortDropdown.contains(e.target)) {
+        sortDropdown.classList.remove('filter-sort-open');
       }
+    });
+  }
 
-      sortOptions.forEach(option => {
-        option.addEventListener('click', (e) => {
-          e.stopPropagation();
-          
-          const newSort = option.dataset.value;
-          console.log(`🔄 Sort option clicked: ${newSort} (current: ${currentSort})`);
-
-          if (newSort && newSort !== currentSort) {
-            console.log(`✅ Sort changed from ${currentSort} to ${newSort}`);
-            currentSort = newSort;
-            if (sortSelected) {
-              sortSelected.textContent = option.textContent;
-              console.log(`📝 Updated dropdown text to: ${option.textContent}`);
-            }
-            filterAndSortMovies();
-          } else {
-            console.log(`⏭️ Sort not changed, skipping re-sort`);
-          }
-
-          sortDropdown.classList.remove('filter-sort-open');
-          console.log(`🔼 Dropdown closed`);
-        });
-      });
-
-      document.addEventListener('click', (e) => {
-        if (!sortDropdown.contains(e.target)) {
-          if (sortDropdown.classList.contains('filter-sort-open')) {
-            sortDropdown.classList.remove('filter-sort-open');
-            console.log(`🔼 Dropdown closed (clicked outside)`);
-          }
-        }
-      });
-    } else {
-      console.warn(`⚠️ Sort dropdown not properly initialized`);
+  function filterAndSortMovies() {
+    // Skip sorting on initial load when category is "all"
+    if (isInitialLoad && currentCategory === 'all') {
+      isInitialLoad = false;
+      // Just ensure all are visible
+      allMovies.forEach(item => item.element.style.display = 'block');
+      return;
     }
-
-    function filterAndSortMovies() {
-      console.log(`🔄 Running filterAndSort - Category: ${currentCategory}, Sort: ${currentSort}`);
+    
+    isInitialLoad = false;
+    
+    // Special case: "all" category - just show everything in current sort order
+    if (currentCategory === 'all') {
+      const fragment = document.createDocumentFragment();
       
-      const allLis = Array.from(moviesContainer.querySelectorAll('li'));
-      console.log(`📦 Total movies (li): ${allLis.length}`);
-
-      const visibleLis = allLis.filter(li => {
-        const movie = li.querySelector('.movie-card');
-        if (!movie) {
-          console.warn(`⚠️ No .movie-card found in li:`, li);
-          return false;
-        }
-        if (currentCategory === 'all') return true;
-        
-        const matches = movie.dataset.category === currentCategory;
-        return matches;
-      });
-
-      console.log(`✅ Visible movies after filter: ${visibleLis.length}`);
-
-      allLis.forEach(li => li.style.display = 'none');
-
-      console.log(`🔀 Sorting by: ${currentSort}`);
-      visibleLis.sort((a, b) => {
-        const movieA = a.querySelector('.movie-card');
-        const movieB = b.querySelector('.movie-card');
-
-        if (!movieA || !movieB) return 0;
-
-        let aVal = 0, bVal = 0;
-
-        if (currentSort === 'sort_year') {
-          aVal = parseInt(movieA.dataset.year) || 0;
-          bVal = parseInt(movieB.dataset.year) || 0;
-        } else if (currentSort === 'sort_rating') {
-          aVal = parseFloat(movieA.dataset.rating) || 0;
-          bVal = parseFloat(movieB.dataset.rating) || 0;
-        }
-
+      // Sort cached data
+      const sorted = [...allMovies].sort((a, b) => {
+        const aVal = currentSort === 'sort_year' ? a.year : a.rating;
+        const bVal = currentSort === 'sort_year' ? b.year : b.rating;
         return bVal - aVal;
       });
-
-      visibleLis.forEach((li, index) => {
-        moviesContainer.appendChild(li);
-        li.style.display = 'block';
-        
-        if (index === 0) {
-          const movie = li.querySelector('.movie-card');
-          console.log(`🥇 First movie:`, {
-            year: movie?.dataset.year,
-            rating: movie?.dataset.rating
-          });
-        }
+      
+      // Batch DOM update
+      sorted.forEach(item => {
+        item.element.style.display = 'block';
+        fragment.appendChild(item.element);
       });
-
-      console.log(`✅ filterAndSortMovies() complete\n`);
+      
+      moviesContainer.appendChild(fragment);
+      return;
     }
-
-    console.log(`🚀 Running initial filterAndSort`);
-    filterAndSortMovies();
-  };
-  
-  // Check if DOM is already loaded
-  if (document.readyState === 'loading') {
-    console.log(`⏳ DOM still loading, waiting for DOMContentLoaded...`);
-    document.addEventListener('DOMContentLoaded', initialize);
-  } else {
-    console.log(`✅ DOM already ready, initializing immediately`);
-    initialize();
+    
+    // Filter by category
+    const visible = allMovies.filter(item => item.category === currentCategory);
+    
+    // Sort
+    visible.sort((a, b) => {
+      const aVal = currentSort === 'sort_year' ? a.year : a.rating;
+      const bVal = currentSort === 'sort_year' ? b.year : b.rating;
+      return bVal - aVal;
+    });
+    
+    // Batch DOM updates using DocumentFragment
+    const fragment = document.createDocumentFragment();
+    
+    // Hide all first
+    allMovies.forEach(item => item.element.style.display = 'none');
+    
+    // Show and reorder visible ones
+    visible.forEach(item => {
+      item.element.style.display = 'block';
+      fragment.appendChild(item.element);
+    });
+    
+    moviesContainer.appendChild(fragment);
   }
+
+  // Initial load
+  filterAndSortMovies();
 }

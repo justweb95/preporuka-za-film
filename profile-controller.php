@@ -868,7 +868,8 @@ add_action('wp_ajax_nopriv_load_favorites_tab', 'load_favorites_tab');
 
 function load_favorites_tab() {
     try {
-        // Get favorites directly
+        $user_id = get_current_user_id();
+        
         if (class_exists('\App\Controllers\RecentRecommendationsController')) {
             $favorites = \App\Controllers\RecentRecommendationsController::getMyFavoritesMovies(20);
         } else {
@@ -878,8 +879,11 @@ function load_favorites_tab() {
         if (empty($favorites)) {
             echo '<li class="no-results-found">Trenutno nema favorita.</li>';
         } else {
+            // Get watched movie IDs for this user
+            $watched_ids = json_decode(get_user_meta($user_id, 'already_watched', true), true);
+            $watched_ids = is_array($watched_ids) ? array_flip($watched_ids) : [];
+
             foreach ($favorites as $index => $movie) {
-                // Make variables available to the template
                 $movie_index = $index + 1;
                 $poster_path = $movie['poster_url'] ?? '';
                 $movie_ID = $movie['ID'] ?? 0;
@@ -887,18 +891,15 @@ function load_favorites_tab() {
                 $vote_average = $movie['vote_average'] ?? '';
                 $genres = $movie['genres'] ?? [];
                 $our_recommendations = $movie['our_recommendations'] ?? false;
+                
+                // All movies here ARE favorites
+                $is_favorite = true;
+                // Check if this movie is in watched list
+                $is_watched = isset($watched_ids[$movie_ID]);
 
-                $template_file = get_stylesheet_directory() . '/app/Template/single-card-template.php';
-
-                if (file_exists($template_file)) {
-                    include $template_file; // This will render one card
-                } else {
-                    echo '<li class="no-results-found">Template file missing.</li>';
-                }
-
+                include get_stylesheet_directory() . '/app/Template/single-card-template.php';
             }
         }
-
     } catch (Throwable $e) {
         error_log('load_favorites_tab error: ' . $e->getMessage());
         echo '<li class="no-results-found">Došlo je do greške prilikom učitavanja.</li>';
@@ -908,11 +909,14 @@ function load_favorites_tab() {
 }
 
 
+
 add_action('wp_ajax_load_recent_recommendations_tab', 'load_recent_recommendations_tab');
 add_action('wp_ajax_nopriv_load_recent_recommendations_tab', 'load_recent_recommendations_tab');
 
 function load_recent_recommendations_tab() {
     try {
+        $user_id = get_current_user_id();
+        
         if (class_exists('\App\Controllers\RecentRecommendationsController')) {
             $movies = \App\Controllers\RecentRecommendationsController::getRecentRecommendations(20);
         } else {
@@ -922,6 +926,13 @@ function load_recent_recommendations_tab() {
         if (empty($movies)) {
             echo '<li class="no-results-found">Trenutno nema preporuka.</li>';
         } else {
+            // Get both favorites AND watched for this user
+            $favorite_ids = json_decode(get_user_meta($user_id, 'favorite_movies', true), true);
+            $favorite_ids = is_array($favorite_ids) ? array_flip($favorite_ids) : [];
+            
+            $watched_ids = json_decode(get_user_meta($user_id, 'already_watched', true), true);
+            $watched_ids = is_array($watched_ids) ? array_flip($watched_ids) : [];
+
             foreach ($movies as $index => $movie) {
                 $movie_index = $index + 1;
                 $poster_path = $movie['poster_url'] ?? '';
@@ -930,6 +941,10 @@ function load_recent_recommendations_tab() {
                 $vote_average = $movie['vote_average'] ?? '';
                 $genres = $movie['genres'] ?? [];
                 $our_recommendations = $movie['our_recommendations'] ?? false;
+                
+                // Check both statuses - could be either, both, or neither
+                $is_favorite = isset($favorite_ids[$movie_ID]);
+                $is_watched = isset($watched_ids[$movie_ID]);
 
                 $template_file = get_stylesheet_directory() . '/app/Template/single-card-template.php';
                 if (file_exists($template_file)) {
@@ -954,16 +969,21 @@ add_action('wp_ajax_nopriv_load_already_watched_tab', 'load_already_watched_tab'
 
 function load_already_watched_tab() {
     try {
+        $user_id = get_current_user_id();
+        
         if (class_exists('\App\Controllers\RecentRecommendationsController')) {
             $movies = \App\Controllers\RecentRecommendationsController::getAlreadyWatchedMovies(20);
         } else {
             $movies = [];
         }
-        echo '<li class="no-results-found">Trenutno nema gledanih filmova.</li>';
 
         if (empty($movies)) {
             echo '<li class="no-results-found">Trenutno nema gledanih filmova.</li>';
         } else {
+            // Get favorites for this user
+            $favorite_ids = json_decode(get_user_meta($user_id, 'favorite_movies', true), true);
+            $favorite_ids = is_array($favorite_ids) ? array_flip($favorite_ids) : [];
+
             foreach ($movies as $index => $movie) {
                 $movie_index = $index + 1;
                 $poster_path = $movie['poster_url'] ?? '';
@@ -972,6 +992,10 @@ function load_already_watched_tab() {
                 $vote_average = $movie['vote_average'] ?? '';
                 $genres = $movie['genres'] ?? [];
                 $our_recommendations = $movie['our_recommendations'] ?? false;
+                
+                // Check status
+                $is_favorite = isset($favorite_ids[$movie_ID]);
+                $is_watched = true; // All movies in this list ARE watched
 
                 $template_file = get_stylesheet_directory() . '/app/Template/single-card-template.php';
                 if (file_exists($template_file)) {

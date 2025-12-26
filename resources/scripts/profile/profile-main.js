@@ -34,7 +34,8 @@ window.addEventListener('load', () => {
         .then(res => res.json())
         .then(data => {
           if (data.success && data.data.redirect) {
-            window.location.href = data.data.redirect;
+            // window.location.href = data.data.redirect;
+            console.log(data.data?.message || 'Google login failed');
           } else {
             console.log(data.data?.message || 'Google login failed');
           }
