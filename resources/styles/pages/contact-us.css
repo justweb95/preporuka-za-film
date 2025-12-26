@@ -27,7 +27,7 @@
         border-radius: 4px;
         background: var(--GreyTransparent);
         padding: 12px 16px;
-        color: var(--Orange);
+        color: var(--Green, #18BF7C);
         font-family: 'Unbounded', sans-serif;
         font-size: 16px;
         font-style: normal;
@@ -46,9 +46,9 @@
   }
   .contact-page-form {
     flex: 0 0 48%;
-    padding: 32px;
+    padding: 24px;
     width: 50%;
-    border-radius: 32px;
+    border-radius: 22px;
     background: var(--GreyTransparent);
     .wpcf7 {
       .wpcf7-form {
@@ -58,11 +58,11 @@
           label {
             display: block;
             width: 100%;
-            color: var(--Green, #18BF7C);
-            font-family: 'Unbounded', sans-serif;
-            font-size: 18px;
+            color: white;
+            font-family: "Red Hat Display";
+            font-size: 20px;
             font-style: normal;
-            font-weight: 500;
+            font-weight: 600;
             line-height: normal;
             span {
               display: block;
@@ -75,10 +75,10 @@
                 width: 100%;
                 padding: 14px 8px;
                 color: white;
-                font-family: 'Unbounded', sans-serif;
+                font-family: "Red Hat Display";
                 font-size: 18px;
                 font-style: normal;
-                font-weight: 500;
+                font-weight: 600;
                 line-height: normal;
                 &::placeholder {
                   color: #6587A4;
@@ -90,7 +90,7 @@
                 &:focus,
                 &:active {
                   outline: none;
-                  box-shadow: 0 0 0 2px var(--Orange);
+                  box-shadow: 0 0 0 2px transparent;
                 }
                 &:-webkit-autofill {
                   -webkit-box-shadow: 0 0 0 30px #152533 inset !important;
@@ -114,11 +114,12 @@
                 width: 100%;
                 padding: 14px 8px;
                 color: white;
-                font-family: 'Unbounded', sans-serif;
+                font-family: "Red Hat Display";
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
+                resize: none;
                 &::placeholder {
                   color: #6587A4;
                   font-weight: 300;
@@ -129,7 +130,7 @@
                 &:focus,
                 &:active {
                   outline: none;
-                  box-shadow: 0 0 0 2px var(--Orange);
+                  box-shadow: 0 0 0 2px transparent;
                 }
                 &:-webkit-autofill {
                   -webkit-box-shadow: 0 0 0 30px #152533 inset !important;
@@ -153,7 +154,7 @@
             line-height: normal;
             &:hover {
               cursor: pointer;
-              background: transparent;
+              background: #152533;
               border: 2px solid var(--Green);
             } 
           }
@@ -161,25 +162,19 @@
             top: 9px;
             position: absolute;
             display: inline-block;
-            background-color: var(--Orange);
-            border: 1px solid var(--Orange);
-            border-radius: 100%;
-            padding: 20px;
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top-color: var(--Green);
+            border-radius: 50%;
+            animation: sending-spin 0.8s linear infinite;
             opacity: 1;
-            &::before {
-              top: 11px;
-              left: 4px;
-              width: 11px;
-              height: 11px;
-              border: none;
-              border-radius: 100%;
-              transform-origin: 15px 8px;
-            }
           }
         }
         .wpcf7-response-output {
           padding: 14px 8px;
           border-radius: 6px;
+          background: #152533;
           border-color: var(--Orange);
           color: var(--Orange);
           font-family: 'Unbounded', sans-serif;

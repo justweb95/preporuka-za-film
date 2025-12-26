@@ -9,6 +9,16 @@
   $active_tab = request()->query('tab', 'profil_home');
 @endphp
 
+{{-- Profile Loader --}}
+<div class="profile-loading-overlay hidden-overlay" id="profile-loader">
+  <div class="profile-loader">
+    <div class="loader-ring"></div>
+    <div class="loader-progress">0%</div>
+  </div>
+</div>
+{{-- Profile Loader --}}
+
+
 {{-- Notification Holder --}}
 @include('pages.notification.notifications-holder')
 {{-- Notification Holder --}}

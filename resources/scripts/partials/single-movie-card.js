@@ -18,14 +18,10 @@ function showToast(message, time) {
   }).showToast();
 }
 
-console.log("script loading");
-
-
 getFavorites();
 getWatched();
 
 colorLikedButton(getLocalFavorites());
-
 
 export function likeButtonHandler(movieId) {
   populateList(movieId);
@@ -34,8 +30,6 @@ export function likeButtonHandler(movieId) {
 export function alreadywatched(movieId) {
   toggleWatched(movieId);
 }
-
-
 
 async function populateList(movieId) {
   const username = await getLoggedInUsername();

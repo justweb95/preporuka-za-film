@@ -4,7 +4,21 @@
   $user_id = get_current_user_id();
   $notificationManager = new NotificationManager($user_id);
 
-  $notifications = json_decode($notificationManager->getNotifications($user_id), true);
+  // Get notifications
+  $notificationsJson = $notificationManager->getNotifications($user_id);
+  
+  // SAFETY: Decode and ensure it's an array
+  $notifications = json_decode($notificationsJson, true);
+  
+  // If json_decode failed or returned null, set empty array
+  if (!is_array($notifications)) {
+      $notifications = [];
+  }
+  
+  // SAFETY: Ensure each notification is an array
+  $notifications = array_filter($notifications, function($notification) {
+      return is_array($notification);
+  });
 @endphp
 
 <div class="notification-overlay" id="notification_overlay">
@@ -17,18 +31,20 @@
         <li><p class="no-notification-note">Nema notifikacija za prikaz.</p></li>
       @else
         @foreach ($notifications as $notification)
-          <li>
-            @include('pages.notification.single-notification-card', 
-            [ 'type' => $notification['type'],
-              'id' => $notification['id'],
-              'title' => $notification['title'],
-              'message' => $notification['message'],
-              'icon' => $notification['icon'],
-              'is_seen' => $notification['is_seen'],
-              'timestamp' => $notification['created_at'],
-              'link' => $notification['link']
-            ])
-          </li>          
+          @if(is_array($notification))
+            <li>
+              @include('pages.notification.single-notification-card', [
+                'type' => $notification['type'] ?? 'info',
+                'id' => $notification['id'] ?? uniqid(),
+                'title' => $notification['title'] ?? '',
+                'message' => $notification['message'] ?? '',
+                'icon' => $notification['icon'] ?? '',
+                'is_seen' => $notification['is_seen'] ?? false,
+                'timestamp' => $notification['created_at'] ?? time(),
+                'link' => $notification['link'] ?? ''
+              ])
+            </li>
+          @endif
         @endforeach
       @endif
     </ul>

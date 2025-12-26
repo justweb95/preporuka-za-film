@@ -1,5 +1,7 @@
 import { getFavorites, getWatched } from "@scripts/partials/single-movie-card";
 import { initMovieFilterSort } from "@scripts/profile/section-header-controller.js";
+import { enableUserProfile } from './profile-main.js';
+
 
 const navigationSidebarLinks = document.querySelectorAll('.nav-link-button');
 const profileSections = document.querySelectorAll('.tab-content'); 
@@ -44,44 +46,64 @@ function setActiveNavFromURL() {
 
 
 async function handleNavigationClick(id, link) {
-  // Show/hide tabs
-  profileSections.forEach(profile_tab => {
-    profile_tab.hidden = profile_tab.id !== id;
-  });
-
-  // Update active sidebar link
-  navigationSidebarLinks.forEach(otherLink => {    
-    otherLink.classList.remove('active-nav');
-    if (link.dataset.tab === otherLink.dataset.sidebarId) {
-      otherLink.classList.add('active-nav');
-    }
-  });
+  // Show loader immediately
+  const removeLoader = enableUserProfile();
   
-  switch (id) {
-    case 'omiljeni_filmovi':
-      await loadFavoritesTab();
-      await getFavorites();
-      await getWatched();
-      initMovieFilterSort('my-favorites-tab', 'my-favorites-list');
-      break;
+  try {
+    // Show/hide tabs
+    profileSections.forEach(profile_tab => {
+      profile_tab.hidden = profile_tab.id !== id;
+    });
 
-    case 'moje_preporuke': // example id
-      await loadRecentRecommendationsTab();
-      await getFavorites();
-      await getWatched();
-      initMovieFilterSort('recent-recommendations-tab', 'recent-recommendations-list');
-      break;
+    // Update active sidebar link
+    navigationSidebarLinks.forEach(otherLink => {    
+      otherLink.classList.remove('active-nav');
+      if (link.dataset.tab === otherLink.dataset.sidebarId) {
+        otherLink.classList.add('active-nav');
+      }
+    });
+    
+    switch (id) {
+      case 'omiljeni_filmovi':
+        await loadFavoritesTab();
+        await getFavorites();
+        await getWatched();
 
-    case 'vec_gledani': // example id
-      await loadAlreadyWatchedTab();
-      await getFavorites();
-      await getWatched();
-      initMovieFilterSort('already-watched-tab', 'already-watched-list');
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        initMovieFilterSort('my-favorites-tab', 'my-favorites-list');
+        break;
 
-      break;
+      case 'moje_preporuke':
+        await loadRecentRecommendationsTab();
+        await getFavorites();
+        await getWatched();
+        
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        initMovieFilterSort('recent-recommendations-tab', 'recent-recommendations-list');
+        break;
 
-    default:
-      console.warn('Unknown tab id:', id);
+      case 'vec_gledani':
+        await loadAlreadyWatchedTab();
+        await getFavorites();
+        await getWatched();
+        
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        initMovieFilterSort('already-watched-tab', 'already-watched-list');
+        break;
+
+      default:
+        console.warn('Unknown tab id:', id);
+    }
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+  } catch (error) {
+    console.error('Error switching tab:', error);
+  } finally {
+    // Hide loader after everything is complete
+    removeLoader();
   }
 }
 

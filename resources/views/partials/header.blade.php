@@ -23,7 +23,6 @@
     </a>   
     <nav class="main-nav-desktop">
       <ul class="nav-link">
-        {{-- <li class="link-item"><a href="{{ home_url() }}/">Početna</a></li> --}}
         <li class="link-item">
           <a href="#">Preporuke</a>
           <svg class="category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +30,7 @@
             <path d="M12 1L6.49999 6L1 1" stroke="#18BF7C" stroke-width="2"/>
           </svg>          
           <ul class="link-drop-down">
-              <!-- Brza preporuka je uvek aktivna -->
+
               <li class="drop-down-item">
                   <a href="{{ url('/anketa') }}">
                       Brza preporuka
@@ -41,8 +40,6 @@
                       </svg>
                   </a>
               </li>
-
-
               <li class="drop-down-item">
                   <a class="{{ $disabledClass }}" href="{{ url('/moj-profil/?tab=napredna_pretraga') }}">
                       Napredna preporuka
@@ -52,19 +49,17 @@
                       </svg>
                   </a>
               </li>
-
               <li class="drop-down-item">
-                  <a class="{{ $disabledClass }}" href="{{ url('/moj-profil/?tab=napredna_pretraga') }}">
-                      Hot or Not
+                  <a class="{{ $disabledClass }}" href="{{ url('/ili') }}">
+                      Ili Ili
                       <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
                           <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
                       </svg>
                   </a>
               </li>
-
               <li class="drop-down-item">
-                  <a class="{{ $disabledClass }}" href="{{ url('/moj-profil/?tab=napredna_pretraga') }}">
+                  <a class="{{ $disabledClass }}" href="{{ url('/tocak-srece') }}">
                       Točak sreće
                       <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
@@ -73,7 +68,6 @@
                   </a>
               </li>
           </ul>
-
 
         </li>
         <li class="link-item">
@@ -177,7 +171,44 @@
           </svg>      
         </li>
         <li class="burger-link-item"><a href="{{ home_url() }}/">Početna</a></li>
-        <li class="burger-link-item"><a href="{{ home_url() }}/anketa">Anketa</a></li>
+        <li class="burger-link-item burger-open-dropdown">
+          <a href="#">Preporuke</a>
+           <svg class="burger-category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1L6.49999 6L12 1ZM6.49999 6L1 1L6.49999 6Z" fill="#EDFEEC"/>
+            <path d="M12 1L6.49999 6L1 1" stroke="#18BF7C" stroke-width="2"/>
+          </svg>          
+          <ul class="link-drop-down burger-dropdown-content">
+            <li class="drop-down-item"><a href="{{ home_url() }}/anketa">
+              Brza preporuka
+              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+                <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+              </svg>              
+            </a></li>
+            <li class="drop-down-item"><a href="{{ home_url() }}/moj-profil/?tab=napredna_pretraga">
+              Napredna preporuka
+              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+                <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+              </svg>              
+            </a></li>
+            <li class="drop-down-item"><a href="{{ home_url() }}/ili">
+              Ili Ili
+              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+                <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+              </svg>              
+            </a></li>
+            <li class="drop-down-item"><a href="{{ home_url() }}/tocak-srece">
+              Točak sreće
+              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+                <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+              </svg>
+            </a></li>
+          </ul>
+        </li>
+
         <li class="burger-link-item burger-open-dropdown">
           <a href="#">Kategorije</a>
            <svg class="burger-category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -236,7 +267,7 @@
         <?php endif; ?>
         
         <li class="burger-link-item follow-us-on-instagram">
-          <a class="follow-us-on-insta-link" href="https://www.instagram.com/preporuka_za_film/" target="_blank" rel="noopener noreferrer">
+          <a class="follow-us-on-insta-link" href="https://www.instagram.com/preporukazafilm" target="_blank" rel="noopener noreferrer">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.3038 7.9998C10.3038 8.45549 10.1687 8.90095 9.91551 9.27984C9.66234 9.65873 9.30251 9.95404 8.88151 10.1284C8.46051 10.3028 7.99725 10.3484 7.55032 10.2595C7.10338 10.1706 6.69285 9.9512 6.37063 9.62898C6.04841 9.30676 5.82898 8.89622 5.74008 8.44929C5.65117 8.00236 5.6968 7.5391 5.87119 7.1181C6.04557 6.6971 6.34088 6.33727 6.71977 6.0841C7.09866 5.83093 7.54412 5.6958 7.9998 5.6958C8.61028 5.6977 9.19521 5.94106 9.62688 6.37273C10.0586 6.8044 10.3019 7.38933 10.3038 7.9998ZM15.1998 4.8318V11.1678C15.1998 12.2372 14.775 13.2627 14.0189 14.0189C13.2627 14.775 12.2372 15.1998 11.1678 15.1998H4.8318C3.76245 15.1998 2.7369 14.775 1.98075 14.0189C1.2246 13.2627 0.799805 12.2372 0.799805 11.1678V4.8318C0.799805 3.76245 1.2246 2.7369 1.98075 1.98075C2.7369 1.2246 3.76245 0.799805 4.8318 0.799805H11.1678C12.2372 0.799805 13.2627 1.2246 14.0189 1.98075C14.775 2.7369 15.1998 3.76245 15.1998 4.8318ZM11.4558 7.9998C11.4558 7.31627 11.2531 6.64809 10.8734 6.07975C10.4936 5.51142 9.95386 5.06845 9.32236 4.80688C8.69086 4.5453 7.99597 4.47686 7.32557 4.61021C6.65517 4.74356 6.03937 5.07271 5.55604 5.55604C5.07271 6.03937 4.74356 6.65517 4.61021 7.32557C4.47686 7.99597 4.5453 8.69086 4.80688 9.32236C5.06845 9.95386 5.51142 10.4936 6.07975 10.8734C6.64809 11.2531 7.31627 11.4558 7.9998 11.4558C8.91639 11.4558 9.79544 11.0917 10.4436 10.4436C11.0917 9.79544 11.4558 8.91639 11.4558 7.9998ZM12.6078 4.2558C12.6078 4.08492 12.5571 3.91788 12.4622 3.77579C12.3673 3.63371 12.2323 3.52297 12.0744 3.45757C11.9166 3.39218 11.7428 3.37507 11.5752 3.40841C11.4076 3.44174 11.2537 3.52403 11.1329 3.64486C11.012 3.7657 10.9297 3.91965 10.8964 4.08725C10.8631 4.25485 10.8802 4.42857 10.9456 4.58644C11.011 4.74432 11.1217 4.87926 11.2638 4.97419C11.4059 5.06913 11.5729 5.1198 11.7438 5.1198C11.973 5.1198 12.1927 5.02878 12.3547 4.86674C12.5168 4.70471 12.6078 4.48495 12.6078 4.2558Z" fill="#F57C36"/>
             </svg>                         

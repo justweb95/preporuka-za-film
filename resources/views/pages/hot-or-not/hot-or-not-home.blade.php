@@ -1,7 +1,7 @@
 <section class="hot-or-not-holder hot-or-not-home-section" id="hot_or_not_home">
   <div class="hot-or-not-container hot-or-not-home-container">
     <h2 class="hot-or-not-subheading">Ne znaš šta da gledaš večeras?</h2>
-    <h1 class="hot-or-not-heading">Igraj - Hoot Or Not - eliminaciju!</h1>
+    <h1 class="hot-or-not-heading">Igraj Ili-ili eliminaciju!</h1>
     <p class="hot-or-not-description">Prepusti se brzoj igri eliminacije. Samo klikni na film koji ti se više sviđa – za par sekundi dobićeš pravi izbor za filmsko veče.</p>
     <div class="option-card-holder">
       <article class="suprise-me-card">

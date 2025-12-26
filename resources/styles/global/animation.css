@@ -445,3 +445,22 @@
     filter: blur(0);
   }
 }
+
+/* Contact Form Spinner */
+@keyframes sending-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes profile-loader-spiner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

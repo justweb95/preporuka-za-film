@@ -7,7 +7,7 @@
     </button>
 
     <h2 class="hot-or-not-subheading">Ne znaš šta da gledaš večeras?</h2>
-    <h1 class="hot-or-not-heading">Igraj - Hoot Or Not - eliminaciju!</h1>
+    <h1 class="hot-or-not-heading">Igraj Ili-ili eliminaciju!</h1>
     <p class="hot-or-not-description">Prepusti se brzoj igri eliminacije. Samo klikni na film koji ti se više sviđa – za par sekundi dobićeš pravi izbor za filmsko veče.</p>
     
     <div class="add-custom-movie-cards-holder">

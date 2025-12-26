@@ -320,23 +320,34 @@ function custom_login_handler() {
 add_action('wp_ajax_nopriv_google_token_login', 'google_token_login');
 add_action('wp_ajax_google_token_login', 'google_token_login');
 
-function google_token_login() {
+function google_token_login() {    
+    // Verify nonce
+    $security = sanitize_text_field($_POST['security'] ?? '');
+    if (!wp_verify_nonce($security, 'google_token_login_nonce')) {
+        wp_send_json_error(['message' => 'Security check failed']);
+    }
+
     $access_token = sanitize_text_field($_POST['access_token'] ?? '');
-    $security     = sanitize_text_field($_POST['security'] ?? '');
 
     if (!$access_token) {
         wp_send_json_error(['message' => 'No access token provided']);
     }
 
-    // 1️⃣ Get user info from Google
-    $response = wp_remote_get("https://www.googleapis.com/oauth2/v3/userinfo", [
+    // Get user info from Google
+    $response = wp_remote_get('https://www.googleapis.com/oauth2/v3/userinfo', [
         'headers' => [
             'Authorization' => 'Bearer ' . $access_token
-        ]
+        ],
+        'timeout' => 15
     ]);
 
     if (is_wp_error($response)) {
-        wp_send_json_error(['message' => 'Failed to fetch Google user info']);
+        wp_send_json_error(['message' => 'Failed to fetch Google user info: ' . $response->get_error_message()]);
+    }
+
+    $response_code = wp_remote_retrieve_response_code($response);
+    if ($response_code !== 200) {
+        wp_send_json_error(['message' => 'Invalid access token']);
     }
 
     $user_info = json_decode(wp_remote_retrieve_body($response), true);
@@ -347,34 +358,79 @@ function google_token_login() {
 
     $email = sanitize_email($user_info['email']);
     $name  = sanitize_text_field($user_info['name'] ?? 'Google User');
+    $google_id = sanitize_text_field($user_info['sub'] ?? '');
 
-    // 2️⃣ Check if user already exists
+    // Check if user already exists by email
     $user = get_user_by('email', $email);
+    $is_new_user = false;
 
     if (!$user) {
-        // 3️⃣ Create new WordPress user
-        $password = wp_generate_password(12, true); // random secure password
-        $user_id = wp_create_user($email, $password, $email);
-
-        if (is_wp_error($user_id)) {
-            wp_send_json_error(['message' => 'Failed to create WordPress user']);
+        $is_new_user = true; // 🔥 NEW USER FLAG
+        
+        // Generate username from email
+        $username = sanitize_user(explode('@', $email)[0]);
+        
+        // Make username unique
+        $base_username = $username;
+        $counter = 1;
+        while (username_exists($username)) {
+            $username = $base_username . $counter;
+            $counter++;
         }
 
-        // Optional: update display name
-        wp_update_user([
-            'ID' => $user_id,
-            'display_name' => $name
+        // Create new WordPress user
+        $password = wp_generate_password(16, true, true);
+        $user_id = wp_insert_user([
+            'user_login'   => $username,
+            'user_email'   => $email,
+            'user_pass'    => $password,
+            'display_name' => $name,
+            'first_name'   => $user_info['given_name'] ?? '',
+            'last_name'    => $user_info['family_name'] ?? '',
+            'role'         => 'subscriber'
         ]);
 
+        if (is_wp_error($user_id)) {
+            wp_send_json_error([
+                'message' => 'Failed to create user: ' . $user_id->get_error_message()
+            ]);
+        }
+
+        // Save Google ID as user meta
+        if ($google_id) {
+            update_user_meta($user_id, 'google_id', $google_id);
+        }
+
         $user = get_user_by('ID', $user_id);
+        
+        // 🎉 ADD WELCOME NOTIFICATION FOR NEW USER
+        $notificationManager = new NotificationManager($user_id);
+        $notificationManager->addNotification(
+            $user_id,                           // Specific user
+            'success',                          // Type
+            'Dobrodošli na Preporuka za Film!', // Title
+            'Vaš nalog je uspešno kreiran. Počnite sa traženjem savršenog filma!', // Message
+            '/moj-profil',                      // Link
+            '🎬',                               // Icon (emoji or SVG class)
+            7                                  // Expires in 7 days
+        );
     }
 
-    // 4️⃣ Log the user in
+    // Log the user in
+    wp_clear_auth_cookie();
     wp_set_current_user($user->ID);
-    wp_set_auth_cookie($user->ID);
+    wp_set_auth_cookie($user->ID, true);
+    do_action('wp_login', $user->user_login, $user);
 
-    // 5️⃣ Return success with redirect, WITHOUT exposing access token
+    // Return success
     wp_send_json_success([
-        'message'  => 'User logged in successfully',
+        'message'     => 'User logged in successfully',
+        'redirect'    => home_url('/moj-profil'),
+        'is_new_user' => $is_new_user, // 🔥 Let frontend know
+        'user'        => [
+            'id'    => $user->ID,
+            'name'  => $user->display_name,
+            'email' => $user->user_email
+        ]
     ]);
 }

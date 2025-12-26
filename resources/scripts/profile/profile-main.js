@@ -44,6 +44,49 @@ window.addEventListener('load', () => {
   }
 });
 
+// We are disabling all profile features before all scripts are loaded
+export function enableUserProfile() {
+  const loader = document.getElementById('profile-loader');
+  const progressText = loader?.querySelector('.loader-progress');
+  
+  if (!loader) {
+    console.warn('Profile loader not found in DOM');
+    return () => {};
+  }
+  
+  // Show loader
+  loader.classList.remove('hidden-overlay');
+  
+  // Simulate progress
+  let progress = 0;
+  const progressInterval = setInterval(() => {
+    if (progress < 90) {
+      progress += Math.random() * 15;
+      if (progress > 90) progress = 90;
+      if (progressText) {
+        progressText.textContent = Math.round(progress) + '%';
+      }
+    }
+  }, 100);
+  
+  // Return cleanup function
+  return () => {
+    clearInterval(progressInterval);
+    if (progressText) progressText.textContent = '100%';
+    
+    setTimeout(() => {
+      loader.classList.add('fade-out');
+      setTimeout(() => {
+        loader.classList.add('hidden-overlay');
+        loader.classList.remove('fade-out');
+        if (progressText) progressText.textContent = '0%'; // Reset for next use
+      }, 300);
+    }, 200);
+  };
+}
+
+
+
 export async function getLoggedInUsername() {
   const response = await fetch(pzfilm_globals.ajaxurl, {
     method: 'POST',

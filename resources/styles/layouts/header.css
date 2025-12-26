@@ -330,6 +330,8 @@
               width: 100%;
               max-width: 100%;
               flex: 1 0 51%;
+              background-color: #0F1E2B;
+              border-bottom: .2px solid #22374A;
               a {
                 position: relative;
                 display: flex;

@@ -1,4 +1,5 @@
 import domReady from '@roots/sage/client/dom-ready';
+import { enableUserProfile } from './profile/profile-main.js';
 
 /**
  * Application entrypoint
@@ -17,26 +18,51 @@ domReady(async () => {
     '/single-movie': async () => await import('./pages/single-movie.js'),
     
     '/moj-profil': async () => {
-      await import('./partials/single-movie-card.js');
-      await import('./profile/profile-main.js');
-      await import('./profile/profile-navigation-controller.js');
-      await import('./profile/section-header-controller.js');
-      await import('./profile/user-settings.js');
-      await import('./profile/advance-recommendation.js');
-      await import('./profile/notification.js');
+      const removeLoader = enableUserProfile();
+      
+      try {
+        // Load all profile modules
+        await Promise.all([
+          import('./partials/single-movie-card.js'),
+          import('./profile/profile-main.js'),
+          import('./profile/profile-navigation-controller.js'),
+          import('./profile/section-header-controller.js'),
+          import('./profile/user-settings.js'),
+          import('./profile/advance-recommendation.js'),
+          import('./profile/notification.js')
+        ]);
+        
+        // Wait for DOM to settle
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
+        // Initialize filters for all tabs
+        if (window.initMovieFilterSort) {
+          window.initMovieFilterSort('recent-recommendations-tab', 'recent-recommendations-list');
+          window.initMovieFilterSort('my-favorites-tab', 'my-favorites-list');
+          window.initMovieFilterSort('already-watched-tab', 'already-watched-list');
+        }
+        
+        // Wait for final render
+        await new Promise(resolve => setTimeout(resolve, 300));
+        
+      } catch (error) {
+        console.error('Error loading profile:', error);
+      } finally {
+        removeLoader();
+      }
     },
 
     '/category': async () => {
       await import('./partials/single-movie-card.js');
     },
 
-    '/hot-or-not': async () => {
+    '/ili': async () => {
       await import('./pages/hot-or-not.js');
       await import('./partials/hon-progress.js');
       await import('./partials/hon-custom-add.js');
     },
 
-    '/wheel-of-fortune': async () => {
+    '/tocak-srece': async () => {
       await import('./pages/wheel-of-fortune.js');
       await import('./partials/wof-custom-add.js');
     },
@@ -50,11 +76,10 @@ domReady(async () => {
   }
 
   const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('s')) {
-      await import('./partials/single-movie-card.js');
-    }
-
-  });
+  if (urlParams.has('s')) {
+    await import('./partials/single-movie-card.js');
+  }
+});
 
 /**
  * @see {@link https://webpack.js.org/api/hot-module-replacement/}
