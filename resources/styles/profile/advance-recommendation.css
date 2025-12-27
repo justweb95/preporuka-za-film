@@ -542,6 +542,9 @@
         label {
           min-width: 40px;
         }
+        input:checked + .slider::before {
+          transform: translateX(16px);
+        }
       }
     }
     .expand-question-list {
@@ -588,6 +591,26 @@
         width: 100%;
         .questionnaire-header {
           font-size: 24px !important;
+        }
+        .swiffy-slider {
+          .slider-controle {
+            .slider-nav {
+              &:first-of-type {
+                z-index: 1;
+                left: -40px;
+                top: 35px;
+              }
+              &:last-of-type {
+                z-index: 1;
+                right: -40px;
+                top: 35px;
+              }
+            }
+          }
+          .slider-container {
+            width: 100%;
+            margin: 0px auto;
+          }
         }
       }
     }

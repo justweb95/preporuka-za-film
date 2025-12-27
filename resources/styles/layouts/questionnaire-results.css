@@ -505,8 +505,12 @@
           }
           .result-content-info {
             justify-content: space-between;
-            gap: 12px;
+            gap: 6px;
             span {
+              .result-genres-icon, .result-duration-icon, .result-year-icon {
+                margin-right: 0px;
+              }
+
               p {
                 font-size: 14px;
               }

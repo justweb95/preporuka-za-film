@@ -47,6 +47,7 @@ function setActiveNavFromURL() {
 async function handleNavigationClick(id, link) {
   // Show loader immediately
   const removeLoader = enableUserProfile();
+  closeMobileNav();
   
   try {
     // Show/hide tabs
@@ -155,6 +156,14 @@ async function loadAlreadyWatchedTab() {
 setActiveNavFromURL();
 
 
+const closeMobileNav = () => {
+  const mobileNav = document.querySelector('.sidebar-navigation');
+  if (mobileNav?.classList.contains('mobile-nav-open')) {
+    mobileNav.classList.remove('mobile-nav-open');
+    document.body.style.overflow = '';
+  }
+};
+
 const mobileNavButton = document.getElementById('mobile_navigation_btn');
 const mobileNav = document.querySelector('.sidebar-navigation');
 
@@ -162,9 +171,7 @@ if(mobileNav) {
   mobileNav.addEventListener('click', (e) => {
 
     if(e.target.classList.contains('sidebar-navigation')) {
-      mobileNav.classList.remove('mobile-nav-open');
-      document.body.style.overflow = '';
-      console.log(e.target.classList.contains('mobile-nav-open'));
+      closeMobileNav();
     }
   }); 
 }
@@ -180,7 +187,6 @@ if (mobileNavButton) {
     }
   });
 }
-
 
 export async function logOutHandler() {
   const response = await fetch(pzfilm_globals.ajaxurl, {

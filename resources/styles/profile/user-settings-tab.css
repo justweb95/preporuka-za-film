@@ -617,6 +617,9 @@
           .switch {
             width: 40px;
             height: 20px;
+            input:checked + .slider::before {
+              transform: translateX(16px);
+            }
             .round {
               &::before {
                 width: 15px;
