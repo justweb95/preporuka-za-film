@@ -1,6 +1,7 @@
 import confetti from 'canvas-confetti';
 import { poplateResult } from '@scripts/helpers/recommendation-results-helper.js';
 import { wheelOfFortune } from "./wheel-of-fortune-spin-game";
+import { clearSelectedMovies } from '@scripts/helpers/session-storage';
 
 const wof = wheelOfFortune('.wof-wheel-imgs-holder');
 const startBtn = document.querySelector('.wof-start-game');
@@ -11,9 +12,6 @@ startBtn.addEventListener('click', async () => {
   const winnerEl = await wof.spin();
   if (!winnerEl) return;
 
-  console.log('winner:', winnerEl);
-  console.log('winner id:', winnerEl.dataset.wheelMovieId);
-  
   await gameEnd(winnerEl.dataset.wheelMovieId);
 });
 
@@ -31,6 +29,7 @@ async function gameEnd(movie_id) {
     
     wheelOfFortuneHome.hidden = true;
     wheelOfFortuneResults.hidden = false;
+    clearSelectedMovies('wof');
   }
 }
 
@@ -54,17 +53,3 @@ async function getMovieForGame(movie_id) {
 
   return data.data
 }
-
-
-
-
-
-
-
-
-
-
-
-
- 
-

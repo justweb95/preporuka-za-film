@@ -28,9 +28,8 @@
           list-style: none;
           transform-origin: center right;
           width: 50cqi;
-          rotate: calc(360deg / var(--_items) * calc(var(--_idx) - 1));
-          height: calc((2 * pi * 50cqi) / var(--_items));
-          
+          rotate: calc(360deg / var(--_items) * calc(var(--_idx) - 1));          
+          height: calc((2 * pi * 50cqi) / var(--_items));          
           clip-path: polygon(0% -3%, 96% 50%, 0% 102%);
 
           &:nth-of-type(1) { --_idx: 1; }
@@ -57,7 +56,6 @@
         left: 50%;
         z-index: 3;
         transform: translateX(-50%);
-
       }
 
       .wof-middle-logo {

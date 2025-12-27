@@ -1,4 +1,5 @@
 import confetti from 'canvas-confetti';
+import { clearSelectedMovies } from '@scripts/helpers/session-storage.js';
 import { poplateResult } from '@scripts/helpers/recommendation-results-helper.js';
 import { showToast } from "@scripts/helpers/toastify-helper";
 
@@ -226,6 +227,7 @@ async function gameEnd(resultObject) {
     confetti({particleCount: 100,  spread: 70,  origin: { x: 0.7, y: 0.5 }});
     confetti({particleCount: 100,  spread: 70,  origin: { x: 0.3, y: 0.6 }});
     honStepHandler(5);
+    clearSelectedMovies('hon');
   }
 }
 

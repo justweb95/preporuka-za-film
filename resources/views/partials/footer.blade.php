@@ -50,7 +50,7 @@
       </li>
     </ul>
     <div class="footer-info">
-      <p class="footer-par">Copyright © 2024 preporukazafilm.com. Sva prava zadržana</p>
+      <p class="footer-par">Copyright © 2026 preporukazafilm.com. Sva prava zadržana</p>
       <a class="footer-link" href="{{ home_url() }}/privacy-policy">Pravila Korišćenja</a>
       <a class="follow-us-on-insta-link" href="https://www.instagram.com/preporukazafilm" target="_blank" rel="noopener noreferrer">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

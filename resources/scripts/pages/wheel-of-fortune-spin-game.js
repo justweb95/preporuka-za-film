@@ -74,15 +74,46 @@ function wheelOfFortune(selector) {
     }
 
     if (mover) {
+      const isMobile = window.matchMedia('(max-width: 1023px)').matches;
       const rect = mover.getBoundingClientRect();
       const dx = window.innerWidth / 2 - (rect.left + rect.width / 2);
 
+    if (isMobile) {
+      // Mobile: Hide cards first
+      if (elementToHide) {
+        elementToHide.style.display = 'none';
+      }
+      
+      mover.style.marginTop = '30px';
+      
+      // Scroll wheel bottom to 20px from viewport bottom
+      mover.scrollIntoView({ 
+        block: 'end', 
+        behavior: 'smooth',
+        inline: 'center'
+      });
+      
+      // Center horizontally
+      const wheelRect = mover.getBoundingClientRect();
+      const dx = window.innerWidth / 2 - (wheelRect.left + wheelRect.width / 2);
       const moveAnim = mover.animate(
         [{ transform: 'translateX(0px)' }, { transform: `translateX(${dx}px)` }],
         { duration: 1000, easing: 'ease-in-out', fill: 'forwards' }
       );
       preAnims.push(moveAnim.finished.catch(() => {}));
     }
+
+
+    else {
+        // Desktop: existing horizontal centering
+        const moveAnim = mover.animate(
+          [{ transform: 'translateX(0px)' }, { transform: `translateX(${dx}px)` }],
+          { duration: 1000, easing: 'ease-in-out', fill: 'forwards' }
+        );
+        preAnims.push(moveAnim.finished.catch(() => {}));
+      }
+    }
+
 
     await Promise.all(preAnims);
 

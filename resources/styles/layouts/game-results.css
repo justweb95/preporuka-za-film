@@ -346,11 +346,14 @@
       min-height: calc(100svh - 64px);
       height: auto;
 
+      .game-result-header {
+        font-size: 20px;
+      }
       .game-result-data-holder {
         gap: 32px;
         margin-top: 22px;
         .game-result-content-holder {
-          .game-result-content-header {
+          .result-content-header {
             .result-content-title {
               font-size: 24px;
             }

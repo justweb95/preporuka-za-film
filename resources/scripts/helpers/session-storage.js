@@ -56,4 +56,19 @@ function loadSelectedMovies(game_type, populator) {
   });
 }
 
-export { saveSelectedMovies, loadSelectedMovies };
+/**
+ * Remove selected movies from sessionStorage on game end
+ */
+function clearSelectedMovies(game_type) {
+  let storageKey = '';
+
+  if (game_type === 'hon') {
+    storageKey = 'hotOrNotSelectedMovies';
+  } else {
+    storageKey = 'hotOrNotSelectedMoviesWof';
+  }
+
+  sessionStorage.removeItem(storageKey);
+}
+
+export { saveSelectedMovies, loadSelectedMovies, clearSelectedMovies};

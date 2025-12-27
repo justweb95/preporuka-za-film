@@ -6,12 +6,10 @@
   background-size: cover;
   background-repeat: no-repeat;
 
-
-  color: white;
-
   .wheel-of-fortune-container {
     position: relative;
     margin: 0px auto;
+    width: 95%;
     max-width: 1280px;
     .wheel-of-fortune-subheading {
       color: var(--Orange, #EF8D53);
@@ -75,6 +73,95 @@
       pointer-events: none; /* makes it non-interactive */
       opacity: 0;
       transition: opacity 0.2s;
+    }
+  }
+  @media (max-width: 1024px) {
+    padding: 48px 0px 200px;
+    .wheel-of-fortune-container {
+      .wof-add-movies {
+        margin: 0px auto;
+        max-width: 620px;
+        flex-direction: column-reverse;
+        .wof-wheel {
+          width: 100%;
+          margin-top: 38px;
+        }
+        .wof-movie-cards {
+          margin-top: 0px;
+        }
+      }
+    }
+  }
+  @media (max-width: 600px) {
+    padding: 48px 0px 148px;
+    .wheel-of-fortune-container {
+      .wheel-of-fortune-subheading {
+        font-size: 18px;
+      }
+      .wheel-of-fortune-heading {
+        font-size: 32px;
+        margin: 10px auto 14px;
+      }
+      .wheel-of-fortune-description {
+        font-size: 16px;
+      }
+      .wof-add-movies {
+        .wof-wheel {
+          margin-top: 0px;
+          padding: 6px 6px 0px 6px;
+          .wof-point-element {
+            top: -25px;
+            svg {
+              max-height: 65px;
+
+            }
+          }
+          .wof-middle-logo {
+            svg {
+              max-width: 65px;
+              max-height: 65px;
+            }
+          }
+          .wof-start-game {
+            width: 100%;
+            padding: 10px;
+          }
+
+          .wof-wheel-imgs-holder {
+            .wof-slice {
+              height: calc((2 * pi * 52cqi) / var(--_items));
+              clip-path: polygon(1% -2%, 99% 50%, 0% 102%);
+            }
+          }
+
+
+
+
+        }
+        .wof-movie-cards {
+          margin-top: 0px;
+          .wof-movie-card-list {
+            justify-content: space-evenly;
+            .wof-movie-card {
+              /* max-width: 175px; */
+              min-width: 145px;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 375px) {
+    .wheel-of-fortune-container {
+      .wof-add-movies {
+        .wof-movie-cards {
+          .wof-movie-card-list {
+            .wof-movie-card {
+              max-height: 215px;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -468,151 +555,3 @@
     }
   }
 }
-
-
-
-
-/* 
-.wheel-of-fortune-section {
-  .wheel-of-fortune-container {
-    .custom-movie-card-heading {
-      border-radius: 8px;
-      padding: 16px;
-      background-color: var(--Grey, #22374A);
-      border-bottom: 2px solid #EF8D53;
-      h3 {
-        font-family: 'Red Hat Display';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 150%;
-        text-align: center;
-        color: #FFFFFF;
-      }
-    }    
-    .wheel-of-fortune-progress-bar {
-      margin: 48px 0px;
-      width: 100%;
-      .wheel-of-fortune-progress-bar-svg {
-        max-width: 100%;
-      }
-    }
-  }
-
-  .wheel-of-fortune-progress-bar {
-    .wheel-of-fortune-progress-bar-svg {
-
-      .progress-checkbox {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-  
-      .progress-text {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-  
-      .progress-label-box {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-  
-      .show-checkbox {
-        opacity: 1 !important;
-      }
-  
-      .show-number {
-        opacity: 1 !important; 
-      }
-  
-      .show-label-box {
-        opacity: 1 !important;
-      }
-  
-      .step-circle-border-orange {
-        stroke: #FF8B47 !important;
-      }
-  
-      .step-circle-fill-green {
-        fill: #18BF7C !important;
-        stroke: #18BF7C !important;
-      }
-  
-      .step-path-fill-green {
-        stroke: #18BF7C !important;
-      }
-  
-      .progress-circle {
-        fill: #06131E;
-      }
-    }
-  }
-
-
-  .wheel-of-fortune-game-holder {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .hon-first-option-card, .hon-second-option-card {
-      width: 260px;
-      .single-movie-card {
-        max-width: 260px;
-        .movie-card-poster {
-          width: 100%;
-        }
-        h2 {
-          text-align: center;
-          font-size: 22px;
-        }
-        p {
-          text-align: center;
-          font-size: 18px;
-        }
-      }
-      .movie-card {
-        text-align: center;
-      }
-      .choose-movie-btn {
-        margin: 32px 0px 0px;
-        width: 100%;
-        border: none;
-        padding: 10px 18px 11px;
-        background: #18BF7C;
-        border: 1px solid #18BF7C;
-        border-radius: 40px;
-        font-family: 'Red Hat Display';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 26px;
-        text-align: center;
-        color: #FFFFFF;
-        transition: .2s ease;
-        &:hover {
-          cursor: pointer;
-          background-color: transparent;
-          box-shadow: 0 0 10px #18BF7C;
-        }
-      }
-    }
-    .hon-option-devider {
-      padding: 15px;
-      display: block;
-      width: fit-content;
-      height: fit-content;
-      background: #06131E;
-      border: 8px solid rgba(0, 213, 220, 0.08);
-      backdrop-filter: blur(20px);
-      border-radius: 100px;
-      .devider-text {
-        font-family: 'Red Hat Display';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 40px;
-        line-height: 53px;
-        text-align: center;
-        color: #EDFEEC;
-      }
-    }
-  }
-} */
