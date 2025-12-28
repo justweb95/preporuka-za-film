@@ -42,9 +42,9 @@ footer {
         transition: .3s ease;
         &:hover {
           cursor: pointer;
-          background: transparent;
+          background: #152533;
           border: 2px solid var(--Orange);
-          color: var(--Orange);
+          color: #EDFEEC;
         }
       }
     }

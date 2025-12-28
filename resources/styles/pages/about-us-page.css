@@ -1,0 +1,650 @@
+/* ==================== ABOUT US PAGE STYLES ==================== */
+.page-template-template-about-us {
+  background-color: #06131E;
+}
+
+
+/* Hero Section */
+.about-hero {
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background-image: url('../images/partials/footer-background.webp');
+  background-position: center;
+}
+
+.about-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-hero-content h1 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(32px, 2.3vw + 16px, 48px);
+  font-weight: 400;
+  color: #EDFEEC;
+  margin-bottom: 20px;
+  line-height: 140%;
+}
+
+.about-hero-content p {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: clamp(16px, 0.833vw + 8px, 20px);
+  color: #EDFEEC;
+  font-weight: 500;
+  line-height: 150%;
+}
+
+/* Main Container */
+.about-container {
+  max-width: 1280px;
+  width: 95%;
+  margin: 0 auto;
+  padding: 60px 0px;
+}
+
+/* Section Titles */
+.about-section-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(28px, 3vw + 4px, 40px);
+  font-weight: 400;
+  color: #EDFEEC;
+  text-align: center;
+  margin-bottom: 50px;
+  line-height: 140%;
+}
+
+/* About Main Section */
+.about-main-section {
+  margin-bottom: 80px;
+}
+
+.about-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.about-intro-text h2 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(24px, 3vw + 4px, 32px);
+  font-weight: 400;
+  color: #EDFEEC;
+  margin-bottom: 24px;
+  line-height: 140%;
+}
+
+.about-intro-text p {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: clamp(16px, 0.833vw + 8px, 18px);
+  line-height: 150%;
+  color: #EDFEEC;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.about-intro-text a {
+  color: #18BF7C;
+  font-weight: 700;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.about-intro-text strong {
+  color: #18BF7C;
+  font-weight: 700;
+}
+
+/* Feature Items */
+.about-intro-features {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px;
+  background-color: #22374A;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+}
+
+.about-feature-item:hover {
+  transform: translateY(-4px);
+}
+
+.about-feature-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.about-feature-item h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(18px, 1vw + 10px, 20px);
+  font-weight: 400;
+  color: #EDFEEC;
+  margin-bottom: 8px;
+}
+
+.about-feature-item p {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: clamp(14px, 0.833vw + 8px, 16px);
+  color: #EDFEEC;
+  line-height: 150%;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* About Intro Image */
+.about-intro-image {
+  border-radius: 6px;
+  min-height: 400px;
+  overflow: hidden;
+  .intro-image {
+    display: block;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.about-image-content {
+  text-align: center;
+}
+
+.about-image-icon {
+  font-size: 6rem;
+  margin-bottom: 24px;
+}
+
+.about-image-content p {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: clamp(18px, 1vw + 10px, 22px);
+  font-weight: 600;
+  color: #EDFEEC;
+  line-height: 150%;
+}
+
+/* Profile Section */
+.about-profile-section {
+  margin-bottom: 80px;
+}
+
+.about-profile-box {
+  background-color: #22374A;
+  border-radius: 6px;
+  padding: 40px;
+  margin-bottom: 30px;
+}
+
+.about-profile-box h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(20px, 2vw + 8px, 28px);
+  font-weight: 400;
+  color: #EDFEEC;
+  margin-bottom: 30px;
+  line-height: 140%;
+}
+
+.about-profile-subtitle {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: clamp(16px, 0.833vw + 8px, 18px);
+  color: #EDFEEC;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.about-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.about-profile-item {
+  padding: 24px;
+  background-color: #06131E;
+  border-radius: 6px;
+  border-left: 3px solid #18BF7C;
+  transition: transform 0.3s ease;
+}
+
+.about-profile-item:hover {
+  transform: translateY(-4px);
+}
+
+.about-profile-item strong {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(16px, 1vw + 8px, 18px);
+  font-weight: 400;
+  color: #EDFEEC;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.about-profile-item p {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: clamp(14px, 0.833vw + 8px, 16px);
+  color: #EDFEEC;
+  line-height: 150%;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Games Section */
+.about-games-section {
+  background-color: #22374A;
+  padding: 60px 0;
+  margin-bottom: 80px;
+  border-radius: 6px;
+}
+
+.about-container-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.about-games-title {
+  color: #EDFEEC;
+}
+
+.about-games-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.about-game-card {
+  background-color: #06131E;
+  border-radius: 6px;
+  padding: 32px;
+  transition: transform 0.3s ease;
+}
+
+.about-game-card:hover {
+  transform: translateY(-4px);
+}
+
+.about-game-header {
+  text-align: center;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #22374A;
+}
+
+.about-game-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.about-game-header h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(20px, 1.5vw + 10px, 24px);
+  font-weight: 400;
+  color: #EDFEEC;
+  margin-bottom: 10px;
+  line-height: 140%;
+}
+
+.about-game-header p {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: clamp(14px, 0.833vw + 8px, 16px);
+  color: #EF8D53;
+  font-weight: 500;
+  margin: 0;
+}
+
+.about-game-description strong {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(16px, 1vw + 8px, 18px);
+  color: #EDFEEC;
+  display: block;
+  margin-bottom: 12px;
+  margin-top: 20px;
+  font-weight: 400;
+}
+
+.about-game-description strong:first-child {
+  margin-top: 0;
+}
+
+.about-game-description p {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: clamp(14px, 0.833vw + 8px, 16px);
+  color: #EDFEEC;
+  line-height: 150%;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+/* Technology Section */
+.about-technology-section {
+  margin-bottom: 80px;
+}
+
+.about-tech-box {
+  background-color: #22374A;
+  border-radius: 6px;
+  padding: 50px;
+}
+
+.about-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.about-tech-item {
+  text-align: center;
+  padding: 28px;
+  background-color: #06131E;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+}
+
+.about-tech-item:hover {
+  transform: translateY(-4px);
+}
+
+.about-tech-item-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.about-tech-item strong {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(16px, 1vw + 8px, 18px);
+  font-weight: 400;
+  color: #EDFEEC;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.about-tech-item p {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: clamp(14px, 0.833vw + 8px, 16px);
+  color: #EDFEEC;
+  line-height: 150%;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Vision Section */
+.about-vision-section {
+  margin-bottom: 80px;
+}
+
+.about-vision-mission {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.about-vision-box,
+.about-mission-box {
+  padding: 40px;
+  border-radius: 6px;
+  background-color: #22374A;
+  transition: transform 0.3s ease;
+}
+
+.about-vision-box:hover,
+.about-mission-box:hover {
+  transform: translateY(-4px);
+}
+
+.about-vision-box h3,
+.about-mission-box h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(20px, 2vw + 8px, 24px);
+  font-weight: 400;
+  color: #EDFEEC;
+  margin-bottom: 20px;
+  line-height: 140%;
+}
+
+.about-vision-box p,
+.about-mission-box p {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: clamp(16px, 0.833vw + 8px, 18px);
+  color: #EDFEEC;
+  line-height: 150%;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* CTA Section */
+.about-cta-section {
+  text-align: center;
+  padding: 80px 40px;
+  background-image: url('../images/partials/footer-background.webp');
+  background-position: center;
+  border-radius: 6px;
+}
+
+.about-cta-section h2 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(28px, 3vw + 4px, 36px);
+  font-weight: 400;
+  color: #EDFEEC;
+  margin-bottom: 20px;
+  line-height: 140%;
+}
+
+.about-cta-section p {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: clamp(16px, 0.833vw + 8px, 18px);
+  color: #EDFEEC;
+  margin-bottom: 40px;
+  font-weight: 500;
+  line-height: 150%;
+}
+
+.about-cta-section .about-cta-button {
+  margin: 0px 10px 0px;
+}
+.about-cta-button {
+  font-family: 'Red Hat Display', sans-serif;
+  display: inline-block;
+  padding: 16px 40px;
+  margin: 10px 0px 0px;
+  font-size: clamp(14px, 0.833vw + 8px, 18px);
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: 80px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.about-cta-primary {
+  background-color: #18BF7C;
+  color: #FFF;
+  border: 2px solid #18BF7C;
+}
+
+.about-cta-primary:hover {
+  background-color: #152533;
+  color: #EDFEEC;
+}
+
+.about-cta-secondary {
+  background-color: #EF8D53;
+  color: #EDFEEC;
+  border: 2px solid #EF8D53;
+}
+
+.about-cta-secondary:hover {
+  background-color: #152533;
+  color: #EDFEEC;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .about-intro {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-games-grid {
+    gap: 20px;
+  }
+
+  .about-vision-mission {
+    gap: 20px;
+  }
+
+  .about-profile-grid {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 60px 20px;
+  }
+
+  .about-container {
+    padding: 40px 20px;
+  }
+
+  .about-main-section {
+    margin-bottom: 60px;
+  }
+
+  .about-profile-section {
+    margin-bottom: 60px;
+  }
+
+  .about-games-section {
+    margin-bottom: 60px;
+    padding: 40px 0;
+  }
+
+  .about-technology-section {
+    margin-bottom: 60px;
+  }
+
+  .about-vision-section {
+    margin-bottom: 60px;
+  }
+
+  .about-games-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-vision-mission {
+    grid-template-columns: 1fr;
+  }
+
+  .about-profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-tech-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-cta-section {
+    padding: 60px 20px;
+  }
+
+  .about-profile-box,
+  .about-tech-box {
+    padding: 28px;
+  }
+
+  .about-vision-box,
+  .about-mission-box {
+    padding: 28px;
+  }
+
+  .about-game-card {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 550px) {
+  .about-hero {
+    padding: 40px 20px;
+  }
+
+  .about-container {
+    padding: 32px 20px;
+  }
+
+  .about-section-title {
+    margin-bottom: 32px;
+  }
+
+  .about-main-section {
+    margin-bottom: 40px;
+  }
+
+  .about-profile-section {
+    margin-bottom: 40px;
+  }
+
+  .about-games-section {
+    margin-bottom: 40px;
+    padding: 32px 0;
+  }
+
+  .about-technology-section {
+    margin-bottom: 40px;
+  }
+
+  .about-vision-section {
+    margin-bottom: 40px;
+  }
+
+  .about-intro-features {
+    margin-top: 28px;
+    gap: 16px;
+  }
+
+  .about-feature-item {
+    padding: 20px;
+  }
+
+  .about-intro-image {
+    padding: 40px 20px;
+    min-height: 300px;
+  }
+
+  .about-image-icon {
+    font-size: 4rem;
+  }
+
+  .about-profile-box {
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  .about-profile-box h3 {
+    margin-bottom: 20px;
+  }
+
+  .about-tech-box {
+    padding: 24px;
+  }
+
+  .about-cta-section {
+    padding: 40px 20px;
+  }
+
+  .about-cta-button {
+    text-align: center;
+    display: block;
+    margin: 16px 0 0px !important;
+    width: 100%;
+  }
+}
