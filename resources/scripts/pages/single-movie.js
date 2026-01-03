@@ -2,6 +2,7 @@ import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css'; // Importing CSS for Toastify
 
 import { getLoggedInUserInfo } from '@scripts/profile/profile-main.js';
+import { scrolToTop } from '@scripts/helpers/scrool-to-top-helper';
 
 // Toster
 function showToast(message) {
@@ -221,10 +222,8 @@ function handleCommentPost(comment_data) {
 
 
 window.openTrailerPopUp = function () {
-  const trailerModal = document.querySelector('#trailer-modal');
-  
-  // Scroll to the top
-  window.scrollTo({ top: 0, behavior: 'smooth' });  
+  const trailerModal = document.querySelector('#trailer-modal');  
+  scrolToTop();
   
   // Show the modal
   trailerModal.showModal();

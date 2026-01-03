@@ -160,6 +160,7 @@
 
 .category-list {
   padding: 40px 0px;
+  overflow-x: clip;
   .category-list-holder {
     display: flex;
     flex-wrap: wrap;
@@ -176,10 +177,11 @@
       line-height: normal;
     }
     .movie-banner-block {
-      flex: 1 0 100%;
+      flex: 1 0 45%;
       position: relative;
       text-decoration: none;
       max-width: 226px;
+      min-width: 140px;
       .ad-placeholder {
         background-color: #172938;
         padding: 12px;
@@ -323,6 +325,15 @@
           font-size: 16px;
         }
         p {
+          font-size: 14px;
+        }
+      }
+      .movie-banner-block {
+        .ad-placeholder {
+          height: calc(100% - 68px);
+        }
+        .ad-btn {
+          min-width: 80px;
           font-size: 14px;
         }
       }

@@ -5,7 +5,7 @@
   $current_user_img_src = get_user_meta($current_user->ID, 'profile_image', true); 
   $current_user_requests_left = get_user_meta($current_user->ID, 'advanced_search_counter', true); 
   $current_user_tier = get_user_meta($current_user->ID, 'tier', true); 
-  $current_user_bio = $current_user->description; // <- make sure you have bio
+  $current_user_bio = $current_user->description;
 @endphp
 
 
@@ -30,7 +30,7 @@
     {{-- Loader --}}
     <div class="user-requests-loader">
       <p class="loader-label">Vaše napredne preporuke čekaju, iskoristite ih da otkrijete filmove koje još niste gledali!</p>
-      @if ($current_user_tier !== 'gold')
+      @if ($current_user_tier === 'gold')
         <div class="unlimited">
           <span class="unlimited-fill"></span>
         </div>

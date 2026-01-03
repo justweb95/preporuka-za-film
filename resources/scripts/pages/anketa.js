@@ -20,7 +20,7 @@ import {
 } from '@scripts/partials/openAiControler'
 
 import { poplateResult } from '@scripts/helpers/recommendation-results-helper';
-
+import { scrolToTop } from '@scripts/helpers/scrool-to-top-helper.js';
 import { getLoggedInUsername } from '@scripts/profile/profile-main.js';
 
 import Toastify from 'toastify-js';
@@ -207,8 +207,7 @@ window.newRecomendation = function() {
 window.openTrailerPopUp = function () {
   const trailerModal = document.querySelector('#trailer-modal');
   
-  // Scroll to the top
-  window.scrollTo({ top: 0, behavior: 'smooth' });  
+  scrolToTop();
 
   // Show the modal
   trailerModal.showModal();

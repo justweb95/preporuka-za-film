@@ -160,6 +160,10 @@
       min-height: 500px;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 16px;
+      .no-results-found {
+        width: 100%;
+        font-size: 18px;
+      }
     }
   }
 }

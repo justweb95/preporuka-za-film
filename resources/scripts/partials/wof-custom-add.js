@@ -1,3 +1,4 @@
+import { scrolToTop } from "@scripts/helpers/scrool-to-top-helper";
 import { saveSelectedMovies, loadSelectedMovies } from "@scripts/helpers/session-storage";
 import { showToast } from "@scripts/helpers/toastify-helper";
 
@@ -312,7 +313,7 @@ function wofPopUpHandler(isOpen) {
   document.body.classList.toggle('disable-scroll', isOpen);
 
   if(isOpen) {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    scrolToTop();
   }
 
   handleFilterChange(0);

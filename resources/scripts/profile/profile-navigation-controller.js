@@ -43,6 +43,14 @@ function setActiveNavFromURL() {
   }
 }
 
+const closeMobileNav = () => {
+  const mobileNav = document.querySelector('.sidebar-navigation');
+  if (mobileNav?.classList.contains('mobile-nav-open')) {
+    mobileNav.classList.remove('mobile-nav-open');
+    document.body.style.overflow = '';
+  }
+};
+
 
 async function handleNavigationClick(id, link) {
   // Show loader immediately
@@ -154,15 +162,6 @@ async function loadAlreadyWatchedTab() {
 
 // Call on page load
 setActiveNavFromURL();
-
-
-const closeMobileNav = () => {
-  const mobileNav = document.querySelector('.sidebar-navigation');
-  if (mobileNav?.classList.contains('mobile-nav-open')) {
-    mobileNav.classList.remove('mobile-nav-open');
-    document.body.style.overflow = '';
-  }
-};
 
 const mobileNavButton = document.getElementById('mobile_navigation_btn');
 const mobileNav = document.querySelector('.sidebar-navigation');

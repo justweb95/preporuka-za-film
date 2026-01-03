@@ -29,6 +29,6 @@
       @endforeach
     </ul>
   @else
-    <p class="no-results-found">Trenutno nema preporučenih filmova.</p>
+    <p class="no-results-found">Trenutno nemate omiljene filmove.</p>
   @endif
 </section>

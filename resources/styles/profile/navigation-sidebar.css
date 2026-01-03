@@ -49,6 +49,9 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        max-width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
 
       .sidebar-my-account {

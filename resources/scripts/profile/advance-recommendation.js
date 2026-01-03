@@ -6,6 +6,14 @@ import { getLoggedInUsername } from '@scripts/profile/profile-main.js';
 import { saveMovieRecommendation } from '@scripts/pages/anketa.js';
 import { tmdbCallHandler, tmdbAllMoviesHandler } from '../partials/tmdbControler.js'
 import { poplateResult, populateMultipleResults } from '@scripts/helpers/recommendation-results-helper.js';
+import { scrolToTop } from '@scripts/helpers/scrool-to-top-helper.js';
+
+// swifti slider
+// import Swiffy Slider JS
+import { swiffyslider } from 'swiffy-slider'
+window.swiffyslider = swiffyslider;
+import "swiffy-slider/css"
+
 
 // Advance Search Prompt
 const submitAdvanceRecommendation = document.getElementById('start_recommendation');
@@ -15,7 +23,10 @@ let advanceRecommendationResultLoading = document.getElementById('loading');
 let advanceRecommendationResultContent = document.getElementById('results');
 let swipeAnimation = document.querySelector('.swipe-animation'); 
 
-submitAdvanceRecommendation.addEventListener('click', async () => newAdvanceRecomendationHandler());
+submitAdvanceRecommendation.addEventListener('click', async () => {
+  newAdvanceRecomendationHandler()
+  scrolToTop();
+});
 
 async function newAdvanceRecomendationHandler () {
   const loadingArticle = document.getElementById('loading');
@@ -41,8 +52,6 @@ async function newAdvanceRecomendationHandler () {
     await saveMovieRecommendation(movie_ids, username);
   }
 
-
-  
   const populateionDone = await populateMultipleResults(tmdbResult);
   if (populateionDone) {
     
@@ -60,6 +69,9 @@ async function newAdvanceRecomendationHandler () {
         swipeAnimation.style.display = 'block';
       }
 
+      setTimeout(() => {
+        window.swiffyslider.init(); // re-initialize Swiffy Slider
+      }, 0);
     }, 1000)
   }  
 
@@ -184,11 +196,7 @@ function generateAdvancePrompt() {
     - No null or empty values
     - Always capitalize movie titles correctly
     `;
-
-    console.log('finalPrompt');
-    console.log(finalPrompt);
-    
-    return finalPrompt;
+  return finalPrompt;
 }
 
 // perplexity advance recommendation end

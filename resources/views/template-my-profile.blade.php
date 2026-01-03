@@ -60,7 +60,7 @@
       @include('pages.my-profile.partials.tab-header', [ 
         'tab_heading' => 'Napredna Pretraga', 
         'notification' => false, 
-        'new_recommendations' => true
+        'new_recommendations' => false
       ])
 
       @include('pages.my-profile.sections.advance-recommendation')

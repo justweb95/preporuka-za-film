@@ -2,6 +2,7 @@ import confetti from 'canvas-confetti';
 import { clearSelectedMovies } from '@scripts/helpers/session-storage.js';
 import { poplateResult } from '@scripts/helpers/recommendation-results-helper.js';
 import { showToast } from "@scripts/helpers/toastify-helper";
+import { scrolToTop } from '@scripts/helpers/scrool-to-top-helper.js';
 
 import {
   collectProgressItems,
@@ -50,14 +51,9 @@ function honStepHandler(step_index) {
 const start_game_btns = document.querySelectorAll('.start-game-btn');
 
 start_game_btns.forEach(btn => btn.addEventListener('click', (event) => {
-  if (event.currentTarget.dataset.isCustom === "start_game") {
-  
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth' // smooth scroll
-    });
+  scrolToTop();
 
-  
+  if (event.currentTarget.dataset.isCustom === "start_game") {
     five_movie_array = collectFiveCustomAddedMovie();
     const fiveMovieAdded = five_movie_array.every(movie => movie.id && movie.id.trim() !== '');
 
@@ -80,11 +76,14 @@ start_game_btns.forEach(btn => btn.addEventListener('click', (event) => {
 
 // Start Game Handler
 async function startGameHandler(isCustom) {
+  scrolToTop();
+  
   if(!isCustom) {
     const button_loader = document.querySelector('.suprise-start-btn');
     button_loader.textContent = 'AI Nalazi Filmove...'
     
     const movies_response = await getFiveMoviesForGame();
+    
     if(!movies_response) return;
     
     button_loader.textContent = 'Pokreni igru'

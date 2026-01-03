@@ -38,7 +38,7 @@ add_action('personal_options_update', 'save_manual_activation');
 add_action('edit_user_profile_update', 'save_manual_activation');
 
 
-function save_manual_activation($user_id) {
+function save_manual_activation() {
     if (!current_user_can('edit_user', $user_id)) return;
 
     // New value from admin form
@@ -65,6 +65,7 @@ function save_manual_activation($user_id) {
         );
     }
 }
+
 
 /**
  * Prevent Login for Unverified Users (except admins)

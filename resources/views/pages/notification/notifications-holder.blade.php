@@ -4,18 +4,13 @@
   $user_id = get_current_user_id();
   $notificationManager = new NotificationManager($user_id);
 
-  // Get notifications
-  $notificationsJson = $notificationManager->getNotifications($user_id);
-  
-  // SAFETY: Decode and ensure it's an array
+  $notificationsJson = $notificationManager->getNotifications($user_id);  
   $notifications = json_decode($notificationsJson, true);
   
   // If json_decode failed or returned null, set empty array
   if (!is_array($notifications)) {
       $notifications = [];
   }
-  
-  // SAFETY: Ensure each notification is an array
   $notifications = array_filter($notifications, function($notification) {
       return is_array($notification);
   });

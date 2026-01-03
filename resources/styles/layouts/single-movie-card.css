@@ -1,4 +1,5 @@
 .single-movie-card {
+  flex: 1 0 45%;
   position: relative;
   text-decoration: none;
   max-width: 226px;
@@ -121,6 +122,32 @@
     }
     p {
       font-size: 14px;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .movie-card-menu-btn-holder {
+        .movie-card-btn-our-recomentation,
+        .movie-card-btn-already-watched,
+        .movie-card-btn-favorites {
+          &:hover {
+            .movie-card-menu-btn-tooltip {
+              opacity: 0;
+            }
+
+            .like-button {
+              path {
+                stroke: var(--Orange, #F57C36);
+                fill: var(--Orange, #F57C36);
+              }
+            }
+
+            .watched-button {
+              path {
+                stroke: var(--Orange, #F57C36);
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

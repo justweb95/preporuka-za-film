@@ -82,7 +82,7 @@ class NotificationManager {
     $wpdb->insert(
       $table,
       [
-        'user_id'   => NULL,
+        'user_id'   => $user_id,
         'type'      => $type,
         'title'     => $title,
         'message'   => $message,

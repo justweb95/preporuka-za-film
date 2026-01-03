@@ -30,6 +30,6 @@
     <button type="button" class="slider-nav"></button>
     <button type="button" class="slider-nav slider-nav-next"></button>
   @else
-    <p class="no-results-found">Trenutno nema preporučenih filmova.</p>
+    <p class="no-results-found">Trenutno nema filmova koje ste gledali.</p>
   @endif
 </section>

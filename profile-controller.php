@@ -421,7 +421,7 @@ function get_five_movies_handler() {
         return $release_date ? substr($release_date, 0, 4) : '';
     };
 
-    // --- 1 random favorite movie ---
+    // --- Try 1 random favorite movie ---
     if (!empty($favorite_movies)) {
         $fav_id = $favorite_movies[array_rand($favorite_movies)];
         $fav_post = get_post($fav_id);
@@ -431,13 +431,13 @@ function get_five_movies_handler() {
                 'title'  => $fav_post->post_title,
                 'link'   => get_permalink($fav_post->ID),
                 'poster' => $get_poster($fav_post->ID),
-                'release_year'   => $get_year($fav_post->ID),
+                'release_year' => $get_year($fav_post->ID),
             ];
             $exclude_ids[] = $fav_post->ID;
         }
     }
 
-    // --- 1 random already watched movie ---
+    // --- Try 1 random already watched movie ---
     if (!empty($already_watched)) {
         $watched_id = $already_watched[array_rand($already_watched)];
         if (!in_array($watched_id, $exclude_ids)) {
@@ -448,43 +448,49 @@ function get_five_movies_handler() {
                     'title'  => $watched_post->post_title,
                     'link'   => get_permalink($watched_post->ID),
                     'poster' => $get_poster($watched_post->ID),
-                    'release_year'   => $get_year($watched_post->ID),
+                    'release_year' => $get_year($watched_post->ID),
                 ];
                 $exclude_ids[] = $watched_post->ID;
             }
         }
     }
 
-    // --- 3 random movies from DB excluding previous ---
-    $args = [
-        'post_type'      => 'movie',
-        'post_status'    => 'publish',
-        'posts_per_page' => 3,
-        'orderby'        => 'rand',
-        'post__not_in'   => $exclude_ids,
-        'meta_query'     => [
-            [
-                'key'     => 'vote_average',
-                'value'   => [6.5, 9],
-                'type'    => 'NUMERIC',
-                'compare' => 'BETWEEN',
+    // --- Calculate how many random movies we still need ---
+    $needed = 5 - count($movies);
+    if ($needed > 0) {
+        $args = [
+            'post_type'      => 'movie',
+            'post_status'    => 'publish',
+            'posts_per_page' => $needed,
+            'orderby'        => 'rand',
+            'post__not_in'   => $exclude_ids,
+            'meta_query'     => [
+                [
+                    'key'     => 'vote_average',
+                    'value'   => [6.5, 9],
+                    'type'    => 'NUMERIC',
+                    'compare' => 'BETWEEN',
+                ]
             ]
-        ]
-    ];
+        ];
 
-    $query = new WP_Query($args);
-    if ($query->have_posts()) {
-        foreach ($query->posts as $post) {
-            $movies[] = [
-                'id'     => $post->ID,
-                'title'  => $post->post_title,
-                'link'   => get_permalink($post->ID),
-                'poster' => $get_poster($post->ID),
-                'release_year'   => $get_year($post->ID),
-            ];
-            $exclude_ids[] = $post->ID;
+        $query = new WP_Query($args);
+        if ($query->have_posts()) {
+            foreach ($query->posts as $post) {
+                $movies[] = [
+                    'id'     => $post->ID,
+                    'title'  => $post->post_title,
+                    'link'   => get_permalink($post->ID),
+                    'poster' => $get_poster($post->ID),
+                    'release_year' => $get_year($post->ID),
+                ];
+                $exclude_ids[] = $post->ID;
+            }
         }
     }
+
+    // --- Just in case, make sure we always return exactly 5 ---
+    $movies = array_slice($movies, 0, 5);
 
     wp_send_json_success(['movies' => $movies]);
 }

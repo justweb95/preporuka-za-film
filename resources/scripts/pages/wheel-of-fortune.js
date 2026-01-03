@@ -2,6 +2,7 @@ import confetti from 'canvas-confetti';
 import { poplateResult } from '@scripts/helpers/recommendation-results-helper.js';
 import { wheelOfFortune } from "./wheel-of-fortune-spin-game";
 import { clearSelectedMovies } from '@scripts/helpers/session-storage';
+import { scrolToTop } from '@scripts/helpers/scrool-to-top-helper';
 
 const wof = wheelOfFortune('.wof-wheel-imgs-holder');
 const startBtn = document.querySelector('.wof-start-game');
@@ -25,7 +26,7 @@ async function gameEnd(movie_id) {
     confetti({particleCount: 100,  spread: 70,  origin: { x: 0.7, y: 0.5 }});
     confetti({particleCount: 100,  spread: 70,  origin: { x: 0.3, y: 0.6 }});
     
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    scrolToTop();
     
     wheelOfFortuneHome.hidden = true;
     wheelOfFortuneResults.hidden = false;

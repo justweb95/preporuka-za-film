@@ -74,62 +74,59 @@ export function initMovieFilterSort(tabClass, containerClass) {
     });
   }
 
-  function filterAndSortMovies() {
+function filterAndSortMovies() {
+    // Remove any old "no results" message
+    const oldMessage = moviesContainer.querySelector('.no-results-found');
+    if (oldMessage) oldMessage.remove();
+
     // Skip sorting on initial load when category is "all"
     if (isInitialLoad && currentCategory === 'all') {
-      isInitialLoad = false;
-      // Just ensure all are visible
-      allMovies.forEach(item => item.element.style.display = 'block');
-      return;
+        isInitialLoad = false;
+        allMovies.forEach(item => item.element.style.display = 'block');
+        return;
     }
-    
+
     isInitialLoad = false;
-    
-    // Special case: "all" category - just show everything in current sort order
+
+    // Filter by category (special case "all" shows everything)
+    let visible;
     if (currentCategory === 'all') {
-      const fragment = document.createDocumentFragment();
-      
-      // Sort cached data
-      const sorted = [...allMovies].sort((a, b) => {
+        visible = [...allMovies];
+    } else {
+        visible = allMovies.filter(item => item.category === currentCategory);
+    }
+
+    // Sort visible movies
+    visible.sort((a, b) => {
         const aVal = currentSort === 'sort_year' ? a.year : a.rating;
         const bVal = currentSort === 'sort_year' ? b.year : b.rating;
         return bVal - aVal;
-      });
-      
-      // Batch DOM update
-      sorted.forEach(item => {
-        item.element.style.display = 'block';
-        fragment.appendChild(item.element);
-      });
-      
-      moviesContainer.appendChild(fragment);
-      return;
-    }
-    
-    // Filter by category
-    const visible = allMovies.filter(item => item.category === currentCategory);
-    
-    // Sort
-    visible.sort((a, b) => {
-      const aVal = currentSort === 'sort_year' ? a.year : a.rating;
-      const bVal = currentSort === 'sort_year' ? b.year : b.rating;
-      return bVal - aVal;
     });
-    
-    // Batch DOM updates using DocumentFragment
+
+    // Batch DOM update
     const fragment = document.createDocumentFragment();
-    
+
     // Hide all first
     allMovies.forEach(item => item.element.style.display = 'none');
-    
-    // Show and reorder visible ones
-    visible.forEach(item => {
-      item.element.style.display = 'block';
-      fragment.appendChild(item.element);
-    });
-    
+
+    if (visible.length === 0) {
+        // No movies found for selected category → show message
+        const message = document.createElement('p');
+        message.className = 'no-results-found';
+        message.textContent = 'Nema filmova za izabranu kategoriju';
+        fragment.appendChild(message);
+    } else {
+        // Show visible movies
+        visible.forEach(item => {
+            item.element.style.display = 'block';
+            fragment.appendChild(item.element);
+        });
+    }
+
+    // Append everything at once
     moviesContainer.appendChild(fragment);
-  }
+}
+
 
   // Initial load
   filterAndSortMovies();

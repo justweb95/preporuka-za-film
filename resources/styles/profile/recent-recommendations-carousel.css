@@ -154,5 +154,8 @@
     .recent-recommendations-list {
       gap: 16px;
     }
+    .no-results-found {
+      width: 100%;
+    }
   }
 }
