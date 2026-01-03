@@ -36,32 +36,6 @@
           <p>
             Naš cilj je da učinimo discovery filmova zabavnim, interaktivnim i intuitivnim za sve vrste gledalaca - od casual korisnika do filmskih entuzijasta.
           </p>
-          
-          <div class="about-intro-features">
-            <div class="about-feature-item">
-              <div class="about-feature-icon">🤖</div>
-              <div>
-                <h3>AI Preporuke</h3>
-                <p>Naš AI sistem analizira vaše preferencije i generiše precizne preporuke</p>
-              </div>
-            </div>
-            
-            <div class="about-feature-item">
-              <div class="about-feature-icon">👤</div>
-              <div>
-                <h3>Lični Profil</h3>
-                <p>Pratite vašu istoriju, omiljene filmove i napredne analitike</p>
-              </div>
-            </div>
-            
-            <div class="about-feature-item">
-              <div class="about-feature-icon">🎮</div>
-              <div>
-                <h3>Interaktivne Igre</h3>
-                <p>Otkrijte filmove kroz zabavne igre</p>
-              </div>
-            </div>
-          </div>
         </div>
         
         <div class="about-intro-image">
@@ -71,6 +45,32 @@
           </div> --}}
           <img class="intro-image" src="@asset('images/about/about-image.webp')" alt="Intro Image">
         </div>
+
+        <div class="about-intro-features">
+            <div class="about-feature-item">
+              <div class="about-feature-icon"><img class="icon-image" src="@asset('images/about/lab-tools.svg')" alt="Lab Image"></div>
+              <div>
+                <h3>AI Preporuke</h3>
+                <p>Naš AI sistem analizira vaše preferencije i generiše precizne preporuke</p>
+              </div>
+            </div>
+            
+            <div class="about-feature-item">
+              <div class="about-feature-icon"><img class="icon-image" src="@asset('images/about/single-neutral-circle.svg')" alt="Lab Image"></div>
+              <div>
+                <h3>Lični Profil</h3>
+                <p>Pratite vašu istoriju, omiljene filmove i napredne analitike</p>
+              </div>
+            </div>
+            
+            <div class="about-feature-item">
+              <div class="about-feature-icon"><img class="icon-image" src="@asset('images/about/gameboy.svg')" alt="Lab Image"></div>
+              <div>
+                <h3>Interaktivne Igre</h3>
+                <p>Otkrijte filmove kroz zabavne igre</p>
+              </div>
+            </div>
+          </div>
       </div>
     </section>
     
@@ -133,7 +133,7 @@
           <!-- IGRA 1: VERSUS -->
           <div class="about-game-card">
             <div class="about-game-header">
-              <div class="about-game-icon">⚔️</div>
+              <div class="about-game-icon"><img class="icon-image" src="@asset('images/about/cross-swords.png')" alt="Lab Image"></div>
               <h3>Film vs Film</h3>
               <p>Direktna Borba</p>
             </div>
@@ -152,7 +152,7 @@
           <!-- IGRA 3: TOČAK SREĆE -->
           <div class="about-game-card">
             <div class="about-game-header">
-              <div class="about-game-icon">🎡</div>
+              <div class="about-game-icon"><img class="icon-image" src="@asset('images/about/icon-wheel.png')" alt="Lab Image"></div>
               <h3>Točak Sreće</h3>
               <p>Sertifikat Preporuke</p>
             </div>
@@ -178,7 +178,7 @@
       <div class="about-tech-box">
         <div class="about-tech-grid">
           <div class="about-tech-item">
-            <div class="about-tech-item-icon">🤖</div>
+            <div class="about-tech-item-icon"><img class="icon-image" src="@asset('images/about/lab-tube-experiment.svg')" alt="Lab Image"></div>
             <strong>Perplexity AI</strong>
             <p>Custom Create Agent - AI algoritmi koji se uče iz vasih odgovora/podataka</p>
           </div>
@@ -212,7 +212,9 @@
       
       <div class="about-vision-mission">
         <div class="about-vision-box">
-          <h3>🎯 Naša Misija</h3>
+          <h3>
+            <img class="our-mision-icon-image" src="@asset('images/about/leadership.png')" alt="Naša Misija Icon">
+            Naša Misija</h3>
           <p>
             Naša misija je da učinimo pronalaženje savršenog filma jednostavno, zabavno i personalizovano. 
             Želimo da budemo most između gledalaca i filmova koji će ih inspirisati, zabaviti i emocije izazvati.
@@ -220,7 +222,10 @@
         </div>
         
         <div class="about-mission-box">
-          <h3>👁️ Naša Vizija</h3>
+          <h3>
+            <img class="our-mision-icon-image" src="@asset('images/about/vision.png')" alt="Naša Misija Icon">
+            Naša Vizija
+          </h3>
           <p>
             Vizija nam je da postanemo vodeći globalni servis za AI preporuku filmova - mesto gde se tehnologija 
             i umetnost filmske umetnosti sastaju da kreiraju nezaboravno iskustvo za svakog korisnika.
@@ -235,8 +240,8 @@
       <p>
         Počni da koristi naš AI sistem i otkri filmove koji su napravljeni za tebe
       </p>
-      <a href="/" class="about-cta-button about-cta-primary">Počni Odmah</a>
-      <a href="#contact" class="about-cta-button about-cta-secondary">Kontaktiraj Nas</a>
+      <a href="{{ home_url() }}/anketa" class="about-cta-button about-cta-primary">Počni Odmah</a>
+      <a href="{{ home_url() }}/kontakt" class="about-cta-button about-cta-secondary">Kontaktiraj Nas</a>
     </section>
     
   </div>

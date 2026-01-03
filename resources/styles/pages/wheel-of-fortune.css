@@ -321,6 +321,7 @@
         justify-content: space-between;
         gap: 8px;
         list-style: none;
+        over
         .wof-search-results-content-card {
           position: relative;
           max-width: 190px;
@@ -551,6 +552,91 @@
         font-size: 16px;
         color: #FFD54F;
         font-family: 'Unbounded', sans-serif;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .wheel-of-fortune-container {
+      .wof-pop-up-search-results {
+        .wof-search-results-content {
+          overflow-x: scroll;
+          padding-bottom: 20px;
+          &::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+          }
+
+          &::-webkit-scrollbar-track {
+            background: transparent;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: #18BF7C;
+            border-radius: 10px;
+          }
+
+          &::-webkit-scrollbar-thumb:hover {
+            background-color: #14a86c;
+          }
+          .search-results-content-card {
+            min-width: 190px;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 550px) {
+    padding: 80px 0px;
+    .wof-pop-up-close-btn {
+      top: 24px;
+      right: 2.5%;
+      width: 45px;
+      height: 45px;
+    }
+    .wheel-of-fortune-container {
+      .wof-pop-up-title {
+        font-size: 24px;
+      }
+      .wof-pop-up-search-box {
+          width: 100%;
+          padding: 12px 24px;
+          margin: 36px auto 24px;
+          background: #06131E;
+          border: 1px solid #00D5DC;
+          box-shadow: 0 0 0 4px rgba(0, 213, 220, 0.15);
+          border-radius: 80px;
+          transition: .2s ease;
+        .hon-pop-up-search-input {
+          font-size: 16px;
+        }        
+      }
+      .wof-pop-up-search-results {
+        .wof-search-results-content {
+          overflow-x: scroll;
+          padding-bottom: 20px;
+          &::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+          }
+
+          &::-webkit-scrollbar-track {
+            background: transparent;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: #18BF7C;
+            border-radius: 10px;
+          }
+
+          &::-webkit-scrollbar-thumb:hover {
+            background-color: #14a86c;
+          }
+          .search-results-content-card {
+            min-width: 150px;
+            max-width: 150px;
+          }
+        }
       }
     }
   }

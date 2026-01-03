@@ -1,5 +1,6 @@
 .already-watched-tab {
   /* width: 100%; */
+  min-height: 75svh;
   padding: 20px 0px;
   .already-watched-list {
     display: grid;
@@ -119,7 +120,21 @@
     font-weight: 600;
     line-height: normal;
     color: var(--Light, #EDFEEC);
+    width: 218px;
+    height: 326px;
+    text-align: center; /* horizontal center for multiple lines */
+    
+    display: flex;             /* enable flexbox */
+    justify-content: center;   /* horizontal center */
+    align-items: center;       /* vertical center */
+    
+    border-radius: 8px;
+    border: 1px solid var(--Grey, #18bf7c);
+    background: #ffffff18;
+    box-shadow: 3px 4px 6px #18bf7c;
   }
+
+
   .already-watched-list:has(article.search-not-found-box) {
     display: flex;
     justify-content: center;

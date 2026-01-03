@@ -13,6 +13,7 @@ let advanceRecommendationQuestionHolder = document.querySelector('.advance-recom
 let advanceRecommendationResultHolder = document.querySelector('.advance-recommendation-result');
 let advanceRecommendationResultLoading = document.getElementById('loading');
 let advanceRecommendationResultContent = document.getElementById('results');
+let swipeAnimation = document.querySelector('.swipe-animation'); 
 
 submitAdvanceRecommendation.addEventListener('click', async () => newAdvanceRecomendationHandler());
 
@@ -55,8 +56,17 @@ async function newAdvanceRecomendationHandler () {
       advanceRecommendationResultContent.hidden = false;
       advanceRecommendationResultLoading.hidden = true;
 
+      if (window.innerWidth < 1024) {
+        swipeAnimation.style.display = 'block';
+      }
+
     }, 1000)
   }  
+
+  setTimeout(()=> {
+    swipeAnimation.style.display = 'none';
+  }, 4000)
+
 }
 
 window.newAdvanceRecomendation = newAdvanceRecomendationHandler;

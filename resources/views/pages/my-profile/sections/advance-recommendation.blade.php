@@ -38,6 +38,7 @@
   </div>
 
   <div class="advance-recommendation-result" hidden>
+    <img class="swipe-animation" src="@asset('images/questionnaire/anim-swipe.gif')" alt="Swipe animation gif">
     @include('pages/questions/loader')
     @include('pages/questions/results')
     @include('pages/questions/video-popup', ['video_url' => ''])

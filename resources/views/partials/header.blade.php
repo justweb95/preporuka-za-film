@@ -171,6 +171,7 @@
           </svg>      
         </li>
         <li class="burger-link-item"><a href="{{ home_url() }}/">Početna</a></li>
+        <li class="burger-link-item"><a href="{{ home_url() }}/o-nama">O Nama</a></li>
         <li class="burger-link-item burger-open-dropdown">
           <a href="#">Preporuke</a>
            <svg class="burger-category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">

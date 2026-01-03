@@ -12,6 +12,8 @@
   overflow: hidden;
   background-image: url('../images/partials/footer-background.webp');
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .about-hero-content {
@@ -68,6 +70,9 @@
   gap: 60px;
   align-items: start;
 }
+.about-intro > :nth-child(3) {
+  grid-column: 1 / -1; /* span all columns */
+}
 
 .about-intro-text h2 {
   font-family: 'Unbounded', sans-serif;
@@ -102,13 +107,13 @@
 
 /* Feature Items */
 .about-intro-features {
-  margin-top: 40px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   gap: 20px;
 }
 
 .about-feature-item {
+  flex: 1 0 30%;
   display: flex;
   align-items: flex-start;
   gap: 20px;
@@ -125,6 +130,10 @@
 .about-feature-icon {
   font-size: 2.5rem;
   flex-shrink: 0;
+  .icon-image {
+    max-width: 40px;
+    vertical-align: middle;
+  }
 }
 
 .about-feature-item h3 {
@@ -284,6 +293,9 @@
 .about-game-icon {
   font-size: 4rem;
   margin-bottom: 16px;
+  .icon-image {
+    max-width: 72px;
+  }
 }
 
 .about-game-header h3 {
@@ -358,6 +370,9 @@
 .about-tech-item-icon {
   font-size: 3rem;
   margin-bottom: 16px;
+  .icon-image {
+    max-width: 48px;
+  }
 }
 
 .about-tech-item strong {
@@ -395,6 +410,11 @@
   border-radius: 6px;
   background-color: #22374A;
   transition: transform 0.3s ease;
+  .our-mision-icon-image {
+    max-width: 42px;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
 }
 
 .about-vision-box:hover,
@@ -494,6 +514,12 @@
     gap: 40px;
   }
 
+  .about-intro-image {
+    .intro-image {
+      margin: 0px auto;
+    }
+  }
+
   .about-games-grid {
     gap: 20px;
   }
@@ -504,6 +530,12 @@
 
   .about-profile-grid {
     gap: 16px;
+  }
+  .about-intro-features {
+    flex-wrap: wrap;
+  }
+  .about-feature-item {
+    flex: 1 0 100%;
   }
 }
 
@@ -616,8 +648,8 @@
   }
 
   .about-intro-image {
-    padding: 40px 20px;
-    min-height: 300px;
+    /* padding: 40px 20px; */
+    min-height: unset;
   }
 
   .about-image-icon {

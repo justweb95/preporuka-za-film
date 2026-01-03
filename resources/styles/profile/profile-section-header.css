@@ -152,9 +152,9 @@
       }
     }
     .filter-sort {
-      flex: 1 0 25%;
+      flex: 1 0 15%;
       .filter-sort-selected {
-        padding: 4px !important;
+        padding: 9px 6px !important;
         font-size: 14px !important;
       }
     }

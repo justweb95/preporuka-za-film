@@ -464,3 +464,17 @@
     transform: rotate(360deg);
   }
 }
+
+/* swipe animation keyframes */
+@keyframes swipeMove {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0; /* fade out at the end */
+    display: none; /* this doesn't actually work in keyframes */
+  }
+}

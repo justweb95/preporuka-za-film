@@ -51,7 +51,13 @@ const start_game_btns = document.querySelectorAll('.start-game-btn');
 
 start_game_btns.forEach(btn => btn.addEventListener('click', (event) => {
   if (event.currentTarget.dataset.isCustom === "start_game") {
+  
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // smooth scroll
+    });
 
+  
     five_movie_array = collectFiveCustomAddedMovie();
     const fiveMovieAdded = five_movie_array.every(movie => movie.id && movie.id.trim() !== '');
 

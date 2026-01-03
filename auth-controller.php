@@ -291,30 +291,51 @@ add_action('wp_ajax_nopriv_custom_login', 'custom_login_handler');
 add_action('wp_ajax_custom_login', 'custom_login_handler');
 
 function custom_login_handler() {
-    // Stop if missing required fields
     if (empty($_POST['log']) || empty($_POST['pwd'])) {
         wp_send_json_error(['message' => 'Nedostaju podaci za prijavu.']);
     }
 
+    $login = sanitize_text_field($_POST['log']);
+    $password = $_POST['pwd'];
+
+    // Get user by email OR username
+    if (is_email($login)) {
+        $user = get_user_by('email', $login);
+    } else {
+        $user = get_user_by('login', $login);
+    }
+
+    if (!$user) {
+        wp_send_json_error(['message' => 'Korisnik ne postoji.']);
+    }
+
+    $email_verified = get_user_meta($user->ID, 'is_verified', true);
+    if ($email_verified !== '1') {
+        wp_send_json_error([
+            'message' => 'Molimo vas da potvrdite vašu email adresu pre prijave.'
+        ]);
+    }
+
+    // Try login
     $creds = [
-        'user_login'    => sanitize_text_field($_POST['log']),
-        'user_password' => $_POST['pwd'],
+        'user_login'    => $user->user_login,
+        'user_password' => $password,
         'remember'      => isset($_POST['rememberme']),
     ];
 
-    $user = wp_signon($creds, false);
+    $logged_user = wp_signon($creds, false);
 
-    if (is_wp_error($user)) {
+    if (is_wp_error($logged_user)) {
         wp_send_json_error(['message' => 'Pogrešan e-mail ili lozinka.']);
     }
 
-    // Redirect based on role
-    $redirect_url = in_array('subscriber', (array)$user->roles)
+    $redirect_url = in_array('subscriber', (array)$logged_user->roles)
         ? home_url('/moj-profil')
         : home_url('/');
 
     wp_send_json_success(['redirect' => $redirect_url]);
 }
+
 
 
 add_action('wp_ajax_nopriv_google_token_login', 'google_token_login');
