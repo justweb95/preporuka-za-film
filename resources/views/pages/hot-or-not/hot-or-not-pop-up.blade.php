@@ -57,50 +57,61 @@
         </div>
       </div>
       <ul id="recent-recommendations-list" class="search-results-content">
-        @foreach ($my_recent_recommendations as $movie)
-          <li class="search-results-content-card">
-            @include('partials/single-movie-card',[
-              'movie_index' => $loop->iteration,
-              'poster_path' => $movie['poster_url'],
-              'movie_ID' => $movie['ID'],
-              'release_year' => $movie['year'],
-              'single_movie_control' => false,
-              'our_recommendations' => $movie['our_recommendations'],
-            ])
-            <button class="search-results-add-movie">
-              <svg class="add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#06131E" fill-opacity="0.8"/>
-                <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#22374A"/>
-                <path d="M30 40L30 20" stroke="#EDFEEC" stroke-width="2"/>
-                <path d="M20 30L40 30" stroke="#EDFEEC" stroke-width="2"/>
-              </svg>
-            </button>
-          </li>            
-        @endforeach
+        @if (!empty($my_recent_recommendations))
+          @foreach ($my_recent_recommendations as $movie)
+            <li class="search-results-content-card">
+              @include('partials/single-movie-card',[
+                'movie_index' => $loop->iteration,
+                'poster_path' => $movie['poster_url'],
+                'movie_ID' => $movie['ID'],
+                'release_year' => $movie['year'],
+                'single_movie_control' => false,
+                'our_recommendations' => $movie['our_recommendations'],
+              ])
+              <button class="search-results-add-movie">
+                <svg class="add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#06131E" fill-opacity="0.8"/>
+                  <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#22374A"/>
+                  <path d="M30 40L30 20" stroke="#EDFEEC" stroke-width="2"/>
+                  <path d="M20 30L40 30" stroke="#EDFEEC" stroke-width="2"/>
+                </svg>
+              </button>
+            </li>            
+          @endforeach            
+        @else
+          <p class="no-results-found">Još uvek nemaš dodate filmove.
+            Prijavi se i počni da praviš svoju listu.</p>
+        @endif
       </ul>
       <ul id="my-favorites-list" class="search-results-content">
-        @foreach ($my_favorites as $movie)
-          <li class="search-results-content-card">
-            @include('partials/single-movie-card',[
-              'movie_index' => $loop->iteration,
-              'poster_path' => $movie['poster_url'],
-              'movie_ID' => $movie['ID'],
-              'release_year' => $movie['year'],
-              'single_movie_control' => false,
-              'our_recommendations' => $movie['our_recommendations'],
-            ])
-            <button class="search-results-add-movie">
-              <svg class="add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#06131E" fill-opacity="0.8"/>
-                <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#22374A"/>
-                <path d="M30 40L30 20" stroke="#EDFEEC" stroke-width="2"/>
-                <path d="M20 30L40 30" stroke="#EDFEEC" stroke-width="2"/>
-              </svg>
-            </button>
-          </li>            
-        @endforeach
+        @if (!empty($my_favorites))
+          @foreach ($my_favorites as $movie)
+            <li class="search-results-content-card">
+              @include('partials/single-movie-card',[
+                'movie_index' => $loop->iteration,
+                'poster_path' => $movie['poster_url'],
+                'movie_ID' => $movie['ID'],
+                'release_year' => $movie['year'],
+                'single_movie_control' => false,
+                'our_recommendations' => $movie['our_recommendations'],
+              ])
+              <button class="search-results-add-movie">
+                <svg class="add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#06131E" fill-opacity="0.8"/>
+                  <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#22374A"/>
+                  <path d="M30 40L30 20" stroke="#EDFEEC" stroke-width="2"/>
+                  <path d="M20 30L40 30" stroke="#EDFEEC" stroke-width="2"/>
+                </svg>
+              </button>
+            </li>            
+          @endforeach
+        @else
+          <p class="no-results-found">Još uvek nemaš dodate filmove.
+            Prijavi se i počni da praviš svoju listu.</p>
+        @endif
       </ul>
       <ul id="already-watched-list" class="search-results-content">
+      @if (!empty($my_already_watched))
         @foreach ($my_already_watched as $movie)
           <li class="search-results-content-card">
             @include('partials/single-movie-card',[
@@ -121,6 +132,10 @@
             </button>
           </li>            
         @endforeach
+      @else
+        <p class="no-results-found">Još uvek nemaš dodate filmove.
+          Prijavi se i počni da praviš svoju listu.</p>
+      @endif
       </ul>
       <ul id="custom-search-list" class="search-results-content"></ul>
     </div>

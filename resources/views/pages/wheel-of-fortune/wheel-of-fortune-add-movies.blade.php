@@ -47,7 +47,7 @@
   <div class="wof-movie-cards">
     <ul class="wof-movie-card-list">
       <li class="wof-movie-card empty-card">
-        <button class="wof-movie-btn" data-tooltip="Izbaci Film">
+        <button class="wof-movie-btn" data-tooltip="Dodaj film">
           <svg class="wof-add-movie-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" fill="#22374A" fill-opacity="0.5"/>
             <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#22374A"/>

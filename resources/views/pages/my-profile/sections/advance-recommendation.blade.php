@@ -1,3 +1,12 @@
+@php
+  $current_user = wp_get_current_user();
+
+  if (!$current_user->ID) {
+    wp_redirect(home_url('/wp-login.php'));
+    exit;
+  }
+@endphp
+
 <section class="advance-recommendation-tab">
   <div class="advance-recommendation-questionnaire">
     @include('pages.my-profile.advance-questions.include-watched-movies')
@@ -43,5 +52,4 @@
     @include('pages/questions/results')
     @include('pages/questions/video-popup', ['video_url' => ''])
   </div>
-  
 </section>

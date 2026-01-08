@@ -393,23 +393,118 @@ function save_movie_recommendation_handler() {
     ]);
 }
 
+// add_action('wp_ajax_get_five_movies', 'get_five_movies_handler');
+// add_action('wp_ajax_nopriv_get_five_movies', 'get_five_movies_handler');
+
+// function get_five_movies_handler() {
+//     $user = wp_get_current_user();
+
+//     if (!$user || 0 === $user->ID) {
+//         wp_send_json_error(['message' => 'User not logged in'], 401);
+//     }
+
+//     $user_id = $user->ID;
+
+//     $favorite_movies = json_decode(get_user_meta($user_id, 'favorite_movies', true), true) ?: [];
+//     $already_watched = json_decode(get_user_meta($user_id, 'already_watched', true), true) ?: [];
+
+//     $movies = [];
+//     $exclude_ids = [];
+
+//     $get_poster = function($post_id) {
+//         $poster = get_post_meta($post_id, 'poster_path', true);
+//         return $poster ?: 'https://via.placeholder.com/300x450?text=No+Image';
+//     };
+
+//     $get_year = function($post_id) {
+//         $release_date = get_post_meta($post_id, 'release_date', true);
+//         return $release_date ? substr($release_date, 0, 4) : '';
+//     };
+
+//     // --- Try 1 random favorite movie ---
+//     if (!empty($favorite_movies)) {
+//         $fav_id = $favorite_movies[array_rand($favorite_movies)];
+//         $fav_post = get_post($fav_id);
+//         if ($fav_post) {
+//             $movies[] = [
+//                 'id'     => $fav_post->ID,
+//                 'title'  => $fav_post->post_title,
+//                 'link'   => get_permalink($fav_post->ID),
+//                 'poster' => $get_poster($fav_post->ID),
+//                 'release_year' => $get_year($fav_post->ID),
+//             ];
+//             $exclude_ids[] = $fav_post->ID;
+//         }
+//     }
+
+//     // --- Try 1 random already watched movie ---
+//     if (!empty($already_watched)) {
+//         $watched_id = $already_watched[array_rand($already_watched)];
+//         if (!in_array($watched_id, $exclude_ids)) {
+//             $watched_post = get_post($watched_id);
+//             if ($watched_post) {
+//                 $movies[] = [
+//                     'id'     => $watched_post->ID,
+//                     'title'  => $watched_post->post_title,
+//                     'link'   => get_permalink($watched_post->ID),
+//                     'poster' => $get_poster($watched_post->ID),
+//                     'release_year' => $get_year($watched_post->ID),
+//                 ];
+//                 $exclude_ids[] = $watched_post->ID;
+//             }
+//         }
+//     }
+
+//     // --- Calculate how many random movies we still need ---
+//     $needed = 5 - count($movies);
+//     if ($needed > 0) {
+//         $args = [
+//             'post_type'      => 'movie',
+//             'post_status'    => 'publish',
+//             'posts_per_page' => $needed,
+//             'orderby'        => 'rand',
+//             'post__not_in'   => $exclude_ids,
+//             'meta_query'     => [
+//                 [
+//                     'key'     => 'vote_average',
+//                     'value'   => [6.5, 9],
+//                     'type'    => 'NUMERIC',
+//                     'compare' => 'BETWEEN',
+//                 ]
+//             ]
+//         ];
+
+//         $query = new WP_Query($args);
+//         if ($query->have_posts()) {
+//             foreach ($query->posts as $post) {
+//                 $movies[] = [
+//                     'id'     => $post->ID,
+//                     'title'  => $post->post_title,
+//                     'link'   => get_permalink($post->ID),
+//                     'poster' => $get_poster($post->ID),
+//                     'release_year' => $get_year($post->ID),
+//                 ];
+//                 $exclude_ids[] = $post->ID;
+//             }
+//         }
+//     }
+
+//     // --- Just in case, make sure we always return exactly 5 ---
+//     $movies = array_slice($movies, 0, 5);
+
+//     wp_send_json_success(['movies' => $movies]);
+// }
+
+
 add_action('wp_ajax_get_five_movies', 'get_five_movies_handler');
 add_action('wp_ajax_nopriv_get_five_movies', 'get_five_movies_handler');
 
 function get_five_movies_handler() {
     $user = wp_get_current_user();
-
-    if (!$user || 0 === $user->ID) {
-        wp_send_json_error(['message' => 'User not logged in'], 401);
-    }
-
-    $user_id = $user->ID;
-
-    $favorite_movies = json_decode(get_user_meta($user_id, 'favorite_movies', true), true) ?: [];
-    $already_watched = json_decode(get_user_meta($user_id, 'already_watched', true), true) ?: [];
-
-    $movies = [];
+    $favorite_movies = [];
+    $already_watched = [];
     $exclude_ids = [];
+    $movies = [];
 
     $get_poster = function($post_id) {
         $poster = get_post_meta($post_id, 'poster_path', true);
@@ -421,36 +516,44 @@ function get_five_movies_handler() {
         return $release_date ? substr($release_date, 0, 4) : '';
     };
 
-    // --- Try 1 random favorite movie ---
-    if (!empty($favorite_movies)) {
-        $fav_id = $favorite_movies[array_rand($favorite_movies)];
-        $fav_post = get_post($fav_id);
-        if ($fav_post) {
-            $movies[] = [
-                'id'     => $fav_post->ID,
-                'title'  => $fav_post->post_title,
-                'link'   => get_permalink($fav_post->ID),
-                'poster' => $get_poster($fav_post->ID),
-                'release_year' => $get_year($fav_post->ID),
-            ];
-            $exclude_ids[] = $fav_post->ID;
-        }
-    }
+    // --- If user is logged in, get favorites and already watched ---
+    if ($user && $user->ID !== 0) {
+        $user_id = $user->ID;
 
-    // --- Try 1 random already watched movie ---
-    if (!empty($already_watched)) {
-        $watched_id = $already_watched[array_rand($already_watched)];
-        if (!in_array($watched_id, $exclude_ids)) {
-            $watched_post = get_post($watched_id);
-            if ($watched_post) {
+        $favorite_movies = json_decode(get_user_meta($user_id, 'favorite_movies', true), true) ?: [];
+        $already_watched = json_decode(get_user_meta($user_id, 'already_watched', true), true) ?: [];
+
+        // --- Try 1 random favorite movie ---
+        if (!empty($favorite_movies)) {
+            $fav_id = $favorite_movies[array_rand($favorite_movies)];
+            $fav_post = get_post($fav_id);
+            if ($fav_post) {
                 $movies[] = [
-                    'id'     => $watched_post->ID,
-                    'title'  => $watched_post->post_title,
-                    'link'   => get_permalink($watched_post->ID),
-                    'poster' => $get_poster($watched_post->ID),
-                    'release_year' => $get_year($watched_post->ID),
+                    'id' => $fav_post->ID,
+                    'title' => $fav_post->post_title,
+                    'link' => get_permalink($fav_post->ID),
+                    'poster' => $get_poster($fav_post->ID),
+                    'release_year' => $get_year($fav_post->ID),
                 ];
-                $exclude_ids[] = $watched_post->ID;
+                $exclude_ids[] = $fav_post->ID;
+            }
+        }
+
+        // --- Try 1 random already watched movie ---
+        if (!empty($already_watched)) {
+            $watched_id = $already_watched[array_rand($already_watched)];
+            if (!in_array($watched_id, $exclude_ids)) {
+                $watched_post = get_post($watched_id);
+                if ($watched_post) {
+                    $movies[] = [
+                        'id' => $watched_post->ID,
+                        'title' => $watched_post->post_title,
+                        'link' => get_permalink($watched_post->ID),
+                        'poster' => $get_poster($watched_post->ID),
+                        'release_year' => $get_year($watched_post->ID),
+                    ];
+                    $exclude_ids[] = $watched_post->ID;
+                }
             }
         }
     }
@@ -459,16 +562,16 @@ function get_five_movies_handler() {
     $needed = 5 - count($movies);
     if ($needed > 0) {
         $args = [
-            'post_type'      => 'movie',
-            'post_status'    => 'publish',
+            'post_type' => 'movie',
+            'post_status' => 'publish',
             'posts_per_page' => $needed,
-            'orderby'        => 'rand',
-            'post__not_in'   => $exclude_ids,
-            'meta_query'     => [
+            'orderby' => 'rand',
+            'post__not_in' => $exclude_ids,
+            'meta_query' => [
                 [
-                    'key'     => 'vote_average',
-                    'value'   => [6.5, 9],
-                    'type'    => 'NUMERIC',
+                    'key' => 'vote_average',
+                    'value' => [6.5, 9],
+                    'type' => 'NUMERIC',
                     'compare' => 'BETWEEN',
                 ]
             ]
@@ -478,9 +581,9 @@ function get_five_movies_handler() {
         if ($query->have_posts()) {
             foreach ($query->posts as $post) {
                 $movies[] = [
-                    'id'     => $post->ID,
-                    'title'  => $post->post_title,
-                    'link'   => get_permalink($post->ID),
+                    'id' => $post->ID,
+                    'title' => $post->post_title,
+                    'link' => get_permalink($post->ID),
                     'poster' => $get_poster($post->ID),
                     'release_year' => $get_year($post->ID),
                 ];
@@ -494,6 +597,10 @@ function get_five_movies_handler() {
 
     wp_send_json_success(['movies' => $movies]);
 }
+
+
+
+
 
 
 add_action('wp_ajax_get_movie_for_result', 'get_movie_for_result_handler');

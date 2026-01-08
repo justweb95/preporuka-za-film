@@ -562,7 +562,7 @@
       .show-filter-results {
         display: flex;
       }
-      .no-suggestions {
+      .no-suggestions, .no-results-found {
         padding: 8px 12px;
         font-size: 16px;
         color: #FFD54F;

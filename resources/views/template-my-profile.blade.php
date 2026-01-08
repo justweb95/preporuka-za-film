@@ -7,6 +7,12 @@
 
 @php
   $active_tab = request()->query('tab', 'profil_home');
+  $current_user = wp_get_current_user();
+
+  if (!$current_user->ID) {
+    wp_redirect(home_url('/wp-login.php'));
+    exit;
+  }
 @endphp
 
 {{-- Profile Loader --}}
@@ -14,7 +20,7 @@
   <div class="profile-loader">
     <div class="loader-ring"></div>
     <div class="loader-progress">0%</div>
-  </div>
+  </div>      
 </div>
 {{-- Profile Loader --}}
 

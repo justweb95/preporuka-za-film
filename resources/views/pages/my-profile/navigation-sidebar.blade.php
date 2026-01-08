@@ -16,6 +16,7 @@
 <aside class="sidebar-navigation">
   <a href="{{ home_url() }}/" class="sidebar-logo">
     <img src="@asset('images/partials/preporuka-za-film-logo.svg')" alt="Preporuka za film logo">
+    <p class="back-to-main">Povratak na početnu</p>
   </a>
   <div class="sidebar-avatar">
     @if($current_user_img_src)

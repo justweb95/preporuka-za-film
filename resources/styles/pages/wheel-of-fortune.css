@@ -321,7 +321,6 @@
         justify-content: space-between;
         gap: 8px;
         list-style: none;
-        over
         .wof-search-results-content-card {
           position: relative;
           max-width: 190px;
@@ -348,6 +347,12 @@
             } 
           }
         }
+      }
+      .no-results-found {
+        padding: 8px 12px;
+        font-size: 16px;
+        color: #FFD54F;
+        font-family: 'Unbounded', sans-serif;
       }
       .show-filter-results {
         display: flex;
@@ -547,7 +552,7 @@
       .show-filter-results {
         display: flex;
       }
-      .no-suggestions {
+      .no-suggestions, .no-results-found {
         padding: 8px 12px;
         font-size: 16px;
         color: #FFD54F;

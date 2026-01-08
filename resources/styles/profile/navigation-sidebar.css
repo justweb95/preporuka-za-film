@@ -18,10 +18,21 @@
 
     .sidebar-logo {
       width: 100%;
+      text-decoration: none;
       img {
         display: block;
         max-width: 100%;
         height: auto;
+      }
+      .back-to-main {
+        margin-top: 8px;
+        margin-bottom: -12px;
+        text-align: center;
+        font-family: 'Unbounded', sans-serif;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        color: #C4D4E3;
       }
     }
     .sidebar-avatar {

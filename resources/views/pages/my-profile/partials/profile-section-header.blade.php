@@ -30,7 +30,7 @@
         </div>
         <div class="filter-sort-options">
           <p data-value="sort_year">Godina</p>
-          <p data-value="sort_rating">Ocjena</p>
+          <p data-value="sort_rating">Ocena</p>
         </div>
       </div>
 

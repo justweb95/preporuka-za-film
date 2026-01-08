@@ -17,6 +17,14 @@
 
 
 <header class="header-main">
+  {{-- Temporary notification --}}
+  <div class="site-notice">    
+    <p>Sajt je dobio prvi veći update. Ako primetite nepravilnosti u radu, javite nam putem
+    <a href="mailto:infor@preporukazafilm.com">mejla</a> ili na
+    <a href="https://www.instagram.com/preporukazafilm/" target="_blank" rel="noopener">Instagramu</a>.</p>
+  </div>
+  {{-- Temporary notification --}}
+
   <div class="header-holder container">
     <a class="header-logo-holder" href="{{ url('/') }}">
       <img class="header-logo" width="264" height="40" src="@asset('images/partials/preporuka-za-film-logo.svg')" alt="Preporuka za film logo">
@@ -50,7 +58,7 @@
                   </a>
               </li>
               <li class="drop-down-item">
-                  <a class="{{ $disabledClass }}" href="{{ url('/ili') }}">
+                  <a href="{{ url('/ili') }}">
                       Ili Ili
                       <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
@@ -59,7 +67,7 @@
                   </a>
               </li>
               <li class="drop-down-item">
-                  <a class="{{ $disabledClass }}" href="{{ url('/tocak-srece') }}">
+                  <a href="{{ url('/tocak-srece') }}">
                       Točak sreće
                       <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
@@ -186,7 +194,7 @@
                 <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
               </svg>              
             </a></li>
-            <li class="drop-down-item"><a href="{{ home_url() }}/moj-profil/?tab=napredna_pretraga">
+            <li class="drop-down-item"><a class="{{ $disabledClass }}" href="{{ home_url() }}/moj-profil/?tab=napredna_pretraga">
               Napredna preporuka
               <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>

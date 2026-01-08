@@ -6,7 +6,7 @@
     <section class="sm_subhero_wraper">
         @include('components.comment-form')
         @include('components.comment-list')
-        @include('components.comment-banner')
+        {{-- @include('components.comment-banner') --}}
     </section>        
   @else
     @include('pages.single-blog.single-blog-hero')  

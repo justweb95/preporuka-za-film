@@ -20,31 +20,33 @@
 @endphp
 
 <article class="comment_form_holder container">
-  <div class="comment_form">
-    <h2>Ocenite ovaj film:</h2>
-    @php comment_form() @endphp
-  </div>
+    <div class="sm-comment-content-holder">
 
-
-  <span class="review_stats">
-    <p class="review_number">{{ $total_comments }} Recenzije</p>
-  </span>
-
-  <div class="reviews-display">
-    @for ($i = 5; $i >= 1; $i--)
-        <div class="review-bar">
-            <span class="review-label">
-                @if ($i == 5)
+        <div class="comment_form">
+            <h2>Ocenite ovaj film:</h2>
+            @php comment_form() @endphp
+        </div>
+        
+        
+        <span class="review_stats">
+            <p class="review_number">{{ $total_comments }} Recenzije</p>
+        </span>
+        
+        <div class="reviews-display">
+            @for ($i = 5; $i >= 1; $i--)
+            <div class="review-bar">
+                <span class="review-label">
+                    @if ($i == 5)
                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="1.0293" y="0.5" width="19" height="19" rx="9.5" fill="#06131E" stroke="#F57C36"/>
                     </svg>                    
                     Odličan
-                @elseif ($i == 4)
+                    @elseif ($i == 4)
                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="1.0293" y="0.5" width="19" height="19" rx="9.5" fill="#06131E" stroke="#F57C36"/>
                     </svg>  
                     Vrlo Dobar
-                @elseif ($i == 3)
+                    @elseif ($i == 3)
                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="1.0293" y="0.5" width="19" height="19" rx="9.5" fill="#06131E" stroke="#F57C36"/>
                     </svg>  
@@ -54,18 +56,21 @@
                         <rect x="1.0293" y="0.5" width="19" height="19" rx="9.5" fill="#06131E" stroke="#F57C36"/>
                     </svg>  
                     Loš
-                @elseif ($i == 1)
+                    @elseif ($i == 1)
                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="1.0293" y="0.5" width="19" height="19" rx="9.5" fill="#06131E" stroke="#F57C36"/>
                     </svg>  
                     Užasan
-                @endif
-            </span>
-            <div class="review-progress">
-                <progress value="{{ $rating_counts[$i] }}" max="{{ $total_comments }}"></progress>
+                    @endif
+                </span>
+                <div class="review-progress">
+                    <progress value="{{ $rating_counts[$i] }}" max="{{ $total_comments }}"></progress>
+                </div>
+                <span class="review-count">{{ $rating_counts[$i] }} <p>Recenzija</p></span>
             </div>
-            <span class="review-count">{{ $rating_counts[$i] }} <p>Recenzija</p></span>
+            @endfor
         </div>
-    @endfor
-</div>
+    </div>
+
+    @include('placements/vertical-600-300')
 </article>

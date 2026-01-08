@@ -576,12 +576,19 @@
 
 .sm_subhero_wraper {
   padding: 20px 0px 80px;
-  position: relative;
   background: var(--Background, #06131E);
+  position: relative;
   .comment_form_holder {
+    display: flex;
+    flex-wrap: wrap;
+    .sm-comment-content-holder {
+      flex: 1 0 60%;
+    }
+    .vertical-600-300 {
+      position: sticky;
+      top: 130px;
+    }
     .comment_form {
-      width: 70%;
-      max-width: 800px;
       h2 {
         color: var(--White, #FFF);
         font-family: "Red Hat Display";
@@ -741,8 +748,8 @@
     .review_stats {
       display: block;
       margin: 48px 0px 32px;
-      width: 70%;
-      max-width: 800px;
+      /* width: 70%;
+      max-width: 800px; */
       .review_number {
         display: inline;
         color: var(--White, #FFF);
@@ -757,8 +764,8 @@
       padding: 25px 23px;
       display: block;
       margin-bottom: 48px;
-      width: 70%;
-      max-width: 800px;
+      /* width: 70%;
+      max-width: 800px; */
       border-radius: 4px;
       background: #152533;
       .review-bar {

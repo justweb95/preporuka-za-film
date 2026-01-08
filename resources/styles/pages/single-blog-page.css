@@ -271,62 +271,6 @@
         }
       }
     }
-    /* .single_blog_banner_holder {
-      max-width: 1450px;
-      width: 98%;
-      margin: 0px auto;
-
-      display: flex;
-      justify-content: space-between;
-
-      user-select: none;
-      pointer-events: none;
-      position: absolute;
-      height: calc(100% - 100px);
-      top: 0px;
-      left: 50%;
-      transform: translate(-50%);
-      .banner-box {
-        position: sticky;
-        top: 100px;
-        left: calc(100% + 500px);
-        border-radius: 8px;
-        background-color: #42a7ff26;
-        height: 548px;
-        max-width: 220px;
-        width: 25%;
-        p {
-          text-align: center;
-          height: 100%;
-          color: var(--White, #FFF);
-          font-family: "Red Hat Display";
-          font-size: 20px;
-          font-style: normal;
-          font-weight: 500;
-          line-height: normal;
-          padding: 20px;
-          width: 100%;
-          margin: 0px;
-          vertical-align: middle;
-          strong {
-            font-size: 24px;
-          }
-          a {
-            color: #FFF;
-            text-decoration: none;
-            font-weight: 700;
-            text-decoration: underline;
-          }
-        }
-      }
-      .left-box {
-        right: calc(100% + 400px);
-        left: unset;
-      }
-      @media (max-width: 1279px) {
-        display: none;
-      }
-    } */
   }
   @media (max-width: 768px) {
     .single_blog_content_holder {

@@ -1,6 +1,7 @@
 import { honStepHandler } from "@scripts/pages/hot-or-not";
 import { saveSelectedMovies, loadSelectedMovies } from "@scripts/helpers/session-storage";
 import { showToast } from "@scripts/helpers/toastify-helper";
+import { scrolToTop } from "@scripts/helpers/scrool-to-top-helper";
 
 loadSelectedMovies('hon', populateMovieHandler);
 
@@ -13,6 +14,9 @@ if(customMovieCards.length) {
         removeMovieFromCard(btn);
         return
       }
+
+      // Scrool to top of the page
+      scrolToTop();
 
       honStepHandler(3);
       handleFilterChange(0)

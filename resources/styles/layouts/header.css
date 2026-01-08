@@ -4,6 +4,30 @@
   top: 0px;
   z-index: 15;
   background: var(--Background, #06131E);
+  /* Temporary Notice Code */
+  .site-notice {
+    padding: 4px 12px;
+    width: 100%;
+    background-color: var(--Grey, #22374A);
+    text-align: center;
+    p {
+      margin: 0;
+      color: var(--Light, #EDFEEC);
+      font-family: "Red Hat Display", sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.4;
+
+      a {
+        color: var(--Green);
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+    }
+  }
+
+  /* Temporary Notice Code */
   .header-holder {
     @container scroll-state(stuck: top) {
       transition: .2s ease;
@@ -296,6 +320,32 @@
           padding: 20px 0px;
           position: relative;
           border-bottom: 1px solid #22374A;
+                      .disabled-link {
+              pointer-events: none;
+              color: rgba(255,255,255,0.5);
+              cursor: default;
+              text-decoration: none;
+              position: relative;
+              svg {
+                opacity: 0.5;
+              }
+              &::before {
+                display: block;
+                width: auto;
+                content: 'Prijavi se';
+                position: absolute;
+                left: 5px;
+                top: -5px;
+                background-color: #06131E;
+                color: #EF8D53;
+                font-family: "Red Hat Display";
+                font-size: 10px;
+                font-style: normal;
+                font-weight: 300;
+                border-radius: 16px;
+                padding: 4px 6px;
+              }
+            }
           a {
             text-decoration: none;
             color: #FFF;
