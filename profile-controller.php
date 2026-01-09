@@ -365,27 +365,67 @@ function get_watched_movies_by_username_handler() {
 add_action('wp_ajax_save_movie_recommendation', 'save_movie_recommendation_handler');
 add_action('wp_ajax_nopriv_save_movie_recommendation', 'save_movie_recommendation_handler');
 
+// function save_movie_recommendation_handler() {
+//     if (!isset($_POST['movie_ids'], $_POST['username'])) {
+//         wp_send_json_error(['message' => 'Movie IDs or username missing'], 400);
+//     }
+
+//     $movie_ids = array_map('sanitize_text_field', $_POST['movie_ids']);
+//     $username = sanitize_user($_POST['username']);
+
+//     $user = get_user_by('login', $username);
+//     if (!$user) {
+//         wp_send_json_error(['message' => 'User not found'], 404);
+//     }
+
+//     $user_id = $user->ID;
+
+//     $existing = json_decode(get_user_meta($user_id, 'recommendations_history', true) ?: '[]', true);
+
+//     // Merge new movies on top
+//     $recommendations = array_values(array_unique(array_merge($movie_ids, $existing)));
+
+//     update_user_meta($user_id, 'recommendations_history', wp_json_encode($recommendations));
+
+//     wp_send_json_success([
+//         'message' => 'Movies added to recommendations',
+//         'recommendations' => $recommendations
+//     ]);
+// }
 function save_movie_recommendation_handler() {
-    if (!isset($_POST['movie_ids'], $_POST['username'])) {
-        wp_send_json_error(['message' => 'Movie IDs or username missing'], 400);
+
+    if (!is_user_logged_in()) {
+        wp_send_json_error(['message' => 'Not logged in'], 401);
     }
 
-    $movie_ids = array_map('sanitize_text_field', $_POST['movie_ids']);
-    $username = sanitize_user($_POST['username']);
-
-    $user = get_user_by('login', $username);
-    if (!$user) {
-        wp_send_json_error(['message' => 'User not found'], 404);
+    if (!isset($_POST['movie_ids']) || !is_array($_POST['movie_ids'])) {
+        wp_send_json_success([
+            'post_data' => $_POST
+        ]);
     }
 
-    $user_id = $user->ID;
+    $user_id = get_current_user_id();
+    $movie_ids = array_map('intval', $_POST['movie_ids']);
 
-    $existing = json_decode(get_user_meta($user_id, 'recommendations_history', true) ?: '[]', true);
+    $existing = json_decode(
+        get_user_meta($user_id, 'recommendations_history', true) ?: '[]',
+        true
+    );
 
-    // Merge new movies on top
-    $recommendations = array_values(array_unique(array_merge($movie_ids, $existing)));
+    if (!is_array($existing)) {
+        $existing = [];
+    }
 
-    update_user_meta($user_id, 'recommendations_history', wp_json_encode($recommendations));
+    // newest first, no duplicates
+    $recommendations = array_values(
+        array_unique(array_merge($movie_ids, $existing))
+    );
+
+    update_user_meta(
+        $user_id,
+        'recommendations_history',
+        wp_json_encode($recommendations)
+    );
 
     wp_send_json_success([
         'message' => 'Movies added to recommendations',
@@ -598,6 +638,109 @@ function get_five_movies_handler() {
     wp_send_json_success(['movies' => $movies]);
 }
 
+add_action('wp_ajax_get_six_movies', 'get_six_movies_handler');
+add_action('wp_ajax_nopriv_get_six_movies', 'get_six_movies_handler');
+
+function get_six_movies_handler() {
+    $user = wp_get_current_user();
+    $favorite_movies = [];
+    $already_watched = [];
+    $exclude_ids = [];
+    $movies = [];
+
+    $get_poster = function($post_id) {
+        $poster = get_post_meta($post_id, 'poster_path', true);
+        return $poster ?: 'https://via.placeholder.com/300x450?text=No+Image';
+    };
+
+    $get_year = function($post_id) {
+        $release_date = get_post_meta($post_id, 'release_date', true);
+        return $release_date ? substr($release_date, 0, 4) : '';
+    };
+
+    // --- If user is logged in, get favorites and already watched ---
+    if ($user && $user->ID !== 0) {
+        $user_id = $user->ID;
+
+        $favorite_movies = json_decode(get_user_meta($user_id, 'favorite_movies', true), true) ?: [];
+        $already_watched = json_decode(get_user_meta($user_id, 'already_watched', true), true) ?: [];
+
+        // --- Try 1 random favorite movie ---
+        if (!empty($favorite_movies)) {
+            $fav_id = $favorite_movies[array_rand($favorite_movies)];
+            $fav_post = get_post($fav_id);
+            if ($fav_post) {
+                $movies[] = [
+                    'id' => $fav_post->ID,
+                    'title' => $fav_post->post_title,
+                    'link' => get_permalink($fav_post->ID),
+                    'poster' => $get_poster($fav_post->ID),
+                    'release_year' => $get_year($fav_post->ID),
+                ];
+                $exclude_ids[] = $fav_post->ID;
+            }
+        }
+
+        // --- Try 1 random already watched movie ---
+        if (!empty($already_watched)) {
+            $watched_id = $already_watched[array_rand($already_watched)];
+            if (!in_array($watched_id, $exclude_ids)) {
+                $watched_post = get_post($watched_id);
+                if ($watched_post) {
+                    $movies[] = [
+                        'id' => $watched_post->ID,
+                        'title' => $watched_post->post_title,
+                        'link' => get_permalink($watched_post->ID),
+                        'poster' => $get_poster($watched_post->ID),
+                        'release_year' => $get_year($watched_post->ID),
+                    ];
+                    $exclude_ids[] = $watched_post->ID;
+                }
+            }
+        }
+    }
+
+    // --- Calculate how many random movies we still need ---
+    $needed = 6 - count($movies);
+    if ($needed > 0) {
+        $args = [
+            'post_type' => 'movie',
+            'post_status' => 'publish',
+            'posts_per_page' => $needed,
+            'orderby' => 'rand',
+            'post__not_in' => $exclude_ids,
+            'meta_query' => [
+                [
+                    'key' => 'vote_average',
+                    'value' => [6.5, 9],
+                    'type' => 'NUMERIC',
+                    'compare' => 'BETWEEN',
+                ]
+            ]
+        ];
+
+        $query = new WP_Query($args);
+        if ($query->have_posts()) {
+            foreach ($query->posts as $post) {
+                $movies[] = [
+                    'id' => $post->ID,
+                    'title' => $post->post_title,
+                    'link' => get_permalink($post->ID),
+                    'poster' => $get_poster($post->ID),
+                    'release_year' => $get_year($post->ID),
+                ];
+                $exclude_ids[] = $post->ID;
+            }
+        }
+    }
+
+    // --- Always return exactly 6 movies ---
+    $movies = array_slice($movies, 0, 6);
+
+    wp_send_json_success(['movies' => $movies]);
+}
+
+
 
 
 
@@ -687,6 +830,32 @@ function get_profile_metadata_handler() {
 
     // Return all metadata
     wp_send_json_success(['message' => 'Profile retrieved successfully', 'user_data' => $profile_data]);
+}
+
+add_action('wp_ajax_decrease_advanced_search_counter', 'decrease_advanced_search_counter');
+
+function decrease_advanced_search_counter() {
+    if (!is_user_logged_in()) {
+        wp_send_json_error(['message' => 'Not logged in']);
+    }
+
+    $user_id = get_current_user_id();
+
+    $current = intval(get_user_meta($user_id, 'advanced_search_counter', true));
+
+    if ($current <= 0) {
+        wp_send_json_error([
+            'message' => 'No tokens left',
+            'remaining' => 0
+        ]);
+    }
+
+    $new_value = $current - 1;
+    update_user_meta($user_id, 'advanced_search_counter', $new_value);
+
+    wp_send_json_success([
+        'remaining' => $new_value
+    ]);
 }
 
 

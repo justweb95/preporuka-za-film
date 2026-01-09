@@ -7,6 +7,8 @@ import { saveMovieRecommendation } from '@scripts/pages/anketa.js';
 import { tmdbCallHandler, tmdbAllMoviesHandler } from '../partials/tmdbControler.js'
 import { poplateResult, populateMultipleResults } from '@scripts/helpers/recommendation-results-helper.js';
 import { scrolToTop } from '@scripts/helpers/scrool-to-top-helper.js';
+import { decreaseAdvancedSearchCounter } from '@scripts/helpers/decrease-advance-counter.js';
+import { showToast } from "@scripts/helpers/toastify-helper";
 
 // swifti slider
 // import Swiffy Slider JS
@@ -29,6 +31,15 @@ submitAdvanceRecommendation.addEventListener('click', async () => {
 });
 
 async function newAdvanceRecomendationHandler () {
+  const result = await decreaseAdvancedSearchCounter();
+
+  if (result.success) {
+    showToast(`Preostalo tokena:  ${result.data.remaining}`);
+  } else {
+    showToast('Nema više dostupnih tokena!');
+    return;
+  }
+
   const loadingArticle = document.getElementById('loading');
 
   if (loadingArticle) {
