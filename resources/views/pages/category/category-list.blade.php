@@ -37,7 +37,8 @@
         $poster_path = get_post_meta(get_the_ID(), 'poster_path', true);
         $release_date = get_post_meta(get_the_ID(), 'release_date', true);
         $release_year = date('Y', strtotime($release_date));
-        $our_recommendations = get_post_meta(get_the_ID(), 'our_recommendations', true) || false;
+        $our_recommendations = get_post_meta(get_the_ID(), 'our_recommendations', true);
+      
       @endphp
 
       {{-- Standardna kartica filma --}}

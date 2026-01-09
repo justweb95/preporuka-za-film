@@ -37,20 +37,16 @@ function manual_activation_checkbox($user) {
 add_action('personal_options_update', 'save_manual_activation');
 add_action('edit_user_profile_update', 'save_manual_activation');
 
-
-function save_manual_activation() {
+function save_manual_activation($user_id) {
+    // Only admins can update
     if (!current_user_can('edit_user', $user_id)) return;
 
-    // New value from admin form
     $is_verified = isset($_POST['is_verified']) ? 1 : 0;
-
-    // Old value from database
     $old_verified = get_user_meta($user_id, 'is_verified', true);
 
-    // Save new state
     update_user_meta($user_id, 'is_verified', $is_verified);
 
-    // ✅ Send notification ONLY when changing from 0 → 1
+    // Only fire notification if user was previously unverified and now is verified
     if ($old_verified != 1 && $is_verified == 1) {
         // Instantiate the controller
         $notificationManager = new NotificationManager($user_id);
@@ -191,6 +187,9 @@ function custom_register_user() {
         $validation['general'] = ['valid'=>false, 'message'=>$user_id->get_error_message(), 'class'=>'input-error'];
         wp_send_json(['success' => false, 'validation' => $validation]);
     }
+
+    // ✅ Add 50 tokens on registration
+    update_user_meta($user_id, 'advanced_search_counter', 50);
 
     // ✅ Email verification
     $verify_key = wp_generate_password(32, false);

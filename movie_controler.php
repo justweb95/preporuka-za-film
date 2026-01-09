@@ -188,9 +188,7 @@ add_action( 'init', 'create_movie_post_type', 0 );
             update_post_meta($post_id, 'cast', $cast);
             update_post_meta($post_id, 'writing', $writing);
             update_post_meta($post_id, 'video_trailer', $video_trailer);
-            update_post_meta($post_id, 'our_recommendations', 'false');
-
-            
+            update_post_meta($post_id, 'our_recommendations', $our_recommendations);
 
             $post_url = get_permalink($post_id);
 
@@ -205,6 +203,10 @@ add_action( 'init', 'create_movie_post_type', 0 );
 
     add_action( 'wp_ajax_save_movie', 'save_movie' );
     add_action( 'wp_ajax_nopriv_save_movie', 'save_movie' );
+
+
+
+
 
 
     function display_movie_data($post_id) {
@@ -259,6 +261,50 @@ add_action( 'init', 'create_movie_post_type', 0 );
         <?php
         return ob_get_clean();
     }
+
+
+
+    add_action('add_meta_boxes', function () {
+    add_meta_box(
+        'movie_recommendation_box',
+        'Naša preporuka',
+        'render_movie_recommendation_box',
+        'movie',
+        'side',
+        'high'
+    );
+});
+
+function render_movie_recommendation_box($post) {
+    $value = get_post_meta($post->ID, 'our_recommendations', true);
+    wp_nonce_field('save_movie_recommendation', 'movie_recommendation_nonce');
+    ?>
+    <label>
+        <input type="checkbox" name="our_recommendations" value="1" <?php checked($value, 'true'); ?> />
+        Prikaži u “Našim preporukama”
+    </label>
+    <?php
+}
+
+
+add_action('save_post_movie', function ($post_id) {
+
+    if (!isset($_POST['movie_recommendation_nonce']) ||
+        !wp_verify_nonce($_POST['movie_recommendation_nonce'], 'save_movie_recommendation')) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (!current_user_can('edit_post', $post_id)) return;
+
+    if (isset($_POST['our_recommendations'])) {
+        update_post_meta($post_id, 'our_recommendations', 'true');
+    } else {
+        update_post_meta($post_id, 'our_recommendations', 'false');
+    }
+});
+
+
 
 
 

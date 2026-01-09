@@ -18,7 +18,10 @@
     <p>Godina: <?php echo $release_year; ?></p>
 
     <div class="movie-card-menu-btn-holder">
-      <?php if ($our_recommendations === "true"): ?>
+      <?php
+       $our_recommendations
+      ?>
+      <?php if ($our_recommendations == "true"): ?>
         <button class="movie-card-btn-our-recomentation">
           <svg class="our-recommendation" width="24" height="24" viewBox="0 0 50 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M24.6665 43.1253C34.861 43.1253 43.1253 34.861 43.1253 24.6665C43.1253 14.4719 34.861 6.20762 24.6665 6.20762C14.4719 6.20762 6.20763 14.4719 6.20763 24.6665C6.20763 24.7212 6.20786 24.7759 6.20834 24.8305H6.20763L6.20762 56H0L1.48001e-06 24.8305H0.000533918C0.000178155 24.7759 0 24.7212 0 24.6665C0 11.0436 11.0436 0 24.6665 0C38.2894 0 49.333 11.0436 49.333 24.6665C49.333 38.2894 38.2894 49.3329 24.6665 49.3329C19.0965 49.3329 13.9578 47.4868 9.82874 44.373V35.6489C13.1919 40.1852 18.5858 43.1253 24.6665 43.1253Z" fill="#4FC998"/>

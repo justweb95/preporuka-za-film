@@ -16,6 +16,7 @@
     <img class="movie-single-card" src="@asset('images/home/movie-5.webp')" alt="Movie Card">
     <img class="movie-single-card" src="@asset('images/home/movie-6.webp')" alt="Movie Card">
     <img class="movie-single-card" src="@asset('images/home/movie-7.webp')" alt="Movie Card">
+    <img class="movie-single-card" src="@asset('images/home/movie-8.webp')" alt="Movie Card" loading="lazy">
     <img class="movie-single-card" src="@asset('images/home/movie-9.webp')" alt="Movie Card" loading="lazy">
     <img class="movie-single-card" src="@asset('images/home/movie-10.webp')" alt="Movie Card" loading="lazy">
     <img class="movie-single-card" src="@asset('images/home/movie-11.webp')" alt="Movie Card" loading="lazy">

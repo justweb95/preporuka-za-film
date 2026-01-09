@@ -37,10 +37,10 @@
         <p class="unlimited-p">Neograničeno</p>                    
       @else
         <div class="loader-bg">
-          <span class="loader-fill" style="width: {{ $current_user_requests_left }}%"></span>
+          <span class="loader-fill" style="width: {{ $current_user_requests_left * 2 }}%"></span>
         </div>
-        <p class="loader-p"> <span>{{ $current_user_requests_left }}</span> / 100</p>          
-        {{-- <button class="request-more-btn" type="button">Dopuni</button> --}}
+        <p class="loader-p"> <span>{{ $current_user_requests_left }}</span> / 50</p>          
+        <button class="request-more-btn" type="button" disabled>Dopuni</button>
       @endif
     </div>
 

@@ -240,8 +240,12 @@
               }                  
             }
             .request-more-btn {
+              opacity: .7;
+              user-select: none;
+              pointer-events: none;
+              
               margin-left: auto;
-              padding: 4px 32px;
+              padding: 4px 20px;
               background-color: #22374A;
               border: none;
               border-radius: 80px;

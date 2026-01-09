@@ -105,7 +105,9 @@
       border-radius: 6px;
       position: absolute;
       /* left: max(calc(230px * 8), 100%); */
-      transform: translateX(max(calc(220px * 9), 100%));
+      /* transform: translateX(max(calc(220px * 9), 100%)); */
+
+      transform: translateX(max(calc((214px + 10px) * 9), 100vw));
       animation-name: scrollLeft;
       animation-duration: 45s;
       animation-timing-function: linear;
