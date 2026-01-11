@@ -96,34 +96,63 @@ async function callPerplexity(prompt) {
 
 async function callPerplexityAdvance(prompt) {
   const options = {
-    method: 'POST',
+    method: "POST",
     headers: {
       Authorization: `Bearer ${PERPLEXITY_API_KEY}`,
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      // change model if not working correct
       model: "sonar",
       messages: [
-        { role: "system", content: "You are a helpful movie recommendation expert, skilled at understanding user preferences and using the TMDB API." },
-        { role: "user", content: prompt } 
+        {
+          role: "system",
+          content:
+            'You are a helpful movie recommendation expert. Return ONLY valid JSON matching this exact format: an array of objects with keys "movie_title" (string) and "movie_year" (integer). No extra text.',
+        },
+        { role: "user", content: prompt },
       ],
-      max_tokens: 700, // more room for 5 movies
-      temperature: 0.4, // more deterministic output
-      top_p: 0.9
+      max_tokens: 1700,
+      temperature: 0.4,
+      top_p: 0.9,
 
-      // search_domain_filter: ['https://www.themoviedb.org/'],
-    })
+      // Allowlist: only search these domains (domains should be without protocol)
+      search_domain_filter: [
+        "themoviedb.org",
+        "imdb.com",
+        "rottentomatoes.com",
+        "metacritic.com",
+        "letterboxd.com",
+      ],
+
+      // Enforce your exact JSON array output format
+      response_format: {
+        type: "json_schema",
+        json_schema: {
+          schema: {
+            type: "array",
+            minItems: 1,
+            maxItems: 5,
+            items: {
+              type: "object",
+              additionalProperties: false,
+              required: ["movie_title", "movie_year"],
+              properties: {
+                movie_title: { type: "string" },
+                movie_year: { type: "integer" },
+              },
+            },
+          },
+        },
+      },
+    }),
   };
 
+  const res = await fetch("https://api.perplexity.ai/chat/completions", options);
+  if (!res.ok) throw new Error(await res.text());
 
-  let data = fetch('https://api.perplexity.ai/chat/completions', options)
-    .then(response => response.json())
-    .then(response => {      
-      return response
-    })
-    .catch(err => console.error(err));
-
-  return data;
+  const data = await res.json();
+  return JSON.parse(data.choices[0].message.content);
 }
+
+
 export { buildPromt, callPerplexity, callPerplexityAdvance }

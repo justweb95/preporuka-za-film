@@ -35,9 +35,9 @@ window.addEventListener('load', () => {
         .then(data => {
           if (data.success && data.data.redirect) {
             // window.location.href = data.data.redirect;
-            console.log(data.data?.message || 'Google login failed');
+            // console.log(data.data?.message || 'Google login failed');
           } else {
-            console.log(data.data?.message || 'Google login failed');
+            // console.log(data.data?.message || 'Google login failed');
           }
         })
         .catch(err => console.error(err));
@@ -133,7 +133,7 @@ export async function getLoggedInUserMetaData() {
   })
 
   if (!response.ok) {
-    console.log('Failed to retrieve user meta');
+    // console.log('Failed to retrieve user meta');
     return null;
   }
 

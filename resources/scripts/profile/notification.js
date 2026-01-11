@@ -29,7 +29,7 @@ if (notificationPanel) {
         card.classList.add('read');
       }
     } catch (err) {
-      console.log("Error updating notification as seen:", err);
+      // console.log("Error updating notification as seen:", err);
     }
   });
 }

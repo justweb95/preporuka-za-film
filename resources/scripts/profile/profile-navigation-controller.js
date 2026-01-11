@@ -199,6 +199,6 @@ export async function logOutHandler() {
   if (data.success) {
     window.location.href = data.data.redirect_url;
   } else {
-    console.log('Logout failed', data);
+    // console.log('Logout failed', data);
   }
 }

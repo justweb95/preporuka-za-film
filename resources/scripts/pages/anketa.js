@@ -285,7 +285,6 @@ export async function saveMovieRecommendation(movie_ids, username) {
   const res = await response.json();
   if (res.success) {
     showToast('Preporuka je sačuvana!', 2000);
-    console.log('Saved movies:', res.data.recommendations);
   } else {
     console.error(res.data?.message || 'Greška prilikom čuvanja preporuke');
     showToast('Greška prilikom čuvanja preporuke');

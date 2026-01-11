@@ -89,7 +89,7 @@ async function tmdbAllMoviesHandler(movieParams) {
     return movieResponse;
 
   } catch (error) {
-    console.log('Error fetching all movies:', error);
+    // console.log('Error fetching all movies:', error);
     return movieParams.map(movie => ({
       id: 0,
       title: movie.movie_title || 'Naslov nedostupan',
@@ -181,7 +181,7 @@ const createMoviePost = async (movie_data) => {
         // console.log('Movie with this ID already exists!')  
       }
   } catch (error) {
-    console.log('Movie with this ID already exists! Post ID: ' + error)  
+    // console.log('Movie with this ID already exists! Post ID: ' + error)
   }
 };
 

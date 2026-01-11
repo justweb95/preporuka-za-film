@@ -55,7 +55,8 @@ async function newAdvanceRecomendationHandler () {
   const advancePrompot = generateAdvancePrompt();
   const openAiAdvanceResponse = await callPerplexityAdvance(advancePrompot);
 
-  const tmdbResult = await tmdbAllMoviesHandler(parseAiJson(openAiAdvanceResponse.choices[0].message.content));
+  // const tmdbResult = await tmdbAllMoviesHandler(parseAiJson(openAiAdvanceResponse.choices[0].message.content));
+  const tmdbResult = await tmdbAllMoviesHandler(openAiAdvanceResponse);
 
   const username = await getLoggedInUsername();
   if (username) {

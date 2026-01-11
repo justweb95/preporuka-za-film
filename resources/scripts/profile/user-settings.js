@@ -113,7 +113,7 @@ document.addEventListener('click', (e) => {
 
 
   if (e.target.classList.contains('confirm-btn')) {
-    console.log('Confirm button clicked! You can add your function here.');
+    // console.log('Confirm button clicked! You can add your function here.');
     updateUserAvatar(global_avatar_path);
   }
 
@@ -139,11 +139,11 @@ notification_toggler.addEventListener('change', async () => {
 
     if (data.success) {
     } else {
-      console.log('Error:', data.data.message);
+      // console.log('Error:', data.data.message);
     }
 
   } catch (error) {
-    console.log('Request failed:', error);
+    // console.log('Request failed:', error);
   }
 });
 
@@ -268,8 +268,6 @@ confirmBtn.addEventListener('click', async () => {
     });
 
     const data = await response.json();
-    console.log(data);
-
     if (data.success) {
       confirmBtn.textContent = 'Nalog obrisan';
       setTimeout(() => {

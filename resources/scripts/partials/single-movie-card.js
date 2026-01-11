@@ -145,7 +145,7 @@ async function toggleWatched(movieId) {
             colorWatchedButton(res.data.already_watched);
             showToast("Status odgledanog filma je ažuriran");
         } else {
-            console.log(res.data?.message || "Greška prilikom ažuriranja odgledanog filma");
+            // console.log(res.data?.message || "Greška prilikom ažuriranja odgledanog filma");
             showToast("Greška prilikom ažuriranja odgledanog filma");
         }
     });

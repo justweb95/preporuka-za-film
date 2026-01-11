@@ -32,7 +32,7 @@ searchResultsAddMovie.forEach(btn => btn.addEventListener('click', (e) => {
   const movieID = selected_movie.dataset.movieId;
   
   if(selected_movie) {    
-    console.log("Film Je Selectovan");
+    // console.log("Film Je Selectovan");
     wofPopUpHandler(false);
     handleFilterChange(0);
     populateMovieHandlerWof(name, movieID, year, img)

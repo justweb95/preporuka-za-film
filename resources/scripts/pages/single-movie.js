@@ -216,7 +216,7 @@ function handleCommentPost(comment_data) {
     })
     .catch((error) => {
       // Handle error response with toast message
-      console.log('Error:', error);
+      // console.log('Error:', error);
     });
 }
 
