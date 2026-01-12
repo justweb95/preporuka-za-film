@@ -89,6 +89,7 @@ if (allQuestionsCompontents[currentQuestionIndex]) {
     // Call ai
     const createdPropmt = buildPromt(allAnswers);
     const recommendation = await callPerplexity(createdPropmt);
+
     let recommendation_movie_array;
     let isOkay = false;
 
@@ -286,8 +287,8 @@ export async function saveMovieRecommendation(movie_ids, username) {
   if (res.success) {
     showToast('Preporuka je sačuvana!', 2000);
   } else {
-    console.error(res.data?.message || 'Greška prilikom čuvanja preporuke');
-    showToast('Greška prilikom čuvanja preporuke');
+    // console.error(res.data?.message || 'Greška prilikom čuvanja preporuke');
+    showToast('Prijavite se kako biste sačuvali preporuku.');
   }
 }
 
