@@ -57,7 +57,7 @@ const MOVIE_PEOPLE_LOADING_TEXT = 'Ucitavanje svezeg contenta....';
 
 loadMissingMovieDescription();
 loadMoviePeopleCarousels();
-initCastCarouselNav();
+initPeopleCarouselNav();
 
 async function handleFormSubmit(e) {
   // Prevent defult behavior
@@ -368,8 +368,12 @@ async function loadMoviePeopleCarousels() {
 
     const payload = data.data;
 
-    renderPeopleCarousel('directors', payload.directors || []);
-    renderPeopleCarousel('writers', payload.writers || []);
+    renderPeopleCarousel(
+      'credits',
+      []
+        .concat(payload.directors || [])
+        .concat(payload.writers || [])
+    );
     renderPeopleCarousel('cast', payload.cast || []);
   } catch (error) {
     console.error('refresh_movie_people error:', error);
@@ -463,29 +467,24 @@ function createPersonCard(person, role) {
   return el;
 }
 
-function initCastCarouselNav() {
-  const heroSection = document.querySelector('#sm_hero_section');
-  if (!heroSection) {
-    return;
-  }
-
-  const castCarousel = document.querySelector('[data-people-carousel="cast"]');
-  if (!castCarousel) {
-    return;
-  }
-
-  const buttons = Array.from(document.querySelectorAll('[data-cast-scroll]'));
+function initPeopleCarouselNav() {
+  const buttons = Array.from(document.querySelectorAll('[data-carousel-target][data-carousel-scroll]'));
   if (!buttons.length) {
     return;
   }
 
-  const scrollAmount = () => Math.max(260, Math.floor(castCarousel.clientWidth * 0.8));
-
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      const dir = btn.dataset.castScroll;
-      const left = dir === 'prev' ? -scrollAmount() : scrollAmount();
-      castCarousel.scrollBy({ left, behavior: 'smooth' });
+      const target = btn.dataset.carouselTarget;
+      const dir = btn.dataset.carouselScroll;
+      if (!target || !dir) return;
+
+      const carousel = document.querySelector(`[data-people-carousel="${target}"]`);
+      if (!carousel) return;
+
+      const amount = Math.max(260, Math.floor(carousel.clientWidth * 0.85));
+      const left = dir === 'prev' ? -amount : amount;
+      carousel.scrollBy({ left, behavior: 'smooth' });
     });
   });
 }

@@ -225,81 +225,68 @@
 
 	        <hr>
 
-	        <div class="sm-info-content-credits-row">
-	          {{-- Director --}}
-	          <div class='sm-info-content-director sm-people-section' data-people-section='directors'>
-	            <h4>Režija:</h4>
-	            <div class='sm-people-carousel' data-people-carousel='directors'>
-	              @if(!empty($cached_directors))
-	                @foreach($cached_directors as $person)
-	                  <a class='sm-person-card' href='{{ $person['permalink'] ?? '#' }}' @if(empty($person['permalink'])) aria-disabled='true' @endif data-person-id='{{ $person['tmdb_id'] ?? '' }}'>
-	                    <span class='sm-person-avatar'>
-	                      @if(!empty($person['profile_url']))
-	                        <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async'>
-	                      @else
-	                        <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
-	                      @endif
-	                    </span>
-	                    <span class='sm-person-name'>{{ $person['name'] ?? '' }}</span>
-	                    <span class='sm-person-meta'>{{ $person['job'] ?? 'Director' }}</span>
-	                  </a>
-	                @endforeach
-	              @else
-	                <p class='sm-people-loader' data-sm-people-loader>Ucitavanje svezeg contenta....</p>
-	                @forelse(array_slice($director, 0, 8) as $dir)
-	                  <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
-	                    <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($dir, 0, 1) }}</span></span>
-	                    <span class='sm-person-name'>{{ $dir }}</span>
-	                    <span class='sm-person-meta'>Director</span>
-	                  </div>
-	                @empty
-	                  <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
-	                    <span class='sm-person-avatar'><span class='sm-person-initials'>?</span></span>
-	                    <span class='sm-person-name'>Nema dostupnih informacija</span>
-	                    <span class='sm-person-meta'>Director</span>
-	                  </div>
-	                @endforelse
-	              @endif
-	            </div>
-	          </div>
+        @php
+          $cached_credits = array_values(array_merge($cached_directors ?: [], $cached_writers ?: []));
+        @endphp
 
-	          {{-- Writers --}}
-	          <div class='sm-info-content-writers sm-people-section' data-people-section='writers'>
-	            <h4>Pisci:</h4>
-	            <div class='sm-people-carousel' data-people-carousel='writers'>
-	              @if(!empty($cached_writers))
-	                @foreach($cached_writers as $person)
-	                  <a class='sm-person-card' href='{{ $person['permalink'] ?? '#' }}' @if(empty($person['permalink'])) aria-disabled='true' @endif data-person-id='{{ $person['tmdb_id'] ?? '' }}'>
-	                    <span class='sm-person-avatar'>
-	                      @if(!empty($person['profile_url']))
-	                        <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async'>
-	                      @else
-	                        <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
-	                      @endif
-	                    </span>
-	                    <span class='sm-person-name'>{{ $person['name'] ?? '' }}</span>
-	                    <span class='sm-person-meta'>{{ $person['job'] ?? 'Writer' }}</span>
-	                  </a>
-	                @endforeach
-	              @else
-	                <p class='sm-people-loader' data-sm-people-loader>Ucitavanje svezeg contenta....</p>
-	                @forelse(array_slice($writing, 0, 8) as $writer)
-	                  <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
-	                    <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($writer, 0, 1) }}</span></span>
-	                    <span class='sm-person-name'>{{ $writer }}</span>
-	                    <span class='sm-person-meta'>Writer</span>
-	                  </div>
-	                @empty
-	                  <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
-	                    <span class='sm-person-avatar'><span class='sm-person-initials'>?</span></span>
-	                    <span class='sm-person-name'>Nema dostupnih informacija</span>
-	                    <span class='sm-person-meta'>Writer</span>
-	                  </div>
-	                @endforelse
-	              @endif
-	            </div>
-	          </div>
-	        </div>
+        <div class="sm-info-content-credits sm-people-section" data-people-section="credits">
+          <div class="sm-credits-header">
+            <h4>Režija i pisci:</h4>
+            <div class="sm-carousel-nav">
+              <button type="button" class="sm-carousel-nav-btn" data-carousel-target="credits" data-carousel-scroll="prev" aria-label="Prethodni">
+                <svg width="11" height="12" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 1.5L3 7.00001L8 12.5" stroke="#18BF7C" stroke-width="2"/>
+                </svg>
+              </button>
+              <button type="button" class="sm-carousel-nav-btn" data-carousel-target="credits" data-carousel-scroll="next" aria-label="Sledeći">
+                <svg width="11" height="12" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 1.5L3 7.00001L8 12.5" stroke="#18BF7C" stroke-width="2"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="sm-people-carousel sm-people-carousel--credits" data-people-carousel="credits">
+            @if(!empty($cached_credits))
+              @foreach($cached_credits as $person)
+                <a class='sm-person-card' href='{{ $person['permalink'] ?? '#' }}' @if(empty($person['permalink'])) aria-disabled='true' @endif data-person-id='{{ $person['tmdb_id'] ?? '' }}'>
+                  <span class='sm-person-avatar'>
+                    @if(!empty($person['profile_url']))
+                      <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async'>
+                    @else
+                      <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
+                    @endif
+                  </span>
+                  <span class='sm-person-name'>{{ $person['name'] ?? '' }}</span>
+                  <span class='sm-person-meta'>{{ $person['job'] ?? 'Writer' }}</span>
+                </a>
+              @endforeach
+            @else
+              <p class='sm-people-loader' data-sm-people-loader>Ucitavanje svezeg contenta....</p>
+              @foreach(array_slice($director ?: [], 0, 6) as $dir)
+                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+                  <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($dir, 0, 1) }}</span></span>
+                  <span class='sm-person-name'>{{ $dir }}</span>
+                  <span class='sm-person-meta'>Director</span>
+                </div>
+              @endforeach
+              @foreach(array_slice($writing ?: [], 0, 6) as $writer)
+                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+                  <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($writer, 0, 1) }}</span></span>
+                  <span class='sm-person-name'>{{ $writer }}</span>
+                  <span class='sm-person-meta'>Writer</span>
+                </div>
+              @endforeach
+              @if(empty($director) && empty($writing))
+                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+                  <span class='sm-person-avatar'><span class='sm-person-initials'>?</span></span>
+                  <span class='sm-person-name'>Nema dostupnih informacija</span>
+                  <span class='sm-person-meta'>Writer</span>
+                </div>
+              @endif
+            @endif
+          </div>
+        </div>
 
 
 
@@ -354,12 +341,12 @@
 	      <div class="sm-cast-header">
 	        <h3 class="sm-cast-title">Glumci:</h3>
 	        <div class="sm-cast-nav" aria-hidden="false">
-	          <button type="button" class="sm-cast-nav-btn" data-cast-scroll="prev" aria-label="Prethodni glumci">
+	          <button type="button" class="sm-cast-nav-btn" data-carousel-target="cast" data-carousel-scroll="prev" aria-label="Prethodni glumci">
 	            <svg width="11" height="12" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 	              <path d="M8 1.5L3 7.00001L8 12.5" stroke="#18BF7C" stroke-width="2"/>
 	            </svg>
 	          </button>
-	          <button type="button" class="sm-cast-nav-btn" data-cast-scroll="next" aria-label="Sledeći glumci">
+	          <button type="button" class="sm-cast-nav-btn" data-carousel-target="cast" data-carousel-scroll="next" aria-label="Sledeći glumci">
 	            <svg width="11" height="12" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 	              <path d="M3 1.5L8 7.00001L3 12.5" stroke="#18BF7C" stroke-width="2"/>
 	            </svg>

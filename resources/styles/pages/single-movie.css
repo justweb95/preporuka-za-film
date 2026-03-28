@@ -1104,22 +1104,58 @@
 }
 
 /* People carousel (directors/writers/cast) */
-.sm-info-content-credits-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 18px;
+.sm-info-content-credits {
+  width: 100%;
   max-width: 100%;
   overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(24, 191, 124, 0.55);
+  background: rgba(34, 55, 74, 0.28);
+  padding: 14px 14px 10px;
 }
 
-.sm-info-content-credits-row .sm-people-section {
-  flex: 1 1 0%;
-  min-width: 0;
+.sm-credits-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
 }
 
-.sm-info-content-credits-row .sm-info-content-director,
-.sm-info-content-credits-row .sm-info-content-writers {
-  max-width: 100%;
+.sm-info-content-credits h4 {
+  margin: 0;
+  color: var(--White, #FFF);
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.sm-carousel-nav {
+  display: flex;
+  gap: 10px;
+}
+
+.sm-carousel-nav-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 40px;
+  border: 0.6px solid rgba(237, 254, 236, 0.24);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sm-carousel-nav-btn:hover {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.20);
+}
+
+.sm-carousel-nav-btn[data-carousel-scroll='next'] svg {
+  transform: rotate(180deg);
 }
 
 .sm-cast-section {
@@ -1127,6 +1163,10 @@
   width: 100%;
   max-width: 100%;
   overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(24, 191, 124, 0.55);
+  background: rgba(34, 55, 74, 0.22);
+  padding: 16px 16px 14px;
 }
 
 .sm-cast-header {
@@ -1169,7 +1209,7 @@
   background: rgba(255, 255, 255, 0.20);
 }
 
-.sm-cast-nav-btn[data-cast-scroll='next'] svg {
+.sm-cast-nav-btn[data-carousel-scroll='next'] svg {
   transform: rotate(180deg);
 }
 
@@ -1177,14 +1217,11 @@
   max-width: 100%;
 }
 
-@media (max-width: 900px) {
-  .sm-info-content-credits-row {
-    flex-wrap: wrap;
-  }
-}
-
 @media (max-width: 600px) {
   .sm-cast-nav {
+    display: none;
+  }
+  .sm-carousel-nav {
     display: none;
   }
 }
