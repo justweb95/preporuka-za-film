@@ -1102,9 +1102,25 @@
 }
 
 /* People carousel (directors/writers/cast) */
+.sm-info-content-director.sm-people-section,
+.sm-info-content-writers.sm-people-section,
+.sm-info-content-cast.sm-people-section {
+  max-width: 100%;
+  overflow: hidden; /* prevent the carousel from pushing the whole page width */
+  align-items: flex-start;
+}
+
+.sm-info-content-director.sm-people-section h4,
+.sm-info-content-writers.sm-people-section h4,
+.sm-info-content-cast.sm-people-section h4 {
+  flex: 0 0 auto;
+}
+
 .sm-info-content-director .sm-people-carousel,
 .sm-info-content-writers .sm-people-carousel,
 .sm-info-content-cast .sm-people-carousel {
+  flex: 1 1 0%;
+  max-width: 100%;
   display: flex;
   align-items: stretch;
   gap: 12px;
@@ -1146,6 +1162,7 @@
   width: 112px;
   text-decoration: none;
   scroll-snap-align: start;
+  box-sizing: border-box;
 }
 
 .sm-person-card[aria-disabled='true'] {
@@ -1190,6 +1207,8 @@
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 3px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .sm-person-meta {
@@ -1201,6 +1220,8 @@
   font-weight: 600;
   line-height: 1.15;
   opacity: 0.95;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .sm-person-card--skeleton {
