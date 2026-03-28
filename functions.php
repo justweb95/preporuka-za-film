@@ -70,6 +70,26 @@ collect(['setup', 'filters'])
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__); 
 $dotenv->load();
 
+// TMDB people (actors/writers/directors)
+add_action('init', function () {
+    register_post_type(
+        'pz_person',
+        array(
+            'labels' => array(
+                'name'          => 'Glumci',
+                'singular_name' => 'Glumac',
+            ),
+            'public'       => true,
+            'show_in_rest' => true,
+            'has_archive'  => false,
+            'rewrite'      => array('slug' => 'glumac'),
+            'supports'     => array('title', 'editor', 'thumbnail', 'custom-fields'),
+            'menu_icon'    => 'dashicons-admin-users',
+        )
+    );
+});
+
+
 
 // Code for handle movie register custom post and saving
 require_once get_template_directory() . '/movie_controler.php';

@@ -40,6 +40,15 @@
   $cast = get_post_meta($movie->ID, 'cast', true) ?: [];
   $writing = get_post_meta($movie->ID, 'writing', true) ?: [];
 
+  // Cached TMDB people (cast/crew with images + links)
+  $people_cache = get_post_meta($movie->ID, 'tmdb_people_cache', true);
+  if (!is_array($people_cache)) {
+    $people_cache = [];
+  }
+  $cached_directors = $people_cache['directors'] ?? [];
+  $cached_writers = $people_cache['writers'] ?? [];
+  $cached_cast = $people_cache['cast'] ?? [];
+
   // Decode and trim the genres if it's a string
   if (is_string($genres)) {
       $genres = html_entity_decode(trim($genres, '"'));
@@ -215,62 +224,122 @@
         </div>
 
         <hr>
+
         {{-- Director --}}
-        <div class="sm-info-content-director">
-          <h4>Director:</h4>
-          <ul>
-            @forelse($director as $dir)
-              <li class="sm-info-content-writer-text" id="sm-info-writer">
-          <svg width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="2" cy="2.5" r="2" fill="white"/>
-          </svg>
-          {{ $dir }}
-              </li>
-            @empty
-              <li>Nema Dostupnih Informacija</li>
-            @endforelse
-          </ul>
+        <div class='sm-info-content-director sm-people-section' data-people-section='directors'>
+          <h4>Režija:</h4>
+          <div class='sm-people-carousel' data-people-carousel='directors'>
+            @if(!empty($cached_directors))
+              @foreach($cached_directors as $person)
+                <a class='sm-person-card' href='{{ $person['permalink'] ?? '#' }}' @if(empty($person['permalink'])) aria-disabled='true' @endif data-person-id='{{ $person['tmdb_id'] ?? '' }}'>
+                  <span class='sm-person-avatar'>
+                    @if(!empty($person['profile_url']))
+                      <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async'>
+                    @else
+                      <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
+                    @endif
+                  </span>
+                  <span class='sm-person-name'>{{ $person['name'] ?? '' }}</span>
+                  <span class='sm-person-meta'>{{ $person['job'] ?? 'Director' }}</span>
+                </a>
+              @endforeach
+            @else
+              <p class='sm-people-loader' data-sm-people-loader>Ucitavanje svezeg contenta....</p>
+              @forelse(array_slice($director, 0, 8) as $dir)
+                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+                  <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($dir, 0, 1) }}</span></span>
+                  <span class='sm-person-name'>{{ $dir }}</span>
+                  <span class='sm-person-meta'>Director</span>
+                </div>
+              @empty
+                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+                  <span class='sm-person-avatar'><span class='sm-person-initials'>?</span></span>
+                  <span class='sm-person-name'>Nema dostupnih informacija</span>
+                  <span class='sm-person-meta'>Director</span>
+                </div>
+              @endforelse
+            @endif
+          </div>
         </div>
-        
+
         <hr>
 
         {{-- Writers --}}
-        <div class="sm-info-content-writers">
+        <div class='sm-info-content-writers sm-people-section' data-people-section='writers'>
           <h4>Pisci:</h4>
-          <ul>
-            @forelse($writing as $writer)
-              <li class="sm-info-content-writer-text" id="sm-info-writer">
-          <svg width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="2" cy="2.5" r="2" fill="white"/>
-          </svg>
-          {{ $writer }}
-              </li>
-            @empty
-              <li>Nema Dostupnih Informacija</li>
-            @endforelse
-          </ul>
+          <div class='sm-people-carousel' data-people-carousel='writers'>
+            @if(!empty($cached_writers))
+              @foreach($cached_writers as $person)
+                <a class='sm-person-card' href='{{ $person['permalink'] ?? '#' }}' @if(empty($person['permalink'])) aria-disabled='true' @endif data-person-id='{{ $person['tmdb_id'] ?? '' }}'>
+                  <span class='sm-person-avatar'>
+                    @if(!empty($person['profile_url']))
+                      <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async'>
+                    @else
+                      <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
+                    @endif
+                  </span>
+                  <span class='sm-person-name'>{{ $person['name'] ?? '' }}</span>
+                  <span class='sm-person-meta'>{{ $person['job'] ?? 'Writer' }}</span>
+                </a>
+              @endforeach
+            @else
+              <p class='sm-people-loader' data-sm-people-loader>Ucitavanje svezeg contenta....</p>
+              @forelse(array_slice($writing, 0, 8) as $writer)
+                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+                  <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($writer, 0, 1) }}</span></span>
+                  <span class='sm-person-name'>{{ $writer }}</span>
+                  <span class='sm-person-meta'>Writer</span>
+                </div>
+              @empty
+                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+                  <span class='sm-person-avatar'><span class='sm-person-initials'>?</span></span>
+                  <span class='sm-person-name'>Nema dostupnih informacija</span>
+                  <span class='sm-person-meta'>Writer</span>
+                </div>
+              @endforelse
+            @endif
+          </div>
         </div>
-        
+
         <hr>
 
         {{-- Cast --}}
-        <div class="sm-info-content-cast">
+        <div class='sm-info-content-cast sm-people-section' data-people-section='cast'>
           <h4>Glumci:</h4>
-          <ul>
-            @forelse($cast as $actor)
-              <li class="sm-info-content-writer-text" id="sm-info-writer">
-          <svg width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="2" cy="2.5" r="2" fill="white"/>
-          </svg>
-          {{ $actor }}
-              </li>
-            @empty
-              <li>Nema Dostupnih Informacija</li>
-            @endforelse
-          </ul>
+          <div class='sm-people-carousel' data-people-carousel='cast'>
+            @if(!empty($cached_cast))
+              @foreach($cached_cast as $person)
+                <a class='sm-person-card' href='{{ $person['permalink'] ?? '#' }}' @if(empty($person['permalink'])) aria-disabled='true' @endif data-person-id='{{ $person['tmdb_id'] ?? '' }}'>
+                  <span class='sm-person-avatar'>
+                    @if(!empty($person['profile_url']))
+                      <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async'>
+                    @else
+                      <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
+                    @endif
+                  </span>
+                  <span class='sm-person-name'>{{ $person['name'] ?? '' }}</span>
+                  <span class='sm-person-meta'>{{ $person['character'] ?? 'Glumac' }}</span>
+                </a>
+              @endforeach
+            @else
+              <p class='sm-people-loader' data-sm-people-loader>Ucitavanje svezeg contenta....</p>
+              @forelse(array_slice($cast, 0, 10) as $actor)
+                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+                  <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($actor, 0, 1) }}</span></span>
+                  <span class='sm-person-name'>{{ $actor }}</span>
+                  <span class='sm-person-meta'>Glumac</span>
+                </div>
+              @empty
+                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+                  <span class='sm-person-avatar'><span class='sm-person-initials'>?</span></span>
+                  <span class='sm-person-name'>Nema dostupnih informacija</span>
+                  <span class='sm-person-meta'>Glumac</span>
+                </div>
+              @endforelse
+            @endif
+          </div>
         </div>
-        
-        <hr>
+
 
 
         {{-- sm-info CTA --}}

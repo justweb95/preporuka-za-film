@@ -385,6 +385,268 @@ add_action( 'init', 'create_movie_post_type', 0 );
     add_action( 'wp_ajax_nopriv_refresh_movie_description', 'refresh_movie_description' );
 
 
+function pzfilm_tmdb_profile_image_url( $profile_path ) {
+    if ( empty( $profile_path ) ) {
+        return '';
+    }
+
+    // Face-optimized size from TMDB.
+    return 'https://media.themoviedb.org/t/p/w138_and_h175_face' . $profile_path;
+}
+
+function pzfilm_fetch_tmdb_movie_credits_en( $tmdb_movie_id ) {
+    $tmdb_api_key = env( 'PUBLIC_TMDB_API_KEY' );
+
+    if ( empty( $tmdb_api_key ) || empty( $tmdb_movie_id ) ) {
+        return new WP_Error( 'missing_tmdb_config', 'TMDB konfiguracija nije dostupna.' );
+    }
+
+    $response = wp_remote_get(
+        sprintf( 'https://api.themoviedb.org/3/movie/%d/credits', absint( $tmdb_movie_id ) ),
+        array(
+            'headers' => array(
+                'accept'        => 'application/json',
+                'Authorization' => 'Bearer ' . $tmdb_api_key,
+            ),
+            'timeout' => 20,
+        )
+    );
+
+    if ( is_wp_error( $response ) ) {
+        return $response;
+    }
+
+    $status_code = wp_remote_retrieve_response_code( $response );
+    $body = json_decode( wp_remote_retrieve_body( $response ), true );
+
+    if ( $status_code >= 400 || empty( $body ) || ! is_array( $body ) ) {
+        return new WP_Error( 'tmdb_credits_failed', 'Ne mogu da povučem credits sa TMDB-a.' );
+    }
+
+    return $body;
+}
+
+function pzfilm_get_or_create_person_post_id( $tmdb_person_id, $name, $profile_path ) {
+    $tmdb_person_id = absint( $tmdb_person_id );
+    $name = sanitize_text_field( $name );
+
+    if ( ! $tmdb_person_id || empty( $name ) ) {
+        return 0;
+    }
+
+    if ( ! post_type_exists( 'pz_person' ) ) {
+        return 0;
+    }
+
+    $existing = get_posts(
+        array(
+            'post_type'      => 'pz_person',
+            'post_status'    => 'publish',
+            'posts_per_page' => 1,
+            'meta_key'       => 'tmdb_person_id',
+            'meta_value'     => $tmdb_person_id,
+            'fields'         => 'ids',
+        )
+    );
+
+    if ( ! empty( $existing ) ) {
+        $post_id = absint( $existing[0] );
+        if ( $profile_path ) {
+            update_post_meta( $post_id, 'profile_path', sanitize_text_field( $profile_path ) );
+        }
+        return $post_id;
+    }
+
+    $post_id = wp_insert_post(
+        array(
+            'post_type'   => 'pz_person',
+            'post_status' => 'publish',
+            'post_title'  => $name,
+            'post_name'   => sanitize_title( $name . '-' . $tmdb_person_id ),
+        ),
+        true
+    );
+
+    if ( is_wp_error( $post_id ) ) {
+        return 0;
+    }
+
+    update_post_meta( $post_id, 'tmdb_person_id', $tmdb_person_id );
+    if ( $profile_path ) {
+        update_post_meta( $post_id, 'profile_path', sanitize_text_field( $profile_path ) );
+    }
+
+    return absint( $post_id );
+}
+
+function pzfilm_build_people_cache_from_credits( $credits ) {
+    $cache = array(
+        'directors'  => array(),
+        'writers'    => array(),
+        'cast'       => array(),
+        'updated_at' => time(),
+    );
+
+    $crew = is_array( $credits['crew'] ?? null ) ? $credits['crew'] : array();
+    $cast = is_array( $credits['cast'] ?? null ) ? $credits['cast'] : array();
+
+    $seen = array();
+
+    foreach ( $crew as $member ) {
+        $id = absint( $member['id'] ?? 0 );
+        $job = sanitize_text_field( $member['job'] ?? '' );
+        $department = sanitize_text_field( $member['department'] ?? '' );
+
+        if ( ! $id ) {
+            continue;
+        }
+
+        $name = sanitize_text_field( $member['name'] ?? '' );
+        $profile_path = sanitize_text_field( $member['profile_path'] ?? '' );
+
+        if ( empty( $name ) ) {
+            continue;
+        }
+
+        if ( 'Director' === $job ) {
+            if ( isset( $seen['director'][ $id ] ) ) {
+                continue;
+            }
+            $seen['director'][ $id ] = true;
+
+            $person_post_id = pzfilm_get_or_create_person_post_id( $id, $name, $profile_path );
+
+            $cache['directors'][] = array(
+                'tmdb_id'      => $id,
+                'name'         => $name,
+                'job'          => $job,
+                'profile_path' => $profile_path,
+                'profile_url'  => $profile_path ? pzfilm_tmdb_profile_image_url( $profile_path ) : '',
+                'permalink'    => $person_post_id ? get_permalink( $person_post_id ) : '',
+            );
+        }
+
+        if ( 'Writing' === $department || in_array( $job, array( 'Writer', 'Screenplay', 'Story' ), true ) ) {
+            if ( isset( $seen['writer'][ $id ] ) ) {
+                continue;
+            }
+            $seen['writer'][ $id ] = true;
+
+            $person_post_id = pzfilm_get_or_create_person_post_id( $id, $name, $profile_path );
+
+            $cache['writers'][] = array(
+                'tmdb_id'      => $id,
+                'name'         => $name,
+                'job'          => $job ?: 'Writer',
+                'profile_path' => $profile_path,
+                'profile_url'  => $profile_path ? pzfilm_tmdb_profile_image_url( $profile_path ) : '',
+                'permalink'    => $person_post_id ? get_permalink( $person_post_id ) : '',
+            );
+        }
+    }
+
+    $cast = array_slice( $cast, 0, 20 );
+    foreach ( $cast as $member ) {
+        $id = absint( $member['id'] ?? 0 );
+        if ( ! $id ) {
+            continue;
+        }
+
+        if ( isset( $seen['cast'][ $id ] ) ) {
+            continue;
+        }
+        $seen['cast'][ $id ] = true;
+
+        $name = sanitize_text_field( $member['name'] ?? '' );
+        if ( empty( $name ) ) {
+            continue;
+        }
+
+        $profile_path = sanitize_text_field( $member['profile_path'] ?? '' );
+        $character = sanitize_text_field( $member['character'] ?? '' );
+
+        $person_post_id = pzfilm_get_or_create_person_post_id( $id, $name, $profile_path );
+
+        $cache['cast'][] = array(
+            'tmdb_id'      => $id,
+            'name'         => $name,
+            'character'    => $character,
+            'profile_path' => $profile_path,
+            'profile_url'  => $profile_path ? pzfilm_tmdb_profile_image_url( $profile_path ) : '',
+            'permalink'    => $person_post_id ? get_permalink( $person_post_id ) : '',
+        );
+    }
+
+    return $cache;
+}
+
+function refresh_movie_people() {
+    check_ajax_referer( 'pzfilm_global_nonce', 'nonce' );
+
+    $post_id = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+    $tmdb_movie_id = isset( $_POST['tmdb_movie_id'] ) ? absint( $_POST['tmdb_movie_id'] ) : 0;
+
+    if ( ! $post_id || ! $tmdb_movie_id ) {
+        wp_send_json_error( array( 'message' => 'Nedostaju podaci za ljude iz filma.' ), 400 );
+    }
+
+    $post = get_post( $post_id );
+
+    if ( ! $post || 'movie' !== $post->post_type ) {
+        wp_send_json_error( array( 'message' => 'Film nije pronađen.' ), 404 );
+    }
+
+    $existing_cache = get_post_meta( $post_id, 'tmdb_people_cache', true );
+
+    if ( is_array( $existing_cache ) && ( ! empty( $existing_cache['cast'] ) || ! empty( $existing_cache['directors'] ) || ! empty( $existing_cache['writers'] ) ) ) {
+        wp_send_json_success(
+            array(
+                'source'    => 'database',
+                'directors' => $existing_cache['directors'] ?? array(),
+                'writers'   => $existing_cache['writers'] ?? array(),
+                'cast'      => $existing_cache['cast'] ?? array(),
+            )
+        );
+    }
+
+    $credits = pzfilm_fetch_tmdb_movie_credits_en( $tmdb_movie_id );
+
+    if ( is_wp_error( $credits ) ) {
+        wp_send_json_error( array( 'message' => $credits->get_error_message() ), 500 );
+    }
+
+    $cache = pzfilm_build_people_cache_from_credits( $credits );
+
+    update_post_meta( $post_id, 'tmdb_people_cache', $cache );
+
+    // Also keep legacy string meta in sync (names only).
+    if ( ! empty( $cache['directors'] ) ) {
+        update_post_meta( $post_id, 'director', array_map( static fn( $p ) => $p['name'] ?? '', $cache['directors'] ) );
+    }
+
+    if ( ! empty( $cache['writers'] ) ) {
+        update_post_meta( $post_id, 'writing', array_map( static fn( $p ) => $p['name'] ?? '', $cache['writers'] ) );
+    }
+
+    if ( ! empty( $cache['cast'] ) ) {
+        update_post_meta( $post_id, 'cast', array_map( static fn( $p ) => $p['name'] ?? '', $cache['cast'] ) );
+    }
+
+    wp_send_json_success(
+        array(
+            'source'    => 'tmdb',
+            'directors' => $cache['directors'],
+            'writers'   => $cache['writers'],
+            'cast'      => $cache['cast'],
+        )
+    );
+}
+
+add_action( 'wp_ajax_refresh_movie_people', 'refresh_movie_people' );
+add_action( 'wp_ajax_nopriv_refresh_movie_people', 'refresh_movie_people' );
+
+
+
 
 
 

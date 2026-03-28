@@ -1100,3 +1100,120 @@
     backdrop-filter: blur(20px);
   }
 }
+
+/* People carousel (directors/writers/cast) */
+.sm-info-content-director .sm-people-carousel,
+.sm-info-content-writers .sm-people-carousel,
+.sm-info-content-cast .sm-people-carousel {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 2px 10px;
+  min-width: 0;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: #18BF7C transparent;
+}
+
+.sm-info-content-director .sm-people-carousel::-webkit-scrollbar,
+.sm-info-content-writers .sm-people-carousel::-webkit-scrollbar,
+.sm-info-content-cast .sm-people-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.sm-info-content-director .sm-people-carousel::-webkit-scrollbar-thumb,
+.sm-info-content-writers .sm-people-carousel::-webkit-scrollbar-thumb,
+.sm-info-content-cast .sm-people-carousel::-webkit-scrollbar-thumb {
+  background: rgba(24, 191, 124, 0.8);
+  border-radius: 10px;
+}
+
+.sm-people-loader {
+  color: var(--Green, #18BF7C);
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: normal;
+  margin: 2px 0 0;
+  white-space: nowrap;
+}
+
+.sm-person-card {
+  flex: 0 0 auto;
+  width: 112px;
+  text-decoration: none;
+  scroll-snap-align: start;
+}
+
+.sm-person-card[aria-disabled='true'] {
+  pointer-events: none;
+}
+
+.sm-person-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(237, 254, 236, 0.24);
+  background: rgba(34, 55, 74, 0.50);
+  backdrop-filter: blur(20px);
+  margin-bottom: 10px;
+}
+
+.sm-person-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sm-person-initials {
+  color: var(--Light, #EDFEEC);
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.sm-person-name {
+  display: block;
+  color: var(--White, #FFF);
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 3px;
+}
+
+.sm-person-meta {
+  display: block;
+  color: var(--Orange, #F57C36);
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.15;
+  opacity: 0.95;
+}
+
+.sm-person-card--skeleton {
+  opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+  .sm-person-card {
+    width: 96px;
+  }
+
+  .sm-person-avatar {
+    width: 72px;
+    height: 72px;
+  }
+}

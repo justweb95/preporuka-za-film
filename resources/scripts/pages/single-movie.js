@@ -53,8 +53,10 @@ form_submit_button.addEventListener('click', handleFormSubmit);
 
 const FALLBACK_MOVIE_DESCRIPTION = 'Opis filma trenutno nije dostupan';
 const MOVIE_DESCRIPTION_LOADING_TEXT = 'Ucitavanje svezeg contenta....';
+const MOVIE_PEOPLE_LOADING_TEXT = 'Ucitavanje svezeg contenta....';
 
 loadMissingMovieDescription();
+loadMoviePeopleCarousels();
 
 async function handleFormSubmit(e) {
   // Prevent defult behavior
@@ -309,4 +311,153 @@ async function loadMissingMovieDescription() {
   } finally {
     delete descriptionElement.dataset.loading;
   }
+}
+
+
+async function loadMoviePeopleCarousels() {
+  const heroSection = document.querySelector('#sm_hero_section');
+  if (!heroSection || typeof pzfilm_globals === 'undefined') {
+    return;
+  }
+
+  const postId = heroSection.dataset.movieId;
+  const tmdbMovieId = heroSection.dataset.tmdbMovieId;
+
+  if (!postId || !tmdbMovieId) {
+    return;
+  }
+
+  const carousels = Array.from(
+    document.querySelectorAll('[data-people-carousel]')
+  );
+
+  if (!carousels.length) {
+    return;
+  }
+
+  const hasRealCards = (carousel) =>
+    carousel.querySelector('.sm-person-card:not(.sm-person-card--skeleton)');
+
+  const shouldFetch = carousels.some((carousel) => !hasRealCards(carousel));
+
+  if (!shouldFetch) {
+    return;
+  }
+
+  carousels.forEach((carousel) => ensurePeopleLoader(carousel));
+
+  const formData = new FormData();
+  formData.append('action', 'refresh_movie_people');
+  formData.append('post_id', postId);
+  formData.append('tmdb_movie_id', tmdbMovieId);
+  formData.append('nonce', pzfilm_globals.nonce);
+
+  try {
+    const response = await fetch(pzfilm_globals.ajaxurl, {
+      method: 'POST',
+      credentials: 'include',
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (!data?.success || !data?.data) {
+      return;
+    }
+
+    const payload = data.data;
+
+    renderPeopleCarousel('directors', payload.directors || []);
+    renderPeopleCarousel('writers', payload.writers || []);
+    renderPeopleCarousel('cast', payload.cast || []);
+  } catch (error) {
+    console.error('refresh_movie_people error:', error);
+  }
+}
+
+function ensurePeopleLoader(carousel) {
+  if (carousel.querySelector('[data-sm-people-loader]')) {
+    return;
+  }
+
+  const loader = document.createElement('p');
+  loader.className = 'sm-people-loader';
+  loader.dataset.smPeopleLoader = 'true';
+  loader.textContent = MOVIE_PEOPLE_LOADING_TEXT;
+
+  carousel.prepend(loader);
+}
+
+function renderPeopleCarousel(role, people) {
+  const carousel = document.querySelector([data-people-carousel='']);
+  if (!carousel) {
+    return;
+  }
+
+  if (!Array.isArray(people) || people.length === 0) {
+    // Keep skeletons if we have them.
+    const loader = carousel.querySelector('[data-sm-people-loader]');
+    if (loader) {
+      loader.textContent = 'Nema dostupnih informacija';
+    }
+    return;
+  }
+
+  carousel.innerHTML = '';
+
+  people.forEach((person) => {
+    carousel.appendChild(createPersonCard(person, role));
+  });
+}
+
+function createPersonCard(person, role) {
+  const isLink = Boolean(person?.permalink);
+  const el = document.createElement(isLink ? 'a' : 'div');
+
+  el.className = 'sm-person-card';
+  if (isLink) {
+    el.href = person.permalink;
+  } else {
+    el.setAttribute('aria-disabled', 'true');
+  }
+
+  if (person?.tmdb_id) {
+    el.dataset.personId = String(person.tmdb_id);
+  }
+
+  const avatar = document.createElement('span');
+  avatar.className = 'sm-person-avatar';
+
+  if (person?.profile_url) {
+    const img = document.createElement('img');
+    img.src = person.profile_url;
+    img.alt = person?.name || '';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    avatar.appendChild(img);
+  } else {
+    const initials = document.createElement('span');
+    initials.className = 'sm-person-initials';
+    initials.textContent = (person?.name || '?').trim().slice(0, 1) || '?';
+    avatar.appendChild(initials);
+  }
+
+  const name = document.createElement('span');
+  name.className = 'sm-person-name';
+  name.textContent = person?.name || '';
+
+  const meta = document.createElement('span');
+  meta.className = 'sm-person-meta';
+
+  if (role === 'cast') {
+    meta.textContent = person?.character || 'Glumac';
+  } else {
+    meta.textContent = person?.job || (role === 'writers' ? 'Writer' : 'Director');
+  }
+
+  el.appendChild(avatar);
+  el.appendChild(name);
+  el.appendChild(meta);
+
+  return el;
 }
