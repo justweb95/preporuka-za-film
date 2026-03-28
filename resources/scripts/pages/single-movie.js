@@ -389,7 +389,7 @@ function ensurePeopleLoader(carousel) {
 }
 
 function renderPeopleCarousel(role, people) {
-  const carousel = document.querySelector([data-people-carousel='']);
+  const carousel = document.querySelector('[data-people-carousel=\"' + role + '\"]');
   if (!carousel) {
     return;
   }
