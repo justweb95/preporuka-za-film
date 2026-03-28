@@ -205,6 +205,186 @@ add_action( 'init', 'create_movie_post_type', 0 );
     add_action( 'wp_ajax_nopriv_save_movie', 'save_movie' );
 
 
+    function pzfilm_fetch_tmdb_movie_overview_en( $tmdb_movie_id ) {
+        $tmdb_api_key = env( 'PUBLIC_TMDB_API_KEY' );
+
+        if ( empty( $tmdb_api_key ) || empty( $tmdb_movie_id ) ) {
+            return new WP_Error( 'missing_tmdb_config', 'TMDB konfiguracija nije dostupna.' );
+        }
+
+        $response = wp_remote_get(
+            sprintf( 'https://api.themoviedb.org/3/movie/%d?language=en-US', absint( $tmdb_movie_id ) ),
+            array(
+                'headers' => array(
+                    'accept'        => 'application/json',
+                    'Authorization' => 'Bearer ' . $tmdb_api_key,
+                ),
+                'timeout' => 20,
+            )
+        );
+
+        if ( is_wp_error( $response ) ) {
+            return $response;
+        }
+
+        $status_code = wp_remote_retrieve_response_code( $response );
+        $body = json_decode( wp_remote_retrieve_body( $response ), true );
+
+        if ( $status_code >= 400 || empty( $body['overview'] ) ) {
+            return new WP_Error( 'tmdb_overview_missing', 'Engleski opis nije dostupan na TMDB-u.' );
+        }
+
+        return sanitize_textarea_field( $body['overview'] );
+    }
+
+    function pzfilm_clean_translated_movie_overview( $text ) {
+        $text = wp_strip_all_tags( $text );
+        $text = preg_replace( '/\[\d+(?:\s*,\s*\d+)*\]/', '', $text );
+        $text = preg_replace( '/https?:\/\/\S+/i', '', $text );
+        $text = preg_replace( '/[`*_#>]/', '', $text );
+        $text = preg_replace( '/\s+/', ' ', $text );
+
+        return sanitize_textarea_field( trim( $text ) );
+    }
+
+    function pzfilm_is_valid_translated_movie_overview( $translated_text, $source_text ) {
+        $translated_length = function_exists( 'mb_strlen' ) ? mb_strlen( $translated_text ) : strlen( $translated_text );
+        $source_length = function_exists( 'mb_strlen' ) ? mb_strlen( $source_text ) : strlen( $source_text );
+
+        if ( $translated_length < 20 ) {
+            return false;
+        }
+
+        if ( $source_length > 0 ) {
+            $ratio = $translated_length / $source_length;
+
+            if ( $ratio < 0.45 || $ratio > 1.8 ) {
+                return false;
+            }
+        }
+
+        if ( preg_match( '/\[[0-9,\s]+\]/', $translated_text ) ) {
+            return false;
+        }
+
+        if ( preg_match( '/https?:\/\//i', $translated_text ) ) {
+            return false;
+        }
+
+        if ( preg_match( '/\*\*|__|```/', $translated_text ) ) {
+            return false;
+        }
+
+        if ( preg_match( '/^(evo|naravno|prevod|opis:|translated)/i', $translated_text ) ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function pzfilm_translate_movie_overview_to_serbian( $text ) {
+        $perplexity_api_key = env( 'PUBLIC_PERPLEXITY_API_KEY' );
+
+        if ( empty( $perplexity_api_key ) ) {
+            return new WP_Error( 'missing_translation_config', 'Prevod servis nije konfigurisan.' );
+        }
+
+        $payload = array(
+            'model' => 'sonar',
+            'messages' => array(
+                array(
+                    'role'    => 'system',
+                    'content' => 'You are a strict translator. Translate only the exact movie synopsis provided by the user into natural Serbian Latin. Do not use web search, outside knowledge, citations, markdown, notes, introductions, conclusions, or added facts. Return only one clean translated paragraph.',
+                ),
+                array(
+                    'role'    => 'user',
+                    'content' => "Translate only the text inside <overview> tags to Serbian Latin and return only the translation. <overview>{$text}</overview>",
+                ),
+            ),
+            'temperature' => 0,
+            'max_tokens'  => 500,
+        );
+
+        $response = wp_remote_post(
+            'https://api.perplexity.ai/chat/completions',
+            array(
+                'headers' => array(
+                    'Authorization' => 'Bearer ' . $perplexity_api_key,
+                    'Content-Type'  => 'application/json',
+                ),
+                'body'    => wp_json_encode( $payload ),
+                'timeout' => 30,
+            )
+        );
+
+        if ( is_wp_error( $response ) ) {
+            return $response;
+        }
+
+        $status_code = wp_remote_retrieve_response_code( $response );
+        $body = json_decode( wp_remote_retrieve_body( $response ), true );
+        $translated_text = trim( $body['choices'][0]['message']['content'] ?? '' );
+        $translated_text = pzfilm_clean_translated_movie_overview( $translated_text );
+
+        if ( $status_code >= 400 || empty( $translated_text ) ) {
+            return new WP_Error( 'translation_failed', 'Prevod opisa nije uspeo.' );
+        }
+
+        if ( ! pzfilm_is_valid_translated_movie_overview( $translated_text, $text ) ) {
+            return new WP_Error( 'translation_invalid', 'Prevedeni opis nije validan.' );
+        }
+
+        return $translated_text;
+    }
+
+    function refresh_movie_description() {
+        check_ajax_referer( 'pzfilm_global_nonce', 'nonce' );
+
+        $post_id = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+        $tmdb_movie_id = isset( $_POST['tmdb_movie_id'] ) ? absint( $_POST['tmdb_movie_id'] ) : 0;
+
+        if ( ! $post_id || ! $tmdb_movie_id ) {
+            wp_send_json_error( array( 'message' => 'Nedostaju podaci za opis filma.' ), 400 );
+        }
+
+        $post = get_post( $post_id );
+
+        if ( ! $post || 'movie' !== $post->post_type ) {
+            wp_send_json_error( array( 'message' => 'Film nije pronađen.' ), 404 );
+        }
+
+        $current_content = trim( wp_strip_all_tags( $post->post_content ) );
+
+        if ( ! empty( $current_content ) && 'Opis filma trenutno nije dostupan' !== $current_content ) {
+            wp_send_json_success( array( 'overview' => $current_content, 'source' => 'database' ) );
+        }
+
+        $english_overview = pzfilm_fetch_tmdb_movie_overview_en( $tmdb_movie_id );
+
+        if ( is_wp_error( $english_overview ) ) {
+            wp_send_json_error( array( 'message' => $english_overview->get_error_message() ), 500 );
+        }
+
+        $translated_overview = pzfilm_translate_movie_overview_to_serbian( $english_overview );
+
+        if ( is_wp_error( $translated_overview ) ) {
+            wp_send_json_error( array( 'message' => $translated_overview->get_error_message() ), 500 );
+        }
+
+        wp_update_post(
+            array(
+                'ID'           => $post_id,
+                'post_content' => $translated_overview,
+            )
+        );
+
+        wp_send_json_success( array( 'overview' => $translated_overview, 'source' => 'translated' ) );
+    }
+
+    add_action( 'wp_ajax_refresh_movie_description', 'refresh_movie_description' );
+    add_action( 'wp_ajax_nopriv_refresh_movie_description', 'refresh_movie_description' );
+
+
 
 
 

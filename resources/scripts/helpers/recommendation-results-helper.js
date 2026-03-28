@@ -155,7 +155,7 @@ export function populateMultipleResults(resultsArray) {
     ratingText.textContent = tmdbData.vote_average != null ? tmdbData.vote_average.toFixed(1) : 'N/A';
     
     const imdbIcon = document.createElement('img');
-    imdbIcon.src = window.location.origin + '/preporuka-za-film/wp-content/themes/preporuka-za-film/public/images/questionnaire/imdb-icon.webp';
+    imdbIcon.src = window.location.origin + '/wp-content/themes/preporuka-za-film/public/images/questionnaire/imdb-icon.webp';
     imdbIcon.alt = 'Imdb Icon';
     
     ratingWrapper.appendChild(ratingText);

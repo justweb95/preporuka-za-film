@@ -75,7 +75,7 @@
 @endphp
 
 {{-- Hero Single Movie --}}
-<section id="sm_hero_section" class="sm-hero-section" data-movie-id="{{ $movie_id }}" style="<?php echo $backgroundImageUrl; ?>">
+<section id="sm_hero_section" class="sm-hero-section" data-movie-id="{{ $movie_id }}" data-tmdb-movie-id="{{ get_post_meta($movie->ID, 'movie_id', true) }}" style="<?php echo $backgroundImageUrl; ?>">
   {{-- <h2>{{ $movie->ID }}</h2> --}}
 
   <div class="sm-hero-holder container">

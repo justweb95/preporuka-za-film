@@ -3,6 +3,7 @@ import 'toastify-js/src/toastify.css'; // Importing CSS for Toastify
 
 import { getLoggedInUserInfo } from '@scripts/profile/profile-main.js';
 import { scrolToTop } from '@scripts/helpers/scrool-to-top-helper';
+import { cyrillicFormat } from '@scripts/partials/textFormatingControler';
 
 // Toster
 function showToast(message) {
@@ -49,6 +50,11 @@ function showToast(message) {
 // Handle Form Submit Click;
 let form_submit_button = document.querySelector('#submit');
 form_submit_button.addEventListener('click', handleFormSubmit);
+
+const FALLBACK_MOVIE_DESCRIPTION = 'Opis filma trenutno nije dostupan';
+const MOVIE_DESCRIPTION_LOADING_TEXT = 'Ucitavanje svezeg contenta....';
+
+loadMissingMovieDescription();
 
 async function handleFormSubmit(e) {
   // Prevent defult behavior
@@ -251,4 +257,56 @@ function stopVideo() {
   const src = iframe.src;
   iframe.src = '';
   iframe.src = src;
+}
+
+async function loadMissingMovieDescription() {
+  const heroSection = document.querySelector('#sm_hero_section');
+  const descriptionElement = document.querySelector('#sm-info-description-text');
+
+  if (!heroSection || !descriptionElement) {
+    return;
+  }
+
+  const currentDescription = descriptionElement.textContent.trim();
+  const postId = heroSection.dataset.movieId;
+  const tmdbMovieId = heroSection.dataset.tmdbMovieId;
+
+  if (
+    currentDescription !== FALLBACK_MOVIE_DESCRIPTION ||
+    !postId ||
+    !tmdbMovieId
+  ) {
+    return;
+  }
+
+  descriptionElement.dataset.loading = 'true';
+  descriptionElement.textContent = MOVIE_DESCRIPTION_LOADING_TEXT;
+
+  const formData = new FormData();
+  formData.append('action', 'refresh_movie_description');
+  formData.append('post_id', postId);
+  formData.append('tmdb_movie_id', tmdbMovieId);
+  formData.append('nonce', pzfilm_globals.nonce);
+
+  try {
+    const response = await fetch(pzfilm_globals.ajaxurl, {
+      method: 'POST',
+      credentials: 'include',
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (!data?.success || !data?.data?.overview) {
+      descriptionElement.textContent = FALLBACK_MOVIE_DESCRIPTION;
+      return;
+    }
+
+    descriptionElement.textContent = cyrillicFormat(data.data.overview.trim());
+  } catch (error) {
+    descriptionElement.textContent = FALLBACK_MOVIE_DESCRIPTION;
+    console.error('refresh_movie_description error:', error);
+  } finally {
+    delete descriptionElement.dataset.loading;
+  }
 }

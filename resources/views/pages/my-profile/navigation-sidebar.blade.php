@@ -5,7 +5,7 @@
       ['nav_name' => 'Moji omiljeni filmovi', 'nav_icon' => 'images/sidebar-icons/my-favorite-icon.svg', 'tab_id' => 'omiljeni_filmovi', 'sidebar_id' => 'omiljeni_filmovi'],
       ['nav_name' => 'Već gledano', 'nav_icon' => 'images/sidebar-icons/watched-icon.svg', 'tab_id' => 'vec_gledani', 'sidebar_id' => 'vec_gledani'],
       ['nav_name' => 'Podešavanja', 'nav_icon' => 'images/sidebar-icons/settings-icon.svg', 'tab_id' => 'podesavanja', 'sidebar_id' => 'podesavanja'],
-      ['nav_name' => 'Odjavi se', 'nav_icon' => 'images/sidebar-icons/sign-out.svg', 'tab_id' => 'logout'],
+      ['nav_name' => 'Odjavi se', 'nav_icon' => 'images/sidebar-icons/sign-out.svg', 'tab_id' => 'logout', 'sidebar_id' => 'logout'],
   ];
 
   $current_user = wp_get_current_user();

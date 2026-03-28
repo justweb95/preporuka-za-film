@@ -14,6 +14,7 @@
   $notifications = array_filter($notifications, function($notification) {
       return is_array($notification);
   });
+  
 @endphp
 
 <div class="notification-overlay" id="notification_overlay">

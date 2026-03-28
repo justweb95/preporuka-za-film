@@ -164,7 +164,7 @@
               </p>
               <strong>Rezultat:</strong>
               <p>Nasumična preporuka iz vašeg izbora - element sreće!</p>
-              <a href="{{ home_url() }}/točak-sreće" class="about-cta-button about-cta-primary">Odigraj Igru</a>
+              <a href="{{ home_url() }}/tocak-srece" class="about-cta-button about-cta-primary">Odigraj Igru</a>
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@
   $current_user_name = $current_user->display_name; 
   $current_user_email = $current_user->user_email;
   $current_user_img_src = get_user_meta($current_user->ID, 'profile_image', true); 
-  $current_user_requests_left = get_user_meta($current_user->ID, 'advanced_search_counter', true); 
+  $current_user_requests_left = (int) get_user_meta($current_user->ID, 'advanced_search_counter', true);
   $current_user_tier = get_user_meta($current_user->ID, 'tier', true); 
   $current_user_bio = $current_user->description;
 @endphp

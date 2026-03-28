@@ -239,6 +239,34 @@
         width: 100%;
         margin: 24px auto 24px auto;
       } 
+      .wof-movie-card-list {
+        .wof-movie-card {
+          &:has(.wof-remove-movie-icon) {
+            /* .wof-movie-card-img {
+              filter: blur(5px);
+            } */
+          }
+          .wof-add-movie-icon {
+            box-shadow: 0 0 10px #18BF7C;
+            rect {
+              stroke: #18BF7C;
+            }
+          }
+          .wof-movie-btn {
+            .wof-remove-movie-icon {
+              opacity: 1;
+              box-shadow: 0 0 10px #bc612c;
+              rect {
+                stroke: #EF8D53;
+              }
+            }
+            &::after {
+              opacity: 1;
+              translate: -50% -4px;              
+            }
+          }
+        }
+      }
     }
   }
 }
