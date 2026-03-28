@@ -89,8 +89,6 @@ add_action('init', function () {
     );
 });
 
-
-
 // Code for handle movie register custom post and saving
 require_once get_template_directory() . '/movie_controler.php';
 
@@ -329,19 +327,12 @@ function pzfilm_enqueue_global_js_data() {
         'theme_uri' => get_template_directory_uri(),
         'current_user_id' => get_current_user_id(),
         'nonce' => wp_create_nonce('pzfilm_global_nonce'),
+        'delete_nonce' => wp_create_nonce('user_delete_action'), // dedicated
     ]);
 
     wp_enqueue_script('pzfilm-global');
 }
 add_action('wp_enqueue_scripts', 'pzfilm_enqueue_global_js_data');
-
-wp_localize_script('pzfilm-global', 'pzfilm_globals', [
-    'ajaxurl' => admin_url('admin-ajax.php'),
-    'site_url' => get_site_url(),
-    'theme_uri' => get_template_directory_uri(),
-    'current_user_id' => get_current_user_id(),
-    'delete_nonce' => wp_create_nonce('user_delete_action'), // dedicated
-]);
 
 
 add_action('init', function() {

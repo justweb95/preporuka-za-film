@@ -1,0 +1,234 @@
+.pz-person-page {
+  padding: 36px 0 60px;
+  font-family: 'Red Hat Display', sans-serif;
+  color: #EDFEEC;
+}
+
+.pz-person-hero {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.pz-person-photo {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(24, 191, 124, 0.55);
+  background: rgba(34, 55, 74, 0.22);
+  box-shadow: 6px 10px 28px rgba(24, 191, 124, 0.20);
+}
+
+.pz-person-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.pz-person-photo-fallback {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 78px;
+  font-weight: 900;
+  color: #EDFEEC;
+  background: linear-gradient(180deg, rgba(34, 55, 74, 0.60), rgba(34, 55, 74, 0.22));
+}
+
+.pz-person-title {
+  margin: 0;
+  color: #FFF;
+  font-weight: 900;
+  font-size: 34px;
+  line-height: 1.05;
+}
+
+.pz-person-subtitle {
+  margin-top: 10px;
+  font-size: 14px;
+  color: rgba(237, 254, 236, 0.86);
+}
+
+.pz-person-subtitle-muted {
+  opacity: 0.65;
+}
+
+.pz-person-facts {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 14px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(24, 191, 124, 0.45);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  box-shadow: 3px 4px 18px rgba(24, 191, 124, 0.14);
+}
+
+.pz-person-fact {
+  min-width: 0;
+}
+
+.pz-person-fact-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(237, 254, 236, 0.70);
+}
+
+.pz-person-fact-value {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #EDFEEC;
+  overflow-wrap: anywhere;
+}
+
+.pz-person-section {
+  margin-top: 26px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(24, 191, 124, 0.45);
+  background: rgba(34, 55, 74, 0.18);
+}
+
+.pz-person-h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 900;
+  color: #FFF;
+}
+
+.pz-person-bio {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(237, 254, 236, 0.92);
+  white-space: pre-line;
+}
+
+.pz-person-bio-block {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(237, 254, 236, 0.12);
+}
+
+.pz-person-movies {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.pz-person-movie-card {
+  display: block;
+  text-decoration: none;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(24, 191, 124, 0.45);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  box-shadow: 6px 10px 28px rgba(24, 191, 124, 0.14);
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.pz-person-movie-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(24, 191, 124, 0.75);
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.pz-person-movie-card--disabled {
+  cursor: default;
+  box-shadow: none;
+  opacity: 0.92;
+}
+
+.pz-person-movie-card--disabled:hover {
+  transform: none;
+  border-color: rgba(24, 191, 124, 0.45);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pz-person-movie-poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  background: rgba(34, 55, 74, 0.40);
+}
+
+.pz-person-movie-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pz-person-movie-body {
+  padding: 10px 10px 12px;
+}
+
+.pz-person-movie-title {
+  margin: 0;
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.pz-person-movie-meta {
+  margin-top: 6px;
+  color: rgba(237, 254, 236, 0.85);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.pz-person-movie-meta-muted {
+  opacity: 0.7;
+}
+
+.pz-person-movie-role {
+  margin-top: 4px;
+  color: #F57C36;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .pz-person-hero {
+    grid-template-columns: 190px 1fr;
+  }
+
+  .pz-person-title {
+    font-size: 28px;
+  }
+
+  .pz-person-movies {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .pz-person-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .pz-person-photo {
+    max-width: 260px;
+  }
+
+  .pz-person-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .pz-person-movies {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+

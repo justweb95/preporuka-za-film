@@ -1,3 +1,9 @@
+  if (window.__pz_home_initialized) {
+    // Prevent double-init if this module is imported via multiple route checks.
+    return;
+  }
+  window.__pz_home_initialized = true;
+
   // Function to animate number increment
   function animateNumber(id, start, end, duration) {
     const element = document.getElementById(id);
@@ -39,3 +45,45 @@
   observeElement('interactive-fp', 0, 32, 2000);
   observeElement('interactive-sg', 0, 14000, 2000);
   observeElement('interactive-fz', 0, 20, 2000);
+
+  function hydrateHomeMovieCards() {
+    const holder = document.querySelector('.home-hero .movie-card-holder');
+    const tpl = document.querySelector('#home-movie-cards-template');
+    if (!holder || !tpl) return;
+
+    const run = () => {
+      // Avoid double-inserting if the script runs twice.
+      if (holder.dataset.cardsHydrated === 'true') return;
+      holder.dataset.cardsHydrated = 'true';
+
+      const fragment = tpl.content.cloneNode(true);
+      holder.appendChild(fragment);
+    };
+
+    const schedule = () => {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(run, { timeout: 2000 });
+      } else {
+        setTimeout(run, 1200);
+      }
+    };
+
+    if (!('IntersectionObserver' in window)) {
+      schedule();
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          io.disconnect();
+          schedule();
+        }
+      },
+      { root: null, rootMargin: '250px 0px', threshold: 0.01 }
+    );
+
+    io.observe(holder);
+  }
+
+  hydrateHomeMovieCards();

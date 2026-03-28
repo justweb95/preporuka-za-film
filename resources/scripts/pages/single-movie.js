@@ -58,6 +58,7 @@ const MOVIE_PEOPLE_LOADING_TEXT = 'Ucitavanje svezeg contenta....';
 loadMissingMovieDescription();
 loadMoviePeopleCarousels();
 initPeopleCarouselNav();
+initPeopleCardGlow();
 
 async function handleFormSubmit(e) {
   // Prevent defult behavior
@@ -346,6 +347,13 @@ async function loadMoviePeopleCarousels() {
   }
 
   carousels.forEach((carousel) => ensurePeopleLoader(carousel));
+  const setLoaderText = (text) => {
+    carousels.forEach((carousel) => {
+      ensurePeopleLoader(carousel);
+      const loader = carousel.querySelector('[data-sm-people-loader]');
+      if (loader) loader.textContent = text;
+    });
+  };
 
   const formData = new FormData();
   formData.append('action', 'refresh_movie_people');
@@ -363,6 +371,7 @@ async function loadMoviePeopleCarousels() {
     const data = await response.json();
 
     if (!data?.success || !data?.data) {
+      setLoaderText('Nema dostupnih informacija');
       return;
     }
 
@@ -376,6 +385,7 @@ async function loadMoviePeopleCarousels() {
     );
     renderPeopleCarousel('cast', payload.cast || []);
   } catch (error) {
+    setLoaderText('Nema dostupnih informacija');
     console.error('refresh_movie_people error:', error);
   }
 }
@@ -413,6 +423,9 @@ function renderPeopleCarousel(role, people) {
   people.forEach((person) => {
     carousel.appendChild(createPersonCard(person, role));
   });
+
+  // After (re)render, try to tint glow based on the new images.
+  initPeopleCardGlow(carousel);
 }
 
 function createPersonCard(person, role) {
@@ -439,6 +452,20 @@ function createPersonCard(person, role) {
     img.alt = person?.name || '';
     img.loading = 'lazy';
     img.decoding = 'async';
+    img.width = 138;
+    img.height = 175;
+    img.addEventListener(
+      'error',
+      () => {
+        // If the cached URL is bad, fall back to initials instead of broken image icon.
+        avatar.innerHTML = '';
+        const initials = document.createElement('span');
+        initials.className = 'sm-person-initials';
+        initials.textContent = (person?.name || '?').trim().slice(0, 1) || '?';
+        avatar.appendChild(initials);
+      },
+      { once: true }
+    );
     avatar.appendChild(img);
   } else {
     const initials = document.createElement('span');
@@ -465,6 +492,87 @@ function createPersonCard(person, role) {
   el.appendChild(meta);
 
   return el;
+}
+
+function initPeopleCardGlow(root = document) {
+  const cards = Array.from(root.querySelectorAll('.sm-person-card'));
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    if (card.dataset.smGlowApplied === 'true') return;
+
+    const img = card.querySelector('.sm-person-avatar img');
+    if (!img) return;
+
+    const apply = () => {
+      try {
+        const color = extractDominantColorFromImage(img);
+        if (color) {
+          card.style.setProperty(
+            '--sm-person-glow',
+            `rgba(${color.r}, ${color.g}, ${color.b}, 0.55)`
+          );
+        }
+      } catch (e) {
+        // CORS or decoding failures: keep CSS fallback glow.
+      } finally {
+        card.dataset.smGlowApplied = 'true';
+      }
+    };
+
+    if (img.complete && img.naturalWidth > 0) {
+      apply();
+    } else {
+      img.addEventListener('load', apply, { once: true });
+      img.addEventListener('error', () => {
+        card.dataset.smGlowApplied = 'true';
+      }, { once: true });
+    }
+  });
+}
+
+function extractDominantColorFromImage(img) {
+  // Best-effort: requires image pixels to be readable (CORS).
+  const canvas = document.createElement('canvas');
+  const size = 16;
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  if (!ctx) return null;
+
+  ctx.drawImage(img, 0, 0, size, size);
+  const { data } = ctx.getImageData(0, 0, size, size);
+
+  let r = 0;
+  let g = 0;
+  let b = 0;
+  let count = 0;
+
+  for (let i = 0; i < data.length; i += 4) {
+    const a = data[i + 3];
+    if (a < 32) continue;
+
+    const pr = data[i];
+    const pg = data[i + 1];
+    const pb = data[i + 2];
+
+    // Skip near-black pixels (common in posters) so glow doesn't turn muddy.
+    const lum = 0.2126 * pr + 0.7152 * pg + 0.0722 * pb;
+    if (lum < 22) continue;
+
+    r += pr;
+    g += pg;
+    b += pb;
+    count += 1;
+  }
+
+  if (!count) return null;
+
+  return {
+    r: Math.round(r / count),
+    g: Math.round(g / count),
+    b: Math.round(b / count),
+  };
 }
 
 function initPeopleCarouselNav() {

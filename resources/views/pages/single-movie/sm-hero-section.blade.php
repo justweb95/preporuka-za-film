@@ -217,11 +217,11 @@
           </span>
         </div>
 
-        {{-- Result Description --}}
-        <div class="sm-info-content-description">
-          <img class="sm-info-content-description-image" src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/' .  $poster_path }}" alt="{{ $title }}">
-          <p class="sm-info-content-description-text" id="sm-info-description-text">{{ $content }}</p>  
-        </div>
+	        {{-- Result Description --}}
+	        <div class="sm-info-content-description">
+	          <img class="sm-info-content-description-image" src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/' .  $poster_path }}" alt="{{ $title }}" width="300" height="450" loading="eager" fetchpriority="high" decoding="async">
+	          <p class="sm-info-content-description-text" id="sm-info-description-text">{{ $content }}</p>  
+	        </div>
 
 	        <hr>
 
@@ -251,11 +251,11 @@
               @foreach($cached_credits as $person)
                 <a class='sm-person-card' href='{{ $person['permalink'] ?? '#' }}' @if(empty($person['permalink'])) aria-disabled='true' @endif data-person-id='{{ $person['tmdb_id'] ?? '' }}'>
                   <span class='sm-person-avatar'>
-                    @if(!empty($person['profile_url']))
-                      <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async'>
-                    @else
-                      <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
-                    @endif
+	                    @if(!empty($person['profile_url']))
+	                      <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async' width='138' height='175'>
+	                    @else
+	                      <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
+	                    @endif
                   </span>
                   <span class='sm-person-name'>{{ $person['name'] ?? '' }}</span>
                   <span class='sm-person-meta'>{{ $person['job'] ?? 'Writer' }}</span>
@@ -359,11 +359,11 @@
 	          @foreach($cached_cast as $person)
 	            <a class='sm-person-card' href='{{ $person['permalink'] ?? '#' }}' @if(empty($person['permalink'])) aria-disabled='true' @endif data-person-id='{{ $person['tmdb_id'] ?? '' }}'>
 	              <span class='sm-person-avatar'>
-	                @if(!empty($person['profile_url']))
-	                  <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async'>
-	                @else
-	                  <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
-	                @endif
+		                @if(!empty($person['profile_url']))
+		                  <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async' width='138' height='175'>
+		                @else
+		                  <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
+		                @endif
 	              </span>
 	              <span class='sm-person-name'>{{ $person['name'] ?? '' }}</span>
 	              <span class='sm-person-meta'>{{ $person['character'] ?? 'Glumac' }}</span>

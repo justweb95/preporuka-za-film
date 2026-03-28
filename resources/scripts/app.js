@@ -15,10 +15,12 @@ domReady(async () => {
 
     '/anketa': async () => await import('./pages/anketa.js'),
     
-    '/single-movie': async () => await import('./pages/single-movie.js'),
-    
-    '/moj-profil': async () => {
-      const removeLoader = enableUserProfile();
+	    '/single-movie': async () => await import('./pages/single-movie.js'),
+
+	    '/glumac': async () => await import('./pages/single-person.js'),
+	    
+	    '/moj-profil': async () => {
+	      const removeLoader = enableUserProfile();
       
       try {
         // Load all profile modules
@@ -75,11 +77,17 @@ domReady(async () => {
     }
   }
 
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.has('s')) {
-    await import('./partials/single-movie-card.js');
-  }
-});
+	  const urlParams = new URLSearchParams(window.location.search);
+	  if (urlParams.has('s')) {
+	    await import('./partials/single-movie-card.js');
+	  }
+
+	  // Home page may live at "/" (and not include "/home" in the pathname),
+	  // so load home behaviors based on DOM presence.
+	  if (document.querySelector('.home-hero')) {
+	    await import('./pages/home.js');
+	  }
+	});
 
 /**
  * @see {@link https://webpack.js.org/api/hot-module-replacement/}
