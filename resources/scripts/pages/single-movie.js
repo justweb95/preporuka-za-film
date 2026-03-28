@@ -57,6 +57,7 @@ const MOVIE_PEOPLE_LOADING_TEXT = 'Ucitavanje svezeg contenta....';
 
 loadMissingMovieDescription();
 loadMoviePeopleCarousels();
+initCastCarouselNav();
 
 async function handleFormSubmit(e) {
   // Prevent defult behavior
@@ -460,4 +461,31 @@ function createPersonCard(person, role) {
   el.appendChild(meta);
 
   return el;
+}
+
+function initCastCarouselNav() {
+  const heroSection = document.querySelector('#sm_hero_section');
+  if (!heroSection) {
+    return;
+  }
+
+  const castCarousel = document.querySelector('[data-people-carousel="cast"]');
+  if (!castCarousel) {
+    return;
+  }
+
+  const buttons = Array.from(document.querySelectorAll('[data-cast-scroll]'));
+  if (!buttons.length) {
+    return;
+  }
+
+  const scrollAmount = () => Math.max(260, Math.floor(castCarousel.clientWidth * 0.8));
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dir = btn.dataset.castScroll;
+      const left = dir === 'prev' ? -scrollAmount() : scrollAmount();
+      castCarousel.scrollBy({ left, behavior: 'smooth' });
+    });
+  });
 }

@@ -223,124 +223,87 @@
           <p class="sm-info-content-description-text" id="sm-info-description-text">{{ $content }}</p>  
         </div>
 
+	        <hr>
+
+	        <div class="sm-info-content-credits-row">
+	          {{-- Director --}}
+	          <div class='sm-info-content-director sm-people-section' data-people-section='directors'>
+	            <h4>Režija:</h4>
+	            <div class='sm-people-carousel' data-people-carousel='directors'>
+	              @if(!empty($cached_directors))
+	                @foreach($cached_directors as $person)
+	                  <a class='sm-person-card' href='{{ $person['permalink'] ?? '#' }}' @if(empty($person['permalink'])) aria-disabled='true' @endif data-person-id='{{ $person['tmdb_id'] ?? '' }}'>
+	                    <span class='sm-person-avatar'>
+	                      @if(!empty($person['profile_url']))
+	                        <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async'>
+	                      @else
+	                        <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
+	                      @endif
+	                    </span>
+	                    <span class='sm-person-name'>{{ $person['name'] ?? '' }}</span>
+	                    <span class='sm-person-meta'>{{ $person['job'] ?? 'Director' }}</span>
+	                  </a>
+	                @endforeach
+	              @else
+	                <p class='sm-people-loader' data-sm-people-loader>Ucitavanje svezeg contenta....</p>
+	                @forelse(array_slice($director, 0, 8) as $dir)
+	                  <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+	                    <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($dir, 0, 1) }}</span></span>
+	                    <span class='sm-person-name'>{{ $dir }}</span>
+	                    <span class='sm-person-meta'>Director</span>
+	                  </div>
+	                @empty
+	                  <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+	                    <span class='sm-person-avatar'><span class='sm-person-initials'>?</span></span>
+	                    <span class='sm-person-name'>Nema dostupnih informacija</span>
+	                    <span class='sm-person-meta'>Director</span>
+	                  </div>
+	                @endforelse
+	              @endif
+	            </div>
+	          </div>
+
+	          {{-- Writers --}}
+	          <div class='sm-info-content-writers sm-people-section' data-people-section='writers'>
+	            <h4>Pisci:</h4>
+	            <div class='sm-people-carousel' data-people-carousel='writers'>
+	              @if(!empty($cached_writers))
+	                @foreach($cached_writers as $person)
+	                  <a class='sm-person-card' href='{{ $person['permalink'] ?? '#' }}' @if(empty($person['permalink'])) aria-disabled='true' @endif data-person-id='{{ $person['tmdb_id'] ?? '' }}'>
+	                    <span class='sm-person-avatar'>
+	                      @if(!empty($person['profile_url']))
+	                        <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async'>
+	                      @else
+	                        <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
+	                      @endif
+	                    </span>
+	                    <span class='sm-person-name'>{{ $person['name'] ?? '' }}</span>
+	                    <span class='sm-person-meta'>{{ $person['job'] ?? 'Writer' }}</span>
+	                  </a>
+	                @endforeach
+	              @else
+	                <p class='sm-people-loader' data-sm-people-loader>Ucitavanje svezeg contenta....</p>
+	                @forelse(array_slice($writing, 0, 8) as $writer)
+	                  <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+	                    <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($writer, 0, 1) }}</span></span>
+	                    <span class='sm-person-name'>{{ $writer }}</span>
+	                    <span class='sm-person-meta'>Writer</span>
+	                  </div>
+	                @empty
+	                  <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+	                    <span class='sm-person-avatar'><span class='sm-person-initials'>?</span></span>
+	                    <span class='sm-person-name'>Nema dostupnih informacija</span>
+	                    <span class='sm-person-meta'>Writer</span>
+	                  </div>
+	                @endforelse
+	              @endif
+	            </div>
+	          </div>
+	        </div>
+
+
+
         <hr>
-
-        {{-- Director --}}
-        <div class='sm-info-content-director sm-people-section' data-people-section='directors'>
-          <h4>Režija:</h4>
-          <div class='sm-people-carousel' data-people-carousel='directors'>
-            @if(!empty($cached_directors))
-              @foreach($cached_directors as $person)
-                <a class='sm-person-card' href='{{ $person['permalink'] ?? '#' }}' @if(empty($person['permalink'])) aria-disabled='true' @endif data-person-id='{{ $person['tmdb_id'] ?? '' }}'>
-                  <span class='sm-person-avatar'>
-                    @if(!empty($person['profile_url']))
-                      <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async'>
-                    @else
-                      <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
-                    @endif
-                  </span>
-                  <span class='sm-person-name'>{{ $person['name'] ?? '' }}</span>
-                  <span class='sm-person-meta'>{{ $person['job'] ?? 'Director' }}</span>
-                </a>
-              @endforeach
-            @else
-              <p class='sm-people-loader' data-sm-people-loader>Ucitavanje svezeg contenta....</p>
-              @forelse(array_slice($director, 0, 8) as $dir)
-                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
-                  <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($dir, 0, 1) }}</span></span>
-                  <span class='sm-person-name'>{{ $dir }}</span>
-                  <span class='sm-person-meta'>Director</span>
-                </div>
-              @empty
-                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
-                  <span class='sm-person-avatar'><span class='sm-person-initials'>?</span></span>
-                  <span class='sm-person-name'>Nema dostupnih informacija</span>
-                  <span class='sm-person-meta'>Director</span>
-                </div>
-              @endforelse
-            @endif
-          </div>
-        </div>
-
-        <hr>
-
-        {{-- Writers --}}
-        <div class='sm-info-content-writers sm-people-section' data-people-section='writers'>
-          <h4>Pisci:</h4>
-          <div class='sm-people-carousel' data-people-carousel='writers'>
-            @if(!empty($cached_writers))
-              @foreach($cached_writers as $person)
-                <a class='sm-person-card' href='{{ $person['permalink'] ?? '#' }}' @if(empty($person['permalink'])) aria-disabled='true' @endif data-person-id='{{ $person['tmdb_id'] ?? '' }}'>
-                  <span class='sm-person-avatar'>
-                    @if(!empty($person['profile_url']))
-                      <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async'>
-                    @else
-                      <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
-                    @endif
-                  </span>
-                  <span class='sm-person-name'>{{ $person['name'] ?? '' }}</span>
-                  <span class='sm-person-meta'>{{ $person['job'] ?? 'Writer' }}</span>
-                </a>
-              @endforeach
-            @else
-              <p class='sm-people-loader' data-sm-people-loader>Ucitavanje svezeg contenta....</p>
-              @forelse(array_slice($writing, 0, 8) as $writer)
-                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
-                  <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($writer, 0, 1) }}</span></span>
-                  <span class='sm-person-name'>{{ $writer }}</span>
-                  <span class='sm-person-meta'>Writer</span>
-                </div>
-              @empty
-                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
-                  <span class='sm-person-avatar'><span class='sm-person-initials'>?</span></span>
-                  <span class='sm-person-name'>Nema dostupnih informacija</span>
-                  <span class='sm-person-meta'>Writer</span>
-                </div>
-              @endforelse
-            @endif
-          </div>
-        </div>
-
-        <hr>
-
-        {{-- Cast --}}
-        <div class='sm-info-content-cast sm-people-section' data-people-section='cast'>
-          <h4>Glumci:</h4>
-          <div class='sm-people-carousel' data-people-carousel='cast'>
-            @if(!empty($cached_cast))
-              @foreach($cached_cast as $person)
-                <a class='sm-person-card' href='{{ $person['permalink'] ?? '#' }}' @if(empty($person['permalink'])) aria-disabled='true' @endif data-person-id='{{ $person['tmdb_id'] ?? '' }}'>
-                  <span class='sm-person-avatar'>
-                    @if(!empty($person['profile_url']))
-                      <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async'>
-                    @else
-                      <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
-                    @endif
-                  </span>
-                  <span class='sm-person-name'>{{ $person['name'] ?? '' }}</span>
-                  <span class='sm-person-meta'>{{ $person['character'] ?? 'Glumac' }}</span>
-                </a>
-              @endforeach
-            @else
-              <p class='sm-people-loader' data-sm-people-loader>Ucitavanje svezeg contenta....</p>
-              @forelse(array_slice($cast, 0, 10) as $actor)
-                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
-                  <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($actor, 0, 1) }}</span></span>
-                  <span class='sm-person-name'>{{ $actor }}</span>
-                  <span class='sm-person-meta'>Glumac</span>
-                </div>
-              @empty
-                <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
-                  <span class='sm-person-avatar'><span class='sm-person-initials'>?</span></span>
-                  <span class='sm-person-name'>Nema dostupnih informacija</span>
-                  <span class='sm-person-meta'>Glumac</span>
-                </div>
-              @endforelse
-            @endif
-          </div>
-        </div>
-
-
 
         {{-- sm-info CTA --}}
         <div class="sm-info-content-cta" id="sm-info-content-cta">
@@ -376,17 +339,69 @@
       </div>
     </article>
 
-    {{-- Donatino --}}
-    <div class="sm-info-donation">
-      <p class="donation-text">Ako si zadovoljan onime što pruža ovaj sajt možete nas počastiti kafom:</p>
+	    {{-- Donatino --}}
+	    <div class="sm-info-donation">
+	      <p class="donation-text">Ako si zadovoljan onime što pruža ovaj sajt možete nas počastiti kafom:</p>
       <a href="https://www.paypal.com/ncp/payment/3B5JW7RMQFCWS" class="donation-link" id="donation-link">
         <svg class="donation-link-icon" aria-label="donation-link" xmlns="http://www.w3.org/2000/svg" width="62" height="21" viewBox="0 0 62 21" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M54.1545 3.75H52.4044V0.75H54.1545V3.75ZM50.6543 0.75H48.9042V3.75H50.6543V0.75ZM47.1542 0.75H45.4041V3.75H47.1542V0.75ZM41.0061 20.25H58.5069V18.75H41.001L41.0061 20.25ZM62.001 11.2501C61.9725 12.1578 61.5907 13.0186 60.9369 13.649C60.2831 14.2793 59.409 14.6296 58.5008 14.625H55.7453C55.1142 15.5604 54.4024 16.4388 53.6181 17.25H45.9002C43.4502 14.6689 41.7658 11.4578 41.035 7.975C40.9752 7.6173 40.9944 7.25085 41.0913 6.90136C41.1882 6.55188 41.3604 6.22785 41.5959 5.952C41.8462 5.65394 42.1588 5.41427 42.5116 5.24982C42.8644 5.08536 43.249 5.00009 43.6382 5H55.8757C56.2651 5.00036 56.6497 5.08593 57.0025 5.25069C57.3553 5.41545 57.6678 5.65542 57.918 5.95375C58.1534 6.22932 58.3256 6.55303 58.4227 6.90219C58.5197 7.25135 58.5392 7.61751 58.4798 7.975C58.4574 8.10331 58.4297 8.23163 58.4021 8.35994C58.392 8.40663 58.382 8.45331 58.3722 8.5H58.5008C60.6613 8.5 62.001 9.55437 62.001 11.2501ZM60.2509 11.2501C60.2509 10.5869 59.6637 10.25 58.5008 10.25H57.8997C57.598 11.1536 57.224 12.0315 56.7814 12.875H58.5008C58.9451 12.8797 59.3743 12.7138 59.6999 12.4115C60.0255 12.1092 60.2227 11.6935 60.2509 11.2501ZM20.7679 15.854C21.4079 16.238 22.1225 16.43 22.9119 16.43C23.8079 16.43 24.5972 16.1633 25.2799 15.63V16.318H27.4399V4.75L25.2479 5.118V8.526C24.9172 8.31267 24.5599 8.15267 24.1759 8.046C23.7919 7.92867 23.3919 7.87 22.9759 7.87C22.1652 7.87 21.4345 8.062 20.7839 8.446C20.1332 8.81933 19.6159 9.33133 19.2319 9.982C18.8585 10.622 18.6719 11.342 18.6719 12.142C18.6719 12.942 18.8585 13.6673 19.2319 14.318C19.6159 14.958 20.1279 15.47 20.7679 15.854ZM24.3679 14.366C24.0372 14.494 23.6692 14.558 23.2639 14.558C22.8052 14.558 22.3892 14.4513 22.0159 14.238C21.6532 14.0247 21.3652 13.7367 21.1519 13.374C20.9385 13.0113 20.8319 12.6007 20.8319 12.142C20.8319 11.6833 20.9385 11.2727 21.1519 10.91C21.3652 10.5367 21.6532 10.2487 22.0159 10.046C22.3892 9.83267 22.8052 9.726 23.2639 9.726C23.6585 9.726 24.0265 9.79533 24.3679 9.934C24.7092 10.0727 25.0025 10.2647 25.2479 10.51V13.758C25.0025 14.0247 24.7092 14.2273 24.3679 14.366ZM30.9576 15.9019C31.6403 16.2859 32.3976 16.4779 33.2296 16.4779C33.9016 16.4779 34.5043 16.3819 35.0376 16.1899C35.5816 15.9979 36.1096 15.6939 36.6216 15.2779L35.1816 13.9659C34.9576 14.1792 34.6856 14.3446 34.3656 14.4619C34.0563 14.5792 33.715 14.6379 33.3416 14.6379C32.9683 14.6379 32.6163 14.5632 32.2856 14.4139C31.9656 14.2646 31.6936 14.0566 31.4696 13.7899C31.2563 13.5232 31.1016 13.2246 31.0056 12.8939H37.1816V12.3179C37.1816 11.4646 37.0003 10.7019 36.6376 10.0299C36.2856 9.35789 35.8003 8.82456 35.1816 8.42989C34.563 8.03522 33.8536 7.83789 33.0536 7.83789C32.2536 7.83789 31.5283 8.02989 30.8776 8.41389C30.227 8.79789 29.7096 9.31522 29.3256 9.96589C28.9523 10.6166 28.7656 11.3472 28.7656 12.1579C28.7656 12.9686 28.963 13.6992 29.3576 14.3499C29.7523 15.0006 30.2856 15.5179 30.9576 15.9019ZM35.0216 11.3259H30.9736C31.059 10.9846 31.1923 10.6912 31.3736 10.4459C31.5656 10.1899 31.8003 9.99256 32.0776 9.85389C32.355 9.71522 32.6643 9.64589 33.0056 9.64589C33.3363 9.64589 33.635 9.72056 33.9016 9.86989C34.179 10.0086 34.4136 10.2059 34.6056 10.4619C34.8083 10.7072 34.947 10.9952 35.0216 11.3259ZM12.7125 16.3184L9.14453 7.98242H11.5285L13.8165 13.5344L16.0885 7.98242H18.4245L14.8405 16.3184H12.7125ZM2.192 15.9023C2.864 16.2863 3.616 16.4783 4.448 16.4783C5.29067 16.4783 6.048 16.2863 6.72 15.9023C7.392 15.5183 7.92 15.0009 8.304 14.3503C8.69867 13.6996 8.896 12.9689 8.896 12.1583C8.896 11.3476 8.69867 10.6169 8.304 9.96627C7.92 9.30493 7.38667 8.78227 6.704 8.39827C6.032 8.01427 5.28 7.82227 4.448 7.82227C3.616 7.82227 2.85867 8.01427 2.176 8.39827C1.504 8.78227 0.970667 9.30493 0.576 9.96627C0.192 10.6169 0 11.3476 0 12.1583C0 12.9689 0.197333 13.6996 0.592 14.3503C0.986667 15.0009 1.52 15.5183 2.192 15.9023ZM5.616 14.2543C5.27467 14.4676 4.88533 14.5743 4.448 14.5743C4.02133 14.5743 3.632 14.4676 3.28 14.2543C2.928 14.0409 2.65067 13.7529 2.448 13.3903C2.24533 13.0169 2.144 12.6063 2.144 12.1583C2.144 11.6996 2.24533 11.2889 2.448 10.9263C2.65067 10.5636 2.928 10.2756 3.28 10.0623C3.632 9.83827 4.02133 9.72626 4.448 9.72626C4.88533 9.72626 5.27467 9.83827 5.616 10.0623C5.968 10.2756 6.24533 10.5636 6.448 10.9263C6.66133 11.2889 6.768 11.6996 6.768 12.1583C6.768 12.6063 6.66133 13.0169 6.448 13.3903C6.24533 13.7529 5.968 14.0409 5.616 14.2543ZM37.001 18.75H0.000976562L0 20.25H37.001V18.75Z" fill="#F57C36"/>
         </svg>
-      </a>
-    </div>
-  </div>
-</section>
+	      </a>
+	    </div>
+
+	    {{-- Cast (Full Width) --}}
+	    <div class="sm-cast-section sm-people-section" data-people-section="cast">
+	      <div class="sm-cast-header">
+	        <h3 class="sm-cast-title">Glumci:</h3>
+	        <div class="sm-cast-nav" aria-hidden="false">
+	          <button type="button" class="sm-cast-nav-btn" data-cast-scroll="prev" aria-label="Prethodni glumci">
+	            <svg width="11" height="12" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+	              <path d="M8 1.5L3 7.00001L8 12.5" stroke="#18BF7C" stroke-width="2"/>
+	            </svg>
+	          </button>
+	          <button type="button" class="sm-cast-nav-btn" data-cast-scroll="next" aria-label="Sledeći glumci">
+	            <svg width="11" height="12" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+	              <path d="M3 1.5L8 7.00001L3 12.5" stroke="#18BF7C" stroke-width="2"/>
+	            </svg>
+	          </button>
+	        </div>
+	      </div>
+
+	      <div class="sm-people-carousel sm-people-carousel--cast" data-people-carousel="cast">
+	        @if(!empty($cached_cast))
+	          @foreach($cached_cast as $person)
+	            <a class='sm-person-card' href='{{ $person['permalink'] ?? '#' }}' @if(empty($person['permalink'])) aria-disabled='true' @endif data-person-id='{{ $person['tmdb_id'] ?? '' }}'>
+	              <span class='sm-person-avatar'>
+	                @if(!empty($person['profile_url']))
+	                  <img src='{{ $person['profile_url'] }}' alt='{{ $person['name'] ?? '' }}' loading='lazy' decoding='async'>
+	                @else
+	                  <span class='sm-person-initials'>{{ substr($person['name'] ?? '?', 0, 1) }}</span>
+	                @endif
+	              </span>
+	              <span class='sm-person-name'>{{ $person['name'] ?? '' }}</span>
+	              <span class='sm-person-meta'>{{ $person['character'] ?? 'Glumac' }}</span>
+	            </a>
+	          @endforeach
+	        @else
+	          <p class='sm-people-loader' data-sm-people-loader>Ucitavanje svezeg contenta....</p>
+	          @forelse(array_slice($cast, 0, 16) as $actor)
+	            <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+	              <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($actor, 0, 1) }}</span></span>
+	              <span class='sm-person-name'>{{ $actor }}</span>
+	              <span class='sm-person-meta'>Glumac</span>
+	            </div>
+	          @empty
+	            <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
+	              <span class='sm-person-avatar'><span class='sm-person-initials'>?</span></span>
+	              <span class='sm-person-name'>Nema dostupnih informacija</span>
+	              <span class='sm-person-meta'>Glumac</span>
+	            </div>
+	          @endforelse
+	        @endif
+	      </div>
+	    </div>
+	  </div>
+	</section>
 
 {{-- Video Pop Up --}}
 @include('pages.questions.video-popup', ['video_url' => $video_url])

@@ -7,9 +7,11 @@
   background-size: cover !important;
   background-repeat: no-repeat !important;
 
-  .sm-hero-holder {
-    .sm-navigation {
-      display: flex;
+	  .sm-hero-holder {
+	    max-width: 100%;
+	    overflow-x: hidden;
+	    .sm-navigation {
+	      display: flex;
       align-items: center;
       justify-content: flex-start;
       flex-wrap: wrap;
@@ -1102,6 +1104,91 @@
 }
 
 /* People carousel (directors/writers/cast) */
+.sm-info-content-credits-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.sm-info-content-credits-row .sm-people-section {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+.sm-info-content-credits-row .sm-info-content-director,
+.sm-info-content-credits-row .sm-info-content-writers {
+  max-width: 100%;
+}
+
+.sm-cast-section {
+  margin-top: 22px;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.sm-cast-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.sm-cast-title {
+  margin: 0;
+  color: var(--White, #FFF);
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.sm-cast-nav {
+  display: flex;
+  gap: 10px;
+}
+
+.sm-cast-nav-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 40px;
+  border: 0.6px solid rgba(237, 254, 236, 0.24);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sm-cast-nav-btn:hover {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.20);
+}
+
+.sm-cast-nav-btn[data-cast-scroll='next'] svg {
+  transform: rotate(180deg);
+}
+
+.sm-people-carousel--cast {
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .sm-info-content-credits-row {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .sm-cast-nav {
+    display: none;
+  }
+}
+
 .sm-info-content-director.sm-people-section,
 .sm-info-content-writers.sm-people-section,
 .sm-info-content-cast.sm-people-section {
