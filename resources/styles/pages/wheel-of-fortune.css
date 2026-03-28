@@ -129,7 +129,7 @@
 
           .wof-wheel-imgs-holder {
             .wof-slice {
-              height: calc((2 * pi * 52cqi) / var(--_items));
+              height: calc((2 * 3.141592653589793 * 52cqi) / var(--_items));
               clip-path: polygon(1% -2%, 99% 50%, 0% 102%);
             }
           }

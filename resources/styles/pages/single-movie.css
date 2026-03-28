@@ -242,9 +242,17 @@
           width: 100%;
           margin: 12px 0px 20px;
           display: inline-block;
+          &::after {
+            content: '';
+            display: block;
+            clear: both;
+          }
           .sm-info-content-description-image {
+            /* Show this poster only on tablet/mobile (desktop already has the left poster). */
             display: none;
             max-width: 35%;
+            width: auto;
+            height: auto;
             border-radius: 8px;
             margin-top: 4px;
             float: left; /* Floats the image to the left */
@@ -407,6 +415,9 @@
           .sm-info-content-description {
             .sm-info-content-description-image {
               display: block;
+              width: 180px;
+              max-width: 45%;
+              height: auto;
             }
           }
         }
@@ -506,6 +517,11 @@
             .sm-info-content-description-text  {
               font-size: 14px;
             }
+            .sm-info-content-description-image {
+              width: 150px;
+              max-width: 55%;
+              height: auto;
+            }
           }
 
           .sm-info-content-director, .sm-info-content-writers, .sm-info-content-cast {
@@ -530,6 +546,27 @@
             }
           }
 
+        }
+      }
+    }
+
+    /* Hard lock for very small phones: keep the same layout as <=480px */
+    @media (max-width: 350px) {
+      .sm-info {
+        .sm-info-content {
+          .sm-info-content-description {
+            .sm-info-content-description-image {
+              float: none;
+              max-width: 100%;
+              width: 100%;
+              margin: 0px 0px 12px;
+              display: block;
+              height: auto;
+            }
+            .sm-info-content-description-text {
+              text-align: left;
+            }
+          }
         }
       }
     }

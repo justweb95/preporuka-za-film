@@ -8,7 +8,7 @@
   
   <a href="{{ get_permalink($movie_ID) }}">
     <img 
-      src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/' . $poster_path }}"
+      src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/' . ltrim((string) $poster_path, '/') }}"
       alt="{{ get_the_title(($movie_ID)) }} Poster"
       class="movie-card-poster"
       onerror="this.onerror=null; this.src='{{ asset('images/blog/default-blog.webp') }}'; this.classList.add('image-error');">

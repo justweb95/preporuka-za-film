@@ -12,8 +12,16 @@
   $poster_path = get_post_meta($movie->ID, 'poster_path', true);
   // backdrop_path
   $backdrop_path = get_post_meta($movie->ID, 'backdrop_path', true);
-  $base_url = "background: linear-gradient(180deg, rgba(6,19,30,1) 0%, rgba(6,19,30,0.7) 50%, rgba(6,19,30,0.1) 50%, rgba(6,19,30,1) 50%), url('https://media.themoviedb.org/t/p/w300_and_h450_bestv2/";
-  $backgroundImageUrl = $base_url . $backdrop_path . "')";
+  // Normalize TMDB paths (they usually start with "/") so we don't end up with double slashes and 301 redirects.
+  $poster_path = ltrim((string) $poster_path, '/');
+  $backdrop_path = ltrim((string) $backdrop_path, '/');
+
+  // Build a safe inline background. If backdrop_path is missing, keep gradient only (no broken url()).
+  $backgroundImageUrl = "background: linear-gradient(180deg, rgba(6,19,30,1) 0%, rgba(6,19,30,0.7) 50%, rgba(6,19,30,0.1) 50%, rgba(6,19,30,1) 50%)";
+  if (!empty($backdrop_path)) {
+    $backgroundImageUrl .= ", url('https://media.themoviedb.org/t/p/w1280/" . $backdrop_path . "')";
+  }
+  $backgroundImageUrl .= ";";
   // Movie Trailer
   $video_trailer = get_post_meta($movie->ID, 'video_trailer', true);
   $video_trailer_data = json_decode($video_trailer, true);
@@ -32,8 +40,13 @@
   $release_date = get_post_meta($movie->ID, 'release_date', true);
   $release_year = date('Y', strtotime($release_date));
   
-  // Get the content of the post
-  $content = strip_tags(apply_filters('the_content', get_the_content()));
+  // Get the content of the post (don't rely on global $post on staging).
+  $raw_content = (string) get_post_field('post_content', $movie_id);
+  $raw_content = apply_filters('the_content', $raw_content);
+  $content = trim(wp_strip_all_tags($raw_content));
+  if ($content === '') {
+    $content = 'Opis filma trenutno nije dostupan';
+  }
 
   // Release date
   $director = get_post_meta($movie->ID, 'director', true) ?: [];
@@ -149,7 +162,7 @@
     {{-- Hero Single Movie --}}
     <article class="sm-info" >
       <div class="sm-info-poster">
-        <img src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/' .  $poster_path }}" alt="{{ $title }}">
+        <img src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/' . $poster_path }}" alt="{{ $title }}">
         <p class="copyrights">© 2024 TMDb − All rights reserved.</p>
       </div>
       <div class="sm-info-content">
@@ -219,7 +232,7 @@
 
 	        {{-- Result Description --}}
 	        <div class="sm-info-content-description">
-	          <img class="sm-info-content-description-image" src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/' .  $poster_path }}" alt="{{ $title }}" width="300" height="450" loading="eager" fetchpriority="high" decoding="async">
+	          <img class="sm-info-content-description-image" src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/' . $poster_path }}" alt="{{ $title }}" width="300" height="450" loading="eager" fetchpriority="high" decoding="async">
 	          <p class="sm-info-content-description-text" id="sm-info-description-text">{{ $content }}</p>  
 	        </div>
 

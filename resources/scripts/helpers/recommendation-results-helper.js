@@ -17,9 +17,9 @@ export async function poplateResult(resultObject) {
 
   let affiliate_amazon = document.querySelector('.affiliate-amazon');
 
-
-  poster_holder.setAttribute('src', `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`)
-  poster_holder_mobile.setAttribute('src', `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`)
+  const posterPath = String(tmdbData?.poster_path || '').replace(/^\//, '');
+  poster_holder.setAttribute('src', `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${posterPath}`)
+  poster_holder_mobile.setAttribute('src', `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${posterPath}`)
   
   // result_content_title.textContent = tmdbData.original_title;
   result_content_title.textContent = cyrillicFormat(tmdbData.title);
@@ -121,8 +121,9 @@ export function populateMultipleResults(resultsArray) {
     const posterWrapper = document.createElement('span');
     posterWrapper.className = 'result-poster-holder';
     const poster = document.createElement('img');
+    const slidePosterPath = String(tmdbData?.poster_path || '').replace(/^\//, '');
     poster.src = tmdbData.poster_path
-      ? `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`
+      ? `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${slidePosterPath}`
       : 'https://via.placeholder.com/300x450?text=No+Poster';
     poster.alt = tmdbData.title || 'No Poster';
     poster.className = 'result-poster';
@@ -247,8 +248,9 @@ export function populateMultipleResults(resultsArray) {
     const mobilePoster = document.createElement('img');
     mobilePoster.id = 'result-description-poster';
     mobilePoster.alt = tmdbData.title || 'Poster';
+    const mobilePosterPath = String(tmdbData?.poster_path || '').replace(/^\//, '');
     mobilePoster.src = tmdbData.poster_path
-      ? `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${tmdbData.poster_path}`
+      ? `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${mobilePosterPath}`
       : 'https://via.placeholder.com/300x450?text=No+Poster';
 
     mobilePosterHolder.appendChild(mobilePoster);

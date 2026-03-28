@@ -1,7 +1,5 @@
-  if (window.__pz_home_initialized) {
-    // Prevent double-init if this module is imported via multiple route checks.
-    return;
-  }
+if (!window.__pz_home_initialized) {
+  // Prevent double-init if this module is imported via multiple route checks.
   window.__pz_home_initialized = true;
 
   // Function to animate number increment
@@ -87,3 +85,4 @@
   }
 
   hydrateHomeMovieCards();
+}
