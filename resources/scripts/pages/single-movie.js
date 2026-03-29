@@ -52,8 +52,9 @@ let form_submit_button = document.querySelector('#submit');
 form_submit_button.addEventListener('click', handleFormSubmit);
 
 const FALLBACK_MOVIE_DESCRIPTION = 'Opis filma trenutno nije dostupan';
-const MOVIE_DESCRIPTION_LOADING_TEXT = 'Ucitavanje svezeg contenta....';
-const MOVIE_PEOPLE_LOADING_TEXT = 'Ucitavanje svezeg contenta....';
+const FALLBACK_MOVIE_DESCRIPTION_ALT = 'Trenutno nema opis za ovaj film';
+const MOVIE_DESCRIPTION_LOADING_TEXT = 'Ucitavanje svezeg contenta..';
+const MOVIE_PEOPLE_LOADING_TEXT = 'Ucitavanje svezeg contenta..';
 
 loadMissingMovieDescription();
 loadMoviePeopleCarousels();
@@ -277,6 +278,7 @@ async function loadMissingMovieDescription() {
 
   if (
     currentDescription !== FALLBACK_MOVIE_DESCRIPTION ||
+    currentDescription !== FALLBACK_MOVIE_DESCRIPTION_ALT ||
     !postId ||
     !tmdbMovieId
   ) {

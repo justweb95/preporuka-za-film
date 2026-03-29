@@ -220,7 +220,7 @@
   }
 
   .pz-person-photo {
-    max-width: 260px;
+    max-width: 100%;
   }
 
   .pz-person-facts {

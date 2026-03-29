@@ -25,7 +25,12 @@ export async function poplateResult(resultObject) {
   result_content_title.textContent = cyrillicFormat(tmdbData.title);
   imdb_rating.textContent = parseFloat(tmdbData.vote_average.toFixed(1));
 
-  result_description_text.textContent = cyrillicFormat(tmdbData.overview.substring(0, 300));
+  let overviewText = tmdbData.overview &&
+    tmdbData.overview !== 'Trenutno nema opis za ovaj film' &&
+    tmdbData.overview !== 'Opis filma trenutno nije dostupan'
+    ? tmdbData.overview.substring(0, 300)
+    : 'Opis filma trenutno nije dostupan';
+  result_description_text.textContent = cyrillicFormat(overviewText);
 
   result_genres_text.textContent = cyrillicFormat(tmdbData.genres);
   movie_duration.textContent = durationFromat(tmdbData.runtime);
@@ -257,9 +262,13 @@ export function populateMultipleResults(resultsArray) {
     descriptionWrapper.appendChild(mobilePosterHolder);
 
     descriptionText.className = 'result-content-description-text';
-    descriptionText.textContent = tmdbData.overview
+    let desc = (tmdbData.overview &&
+      tmdbData.overview !== 'Trenutno nema opis za ovaj film' &&
+      tmdbData.overview !== 'Opis filma trenutno nije dostupan')
       ? tmdbData.overview.substring(0, 300) + (tmdbData.overview.length > 300 ? '...' : '')
       : 'Opis filma trenutno nije dostupan';
+    if (!desc || desc.trim() === '') desc = 'Opis filma trenutno nije dostupan';
+    descriptionText.textContent = desc;
     
     descriptionWrapper.appendChild(descriptionText);
 
