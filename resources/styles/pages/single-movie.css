@@ -1357,6 +1357,34 @@
   white-space: nowrap;
 }
 
+.sm-loading-dots {
+  display: inline-block;
+  min-width: 1.6em;
+  margin-left: 2px;
+}
+
+@keyframes sm-spin {
+  to { transform: rotate(360deg); }
+}
+
+.sm-card-spinner {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid rgba(24, 191, 124, 0.28);
+  border-top-color: rgba(24, 191, 124, 1);
+  animation: sm-spin 0.85s linear infinite;
+}
+
+.sm-person-card--loading {
+  pointer-events: none;
+  justify-content: center;
+  align-items: center;
+  min-height: 180px;
+  box-shadow: none;
+  border-color: rgba(24, 191, 124, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+}
 .sm-person-card {
   --sm-person-glow: rgba(24, 191, 124, 0.55);
   flex: 0 0 auto;
@@ -1452,6 +1480,47 @@
 
 .sm-person-card--skeleton {
   opacity: 0.7;
+}
+
+/* Skeleton loader for people cards */
+.sm-person-card--skeleton {
+  background: linear-gradient(90deg, #22374A 60%, #18BF7C 100%);
+  border-radius: 12px;
+  min-width: 120px;
+  min-height: 180px;
+  margin: 0 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  position: relative;
+  overflow: hidden;
+  animation: skeleton-pulse 1.2s infinite ease-in-out;
+}
+.sm-person-card--skeleton-green {
+  background: linear-gradient(90deg, #22374A 60%, #18BF7C 100%);
+}
+.skeleton-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #18BF7C;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+.skeleton-block {
+  width: 70px;
+  height: 16px;
+  background: #18BF7C;
+  border-radius: 8px;
+  margin: 6px 0;
+  opacity: 0.4;
+}
+@keyframes skeleton-pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
 }
 
 @media (max-width: 600px) {

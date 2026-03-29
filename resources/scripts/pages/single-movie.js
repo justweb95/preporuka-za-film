@@ -53,8 +53,36 @@ form_submit_button.addEventListener('click', handleFormSubmit);
 
 const FALLBACK_MOVIE_DESCRIPTION = 'Opis filma trenutno nije dostupan';
 const FALLBACK_MOVIE_DESCRIPTION_ALT = 'Trenutno nema opis za ovaj film';
-const MOVIE_DESCRIPTION_LOADING_TEXT = 'Ucitavanje svezeg contenta..';
-const MOVIE_PEOPLE_LOADING_TEXT = 'Ucitavanje svezeg contenta..';
+const MOVIE_REFRESH_LOADING_TEXT = 'Osvežavam podatke';
+
+const LOADING_DOTS_STATES = ['.', '..', '...'];
+function appendAnimatedDots(parentEl) {
+  const dots = document.createElement('span');
+  dots.className = 'sm-loading-dots';
+  dots.setAttribute('aria-hidden', 'true');
+
+  let idx = 0;
+  dots.textContent = LOADING_DOTS_STATES[idx];
+
+  parentEl.appendChild(document.createTextNode(' '));
+  parentEl.appendChild(dots);
+
+  const intervalId = window.setInterval(() => {
+    if (!dots.isConnected) {
+      window.clearInterval(intervalId);
+      return;
+    }
+    idx = (idx + 1) % LOADING_DOTS_STATES.length;
+    dots.textContent = LOADING_DOTS_STATES[idx];
+  }, 450);
+
+  return dots;
+}
+
+function setElementLoadingText(el, text) {
+  el.textContent = text;
+  appendAnimatedDots(el);
+}
 
 loadMissingMovieDescription();
 loadMoviePeopleCarousels();
@@ -277,8 +305,7 @@ async function loadMissingMovieDescription() {
   const tmdbMovieId = heroSection.dataset.tmdbMovieId;
 
   if (
-    currentDescription !== FALLBACK_MOVIE_DESCRIPTION ||
-    currentDescription !== FALLBACK_MOVIE_DESCRIPTION_ALT ||
+    (currentDescription !== FALLBACK_MOVIE_DESCRIPTION && currentDescription !== FALLBACK_MOVIE_DESCRIPTION_ALT) ||
     !postId ||
     !tmdbMovieId
   ) {
@@ -286,7 +313,7 @@ async function loadMissingMovieDescription() {
   }
 
   descriptionElement.dataset.loading = 'true';
-  descriptionElement.textContent = MOVIE_DESCRIPTION_LOADING_TEXT;
+  setElementLoadingText(descriptionElement, MOVIE_REFRESH_LOADING_TEXT);
 
   const formData = new FormData();
   formData.append('action', 'refresh_movie_description');
@@ -324,7 +351,7 @@ async function loadMoviePeopleCarousels() {
     return;
   }
 
-  const postId = heroSection.dataset.movieId;
+  const postId = heroSection.dataset.movieId;   
   const tmdbMovieId = heroSection.dataset.tmdbMovieId;
 
   if (!postId || !tmdbMovieId) {
@@ -340,7 +367,7 @@ async function loadMoviePeopleCarousels() {
   }
 
   const hasRealCards = (carousel) =>
-    carousel.querySelector('.sm-person-card:not(.sm-person-card--skeleton)');
+    carousel.querySelector('.sm-person-card:not(.sm-person-card--skeleton):not(.sm-person-card--loading)');
 
   const shouldFetch = carousels.some((carousel) => !hasRealCards(carousel));
 
@@ -354,6 +381,9 @@ async function loadMoviePeopleCarousels() {
       ensurePeopleLoader(carousel);
       const loader = carousel.querySelector('[data-sm-people-loader]');
       if (loader) loader.textContent = text;
+      Array.from(
+        carousel.querySelectorAll('.sm-person-card--skeleton, .sm-person-card--loading')
+      ).forEach((el) => el.remove());
     });
   };
 
@@ -397,12 +427,39 @@ function ensurePeopleLoader(carousel) {
     return;
   }
 
+  // Loader text
   const loader = document.createElement('p');
   loader.className = 'sm-people-loader';
   loader.dataset.smPeopleLoader = 'true';
-  loader.textContent = MOVIE_PEOPLE_LOADING_TEXT;
-
+  setElementLoadingText(loader, MOVIE_REFRESH_LOADING_TEXT);
   carousel.prepend(loader);
+
+  const role = carousel.dataset.peopleCarousel;
+
+  // Skeleton cards for writers/directors (not cast)
+  if (role === 'credits') {
+    for (let i = 0; i < 3; i++) {
+      const skeleton = document.createElement('div');
+      skeleton.className = 'sm-person-card sm-person-card--skeleton sm-person-card--skeleton-green';
+      skeleton.innerHTML = `
+        <span class="sm-person-avatar skeleton-avatar"></span>
+        <span class="sm-person-name skeleton-block"></span>
+        <span class="sm-person-meta skeleton-block"></span>
+      `;
+      carousel.appendChild(skeleton);
+    }
+  }
+
+  if (role === 'cast') {
+    for (let i = 0; i < 6; i++) {
+      const loadingCard = document.createElement('div');
+      loadingCard.className = 'sm-person-card sm-person-card--loading';
+      loadingCard.setAttribute('aria-hidden', 'true');
+      loadingCard.innerHTML = '<span class="sm-card-spinner" aria-hidden="true"></span>';
+      carousel.appendChild(loadingCard);
+    }
+  }
+
 }
 
 function renderPeopleCarousel(role, people) {
@@ -412,13 +469,20 @@ function renderPeopleCarousel(role, people) {
   }
 
   if (!Array.isArray(people) || people.length === 0) {
-    // Keep skeletons if we have them.
     const loader = carousel.querySelector('[data-sm-people-loader]');
     if (loader) {
       loader.textContent = 'Nema dostupnih informacija';
     }
+    Array.from(
+      carousel.querySelectorAll('.sm-person-card--skeleton, .sm-person-card--loading')
+    ).forEach((el) => el.remove());
     return;
   }
+
+  // Remove loader and skeletons
+  Array.from(
+    carousel.querySelectorAll('[data-sm-people-loader], .sm-person-card--skeleton, .sm-person-card--loading')
+  ).forEach((el) => el.remove());
 
   carousel.innerHTML = '';
 
