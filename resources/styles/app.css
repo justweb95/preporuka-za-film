@@ -32,8 +32,11 @@
 @import url('./layouts/questionnaire-results.css');
 @import url('./pages/hot-or-not.css');
 @import url('./pages/wheel-of-fortune.css');
+@import url('./pages/higher-lower.css');
+@import url('./pages/movie-quiz.css');
 @import url('./layouts/wof-add-movie.css');
 @import url('./layouts/game-results.css');
+@import url('./layouts/game-score-popup.css');
 
 /* Profile Styles */
 /* Partials */

@@ -69,7 +69,7 @@
           @if(empty($birthday) && empty($deathday) && empty($place_of_birth))
             <div class="pz-person-fact">
               <span class="pz-person-fact-label">Info</span>
-              <span class="pz-person-fact-value">Ucitavanje svezeg contenta....</span>
+              <span class="pz-person-fact-value"></span>
             </div>
           @endif
 	        </div>
@@ -79,7 +79,7 @@
 	          @if(!empty($bio))
 	            <p class="pz-person-bio">{{ $bio }}</p>
 	          @else
-	            <p class="pz-person-bio">Ucitavanje svezeg contenta....</p>
+	            <p class="pz-person-bio"></p>
 	          @endif
 	        </div>
 	      </div>

@@ -1,0 +1,637 @@
+/* ============================================================
+   HOME SCREEN
+   ============================================================ */
+
+.higher-lower-holder.higher-lower-home {
+  padding: 64px 0 80px;
+  background-image: url('../images/partials/footer-background.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hl-home-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.higher-lower-subheading {
+  color: #EF8D53;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 140%;
+  margin: 0;
+}
+
+.higher-lower-heading {
+  margin-top: 10px;
+  color: #fff;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 120%;
+}
+
+.hl-how-to-play {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  .hl-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    .hl-step-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #18BF7C;
+      color: #fff;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    p {
+      color: #EDFEEC;
+      font-family: 'Red Hat Display', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 150%;
+      margin: 0;
+      padding-top: 3px;
+    }
+  }
+}
+
+.higher-lower-start-btn {
+  margin-top: 36px;
+  display: inline-flex;
+  padding: 14px 40px;
+  border-radius: 40px;
+  border: 2px solid #18BF7C;
+  background: #18BF7C;
+  color: #fff;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  transition: .2s ease;
+
+  &:hover {
+    cursor: pointer;
+    background: transparent;
+  }
+}
+
+.hl-home-right {
+  border-radius: 12px;
+  border: 1px solid #22374A;
+  background: rgba(6, 19, 30, 0.75);
+  padding: 22px 24px;
+
+  .hl-lb-title {
+    color: #fff;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+}
+
+/* ============================================================
+   GAME SCREEN — FULLSCREEN SPLIT
+   ============================================================ */
+
+.hl-fullscreen-game {
+  position: relative;
+  display: flex;
+  background: #06131E;
+  min-height: 100svh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.hl-fullscreen-game[hidden] {
+  display: none !important;
+}
+
+body.hl-immersive-mode {
+  .header-main,
+  .footer {
+    display: none !important;
+  }
+
+  #main.main {
+    padding-top: 0;
+    background: #06131E;
+    min-height: 100svh;
+    min-height: 100dvh;
+  }
+}
+
+.hl-panel {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+
+  .hl-panel-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 19, 30, 0.58);
+  }
+
+  .hl-panel-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 24px 28px;
+  }
+}
+
+.hl-movie-quote {
+  color: #fff;
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(15px, 1.8vw, 26px);
+  font-weight: 600;
+  line-height: 1.3;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+.hl-panel-has {
+  margin-top: 10px;
+  color: #EDFEEC;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  display: block;
+}
+
+.hl-stat-value {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 4px;
+  color: #EF8D53;
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(30px, 5vw, 68px);
+  font-weight: 700;
+  line-height: 1.1;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+}
+
+.hl-stat-label {
+  display: block;
+  margin-top: 8px;
+  color: #EDFEEC;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.hl-answer-actions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  .hl-answer-btn {
+    min-width: 190px;
+    padding: 13px 28px;
+    border-radius: 40px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    background: transparent;
+    color: #EF8D53;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    transition: .18s ease;
+
+    &:hover:not(:disabled) {
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  }
+
+  .hl-answer-btn[data-answer='higher'] {
+    color: #18BF7C;
+
+    &:hover:not(:disabled) {
+      background: rgba(24, 191, 124, 0.22);
+      border-color: #18BF7C;
+      color: #18BF7C;
+    }
+  }
+
+  .hl-answer-btn[data-answer='lower'] {
+    &:hover:not(:disabled) {
+      background: rgba(239, 141, 83, 0.22);
+      border-color: #EF8D53;
+      color: #EF8D53;
+    }
+  }
+}
+
+.hl-question-vs {
+  margin-top: 14px;
+  color: #EDFEEC;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.hl-stat-reveal {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 4px;
+  color: #fff;
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(30px, 5vw, 68px);
+  font-weight: 700;
+  line-height: 1.1;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+}
+
+.hl-stat-reveal-label {
+  display: block;
+  margin-top: 8px;
+  color: #EDFEEC;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  min-height: 24px;
+}
+
+/* VS circle */
+.hl-vs-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: #fff;
+  color: #06131E;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 28px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+
+  .hl-vs-icon {
+    display: none;
+  }
+
+  &.is-correct {
+    background: #18BF7C;
+    color: #fff;
+
+    .hl-vs-label {
+      display: none;
+    }
+
+    .hl-vs-icon--check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &.is-wrong {
+    background: #EF8D53;
+    color: #fff;
+
+    .hl-vs-label {
+      display: none;
+    }
+
+    .hl-vs-icon--x {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+/* Corner scores */
+.hl-corner-score {
+  position: absolute;
+  bottom: 22px;
+  z-index: 3;
+  color: #fff;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  margin: 0;
+
+  strong {
+    font-family: 'Unbounded', sans-serif;
+  }
+
+  &.hl-corner-score--left {
+    left: 24px;
+  }
+
+  &.hl-corner-score--right {
+    right: 24px;
+  }
+}
+
+/* Restart button — top right */
+.hl-top-actions {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+
+  button {
+    padding: 8px 16px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(6, 19, 30, 0.65);
+    color: #fff;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .18s ease;
+  }
+
+  .hl-back-home-btn {
+    border-color: #EF8D53;
+  }
+
+  .hl-restart-btn:hover,
+  .hl-back-home-btn:hover {
+    cursor: pointer;
+    border-color: #18BF7C;
+  }
+}
+
+/* Feedback bar — bottom */
+.hl-feedback-bar {
+  position: absolute;
+  bottom: 124px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 14px;
+  text-align: center;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  min-height: 52px;
+
+  &.is-correct {
+    background: rgba(24, 191, 124, 0.88);
+    color: #fff;
+  }
+
+  &.is-wrong {
+    background: rgba(239, 141, 83, 0.92);
+    color: #fff;
+  }
+}
+
+.hl-fixed-ad {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: min(92vw, 560px);
+
+  .add-banner-card {
+    display: block !important;
+  }
+
+  .horizontal-980-250 {
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    padding: 10px 14px;
+    border-radius: 12px;
+
+    .banner-holder {
+      .banner-heading {
+        font-size: 20px;
+        line-height: 1.15;
+      }
+
+      .banner-text {
+        margin: 8px 0;
+        font-size: 13px;
+        line-height: 1.2;
+      }
+
+      .banner-cta {
+        font-size: 12px !important;
+        padding: 6px 12px !important;
+      }
+    }
+  }
+}
+
+/* ============================================================
+   LEADERBOARD (shared between home + game-score-popup)
+   ============================================================ */
+
+.hl-leaderboard-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: rgba(34, 55, 74, 0.5);
+
+    span {
+      color: #EDFEEC;
+      font-family: 'Red Hat Display', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .lb-rank {
+      color: #EF8D53;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 56px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      .lb-medal {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .lb-medal--gold {
+        color: #F5B940;
+      }
+
+      .lb-medal--silver {
+        color: #BCC6D3;
+      }
+
+      .lb-medal--bronze {
+        color: #B67C4A;
+      }
+    }
+
+    .lb-name {
+      flex: 1;
+      padding: 0 10px;
+      color: #EDFEEC;
+      font-family: 'Red Hat Display', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .lb-score {
+      color: #18BF7C;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 960px) {
+  .hl-home-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .higher-lower-heading {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 680px) {
+  .hl-fullscreen-game {
+    flex-direction: column;
+    min-height: 100svh;
+    min-height: 100dvh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .hl-panel {
+    min-height: 48vh;
+  }
+
+  .hl-vs-circle {
+    top: 50%;
+    width: 56px;
+    height: 56px;
+    font-size: 16px;
+  }
+
+  .hl-corner-score {
+    font-size: 14px;
+  }
+
+  .hl-movie-quote {
+    font-size: 15px;
+  }
+
+  .hl-stat-value {
+    font-size: 32px;
+  }
+
+  .hl-answer-actions .hl-answer-btn {
+    min-width: 150px;
+    font-size: 15px;
+    padding: 11px 20px;
+  }
+
+  .hl-top-actions {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    justify-content: flex-end;
+
+    button {
+      font-size: 12px;
+      padding: 7px 11px;
+    }
+  }
+
+  .hl-feedback-bar {
+    position: static;
+    order: 3;
+    min-height: 44px;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .hl-fixed-ad {
+    position: static;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    z-index: 1;
+    order: 4;
+    margin: 0 auto;
+    padding: 0 8px 12px;
+    width: 100%;
+
+    .horizontal-980-250 {
+      padding: 8px 10px;
+
+      .banner-holder {
+        .banner-heading {
+          font-size: 14px;
+        }
+
+        .banner-cta {
+          margin-top: auto;
+        }
+      }
+    }
+  }
+}
+

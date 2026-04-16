@@ -98,6 +98,9 @@ require_once get_template_directory() . '/auth-controller.php';
 // My Profile Controller
 require_once get_template_directory() . '/profile-controller.php';
 
+// Game Controller
+require_once get_template_directory() . '/games-controller.php';
+
 
 
 // Star Reviews

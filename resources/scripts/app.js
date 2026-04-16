@@ -68,6 +68,14 @@ domReady(async () => {
       await import('./pages/wheel-of-fortune.js');
       await import('./partials/wof-custom-add.js');
     },
+
+    '/vise-manje': async () => {
+      await import('./pages/higher-lower.js');
+    },
+
+    '/filmski-kviz': async () => {
+      await import('./pages/movie-quiz.js');
+    },
   };
 
   // Load scripts based on the current path

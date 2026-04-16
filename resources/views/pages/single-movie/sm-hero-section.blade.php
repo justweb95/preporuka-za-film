@@ -275,7 +275,7 @@
                 </a>
               @endforeach
             @else
-              <p class='sm-people-loader' data-sm-people-loader>Ucitavanje svezeg contenta....</p>
+              <p class='sm-people-loader' data-sm-people-loader></p>
               @foreach(array_slice($director ?: [], 0, 6) as $dir)
                 <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
                   <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($dir, 0, 1) }}</span></span>
@@ -383,7 +383,7 @@
 	            </a>
 	          @endforeach
 	        @else
-	          <p class='sm-people-loader' data-sm-people-loader>Ucitavanje svezeg contenta....</p>
+	          <p class='sm-people-loader' data-sm-people-loader></p>
 	          @forelse(array_slice($cast, 0, 16) as $actor)
 	            <div class='sm-person-card sm-person-card--skeleton' aria-hidden='true'>
 	              <span class='sm-person-avatar'><span class='sm-person-initials'>{{ substr($actor, 0, 1) }}</span></span>
