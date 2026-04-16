@@ -563,6 +563,135 @@ function pzfilm_fetch_tmdb_person_details_en( $tmdb_person_id ) {
     return $body;
 }
 
+
+function pzfilm_google_translate_request( $text, $target_lang ) {
+    $text = trim( (string) $text );
+    $target_lang = sanitize_key( $target_lang );
+
+    if ( '' === $text || '' === $target_lang ) {
+        return new WP_Error( 'invalid_translation_request', 'Nedostaje tekst za prevod.' );
+    }
+
+    $url = add_query_arg(
+        array(
+            'client' => 'gtx',
+            'sl'     => 'auto',
+            'tl'     => $target_lang,
+            'dt'     => 't',
+            'dj'     => '1',
+            'q'      => $text,
+        ),
+        'https://translate.googleapis.com/translate_a/single'
+    );
+
+    $response = wp_remote_get(
+        $url,
+        array(
+            'headers' => array(
+                'accept' => 'application/json',
+            ),
+            'timeout' => 20,
+        )
+    );
+
+    if ( is_wp_error( $response ) ) {
+        return $response;
+    }
+
+    $status_code = (int) wp_remote_retrieve_response_code( $response );
+    $body = json_decode( wp_remote_retrieve_body( $response ), true );
+
+    if ( $status_code >= 400 || empty( $body ) || ! is_array( $body ) ) {
+        return new WP_Error( 'google_translate_failed', 'Ne mogu da prevedem biografiju.' );
+    }
+
+    $translated = '';
+    $sentences = is_array( $body['sentences'] ?? null ) ? $body['sentences'] : array();
+    foreach ( $sentences as $sentence ) {
+        $translated .= (string) ( $sentence['trans'] ?? '' );
+    }
+
+    return array(
+        'translated_text' => trim( $translated ),
+        'source_language' => sanitize_key( $body['src'] ?? '' ),
+    );
+}
+
+function pzfilm_cyrillic_to_latin( $text ) {
+    return strtr(
+        (string) $text,
+        array(
+            'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd',
+            'ђ' => 'đ', 'е' => 'e', 'ж' => 'ž', 'з' => 'z', 'и' => 'i',
+            'ј' => 'j', 'к' => 'k', 'л' => 'l', 'љ' => 'lj', 'м' => 'm',
+            'н' => 'n', 'њ' => 'nj', 'о' => 'o', 'п' => 'p', 'р' => 'r',
+            'с' => 's', 'т' => 't', 'ћ' => 'ć', 'у' => 'u', 'ф' => 'f',
+            'х' => 'h', 'ц' => 'c', 'ч' => 'č', 'џ' => 'dž', 'ш' => 'š',
+            'А' => 'A', 'Б' => 'B', 'В' => 'V', 'Г' => 'G', 'Д' => 'D',
+            'Ђ' => 'Đ', 'Е' => 'E', 'Ж' => 'Ž', 'З' => 'Z', 'И' => 'I',
+            'Ј' => 'J', 'К' => 'K', 'Л' => 'L', 'Љ' => 'Lj', 'М' => 'M',
+            'Н' => 'N', 'Њ' => 'Nj', 'О' => 'O', 'П' => 'P', 'Р' => 'R',
+            'С' => 'S', 'Т' => 'T', 'Ћ' => 'Ć', 'У' => 'U', 'Ф' => 'F',
+            'Х' => 'H', 'Ц' => 'C', 'Ч' => 'Č', 'Џ' => 'Dž', 'Ш' => 'Š',
+        )
+    );
+}
+
+function pzfilm_detect_biography_language( $text ) {
+    $sample = trim( preg_replace( '/\s+/', ' ', (string) $text ) );
+    if ( '' === $sample ) {
+        return '';
+    }
+
+    if ( function_exists( 'mb_substr' ) ) {
+        $sample = mb_substr( $sample, 0, 900 );
+    } else {
+        $sample = substr( $sample, 0, 900 );
+    }
+
+    $result = pzfilm_google_translate_request( $sample, 'sr' );
+    if ( is_wp_error( $result ) ) {
+        return '';
+    }
+
+    return sanitize_key( $result['source_language'] ?? '' );
+}
+
+function pzfilm_translate_biography_to_serbian( $text ) {
+    $text = trim( (string) $text );
+    if ( '' === $text ) {
+        return '';
+    }
+
+    $paragraphs = preg_split( '/\n\s*\n/', str_replace( array( "\r\n", "\r" ), "\n", $text ) );
+    if ( ! is_array( $paragraphs ) || empty( $paragraphs ) ) {
+        $paragraphs = array( $text );
+    }
+
+    $translated_paragraphs = array();
+
+    foreach ( $paragraphs as $paragraph ) {
+        $paragraph = trim( (string) $paragraph );
+        if ( '' === $paragraph ) {
+            continue;
+        }
+
+        $result = pzfilm_google_translate_request( $paragraph, 'sr' );
+        if ( is_wp_error( $result ) ) {
+            return $result;
+        }
+
+        $translated = trim( (string) ( $result['translated_text'] ?? '' ) );
+        if ( '' === $translated ) {
+            return new WP_Error( 'empty_translation', 'Prevod biografije je prazan.' );
+        }
+
+        $translated_paragraphs[] = pzfilm_cyrillic_to_latin( $translated );
+    }
+
+    return implode( "\n\n", $translated_paragraphs );
+}
+
 function pzfilm_fetch_tmdb_person_combined_credits_en( $tmdb_person_id ) {
     $tmdb_api_key = env( 'PUBLIC_TMDB_API_KEY' );
     $tmdb_person_id = absint( $tmdb_person_id );
@@ -637,15 +766,16 @@ function pzfilm_build_person_cache( $details, $combined_credits ) {
 
     $profile_path = sanitize_text_field( $details['profile_path'] ?? '' );
 
-    $cache['details'] = array(
-        'tmdb_id'              => absint( $details['id'] ?? 0 ),
-        'name'                 => sanitize_text_field( $details['name'] ?? '' ),
-        'known_for_department' => sanitize_text_field( $details['known_for_department'] ?? '' ),
-        'biography'            => sanitize_textarea_field( $details['biography'] ?? '' ),
-        'birthday'             => sanitize_text_field( $details['birthday'] ?? '' ),
-        'deathday'             => sanitize_text_field( $details['deathday'] ?? '' ),
-        'place_of_birth'       => sanitize_text_field( $details['place_of_birth'] ?? '' ),
-        'gender'               => absint( $details['gender'] ?? 0 ),
+	$cache['details'] = array(
+		'tmdb_id'              => absint( $details['id'] ?? 0 ),
+		'name'                 => sanitize_text_field( $details['name'] ?? '' ),
+		'known_for_department' => sanitize_text_field( $details['known_for_department'] ?? '' ),
+		'biography_language'   => sanitize_text_field( $details['biography_language'] ?? '' ),
+		'biography'            => sanitize_textarea_field( $details['biography'] ?? '' ),
+		'birthday'             => sanitize_text_field( $details['birthday'] ?? '' ),
+		'deathday'             => sanitize_text_field( $details['deathday'] ?? '' ),
+		'place_of_birth'       => sanitize_text_field( $details['place_of_birth'] ?? '' ),
+		'gender'               => absint( $details['gender'] ?? 0 ),
         'imdb_id'              => sanitize_text_field( $details['imdb_id'] ?? '' ),
         'homepage'             => esc_url_raw( $details['homepage'] ?? '' ),
         'profile_path'         => $profile_path,
@@ -712,19 +842,20 @@ function pzfilm_build_person_cache( $details, $combined_credits ) {
 function pzfilm_build_person_details_cache( $details ) {
     $profile_path = sanitize_text_field( $details['profile_path'] ?? '' );
 
-    return array(
-        'updated_at'         => time(),
-        'details_updated_at' => time(),
-        'movies_updated_at'  => 0,
-        'details'            => array(
-            'tmdb_id'              => absint( $details['id'] ?? 0 ),
-            'name'                 => sanitize_text_field( $details['name'] ?? '' ),
-            'known_for_department' => sanitize_text_field( $details['known_for_department'] ?? '' ),
-            'biography'            => sanitize_textarea_field( $details['biography'] ?? '' ),
-            'birthday'             => sanitize_text_field( $details['birthday'] ?? '' ),
-            'deathday'             => sanitize_text_field( $details['deathday'] ?? '' ),
-            'place_of_birth'       => sanitize_text_field( $details['place_of_birth'] ?? '' ),
-            'gender'               => absint( $details['gender'] ?? 0 ),
+	return array(
+		'updated_at'         => time(),
+		'details_updated_at' => time(),
+		'movies_updated_at'  => 0,
+		'details'            => array(
+			'tmdb_id'              => absint( $details['id'] ?? 0 ),
+			'name'                 => sanitize_text_field( $details['name'] ?? '' ),
+			'known_for_department' => sanitize_text_field( $details['known_for_department'] ?? '' ),
+			'biography_language'   => sanitize_text_field( $details['biography_language'] ?? '' ),
+			'biography'            => sanitize_textarea_field( $details['biography'] ?? '' ),
+			'birthday'             => sanitize_text_field( $details['birthday'] ?? '' ),
+			'deathday'             => sanitize_text_field( $details['deathday'] ?? '' ),
+			'place_of_birth'       => sanitize_text_field( $details['place_of_birth'] ?? '' ),
+			'gender'               => absint( $details['gender'] ?? 0 ),
             'imdb_id'              => sanitize_text_field( $details['imdb_id'] ?? '' ),
             'homepage'             => esc_url_raw( $details['homepage'] ?? '' ),
             'profile_path'         => $profile_path,
@@ -884,6 +1015,23 @@ function pzfilm_maybe_populate_person_cache() {
     // Only refresh "details" on page-load. Filmography (combined_credits) is loaded lazily via AJAX.
     $ttl = 30 * DAY_IN_SECONDS;
     if ( is_array( $cache ) && ! empty( $cache['details_updated_at'] ) && ( time() - absint( $cache['details_updated_at'] ) ) < $ttl ) {
+        $cached_lang = sanitize_text_field( $cache['details']['biography_language'] ?? '' );
+        $cached_bio = sanitize_textarea_field( $cache['details']['biography'] ?? '' );
+        if ( '' === $cached_lang && '' !== $cached_bio ) {
+            $cached_lang = pzfilm_detect_biography_language( $cached_bio );
+        }
+
+        if ( 'en' === $cached_lang && '' !== $cached_bio ) {
+            $translated = pzfilm_translate_biography_to_serbian( $cached_bio );
+            $translated = is_wp_error( $translated ) ? '' : trim( (string) $translated );
+            if ( '' !== $translated ) {
+                $cache['details']['biography'] = sanitize_textarea_field( $translated );
+                $cache['details']['biography_language'] = 'sr';
+                $cache['details_updated_at'] = time();
+                $cache['updated_at'] = time();
+                update_post_meta( $post_id, 'tmdb_person_cache', $cache );
+            }
+        }
         return;
     }
 
@@ -895,6 +1043,22 @@ function pzfilm_maybe_populate_person_cache() {
             update_post_meta( $post_id, 'tmdb_person_rate_limited_until', time() + $cooldown );
         }
         return;
+    }
+
+    $bio = sanitize_textarea_field( $details['biography'] ?? '' );
+    $bio_language = '' !== $bio ? pzfilm_detect_biography_language( $bio ) : '';
+
+    if ( 'en' === $bio_language && '' !== $bio ) {
+        $translated = pzfilm_translate_biography_to_serbian( $bio );
+        $translated = is_wp_error( $translated ) ? '' : trim( (string) $translated );
+        if ( '' !== $translated ) {
+            $details['biography'] = sanitize_textarea_field( $translated );
+            $details['biography_language'] = 'sr';
+        } else {
+            $details['biography_language'] = 'en';
+        }
+    } elseif ( '' !== $bio ) {
+        $details['biography_language'] = 'sr' === $bio_language ? 'sr' : $bio_language;
     }
 
     $new_cache = is_array( $cache ) ? $cache : array();
