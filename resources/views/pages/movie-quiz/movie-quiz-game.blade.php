@@ -37,4 +37,8 @@
       </div>
     </aside>
   </div>
+
+  <div class="movie-quiz-fixed-ad" aria-label="Reklamni prostor">
+    @include('placements.horizontal-980-250')
+  </div>
 </section>

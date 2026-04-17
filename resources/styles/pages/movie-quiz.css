@@ -101,6 +101,9 @@
 }
 
 .movie-quiz-game {
+  position: relative;
+  padding-bottom: 180px;
+
   .movie-quiz-game-header {
     h2 {
       color: #fff;
@@ -288,6 +291,45 @@
     font-size: 17px;
     font-weight: 700;
   }
+
+  .movie-quiz-fixed-ad {
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    z-index: 5;
+    width: min(92vw, 560px);
+
+    .add-banner-card {
+      display: block !important;
+    }
+
+    .horizontal-980-250 {
+      min-width: 0;
+      max-width: 100%;
+      height: auto;
+      padding: 10px 14px;
+      border-radius: 12px;
+
+      .banner-holder {
+        .banner-heading {
+          font-size: 20px;
+          line-height: 1.15;
+        }
+
+        .banner-text {
+          margin: 8px 0;
+          font-size: 13px;
+          line-height: 1.2;
+        }
+
+        .banner-cta {
+          font-size: 12px !important;
+          padding: 6px 12px !important;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 1024px) {
@@ -300,6 +342,10 @@
   .movie-quiz-game .movie-quiz-layout {
     display: flex;
     flex-direction: column;
+  }
+
+  .movie-quiz-game {
+    padding-bottom: 56px;
   }
 
   .movie-quiz-game .movie-quiz-right-panel--game {
@@ -355,6 +401,30 @@
     .movie-quiz-side-image-wrap img {
       min-height: 200px;
       max-height: 220px;
+    }
+  }
+
+  .movie-quiz-game .movie-quiz-fixed-ad {
+    position: static;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    margin: 16px auto 0;
+    padding: 0 8px;
+    width: 100%;
+
+    .horizontal-980-250 {
+      padding: 8px 10px;
+
+      .banner-holder {
+        .banner-heading {
+          font-size: 14px;
+        }
+
+        .banner-cta {
+          margin-top: auto;
+        }
+      }
     }
   }
 }
