@@ -57,7 +57,7 @@ async function initializeQuiz() {
   renderMovieCards();
 
   leaderboard = await fetchGameLeaderboard(GAME_KEY);
-  renderSimpleLeaderboard(leaderboardHome, leaderboard);
+  renderSimpleLeaderboard(leaderboardHome, leaderboard, { showMovie: true });
 
   restartButton?.addEventListener('click', goToHome);
   playAgainButton?.addEventListener('click', restartCurrentQuiz);
@@ -286,7 +286,9 @@ async function handleSaveScore() {
     return;
   }
 
-  const response = await saveGameScore(GAME_KEY, playerName, score);
+  const response = await saveGameScore(GAME_KEY, playerName, score, {
+    movieTitle: selectedMovie?.title || '',
+  });
 
   if (!response.success) {
     feedbackElement.textContent = response.data?.message || 'Neuspesno cuvanje rezultata.';
@@ -295,7 +297,7 @@ async function handleSaveScore() {
   }
 
   leaderboard = response.data.leaderboard || [];
-  renderSimpleLeaderboard(leaderboardHome, leaderboard);
+  renderSimpleLeaderboard(leaderboardHome, leaderboard, { showMovie: true });
   feedbackElement.textContent = 'Rezultat je sacuvan!';
   closePopup();
 }

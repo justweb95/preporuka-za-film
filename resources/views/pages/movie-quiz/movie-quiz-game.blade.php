@@ -17,8 +17,8 @@
       </div>
 
       <div class="movie-quiz-actions" id="movie-quiz-end-actions" hidden>
-        <button type="button" id="movie-quiz-restart">Nazad na filmove</button>
         <button type="button" id="movie-quiz-play-again">Igraj opet</button>
+        <button type="button" id="movie-quiz-restart">Nazad na rezultate</button>
       </div>
 
       <p class="movie-quiz-feedback" id="movie-quiz-feedback"></p>

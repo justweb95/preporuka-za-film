@@ -14,6 +14,7 @@ function pzfilm_create_game_scores_table() {
         id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
         game_key varchar(100) NOT NULL,
         player_name varchar(64) NOT NULL,
+        movie_title varchar(120) NOT NULL DEFAULT '',
         score int(11) NOT NULL,
         created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY  (id),
@@ -23,13 +24,13 @@ function pzfilm_create_game_scores_table() {
     require_once ABSPATH . 'wp-admin/includes/upgrade.php';
     dbDelta($sql);
 
-    update_option('pzfilm_game_scores_table_version', '1.0.0');
+    update_option('pzfilm_game_scores_table_version', '1.1.0');
 }
 
 add_action('init', function () {
     $version = get_option('pzfilm_game_scores_table_version');
 
-    if ($version !== '1.0.0') {
+    if ($version !== '1.1.0') {
         pzfilm_create_game_scores_table();
     }
 });
@@ -52,7 +53,7 @@ function pzfilm_get_game_leaderboard_handler() {
 
     $rows = $wpdb->get_results(
         $wpdb->prepare(
-            "SELECT player_name, score FROM {$table_name}
+            "SELECT player_name, movie_title, score FROM {$table_name}
              WHERE game_key = %s
              ORDER BY score DESC, created_at ASC, id ASC
              LIMIT 10",
@@ -66,6 +67,7 @@ function pzfilm_get_game_leaderboard_handler() {
             static function ($row) {
                 return [
                     'player_name' => (string) $row['player_name'],
+                    'movie_title' => (string) ($row['movie_title'] ?? ''),
                     'score' => (int) $row['score'],
                 ];
             },
@@ -84,6 +86,7 @@ function pzfilm_save_game_score_handler() {
 
     $game_key = isset($_POST['game_key']) ? sanitize_key(wp_unslash($_POST['game_key'])) : '';
     $player_name = isset($_POST['player_name']) ? sanitize_text_field(wp_unslash($_POST['player_name'])) : '';
+    $movie_title = isset($_POST['movie_title']) ? sanitize_text_field(wp_unslash($_POST['movie_title'])) : '';
     $score = isset($_POST['score']) ? (int) $_POST['score'] : 0;
 
     if (empty($game_key) || empty($player_name)) {
@@ -91,6 +94,7 @@ function pzfilm_save_game_score_handler() {
     }
 
     $player_name = mb_substr($player_name, 0, 24);
+    $movie_title = mb_substr($movie_title, 0, 120);
 
     if ($score <= 0) {
         wp_send_json_error(['message' => 'Score mora biti veci od 0.'], 400);
@@ -125,10 +129,11 @@ function pzfilm_save_game_score_handler() {
         [
             'game_key' => $game_key,
             'player_name' => $player_name,
+            'movie_title' => $movie_title,
             'score' => $score,
             'created_at' => current_time('mysql'),
         ],
-        ['%s', '%s', '%d', '%s']
+        ['%s', '%s', '%s', '%d', '%s']
     );
 
     if ($insert_result === false) {
@@ -159,7 +164,7 @@ function pzfilm_save_game_score_handler() {
 
     $leaderboard = $wpdb->get_results(
         $wpdb->prepare(
-            "SELECT player_name, score FROM {$table_name}
+            "SELECT player_name, movie_title, score FROM {$table_name}
              WHERE game_key = %s
              ORDER BY score DESC, created_at ASC, id ASC
              LIMIT 10",
@@ -173,6 +178,7 @@ function pzfilm_save_game_score_handler() {
             static function ($row) {
                 return [
                     'player_name' => (string) $row['player_name'],
+                    'movie_title' => (string) ($row['movie_title'] ?? ''),
                     'score' => (int) $row['score'],
                 ];
             },

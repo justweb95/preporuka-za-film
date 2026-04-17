@@ -268,17 +268,28 @@
 
     button {
       border-radius: 40px;
-      border: 1px solid #22374A;
-      background: #22374A;
+      border: 1px solid transparent;
       color: #fff;
       padding: 10px 14px;
       font-family: 'Red Hat Display', sans-serif;
       font-size: 16px;
       font-weight: 700;
+      transition: .18s ease;
+
+      &#movie-quiz-restart {
+        border-color: #EF8D53;
+        background: #EF8D53;
+      }
+
+      &#movie-quiz-play-again {
+        border-color: #18BF7C;
+        background: #18BF7C;
+      }
 
       &:hover {
         cursor: pointer;
-        border-color: #18BF7C;
+        filter: brightness(1.06);
+        transform: translateY(-1px);
       }
     }
   }

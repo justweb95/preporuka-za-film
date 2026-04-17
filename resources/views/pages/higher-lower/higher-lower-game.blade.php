@@ -53,8 +53,8 @@
 
   {{-- Top actions --}}
   <div class="hl-top-actions">
-    <button class="hl-restart-btn" type="button">&#8635; Igraj ponovo</button>
-    <button class="hl-back-home-btn" type="button">Nazad na score bord</button>
+    <button class="hl-restart-btn" type="button">Igraj ponovo</button>
+    <button class="hl-back-home-btn" type="button">Nazad na rezultate</button>
   </div>
 
   {{-- Fixed ad banner --}}

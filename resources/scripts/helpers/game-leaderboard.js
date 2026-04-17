@@ -17,17 +17,23 @@ export async function fetchGameLeaderboard(gameKey) {
   return data.data.leaderboard;
 }
 
-export async function saveGameScore(gameKey, playerName, score) {
+export async function saveGameScore(gameKey, playerName, score, metadata = {}) {
+  const payload = {
+    action: 'pzfilm_save_game_score',
+    game_key: gameKey,
+    player_name: playerName,
+    score: String(score),
+    nonce: pzfilm_globals.nonce,
+  };
+
+  if (metadata?.movieTitle) {
+    payload.movie_title = String(metadata.movieTitle);
+  }
+
   const response = await fetch(pzfilm_globals.ajaxurl, {
     method: 'POST',
     credentials: 'same-origin',
-    body: new URLSearchParams({
-      action: 'pzfilm_save_game_score',
-      game_key: gameKey,
-      player_name: playerName,
-      score: String(score),
-      nonce: pzfilm_globals.nonce,
-    }),
+    body: new URLSearchParams(payload),
   });
 
   return response.json();
@@ -46,10 +52,12 @@ export function isTopTenScore(score, leaderboard) {
   return score > minTopScore;
 }
 
-export function renderSimpleLeaderboard(listElement, leaderboard) {
+export function renderSimpleLeaderboard(listElement, leaderboard, options = {}) {
   if (!listElement) {
     return;
   }
+
+  const showMovie = Boolean(options.showMovie);
 
   if (!leaderboard.length) {
     listElement.innerHTML = '<li class="leaderboard-empty">Jos nema rezultata.</li>';
@@ -65,6 +73,7 @@ export function renderSimpleLeaderboard(listElement, leaderboard) {
           #${index + 1}
         </span>
         <span class="lb-name">${escapeHtml(entry.player_name)}</span>
+        ${showMovie ? `<span class="lb-movie">${escapeHtml(entry.movie_title || '-')}</span>` : ''}
         <strong class="lb-score">${entry.score}</strong>
       </li>
     `)

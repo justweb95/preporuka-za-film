@@ -379,8 +379,7 @@ body.hl-immersive-mode {
   button {
     padding: 8px 16px;
     border-radius: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(6, 19, 30, 0.65);
+    border: 1px solid transparent;
     color: #fff;
     font-family: 'Red Hat Display', sans-serif;
     font-size: 14px;
@@ -388,14 +387,21 @@ body.hl-immersive-mode {
     transition: .18s ease;
   }
 
+  .hl-restart-btn {
+    border-color: #18BF7C;
+    background: #18BF7C;
+  }
+
   .hl-back-home-btn {
     border-color: #EF8D53;
+    background: #EF8D53;
   }
 
   .hl-restart-btn:hover,
   .hl-back-home-btn:hover {
     cursor: pointer;
-    border-color: #18BF7C;
+    filter: brightness(1.06);
+    transform: translateY(-1px);
   }
 }
 
@@ -525,6 +531,16 @@ body.hl-immersive-mode {
       font-family: 'Red Hat Display', sans-serif;
       font-size: 15px;
       font-weight: 500;
+    }
+
+    .lb-movie {
+      flex: 1;
+      padding: 0 10px;
+      color: #B5CBDD;
+      font-family: 'Red Hat Display', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: left;
     }
 
     .lb-score {
