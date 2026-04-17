@@ -116,7 +116,7 @@
   display: flex;
   background: #06131E;
   min-height: 100svh;
-  min-height: 100dvh;
+  min-height: 100svh;
   overflow: hidden;
 }
 
@@ -134,7 +134,7 @@ body.hl-immersive-mode {
     padding-top: 0;
     background: #06131E;
     min-height: 100svh;
-    min-height: 100dvh;
+    min-height: 100svh;
   }
 }
 
@@ -554,20 +554,26 @@ body.hl-immersive-mode {
   .hl-fullscreen-game {
     flex-direction: column;
     min-height: 100svh;
-    min-height: 100dvh;
+    min-height: 100svh;
     overflow-y: auto;
     overflow-x: hidden;
   }
 
-  .hl-panel {
-    min-height: 48vh;
+  .hl-panel.hl-panel--left {
+    min-height: 48svh;
+  }
+
+  .hl-panel.hl-panel--right {
+    min-height: 52svh;
   }
 
   .hl-vs-circle {
     top: 50%;
+    left: 50%;
     width: 56px;
     height: 56px;
     font-size: 16px;
+    transform: translate(-50%, -220%);
   }
 
   .hl-corner-score {

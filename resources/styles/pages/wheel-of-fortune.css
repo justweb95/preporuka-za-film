@@ -172,7 +172,7 @@
   position: absolute;
   width: 100%;
   height: auto;
-  min-height: 100svh;
+  min-height: 100dvh;
   top: 0px;
   left: 0px;
   z-index: 20;
@@ -374,7 +374,7 @@
   position: absolute;
   width: 100%;
   height: auto;
-  min-height: 100svh;
+  min-height: 100dvh;
   top: 0px;
   left: 0px;
   z-index: 20;

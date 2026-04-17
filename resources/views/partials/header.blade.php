@@ -79,6 +79,29 @@
 
         </li>
         <li class="link-item">
+          <a href="#">Igre</a>
+          <svg class="category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1L6.49999 6L12 1ZM6.49999 6L1 1L6.49999 6Z" fill="#EDFEEC"/>
+            <path d="M12 1L6.49999 6L1 1" stroke="#18BF7C" stroke-width="2"/>
+          </svg>
+          <ul class="link-drop-down">
+            <li class="drop-down-item"><a href="{{ home_url() }}/vise-manje">
+              Više ili manje
+              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+                <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+              </svg>
+            </a></li>
+            <li class="drop-down-item"><a href="{{ home_url() }}/filmski-kviz">
+              Filmski kviz
+              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+                <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+              </svg>
+            </a></li>
+          </ul>
+        </li>
+        <li class="link-item">
           <a href="#">Kategorije</a>
           <svg class="category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 1L6.49999 6L12 1ZM6.49999 6L1 1L6.49999 6Z" fill="#EDFEEC"/>
@@ -130,29 +153,6 @@
           </ul>
         </li>
         <li class="link-item blog"><a href="{{ home_url() }}/blog">Blog</a></li>
-        <li class="link-item">
-          <a href="#">Igre</a>
-          <svg class="category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 1L6.49999 6L12 1ZM6.49999 6L1 1L6.49999 6Z" fill="#EDFEEC"/>
-            <path d="M12 1L6.49999 6L1 1" stroke="#18BF7C" stroke-width="2"/>
-          </svg>
-          <ul class="link-drop-down">
-            <li class="drop-down-item"><a href="{{ home_url() }}/vise-manje">
-              Više ili manje
-              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
-                <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
-              </svg>
-            </a></li>
-            <li class="drop-down-item"><a href="{{ home_url() }}/filmski-kviz">
-              Filmski kviz
-              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
-                <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
-              </svg>
-            </a></li>
-          </ul>
-        </li>
       </ul>
     </nav>
 
@@ -240,7 +240,29 @@
             </a></li>
           </ul>
         </li>
-
+        <li class="burger-link-item burger-open-dropdown">
+          <a href="#">Igre</a>
+           <svg class="burger-category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1L6.49999 6L12 1ZM6.49999 6L1 1L6.49999 6Z" fill="#EDFEEC"/>
+            <path d="M12 1L6.49999 6L1 1" stroke="#18BF7C" stroke-width="2"/>
+          </svg>
+          <ul class="link-drop-down burger-dropdown-content">
+            <li class="drop-down-item"><a href="{{ home_url() }}/vise-manje">
+              Više ili manje
+              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+                <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+              </svg>
+            </a></li>
+            <li class="drop-down-item"><a href="{{ home_url() }}/filmski-kviz">
+              Filmski kviz
+              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
+                <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
+              </svg>
+            </a></li>
+          </ul>
+        </li>
         <li class="burger-link-item burger-open-dropdown">
           <a href="#">Kategorije</a>
            <svg class="burger-category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -278,31 +300,7 @@
             </a></li>
           </ul>
         </li>
-        <li class="burger-link-item"><a href="{{ home_url() }}/blog">Blog</a></li>
-        <li class="burger-link-item burger-open-dropdown">
-          <a href="#">Igre</a>
-           <svg class="burger-category-icon" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 1L6.49999 6L12 1ZM6.49999 6L1 1L6.49999 6Z" fill="#EDFEEC"/>
-            <path d="M12 1L6.49999 6L1 1" stroke="#18BF7C" stroke-width="2"/>
-          </svg>
-          <ul class="link-drop-down burger-dropdown-content">
-            <li class="drop-down-item"><a href="{{ home_url() }}/vise-manje">
-              Više ili manje
-              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
-                <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
-              </svg>
-            </a></li>
-            <li class="drop-down-item"><a href="{{ home_url() }}/filmski-kviz">
-              Filmski kviz
-              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L6 6.50001ZM6 6.50001L1 12Z" fill="#EDFEEC"/>
-                <path d="M1 1L6 6.50001L1 12" stroke="#18BF7C" stroke-width="2"/>
-              </svg>
-            </a></li>
-          </ul>
-        </li>
-        
+        <li class="burger-link-item"><a href="{{ home_url() }}/blog">Blog</a></li>        
         <?php if (is_user_logged_in()): ?>
           <li class="burger-link-item login-mobile">
             <a href="<?php echo home_url('/moj-profil'); ?>">
